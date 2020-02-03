@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("test index")
+    return render(request, 'hercules_app/index.html')
