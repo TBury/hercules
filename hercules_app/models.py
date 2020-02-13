@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 class Company(models.Model):
     id = models.AutoField(primary_key=True)
@@ -15,18 +16,15 @@ class Company(models.Model):
         return self.name
 
 class Driver(models.Model):
-    id = models.AutoField(primary_key=True)
-    login = models.CharField(max_length=64)
-    nick = models.CharField(max_length=64)
-    email = models.EmailField(max_length=128)
-    password = models.CharField(max_length=64)
-    company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
-    avatar = models.FileField(upload_to='avatars/')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    nick = models.CharField(max_length=64, null=True)
+    company_id = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
+    avatar = models.FileField(upload_to='avatars/', null=True)
     last_delivery = models.DateTimeField(auto_now_add=True)
     length_of_service = models.DateTimeField(auto_now_add=True)
-    position = models.CharField(max_length=20)
+    position = models.CharField(max_length=20, null=True)
     def __str__(self):
-        return self.nick
+        return self.user.username
 
 class Vehicle(models.Model):
     id = models.AutoField(primary_key=True)
