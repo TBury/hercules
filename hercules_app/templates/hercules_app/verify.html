@@ -135,26 +135,30 @@
                                 <div class="field">
                                     <label class="label">Miasto załadunku</label>
                                     <div class="control">
-                                        <input class="input loading-city" type="text" placeholder="" tabindex="1">
-                                    </div>
-                                    <img class="loading-city-screen screenshot" src="img/load-1.png" alt="Miasto załadunku">
-                                </div>
-                                <div class="field">
-                                    <label class="label">Spedycja załadunku</label>
-                                    <div class="control">
-                                        <input class="input loading-spedition" type="text" placeholder="" tabindex="3">
-                                    </div>
-                                    <img class="loading-city-screen screenshot" src="img/load-1.png" alt="Miasto załadunku">
-                                </div>
-                                <div class="field">
-                                    <label class="label">Ładunek</label>
-                                    <div class="control">
-                                        <input class="input" type="text" placeholder="" tabindex="5">
+                                        <input class="input loading-city" type="text" placeholder="" tabindex="1"
+                                            value="{{ loading_city }}">
                                     </div>
                                     <img class="loading-city-screen screenshot" src="img/load-1.png"
                                         alt="Miasto załadunku">
                                 </div>
-                               
+                                <div class="field">
+                                    <label class="label">Spedycja załadunku</label>
+                                    <div class="control">
+                                        <input class="input loading-spedition" type="text" placeholder="" tabindex="3"
+                                            value="{{ loading_spedition }}">
+                                    </div>
+                                    <img class="loading-city-screen screenshot" src="img/load-1.png"
+                                        alt="Spedycja załadunku">
+                                </div>
+                                <div class="field">
+                                    <label class="label">Ładunek</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="" tabindex="5"
+                                            value="{{ cargo }}">
+                                    </div>
+                                    <img class=" loading-city-screen screenshot" src="img/load-1.png" alt="Towar">
+                                </div>
+
                                 <hr>
 
                                 <b><span class="colored">Statystyki </span></b>
@@ -163,23 +167,27 @@
                                 <div class="field">
                                     <label class="label">Miasto rozładunku</label>
                                     <div class="control">
-                                        <input class="input" type="text" placeholder="" tabindex="2">
+                                        <input class="input" type="text" placeholder="" tabindex="2"
+                                            value="{{ unloading_city }}">
                                     </div>
-                                    <img class="unloading-city-screen screenshot" src="img/unloading-1.png" alt="Miasto załadunku">
+                                    <img class="unloading-city-screen screenshot" src="img/unloading-1.png"
+                                        alt="Miasto załadunku">
                                 </div>
                                 <div class="field">
                                     <label class="label">Spedycja rozładunku</label>
                                     <div class="control">
-                                        <input class="input loading-city" type="text" placeholder="" tabindex="4">
+                                        <input class="input loading-city" type="text" placeholder="" tabindex="4"
+                                            value="{{ unloading_spedition }}">
                                     </div>
-                                    <img class="unloading-spedition-screen screenshot" src="img/load-1.png" alt="Spedycja rozładunku">
+                                    <img class="unloading-spedition-screen screenshot" src="img/load-1.png"
+                                        alt="Spedycja rozładunku">
                                 </div>
                                 <div class="static-field">
                                     <label for="" class="label static-label">Tonaż</label>
                                     <div class="field has-addons">
                                         <div class="control">
-                                            <input class="input" type="text" placeholder="Find a repository"
-                                                tabindex="6">
+                                            <input class="input" type="text" placeholder="" tabindex="6"
+                                                value="{{ tonnage }}">
                                         </div>
                                         <div class="control">
                                             <a class="button is-static">
@@ -188,99 +196,101 @@
                                         </div>
                                     </div>
                                     <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                        alt="Spedycja rozładunku">
+                                        alt="">
                                 </div>
                                 <hr>
-                        </div>
-                    </div>
-                    <div class="stats">
-                        <div class="columns">
-                            <div class="column">
-                                <div class="static-field">
-                                    <label for="" class="label static-label">Przejechany dystans</label>
-                                    <div class="field has-addons">
-                                        <div class="control">
-                                            <input class="input" type="text" placeholder="Przejechany dystans"
-                                                tabindex="7">
-                                        </div>
-                                        <div class="control">
-                                            <a class="button is-static">
-                                                km
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                        alt="Spedycja rozładunku">
-                                </div>
-                                <div class="static-field">
-                                    <label for="" class="label static-label">Uszkodzenia towaru</label>
-                                    <div class="field has-addons">
-                                        <div class="control">
-                                            <input class="input" type="text" placeholder="Przejechany dystans"
-                                                tabindex="10">
-                                        </div>
-                                        <div class="control">
-                                            <a class="button is-static">
-                                                %
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                        alt="Spedycja rozładunku">
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="static-field">
-                                    <label for="" class="label static-label">Spalone paliwo</label>
-                                    <div class="field has-addons">
-                                        <div class="control">
-                                            <input class="input" type="text" placeholder="Paliwo" tabindex="8">
-                                        </div>
-                                        <div class="control">
-                                            <a class="button is-static">
-                                                litrów
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                        alt="Spedycja rozładunku">
-                                </div>
-                                <div class="static-field">
-                                    <label for="" class="label static-label">Notatka kierowcy</label>
-                                    <div class="field has-addons">
-                                       <textarea class="textarea has-fixed-size"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="static-field">
-                                    <label for="" class="label static-label">Dochód</label>
-                                    <div class="field has-addons">
-                                        <div class="control">
-                                            <input class="input" type="text" placeholder="Dochód" tabindex="9">
-                                        </div>
-                                        <div class="control">
-                                            <a class="button is-static">
-                                                zł
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                        alt="Spedycja rozładunku">
-                                </div>
                             </div>
                         </div>
+                        <div class="stats">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Przejechany dystans</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                <input class="input" type="text" placeholder="Przejechany dystans"
+                                                    tabindex="7" value="{{ distance }}">
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-static">
+                                                    km
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
+                                            alt="Spedycja rozładunku">
+                                    </div>
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Uszkodzenia towaru</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                <input class="input" type="text" placeholder="Przejechany dystans"
+                                                    tabindex="10">
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-static">
+                                                    %
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
+                                            alt="Spedycja rozładunku">
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Spalone paliwo</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                <input class="input" type="text" placeholder="Paliwo" tabindex="8"
+                                                    value="{{ fuel }}">
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-static">
+                                                    litrów
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
+                                            alt="Spedycja rozładunku">
+                                    </div>
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Notatka kierowcy</label>
+                                        <div class="field has-addons">
+                                            <textarea class="textarea has-fixed-size"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Dochód</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                <input class="input" type="text" placeholder="Dochód" tabindex="9"
+                                                    value="{{ income }}">
+                                            </div>
+                                            <div class=" control">
+                                                <a class="button is-static">
+                                                    zł
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
+                                            alt="Spedycja rozładunku">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                   
-                </div>
-                 <div class="field is-grouped">
-                     <div class="control">
-                         <button class="button is-light go-back">Wróć</button>
-                     </div>
-                     <div class="control">
-                         <button class="button next">Wyślij trasę</button>
-                     </div>
-                 </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-light go-back">Wróć</button>
+                        </div>
+                        <div class="control">
+                            <button class="button next">Wyślij trasę</button>
+                        </div>
+                    </div>
             </main>
         </div>
     </div>

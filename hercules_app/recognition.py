@@ -3,7 +3,10 @@ import pytesseract
 import re
 import os
 
-TESSERACT_CMD = 'C:\\Program Files (x86)\\Tesseract-OCR'
+TESSERACT_CMD = 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe'
+
+pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
+
 
 class WaybillInfo:
     def __init__(self, first_screen_path, end_screen_path):
@@ -14,17 +17,6 @@ class WaybillInfo:
 
         self.loading_info = self.get_loading_info()
         self.unloading_info = self.get_unloading_info()
-
-        self.loading_city = self.get_loading_city()
-        self.loading_spedition = self.get_loading_spedition()
-        self.unloading_city = self.get_unloading_city()
-        self.unloading_spedition = self.get_unloading_spedition()
-
-        self.distance = self.get_distance()
-        self.fuel = self.get_fuel()
-        self.cargo = self.get_cargo()
-        self.tonnage = self.get_tonnage()
-        self.income = self.get_income()
 
     def get_first_screen(self):
         try:
@@ -51,7 +43,8 @@ class WaybillInfo:
         return matches[0]
 
     def get_loading_info(self):
-        first_screen = self.crop_screen(self.first_screen, 1432, 608, 1800, 632)
+        first_screen = self.crop_screen(
+            self.first_screen, 1432, 608, 1800, 632)
         loading_info = pytesseract.image_to_string(first_screen, lang='pol')
         return loading_info
 
@@ -61,12 +54,14 @@ class WaybillInfo:
         return loading_city
 
     def get_loading_spedition(self):
-        loading_spedition = self.regex_process(self.loading_info, r'(?<=\/).*$')
+        loading_spedition = self.regex_process(
+            self.loading_info, r'(?<=\/).*$')
         loading_spedition = loading_spedition.lstrip()
         return loading_spedition
 
     def get_unloading_info(self):
-        first_screen = self.crop_screen(self.first_screen, 1431, 643, 1800, 663)
+        first_screen = self.crop_screen(
+            self.first_screen, 1431, 643, 1800, 663)
         unloading_info = pytesseract.image_to_string(first_screen, lang='pol')
         return unloading_info
 
@@ -74,7 +69,7 @@ class WaybillInfo:
         unloading_city = self.regex_process(
             self.unloading_info,
             r'.+?(?=\()'
-            )
+        )
         unloading_city = unloading_city.rstrip()
         return unloading_city
 
@@ -82,7 +77,7 @@ class WaybillInfo:
         unloading_spedition = self.regex_process(
             self.unloading_info,
             r'(?<=\/).*$'
-            )
+        )
         unloading_spedition = unloading_spedition.lstrip()
         return unloading_spedition
 
@@ -93,7 +88,8 @@ class WaybillInfo:
         return cargo
 
     def get_tonnage(self):
-        first_screen = self.crop_screen(self.first_screen, 1431, 735, 1521, 754)
+        first_screen = self.crop_screen(
+            self.first_screen, 1431, 735, 1521, 754)
         tonnage = pytesseract.image_to_string(first_screen, lang='pol')
         return tonnage
 
