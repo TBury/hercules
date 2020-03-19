@@ -6,8 +6,7 @@ from django.contrib.auth.decorators import user_passes_test
 from hercules_app.models import Driver, Company, DriverStatistics, Vehicle, Disposition, Waybill
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm
 from django.utils.encoding import smart_str
-from . import recognition
-
+from .tasks import get_waybill_info
 
 def index(request):
     return render(request, 'hercules_app/index.html')
@@ -132,6 +131,23 @@ def add_waybill(request):
     ocr = recognition.WaybillInfo(
         waybill.first_screen.path, waybill.end_screen.path)
     waybill.loading_city = ocr.loading_city
+    if request.method == "POST":
+        form = AddWaybillForm(
+            request.POST, request.FILES, instance=waybill)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AddWaybillForm()
+    return render(request, 'hercules_app/verify.html')
+
+def loading_recognition_info(request):
+    waybill_id = request.session.get('waybill_id')
+    # TODO: check if the waybill_id is passed correctly
+    waybill = Waybill.objects.get(id=waybill_id)
+    screenshot_waybill = get_waybill_info.delay(
+        waybill.first_screen,
+        waybill.end_screen
+        )
     if request.method == "POST":
         form = AddWaybillForm(
             request.POST, request.FILES, instance=waybill)
