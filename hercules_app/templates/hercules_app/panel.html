@@ -1,0 +1,292 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl-pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'hercules_app/assets/apple-icon-57x57.png}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'hercules_app/assets//apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'hercules_app/assets//apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'hercules_app/assets//apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'hercules_app/assets//apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'hercules_app/assets//apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'hercules_app/assets//apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'hercules_app/assets//apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'hercules_app/assets//apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{% static 'hercules_app/assets//android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'hercules_app/assets//favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'hercules_app/assets//favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'hercules_app/assets//favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'hercules_app/assets//manifest.json' %} ">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/main.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title> Panel użytkownika | Hercules</title>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-start">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="" width="194" height="55">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-end is-hidden-mobile">
+            <a class="navbar-item">
+                <figure class="image is-48x48 avatar-fig">
+                    <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
+                </figure>
+                <span class="user">
+                    <p class="username">{{ driver.nick }}</p>
+                    {% if driver.company_id %}
+                    <p class="company">{{ company.name }}</p>
+                    {% endif %}
+                </span>
+            </a>
+            <a href="/logout" class="navbar-item">
+                <span class="icon is-medium logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+                <p class="logout-text">Wyloguj się</p>
+            </a>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="columns">
+            <aside class="column is-2 aside is-hidden-mobile is-placed-left">
+                <nav class="menu">
+                    <p class="menu-label">
+                        Menu główne
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a class="is-active" href="/panel">
+                                <p class="option main-site">Panel systemu</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="panel-option" href="/download">
+                                <p class="option download">Pobierz aplikację</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Kierowca
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a href='/drivers-card'>
+                                <p class="option driver-card">Karta kierowcy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/add-delivery">
+                                <p class="option add-delivery">Dodaj dostawę</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option gielda">Giełda zleceń</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option dispositions">Dyspozycje</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Spedycja
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a>
+                                <p class="option search-company">
+                                    Znajdź firmę
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option vehicles">Twoje pojazdy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option deliveries">Twoje dostawy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option settings">Ustawienia</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="column main">
+                <h1 class="title head-title">Twoje <span class="colored">statystyki</span></h1>
+                <div class="columns is-multiline">
+                    <div class="column">
+                        <div class="box card distance-card">
+                            <article class="media">
+                                <div class="media-left">
+                                    <figure class="image is-64x64">
+                                        <img src="{% static 'hercules_app/assets/distance-card.png' %}" alt="Image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <h6 class="card-title">Pokonany dystans</h6>
+                                        <h1 class="card-value distance">{{ statistics.distance }}<span class="colored">
+                                                km</span></h1>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="box card status-card">
+                            <article class="media">
+                                <div class="media-left">
+                                    <figure class="image is-64x64">
+                                        <img src="{% static 'hercules_app/assets/status-card.png' %}" alt="Image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <h6 class="card-title">Status serwerów TruckersMP</h6>
+                                        <h4 class="status-value"><strong><span class="colored">Simulation
+                                                    1</span></strong>: 5030 graczy</h4>
+                                        <h4 class="status-value"><strong><span class="colored">Simulation
+                                                    1</span></strong>: 5030 graczy</h4>
+                                        <h4 class="status-value"><strong><span class="colored">Simulation
+                                                    1</span></strong>: 5030 graczy</h4>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="box card">
+                            <header class="card-header">
+                                <a href="" class="card-header-icon">
+                                    <span class="icon">
+                                        <i class="" aria-hidden="true">
+                                            <figure class="image is-48x48">
+                                                <img src="{% static 'hercules_app/assets/dispositions-card.png' %}"
+                                                    alt="Image">
+                                            </figure>
+                                        </i>
+                                    </span>
+                                </a>
+                                <p class="card-header-title">
+                                    Twoje dyspozycje
+                                </p>
+                            </header>
+                            {% for disposition in dispositions %}
+                            <nav class="level disposition">
+                                <div class="level-item loading-city">
+                                    <img src="{% static 'hercules_app/assets/france.png' %}" class="country-icon">
+                                    <span class="city-and-company">
+                                        <p class="city">{{ disposition.loading_city }}</p>
+                                        <img src="{% static 'hercules_app/assets/renar_logistik.png' %}" alt="">
+                                    </span>
+                                </div>
+                                <div class="level-item unloading-city">
+                                    <img src="{% static 'hercules_app/assets/france.png' %}" class="country-icon">
+                                    <span class="city-and-company">
+                                        <p class="city">{{ disposition.unloading_city }}</p>
+                                        <img src="{% static 'hercules_app/assets/renar_logistik.png' %}" alt="">
+                                    </span>
+                                </div>
+                                <div class="level-item cargo">
+                                    <span class="cargo">
+                                        {{ disposition.cargo }}
+                                        <br>
+                                        {{ disposition.tonnage }} kg
+                                        </sp>
+                                </div>
+                                <div class="level-item ">
+                                    <a class="button check-details is-rounded">Sprawdź szczegóły</a>
+                                </div>
+                            </nav>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="box card fuel-card">
+                            <article class="media">
+                                <div class="media-left">
+                                    <figure class="image is-64x64">
+                                        <img src="{% static 'hercules_app/assets/gas-card.png' %}" alt="Image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <h6 class="card-title">Średnia paliwa</h6>
+                                        <h1 class="card-value used-fuel">{{ statistics.average_fuel }} <span
+                                                class="colored">l/100 km</span></h1>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="box card">
+                            <header class="card-header">
+                                <a href="" class="card-header-icon">
+                                    <span class="icon">
+                                        <i class="" aria-hidden="true">
+                                            <figure class="image is-48x48">
+                                                <img src="{% static 'hercules_app/assets/steering-wheel.png' %}"
+                                                    alt="Image">
+                                            </figure>
+                                        </i>
+                                    </span>
+                                </a>
+                                <p class="card-header-title">
+                                    Twój pojazd
+                                </p>
+                            </header>
+                            <div class="columns">
+                                <div class="column">
+                                    <figure class="vehicle-image">
+                                        <img class="" src="{% static 'hercules_app/assets/VA15oIo.png' %}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="column">
+                                    <span class="vehicle-info">
+                                        <img src="{% static 'hercules_app/assets/man.png' %}" alt="Image">
+                                        <h2 class="vehicle-name">{% if vehicle %} {{ vehicle.brand }}
+                                            {{ vehicle.model }} {{ vehicle.cabin }} {% endif %}</h2>
+                                        <img src="{% static 'hercules_app/assets/WLS23090.png' %}"
+                                            class="registration-number" alt="Numer rejestracyjny">
+                                        <p class="engine-power"><strong>Moc silnika: {% if vehicle %}
+                                                {{ vehicle.engine }} {% endif %} KM</strong>
+                                        </p>
+                                        <p class="odometer"><strong>Przebieg: {% if vehicle %} {{ vehicle.odometer }}
+                                                {% endif %} km</strong>
+                                        </p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

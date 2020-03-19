@@ -1,0 +1,101 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-item img {
+    max-height: 4rem !important;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+.main {
+    background-color: #EEEEEE;
+    min-height: 94vh;
+    height: 100%;
+}
+
+.avatar-fig {
+    margin-right: 15px;
+}
+
+.avatar {
+    border-radius: 25px;
+}
+
+.username,
+.logout-text {
+    font-weight: 700;
+}
+
+.menu {
+    font-family: 'Montserrat', sans-serif;
+
+    .menu-list>li>a {
+        font-weight: 700;
+        padding: 1em;
+    }
+
+    .menu-label {
+        margin-left: 15px;
+        font-size: .65em;
+    }
+
+    .option:before {
+        content: '';
+        vertical-align: middle;
+        display: inline-block;
+        width: 24px;
+        margin: 0 15px 0 0;
+        height: 24px;
+    }
+
+    .main-site:before {
+        background: url('assets/main-panel.png') no-repeat;
+    }
+
+    .download:before {
+        background: url('assets/download.png') no-repeat;
+    }
+
+    .driver-card:before {
+        background: url('assets/driver_card.png') no-repeat;
+    }
+
+    .add-delivery:before {
+        background: url('assets/add_delivery.png') no-repeat;
+    }
+
+    .gielda:before {
+        background: url('assets/gielda.png') no-repeat;
+    }
+
+    .dispositions:before {
+        background: url('assets/map.png') no-repeat;
+        height: 27px;
+    }
+
+    .search-company:before {
+        background: url('assets/search.png') no-repeat;
+    }
+
+    .vehicles:before {
+        background: url('assets/vehicles.png') no-repeat;
+    }
+
+    .deliveries:before {
+        background: url('assets/deliveries.png') no-repeat;
+    }
+
+    .settings:before {
+        background: url('assets/settings.png') no-repeat;
+    }
+}
+
+.title {
+    margin-left: 1.5%;
+    margin-top: 2%;
+}
+
+.colored {
+    color: #0282FC;
+}

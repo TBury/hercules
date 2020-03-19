@@ -1,0 +1,99 @@
+.card {
+  border-left: 10px solid #0282FC;
+  border-radius: 3px !important;
+}
+
+.card-info {
+  vertical-align: top;
+}
+
+.card-title {
+  margin-bottom: .5rem !important;
+}
+
+.card-value {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  font-weight: 700 !important;
+}
+
+.content {
+  margin-left: 1rem;
+}
+
+.card {
+  margin-right: 3%;
+}
+
+.status-value {
+  margin-bottom: .5rem;
+}
+
+.status-value:first-of-type {
+  margin-top: 1.2rem;
+}
+
+.card-header {
+  -webkit-box-shadow: 0 0 0 !important;
+          box-shadow: 0 0 0 !important;
+}
+
+.card-header-icon {
+  pointer-events: none;
+  cursor: default;
+}
+
+.card-header-title {
+  font-size: 1em;
+}
+
+.vehicle-image {
+  margin-top: 5%;
+}
+
+.vehicle-name {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
+.vehicle-info {
+  margin-top: 6%;
+}
+
+.vehicle-info * {
+  margin-top: 3%;
+}
+
+.head-title {
+  font-weight: 700 !important;
+}
+
+.city-and-company {
+  margin-left: 15px;
+}
+
+.city-and-company .city {
+  font-weight: 700;
+}
+
+.disposition {
+  margin-top: 25px !important;
+}
+
+.cargo {
+  font-size: 12px;
+  text-align: right;
+}
+
+.check-details {
+  background-color: #C70000 !important;
+  color: white !important;
+  padding: 0 2em;
+  font-size: .9rem !important;
+  font-weight: 700;
+}
+
+.check-details:hover {
+  color: #dddddd;
+}
+/*# sourceMappingURL=panel.css.map */

@@ -1,0 +1,38 @@
+.file-area {
+    border: 1.5px dashed black;
+    padding: 225px;
+}
+
+.card:last-of-type {
+    border-left: none;
+}
+
+.header:last-child {
+    font-weight: 700;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.go-back,
+.next {
+    font-weight: 700;
+    font-size: 1.55em !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.field {
+    float: right;
+    margin-right: 10%;
+}
+
+.go-back {
+    color: #C70000 !important;
+    background-color: #EEEEEE !important;
+}
+
+.next {
+    margin-right: 15%;
+    background-color: #0282FC !important;
+    color: white !important;
+    font-size: 1.5rem !important;
+}

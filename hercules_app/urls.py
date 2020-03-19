@@ -13,5 +13,12 @@ urlpatterns = [
     path('register', register_views.register, name='register'),
     path('hello', views.hello, name='hello'),
     path('logout', register_views.logout_user, name='logout'),
-    path('success', views.success, name="success"),
+    path('panel', views.panel, name="panel"),
+    path('download', views.download_assistant, name="download"),
+    path('get-assistant', views.download_file, name="get-assistant"),
+    path('drivers-card', views.drivers_card, name="drivers-card"),
+    path('add-delivery', views.add_delivery, name="add-delivery"),
+    path('automatic-step-1', views.send_first_screenshot, name="automatic-step-1"),
+    path('automatic-step-2', views.send_second_screenshot, name="step-2-automatic"),
+    path('add-waybill', views.add_waybill, name="add-waybill"),
 ]
