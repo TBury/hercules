@@ -3,55 +3,56 @@ import requests
 from django.conf import settings
 from celery import shared_task
 from . import recognition
+from django_celery_results.models import TaskResult
 
 
 @shared_task
-def get_loading_city(ocr):
+def get_loading_city(ocr, bind=True):
     loading_city = ocr.get_loading_city()
     return loading_city
 
 @shared_task
-def get_loading_spedition(ocr):
+def get_loading_spedition(ocr, bind=True):
     loading_spedition = ocr.get_loading_spedition()
     return loading_spedition
 
 @shared_task
-def get_unloading_city(ocr):
+def get_unloading_city(ocr, bind=True):
     unloading_city = ocr.get_unloading_city()
     return unloading_city
 
 @shared_task
-def get_unloading_spedition(ocr):
+def get_unloading_spedition(ocr, bind=True):
     unloading_spedition = ocr.get_unloading_spedition()
     return unloading_spedition
 
 @shared_task
-def get_cargo(ocr):
+def get_cargo(ocr, bind=True):
     cargo = ocr.get_cargo()
     return cargo
 
 @shared_task
-def get_tonnage(ocr):
+def get_tonnage(ocr, bind=True):
     tonnage = ocr.get_tonnage()
     return tonnage
 
 @shared_task
-def get_distance(ocr):
+def get_distance(ocr, bind=True):
     distance = ocr.get_distance()
     return distance
 
 @shared_task
-def get_fuel(ocr):
+def get_fuel(ocr, bind=True):
     fuel = ocr.get_fuel()
     return fuel
 
 @shared_task
-def get_income(ocr):
+def get_income(ocr, bind=True):
     income = ocr.get_income()
     return income
 
 @shared_task
-def get_waybill_info(first_screen_path, end_screen_path):
+def get_waybill_info(first_screen_path, end_screen_path, bind=True):
     ocr = recognition.WaybillInfo(
         first_screen_path,
         end_screen_path)

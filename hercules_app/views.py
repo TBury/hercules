@@ -7,6 +7,7 @@ from hercules_app.models import Driver, Company, DriverStatistics, Vehicle, Disp
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
+from django_celery_results.models import TaskResult
 
 
 def index(request):
@@ -131,7 +132,7 @@ def add_waybill(request):
     waybill = Waybill.objects.get(id=waybill_id)
     info = get_waybill_info.delay(waybill.first_screen.path,
                                   waybill.end_screen.path)
-    args = eval(info.get())
+    args = info.get()
     if request.method == "POST":
         form = AddWaybillForm(
             request.POST, request.FILES, instance=waybill)
@@ -139,4 +140,4 @@ def add_waybill(request):
             form.save()
     else:
         form = AddWaybillForm()
-    return render(request, 'hercules_app/verify.html', context=args)
+    return render(request, 'hercules_app/verify.html', args)
