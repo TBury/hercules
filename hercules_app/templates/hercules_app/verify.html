@@ -1,15 +1,42 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pl-pl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="panel.css">
-    <link rel="stylesheet" href="verify.css">
+    <meta name="description"
+        content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'hercules_app/assets/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'hercules_app/assets//apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'hercules_app/assets//apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'hercules_app/assets//apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'hercules_app/assets//apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'hercules_app/assets//apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'hercules_app/assets//apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'hercules_app/assets//apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'hercules_app/assets//apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{% static 'hercules_app/assets//android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'hercules_app/assets//favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'hercules_app/assets//favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'hercules_app/assets//favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'hercules_app/assets//manifest.json' %} ">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/verify.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link href="{% static 'hercules_app/dropzone.min.css' %}" type="text/css" rel="stylesheet" />
+    <link href="{% static 'hercules_app/basic.min.css' %}" type="text/css" rel="stylesheet" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title>Document</title>
+    <script defer src="{% static 'hercules_app/dropzone.min.js' %}"></script>
+    <script defer src="{% static 'hercules_app/automatic_step_one.js' %}"></script>
+    <title> Dodaj nową dostawę | Hercules</title>
 </head>
 
 <body>
@@ -68,12 +95,12 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a class="">
+                            <a class="is-active">
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
                         <li>
-                            <a class="is-active">
+                            <a>
                                 <p class="option add-delivery">Dodaj dostawę</p>
                             </a>
                         </li>
@@ -138,8 +165,7 @@
                                         <input class="input loading-city" type="text" placeholder="" tabindex="1"
                                             value="{{ loading_city }}">
                                     </div>
-                                    <img class="loading-city-screen screenshot" src="img/load-1.png"
-                                        alt="Miasto załadunku">
+                                    <img class="loading-city-screen screenshot" src="{% static loading_info_image %}">
                                 </div>
                                 <div class="field">
                                     <label class="label">Spedycja załadunku</label>
@@ -147,8 +173,7 @@
                                         <input class="input loading-spedition" type="text" placeholder="" tabindex="3"
                                             value="{{ loading_spedition }}">
                                     </div>
-                                    <img class="loading-city-screen screenshot" src="img/load-1.png"
-                                        alt="Spedycja załadunku">
+                                    <img class="loading-city-screen screenshot" src="{% static loading_info_image %}">
                                 </div>
                                 <div class="field">
                                     <label class="label">Ładunek</label>
@@ -156,7 +181,7 @@
                                         <input class="input" type="text" placeholder="" tabindex="5"
                                             value="{{ cargo }}">
                                     </div>
-                                    <img class=" loading-city-screen screenshot" src="img/load-1.png" alt="Towar">
+                                    <img class=" loading-city-screen screenshot" src="{% static cargo_image %}">
                                 </div>
 
                                 <hr>
@@ -170,8 +195,8 @@
                                         <input class="input" type="text" placeholder="" tabindex="2"
                                             value="{{ unloading_city }}">
                                     </div>
-                                    <img class="unloading-city-screen screenshot" src="img/unloading-1.png"
-                                        alt="Miasto załadunku">
+                                    <img class="unloading-city-screen screenshot"
+                                        src="{% static unloading_info_image %}">
                                 </div>
                                 <div class="field">
                                     <label class="label">Spedycja rozładunku</label>
@@ -179,8 +204,8 @@
                                         <input class="input loading-city" type="text" placeholder="" tabindex="4"
                                             value="{{ unloading_spedition }}">
                                     </div>
-                                    <img class="unloading-spedition-screen screenshot" src="img/load-1.png"
-                                        alt="Spedycja rozładunku">
+                                    <img class="unloading-spedition-screen screenshot"
+                                        src="{% static unloading_info_image %}">
                                 </div>
                                 <div class="static-field">
                                     <label for="" class="label static-label">Tonaż</label>
@@ -195,13 +220,13 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                        alt="">
+                                    <img class="unloading-spedition-screen static-screenshot"
+                                        src="{% static tonnage_image %}">
                                 </div>
                                 <hr>
                             </div>
                         </div>
-                        <div class="stats">
+                        <div class=" stats">
                             <div class="columns">
                                 <div class="column">
                                     <div class="static-field">
@@ -217,14 +242,14 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                            alt="Spedycja rozładunku">
+                                        <img class="unloading-spedition-screen static-screenshot"
+                                            src="{% static distance_image %}">
                                     </div>
                                     <div class="static-field">
                                         <label for="" class="label static-label">Uszkodzenia towaru</label>
                                         <div class="field has-addons">
                                             <div class="control">
-                                                <input class="input" type="text" placeholder="Przejechany dystans"
+                                                <input class="input" type="text" placeholder="Uszkodzenia towaru"
                                                     tabindex="10">
                                             </div>
                                             <div class="control">
@@ -233,8 +258,6 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                            alt="Spedycja rozładunku">
                                     </div>
                                 </div>
                                 <div class="column">
@@ -251,8 +274,8 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                            alt="Spedycja rozładunku">
+                                        <img class="unloading-spedition-screen static-screenshot"
+                                            src="{% static fuel_image %}">
                                     </div>
                                     <div class="static-field">
                                         <label for="" class="label static-label">Notatka kierowcy</label>
@@ -275,8 +298,8 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <img class="unloading-spedition-screen static-screenshot" src="img/load-1.png"
-                                            alt="Spedycja rozładunku">
+                                        <img class="unloading-spedition-screen static-screenshot"
+                                            src="{% static income_image %}">
                                     </div>
                                 </div>
                             </div>

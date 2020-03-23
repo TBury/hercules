@@ -154,22 +154,25 @@
                             zlecenia - ekran po rozładowaniu naczepy z ilością kilometrów itd.</p>
                     </div>
                 </div>
-                <form action="automatic-step-2" class="dropzone" id="endScreenDropzone" method="POST"
-                    enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <h1 class="dz-message header">Kliknij lub przeciągnij i upuść screenshot w tym oknie.</h1>
-                    <div class="fallback">
-                        <input type="file" name="end_screen" class="file-area">
-                    </div>
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button class="button is-light go-back">Wróć</button>
+                <div class="box card">
+                    <form action="automatic-step-2" class="dropzone" id="endScreenDropzone" method="POST"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h1 class="dz-message header">Kliknij lub przeciągnij i upuść screenshot w tym oknie.</h1>
+                        <div class="fallback">
+                            <input type="file" name="end_screen" class="file-area">
                         </div>
-                        <div class="control">
-                            <input type="submit" class="button next upload-files" value="Przejdź dalej">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-light go-back">Wróć</button>
+                            </div>
+                            <div class="control">
+                                <input type="submit" class="button next upload-files" value="Przejdź dalej">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+
             </main>
         </div>
     </div>

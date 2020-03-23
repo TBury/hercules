@@ -115,12 +115,6 @@ class Waybill(models.Model):
     def __str__(self):
         return str(self.id)
 
-    def get_first_screen_path(self):
-        return self.first_screen.file
-
-    def get_end_screen_path(self):
-        return self.end_screen
-
 
 class Gielda(models.Model):
     id = models.AutoField(primary_key=True)

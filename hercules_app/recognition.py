@@ -42,9 +42,18 @@ class WaybillInfo:
         matches = tuple(pattern_.findall(info))
         return matches[0]
 
-    def get_loading_info(self):
+    def get_loading_info_image(self):
         first_screen = self.crop_screen(
             self.first_screen, 1432, 608, 1800, 632)
+        return first_screen
+
+    def get_unloading_info_image(self):
+        first_screen = self.crop_screen(
+            self.first_screen, 1431, 643, 1800, 663)
+        return first_screen
+
+    def get_loading_info(self):
+        first_screen = self.get_loading_info_image()
         loading_info = pytesseract.image_to_string(first_screen, lang='pol')
         return loading_info
 
@@ -60,8 +69,7 @@ class WaybillInfo:
         return loading_spedition
 
     def get_unloading_info(self):
-        first_screen = self.crop_screen(
-            self.first_screen, 1431, 643, 1800, 663)
+        first_screen = self.get_unloading_info_image()
         unloading_info = pytesseract.image_to_string(first_screen, lang='pol')
         return unloading_info
 
@@ -81,32 +89,53 @@ class WaybillInfo:
         unloading_spedition = unloading_spedition.lstrip()
         return unloading_spedition
 
-    def get_cargo(self):
+    def get_cargo_image(self):
         first_screen = self.crop_screen(
             self.first_screen, 1257, 123, 1669, 150)
+        return first_screen
+
+    def get_cargo(self):
+        first_screen = self.get_cargo_image()
         cargo = pytesseract.image_to_string(first_screen, lang='pol')
         return cargo
 
-    def get_tonnage(self):
+    def get_tonnage_image(self):
         first_screen = self.crop_screen(
             self.first_screen, 1431, 735, 1521, 754)
+        return first_screen
+
+    def get_tonnage(self):
+        first_screen = self.get_tonnage_image()
         tonnage = pytesseract.image_to_string(first_screen, lang='pol')
+        tonnage = tonnage[:-3]
         return tonnage
 
-    def get_distance(self):
+    def get_distance_image(self):
         end_screen = self.crop_screen(self.end_screen, 1078, 264, 1211, 290)
+        return end_screen
+
+    def get_distance(self):
+        end_screen = self.get_distance_image()
         distance = pytesseract.image_to_string(end_screen, lang='pol')
         distance = distance[:-2]
         return distance
 
-    def get_fuel(self):
+    def get_fuel_image(self):
         end_screen = self.crop_screen(self.end_screen, 706, 339, 1215, 370)
+        return end_screen
+
+    def get_fuel(self):
+        end_screen = self.get_fuel_image()
         fuel = pytesseract.image_to_string(end_screen, lang='pol')
         fuel = self.regex_process(fuel, r'(\d+,\d)')
         return fuel
 
-    def get_income(self):
+    def get_income_image(self):
         end_screen = self.crop_screen(self.end_screen, 965, 792, 1202, 819)
+        return end_screen
+
+    def get_income(self):
+        end_screen = self.get_income_image()
         income = pytesseract.image_to_string(end_screen)
         income = income.replace(" ", "")
         income = self.regex_process(income, r'(\d+)')
