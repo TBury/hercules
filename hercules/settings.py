@@ -126,7 +126,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'media')
 CELERY_BROKER_URL = 'redis://localhost'
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_ACCEPT_CONTENT = ['application/json']

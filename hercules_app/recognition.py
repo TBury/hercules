@@ -37,6 +37,13 @@ class WaybillInfo:
         screen.filter = (ImageFilter.SHARPEN)
         return screen
 
+    def resize_screen(self, screen, percent):
+        screen_width = int((screen.width * percent)/100)
+        screen_height = int((screen.height * percent)/100)
+        screen = screen.resize(
+            (screen_width, screen_height), Image.BICUBIC)
+        return screen
+
     def regex_process(self, info, pattern):
         pattern_ = re.compile(pattern)
         matches = tuple(pattern_.findall(info))
@@ -91,7 +98,7 @@ class WaybillInfo:
 
     def get_cargo_image(self):
         first_screen = self.crop_screen(
-            self.first_screen, 1257, 123, 1669, 150)
+            self.first_screen, 1250, 121, 1620, 168)
         return first_screen
 
     def get_cargo(self):
@@ -121,21 +128,23 @@ class WaybillInfo:
         return distance
 
     def get_fuel_image(self):
-        end_screen = self.crop_screen(self.end_screen, 706, 339, 1215, 370)
+        end_screen = self.crop_screen(self.end_screen, 706, 335, 1215, 372)
         return end_screen
 
     def get_fuel(self):
         end_screen = self.get_fuel_image()
-        fuel = pytesseract.image_to_string(end_screen, lang='pol')
+        end_screen = self.resize_screen(end_screen, 300)
+        fuel = pytesseract.image_to_string(end_screen)
         fuel = self.regex_process(fuel, r'(\d+,\d)')
         return fuel
 
     def get_income_image(self):
-        end_screen = self.crop_screen(self.end_screen, 965, 792, 1202, 819)
+        end_screen = self.crop_screen(self.end_screen, 1103, 750, 1200, 816)
         return end_screen
 
     def get_income(self):
         end_screen = self.get_income_image()
+        end_screen = self.resize_screen(end_screen, 299)
         income = pytesseract.image_to_string(end_screen)
         income = income.replace(" ", "")
         income = self.regex_process(income, r'(\d+)')
