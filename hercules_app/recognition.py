@@ -118,34 +118,35 @@ class WaybillInfo:
         return tonnage
 
     def get_distance_image(self):
-        end_screen = self.crop_screen(self.end_screen, 1078, 264, 1211, 290)
+        end_screen = self.crop_screen(self.end_screen, 1112, 267, 1199, 286)
         return end_screen
 
     def get_distance(self):
         end_screen = self.get_distance_image()
-        distance = pytesseract.image_to_string(end_screen, lang='pol')
-        distance = distance[:-2]
+        end_screen = self.resize_screen(end_screen, 225)
+        distance = pytesseract.image_to_string(end_screen)
+        distance = self.regex_process(distance, r'(\d+)')
         return distance
 
     def get_fuel_image(self):
-        end_screen = self.crop_screen(self.end_screen, 706, 335, 1215, 372)
+        end_screen = self.crop_screen(self.end_screen, 706, 335, 1400, 372)
         return end_screen
 
     def get_fuel(self):
         end_screen = self.get_fuel_image()
         end_screen = self.resize_screen(end_screen, 300)
-        fuel = pytesseract.image_to_string(end_screen)
+        fuel = pytesseract.image_to_string(end_screen, lang='pol')
         fuel = self.regex_process(fuel, r'(\d+,\d)')
         return fuel
 
     def get_income_image(self):
-        end_screen = self.crop_screen(self.end_screen, 1103, 750, 1200, 816)
+        end_screen = self.crop_screen(self.end_screen, 1090, 789, 1190, 820)
         return end_screen
 
     def get_income(self):
         end_screen = self.get_income_image()
-        end_screen = self.resize_screen(end_screen, 299)
-        income = pytesseract.image_to_string(end_screen)
+        end_screen = self.resize_screen(end_screen, 275)
+        income = pytesseract.image_to_string(end_screen, lang='pol')
         income = income.replace(" ", "")
         income = self.regex_process(income, r'(\d+)')
         return income
