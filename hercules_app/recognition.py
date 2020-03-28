@@ -115,6 +115,7 @@ class WaybillInfo:
         first_screen = self.get_tonnage_image()
         tonnage = pytesseract.image_to_string(first_screen, lang='pol')
         tonnage = tonnage[:-3]
+        tonnage = tonnage.replace(" ", "")
         return tonnage
 
     def get_distance_image(self):
@@ -137,6 +138,8 @@ class WaybillInfo:
         end_screen = self.resize_screen(end_screen, 300)
         fuel = pytesseract.image_to_string(end_screen, lang='pol')
         fuel = self.regex_process(fuel, r'(\d+,\d)')
+        fuel = fuel.replace(',', '.')
+        fuel = round(float(fuel))
         return fuel
 
     def get_income_image(self):

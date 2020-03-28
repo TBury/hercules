@@ -133,11 +133,23 @@ def add_waybill(request):
     info = get_waybill_info.delay(waybill.first_screen.path,
                                   waybill.end_screen.path)
     args = info.get()
+
     if request.method == "POST":
-        form = AddWaybillForm(
-            request.POST, request.FILES, instance=waybill)
+        form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
             form.save()
+            redirect('panel')
     else:
-        form = AddWaybillForm()
-    return render(request, 'hercules_app/verify.html', args)
+        form = AddWaybillForm(initial={
+            'loading_city': args['loading_city'],
+            'loading_spedition': args['loading_spedition'],
+            'unloading_city': args['unloading_city'],
+            'unloading_spedition': args['unloading_spedition'],
+            'cargo': args['cargo'],
+            'fuel': args['fuel'],
+            'tonnage': args['tonnage'],
+            'distance': args['distance'],
+            'income': args['income'],
+        })
+
+    return render(request, 'hercules_app/verify.html', {'form': form, 'args': args})

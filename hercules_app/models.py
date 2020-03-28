@@ -97,6 +97,8 @@ class Waybill(models.Model):
     unloading_spedition = models.CharField(max_length=100)
     cargo = models.CharField(max_length=64)
     tonnage = models.IntegerField(default=0)
+    distance = models.IntegerField(default=0)
+    income = models.IntegerField(default=0)
     fuel = models.IntegerField(default=0)
     damage = models.SmallIntegerField(default=0)
     note = models.TextField(default='')
