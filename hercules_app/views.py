@@ -130,15 +130,27 @@ def send_second_screenshot(request):
         form = SecondScreenshotForm()
     return render(request, 'hercules_app/automatic_2.html')
 
+def loading_page(request):
+    return render(request, 'hercules_app/loading.html')
 
-def add_waybill(request):
+def process_waybill(request):
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
     waybill = Waybill.objects.get(id=waybill_id)
     info = get_waybill_info.delay(waybill.first_screen.path,
                                   waybill.end_screen.path)
     args = info.get()
+    if args is not None:
+        request.session['screen_information'] = args
+        return HttpResponse(status = 200)
+    else:
+        return HttpResponse(status = 500)
 
+def add_waybill(request):
+    waybill_id = request.session.get('waybill_id')
+    # TODO: check if the waybill_id is passed correctly
+    waybill = Waybill.objects.get(id=waybill_id)
+    args = request.session['screen_information']
     if request.method == "POST":
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
@@ -146,6 +158,7 @@ def add_waybill(request):
             request.session.modified = True
             request.session['waybill_success'] = True
             del request.session['waybill_id']
+            del request.session['screen_information']
             return redirect('panel')
     else:
         form = AddWaybillForm(initial={

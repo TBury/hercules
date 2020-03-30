@@ -20,5 +20,7 @@ urlpatterns = [
     path('add-delivery', views.add_delivery, name="add-delivery"),
     path('automatic-step-1', views.send_first_screenshot, name="automatic-step-1"),
     path('automatic-step-2', views.send_second_screenshot, name="step-2-automatic"),
+    path('processing-waybill', views.loading_page, name="processing-waybill"),
+    path('process-waybill-api', views.process_waybill, name='process-waybill-api'),
     path('add-waybill', views.add_waybill, name="add-waybill"),
 ]

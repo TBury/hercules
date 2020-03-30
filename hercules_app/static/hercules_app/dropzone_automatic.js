@@ -21,7 +21,7 @@ Dropzone.options.endScreenDropzone = {
     init: function () {
         endScreenDropzone = this;
         this.on("success", function (response) {
-            window.location.href = "/add-waybill";
+            window.location.href = "/processing-waybill";
         });
     }
 };
