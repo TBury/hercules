@@ -36,6 +36,10 @@ def hello(request):
 
 @login_required
 def panel(request):
+    waybill_success = request.session.get('waybill_success')
+    if waybill_success is True:
+        request.session.modified = True
+        del request.session['waybill_success']
     driver = Driver.objects.get(user=request.user)
     statistics = DriverStatistics.objects.get(driver_id=driver)
     if driver.company_id is not None:
@@ -52,7 +56,8 @@ def panel(request):
         'company': company,
         'statistics': statistics,
         'vehicle': vehicle,
-        'dispositions': dispositions
+        'dispositions': dispositions,
+        'waybill_success': waybill_success,
     }
     return render(request, 'hercules_app/panel.html', args)
 
@@ -138,7 +143,10 @@ def add_waybill(request):
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
             form.save()
-            redirect('panel')
+            request.session.modified = True
+            request.session['waybill_success'] = True
+            del request.session['waybill_id']
+            return redirect('panel')
     else:
         form = AddWaybillForm(initial={
             'loading_city': args['loading_city'],
