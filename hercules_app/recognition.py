@@ -45,9 +45,11 @@ class WaybillInfo:
         return screen
 
     def regex_process(self, info, pattern):
-        pattern_ = re.compile(pattern)
-        matches = tuple(pattern_.findall(info))
-        return matches[0]
+        _pattern = re.compile(pattern)
+        matches = tuple(_pattern.findall(info))
+        if len(matches) > 0:
+            return matches[0]
+        return 'error'
 
     def get_loading_info_image(self):
         first_screen = self.crop_screen(
@@ -66,13 +68,15 @@ class WaybillInfo:
 
     def get_loading_city(self):
         loading_city = self.regex_process(self.loading_info, r'.+?(?=\()')
-        loading_city = loading_city.rstrip()
+        if loading_city != 'error':
+            loading_city = loading_city.rstrip()
         return loading_city
 
     def get_loading_spedition(self):
         loading_spedition = self.regex_process(
             self.loading_info, r'(?<=\/).*$')
-        loading_spedition = loading_spedition.lstrip()
+        if loading_spedition != 'error':
+            loading_spedition = loading_spedition.lstrip()
         return loading_spedition
 
     def get_unloading_info(self):
@@ -85,7 +89,8 @@ class WaybillInfo:
             self.unloading_info,
             r'.+?(?=\()'
         )
-        unloading_city = unloading_city.rstrip()
+        if unloading_city != 'error':
+            unloading_city = unloading_city.rstrip()
         return unloading_city
 
     def get_unloading_spedition(self):
@@ -93,7 +98,8 @@ class WaybillInfo:
             self.unloading_info,
             r'(?<=\/).*$'
         )
-        unloading_spedition = unloading_spedition.lstrip()
+        if unloading_spedition != 'error':
+            unloading_spedition = unloading_spedition.lstrip()
         return unloading_spedition
 
     def get_cargo_image(self):
@@ -138,8 +144,9 @@ class WaybillInfo:
         end_screen = self.resize_screen(end_screen, 300)
         fuel = pytesseract.image_to_string(end_screen, lang='pol')
         fuel = self.regex_process(fuel, r'(\d+,\d)')
-        fuel = fuel.replace(',', '.')
-        fuel = round(float(fuel))
+        if fuel != 'error':
+            fuel = fuel.replace(',', '.')
+            fuel = round(float(fuel))
         return fuel
 
     def get_income_image(self):
