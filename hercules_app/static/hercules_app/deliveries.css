@@ -1,0 +1,20 @@
+.delivery {
+  margin-right: 50px;
+}
+
+.accepted {
+  border-left: 10px solid #44C4A1;
+}
+
+.declined {
+  border-left: 10px solid #C70000;
+}
+
+.not-checked {
+  border-left: 10px solid #0282FC;
+}
+
+.check-details {
+  margin-top: 5%;
+}
+/*# sourceMappingURL=deliveries.css.map */

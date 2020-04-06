@@ -1,0 +1,17 @@
+.basic-info,
+.description {
+  border-top: 5px solid #0282FC;
+  margin-top: 40px;
+}
+
+.basic-info,
+.statistics,
+.description {
+  margin-left: 15% !important;
+  margin-right: 15% !important;
+}
+
+.stats-column {
+  padding-left: 0 !important;
+}
+/*# sourceMappingURL=company_profile.css.map */

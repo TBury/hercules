@@ -3,12 +3,12 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import user_passes_test
-from hercules_app.models import Driver, Company, DriverStatistics, Vehicle, Disposition, Waybill
+from hercules_app.models import Driver, Company, DriverStatistics, Vehicle, Disposition, Waybill, Gielda
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
-
+from decimal import Decimal
 
 def index(request):
     return render(request, 'hercules_app/index.html')
@@ -68,6 +68,7 @@ def download_assistant(request):
     return render(request, 'hercules_app/download.html', args)
 
 
+@login_required
 def download_file(request):
     response = HttpResponse(content_type='application/force-download')
     response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(
@@ -77,6 +78,7 @@ def download_file(request):
     return response
 
 
+@login_required
 def drivers_card(request):
     driver = Driver.objects.get(user=request.user)
     statistics = DriverStatistics.objects.get(driver_id=driver)
@@ -98,6 +100,7 @@ def drivers_card(request):
     return render(request, 'hercules_app/drivers-card.html', args)
 
 
+@login_required
 def add_delivery(request):
     driver = Driver.objects.get(user=request.user)
     args = {
@@ -106,7 +109,12 @@ def add_delivery(request):
     return render(request, 'hercules_app/add_delivery.html', args)
 
 
+@login_required
 def send_first_screenshot(request):
+    driver = Driver.objects.get(user=request.user)
+    args = {
+        'driver': driver,
+    }
     if request.method == 'POST':
         form = FirstScreenshotForm(request.POST, request.FILES)
         if form.is_valid():
@@ -114,10 +122,18 @@ def send_first_screenshot(request):
             request.session['waybill_id'] = waybill.id
         else:
             form = FirstScreenshotForm()
-    return render(request, 'hercules_app/automatic_1.html')
+    return render(request, 'hercules_app/automatic_1.html', args)
 
 
-def send_second_screenshot(request):
+@login_required
+def send_second_screenshot(request, is_automatic):
+    if is_automatic is None:
+        is_automatic = True
+    driver = Driver.objects.get(user=request.user)
+    args = {
+        'driver': driver,
+        'is_automatic': is_automatic,
+    }
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
     waybill = Waybill.objects.get(id=waybill_id)
@@ -128,11 +144,21 @@ def send_second_screenshot(request):
             form.save()
     else:
         form = SecondScreenshotForm()
-    return render(request, 'hercules_app/automatic_2.html')
+    return render(request, 'hercules_app/automatic_2.html', args)
 
+
+@login_required
 def loading_page(request):
     return render(request, 'hercules_app/loading.html')
 
+@login_required
+def manual_step_one(request):
+    waybill = Waybill()
+    waybill.save()
+    request.session['waybill_id'] = waybill.id
+    return send_second_screenshot(request, is_automatic=False)
+
+@login_required
 def process_waybill(request):
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
@@ -146,31 +172,63 @@ def process_waybill(request):
     else:
         return HttpResponse(status = 500)
 
+
+@login_required
 def add_waybill(request):
+    is_automatic = True
+    args = ''
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
     waybill = Waybill.objects.get(id=waybill_id)
-    args = request.session['screen_information']
+    driver = Driver.objects.get(user=request.user)
+    if waybill.first_screen.name == "":
+        is_automatic = False
+    else:
+        args = request.session['screen_information']
     if request.method == "POST":
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
             form.save()
-            request.session.modified = True
-            request.session['waybill_success'] = True
-            del request.session['waybill_id']
-            del request.session['screen_information']
-            return redirect('panel')
+            if driver.is_employeed == False:
+                statistics = DriverStatistics.objects.get(driver_id=driver)
+                DriverStatistics.objects.filter(driver_id=driver).update(
+                    distance=statistics.distance + int(form.data['distance']),
+                    tonnage=statistics.tonnage + int(form.data['tonnage']),
+                    income=statistics.income + int(form.data['income']),
+                    fuel=statistics.income + int(form.data['fuel']),
+                    average_fuel=round(Decimal(statistics.fuel + int(form.data['fuel']))/Decimal(
+                    statistics.distance + int(form.data['distance']))*100, 2),
+                    deliveries_count=statistics.deliveries_count + 1,
+                )
+                Waybill.objects.filter(id=waybill_id).update(
+                        status="accepted")
+                request.session.modified = True
+                request.session['waybill_success'] = True
+                del request.session['waybill_id']
+                if is_automatic:
+                    del request.session['screen_information']
+                return redirect('panel')
     else:
-        form = AddWaybillForm(initial={
-            'loading_city': args['loading_city'],
-            'loading_spedition': args['loading_spedition'],
-            'unloading_city': args['unloading_city'],
-            'unloading_spedition': args['unloading_spedition'],
-            'cargo': args['cargo'],
-            'fuel': args['fuel'],
-            'tonnage': args['tonnage'],
-            'distance': args['distance'],
-            'income': args['income'],
-        })
+        if is_automatic:
+            form = AddWaybillForm(initial={
+                'loading_city': args['loading_city'],
+                'loading_spedition': args['loading_spedition'],
+                'unloading_city': args['unloading_city'],
+                'unloading_spedition': args['unloading_spedition'],
+                'cargo': args['cargo'],
+                'fuel': args['fuel'],
+                'tonnage': args['tonnage'],
+                'distance': args['distance'],
+                'income': args['income'],
+            })
+        else:
+            form = AddWaybillForm()
 
-    return render(request, 'hercules_app/verify.html', {'form': form, 'args': args})
+    return render(request, 'hercules_app/verify.html', {'form': form, 'args': args, 'driver': driver})
+
+
+@login_required
+def gielda(request):
+    driver = Driver.objects.get(user=request.user)
+    offers = Gielda.objects.all()
+    return render(request, 'hercules_app/gielda.html', {'offers': offers, 'driver': driver})

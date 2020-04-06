@@ -1,0 +1,62 @@
+.input,
+.dropdown {
+  border-top: 3px solid #0282FC !important;
+}
+
+.dropdown-title {
+  font-weight: 500;
+}
+
+.dropdown-content {
+  max-height: 15em;
+  overflow: auto;
+  font-weight: 400 !important;
+}
+
+.search-offers {
+  font-weight: 700;
+  background-color: #C70000 !important;
+  color: white !important;
+  border-radius: 20px !important;
+  padding: 15px 35px 15px 35px !important;
+  margin-left: 85%;
+}
+
+.sort {
+  font-weight: 500;
+  margin-left: 80%;
+}
+
+.sort-select {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.country-icon {
+  width: 2rem;
+}
+
+.city {
+  font-size: 22px !important;
+}
+
+.cargo {
+  font-size: 18px !important;
+}
+
+.trailer {
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.income {
+  font-size: 22px;
+  color: black !important;
+}
+
+.company {
+  width: 96px;
+  height: 48px;
+}
+/*# sourceMappingURL=gielda.css.map */

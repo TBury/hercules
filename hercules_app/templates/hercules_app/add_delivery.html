@@ -54,7 +54,7 @@
                     <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
                 </figure>
                 <span class="user">
-                    <p class="username"></p>
+                    <p class="username">{{ driver.nick }}</p>
                     {% if driver.company_id %}
                     <p class="company"></p>
                     {% endif %}
@@ -145,6 +145,7 @@
                 <h1 class="title">Nowy <span class="colored">list przewozowy</span> </h1>
 
                 <div class="box card">
+                    <a href="automatic-step-1">
                     <div class="content">
                         <h1 class="header">Sposób <span class="colored">automatyczny</span></h1>
                         <p class="subtitle is-6">Wybierz sposób automatyczny, aby <span class="colored"><b>Hercules</b></span> sam wypełnił za Ciebie list przewozowy.</p>
@@ -152,9 +153,12 @@
                             szczegółami zlecenia i po oddaniu ładunku.</b></p>
                         <img src="{% static 'hercules_app/assets/automatic.png' %}" alt="">
                     </div>
+                    </a>
+
                 </div>
 
                 <div class="box card">
+                    <a href="Waybill/AddWaybill/Manual/step-one">
                     <div class="content">
                         <h1 class="header">Sposób <span class="colored">ręczny</span></h1>
                         <p class="subtitle is-6">Wybierz sposób ręczny, aby samemu dopilnować wypełnienia listu
@@ -162,6 +166,7 @@
                         <p class="subtitle is-5"><b>Wymagany jeden screenshot po oddaniu ładunku.</b></p>
                         <img src="{% static 'hercules_app/assets/manual.png' %}" alt="">
                     </div>
+                    </a>
                 </div>
             </main>
         </div>

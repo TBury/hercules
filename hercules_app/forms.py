@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from hercules_app.models import Driver, Waybill
+from hercules_app.models import Driver, Waybill, DriverStatistics
 
 
 class SetNickForm(ModelForm):

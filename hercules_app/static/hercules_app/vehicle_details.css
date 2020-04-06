@@ -1,0 +1,49 @@
+.basic-info-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+input {
+  margin-bottom: 35px !important;
+  max-width: 350px !important;
+}
+
+.left {
+  margin-left: 10%;
+}
+
+._vehicle-image {
+  margin-top: 25px !important;
+}
+
+.inputs {
+  margin-top: 25px;
+}
+
+.inputs-right {
+  margin-top: 50px;
+}
+
+.card {
+  margin-top: 25px;
+}
+
+.image-label {
+  color: #a3a3a3 !important;
+}
+
+.edit-details {
+  background-color: #C70000 !important;
+  color: white !important;
+  padding: 0 2em;
+  font-size: 1.4rem !important;
+  font-weight: 700;
+  margin-left: 68vw;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.edit-details:hover {
+  color: #dddddd;
+}
+/*# sourceMappingURL=vehicle_details.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW;AACX,YAAY,CAAC;EACT,UAAU,EAAE,iBAAiB;EAC7B,UAAU,EAAE,IAAI;CACnB;;AAED,AAAA,WAAW;AACX,WAAW;AACX,YAAY,CAAC;EACT,WAAW,EAAE,cAAc;EAC3B,YAAY,EAAE,cAAc;CAC/B;;AAED,AAAA,aAAa,CAAC;EACV,YAAY,EAAE,YAAY;CAC7B",
+    "sources": [
+        "company_profile.scss"
+    ],
+    "names": [],
+    "file": "company_profile.css"
+}

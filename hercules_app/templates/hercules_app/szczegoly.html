@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pl-pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png ">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png ">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png ">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png ">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png ">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png ">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png ">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png ">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/android-icon-192x192.png ">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png ">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png ">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png ">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png ">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="panel.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="details.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title> Panel użytkownika | Hercules</title>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-start">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="" width="194" height="55">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-end is-hidden-mobile">
+            <a class="navbar-item">
+                <figure class="image is-48x48 avatar-fig">
+                    <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
+                </figure>
+                <span class="user">
+                    <p class="username">{{ driver.nick }}</p>
+                    {% if driver.company_id %}
+                    <p class="company">{{ company.name }}</p>
+                    {% endif %}
+                </span>
+            </a>
+            <a class="navbar-item">
+                <span class="icon is-medium logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+                <p class="logout-text">Wyloguj się</p>
+            </a>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="columns">
+            <aside class="column is-2 aside is-hidden-mobile is-placed-left">
+                <nav class="menu">
+                    <p class="menu-label">
+                        Menu główne
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a class="panel-option">
+                                <p class="option main-site">Panel systemu</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="panel-option">
+                                <p class="option download">Pobierz aplikację</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Kierowca
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a>
+                                <p class="option driver-card">Karta kierowcy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option add-delivery">Dodaj dostawę</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="is-active">
+                                <p class="option gielda">Giełda zleceń</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option dispositions">Dyspozycje</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Spedycja
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a>
+                                <p class="option search-company">
+                                    Znajdź firmę
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option vehicles">Twoje pojazdy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option deliveries">Twoje dostawy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option settings">Ustawienia</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="column main">
+                <header>
+                    <h1 class="title">Szczegóły oferty #31553</h1>
+                </header>
+                <div class="box offer-basic-info">
+                    <header>
+                        <h1 class="basic-info-title">Podstawowe informacje</h1>
+                    </header>
+                    <div class="columns">
+                        <div class="column left">
+                            <p class="info-label">Dane załadunku</p>
+                            <div class="loading-info">
+                                    <img src="img/france.png" class="country-icon">
+                                    <span class="city-and-company">
+                                        <p class="city">Bordeaux</p>
+                                        <img class="company-logo" src="img/renar_logistik.png " alt="">
+                                    </span>
+                            </div>
+                            <div class="cargo-info">
+                                <p class="info-label">Towar</p>
+                                <h2 class="cargo-name">Puste palety</h2>
+                            </div>
+                        </div>
+                        <div class="column right">
+                            <p class="info-label">Dane rozładunku</p>
+                            <div class="unloading-info">
+                                <img src="img/france.png" class="country-icon">
+                                <span class="city-and-company">
+                                    <p class="city">Bordeaux</p>
+                                    <img class="company-logo" src="img/renar_logistik.png " alt="">
+                                </span>
+                            </div>
+                            <div class="cargo-info">
+                                <p class="info-label">Tonaż</p>
+                                <h2 class="tonnage">19 660 kg</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box offer-details">
+                    <header>
+                        <h1 class="basic-info-title">Szczegóły oferty</h1>
+                    </header>
+                    <div class="columns">
+                        <div class="column left">
+                            <div class="trailer-info">
+                                <p class="info-label">Rodzaj naczepy</p>
+                                <h2 class="trailer">Firanka</h2>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="adr-info">
+                                <p class="info-label">Klasa ADR</p>
+                                <h2 class="adr-class">Nie dotyczy</h2>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="oversize-info">
+                                <p class="info-label">Towar ponadnormatywny</p>
+                                <h2 class="oversize">Nie</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column left">
+                            <div class="offer-date">
+                                <p class="info-label">Data wystawienia</p>
+                                <h2 class="date">01.04.2020, 13:20</h2>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="offer-income">
+                                <p class="info-label">Kwota</p>
+                                <h2 class="income">66 310 zł</h2>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="offer-seller">
+                                <p class="info-label">Wystawca</p>
+                                <h2 class="seller">SYSTEM</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field buttons">
+                    <div class="control">
+                        <a class="button accept">Przyjmij zlecenie</a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

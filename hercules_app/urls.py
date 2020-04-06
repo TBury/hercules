@@ -23,4 +23,6 @@ urlpatterns = [
     path('processing-waybill', views.loading_page, name="processing-waybill"),
     path('process-waybill-api', views.process_waybill, name='process-waybill-api'),
     path('add-waybill', views.add_waybill, name="add-waybill"),
+    path('Waybill/AddWaybill/Manual/step-one', views.manual_step_one, name="manual-step-one"),
+    path('Gielda/show-offers', views.gielda, name="gielda"),
 ]

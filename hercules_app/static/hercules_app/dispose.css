@@ -1,0 +1,42 @@
+.driver {
+  margin-top: 20px;
+  width: 75vw;
+}
+
+.driver-basic-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.username {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-left: 15px;
+  font-size: 1.5rem;
+}
+
+.driver-avatar {
+  border-radius: 25px;
+  width: 48px;
+  height: 48px;
+}
+
+.vehicle-brand {
+  margin-right: 30px;
+}
+
+.vehicle-model {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.dispose {
+  background-color: #C70000 !important;
+  color: white !important;
+  font-weight: 700;
+  font-size: 1.25rem !important;
+  padding: 20px 20px 20px 20px !important;
+}
+/*# sourceMappingURL=dispose.css.map */

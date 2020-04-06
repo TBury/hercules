@@ -38,6 +38,7 @@ class Driver(models.Model):
     last_delivery = models.DateTimeField(auto_now_add=True)
     length_of_service = models.DateTimeField(auto_now_add=True)
     position = models.CharField(max_length=20, null=True)
+    is_employeed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
@@ -82,6 +83,7 @@ class DriverStatistics(models.Model):
     distance = models.PositiveIntegerField(default=0)
     tonnage = models.PositiveIntegerField(default=0)
     income = models.PositiveIntegerField(default=0)
+    fuel = models.PositiveIntegerField(default=0)
     average_fuel = models.FloatField(default=0.0)
     deliveries_count = models.PositiveIntegerField(default=0)
 
@@ -121,19 +123,21 @@ class Waybill(models.Model):
 class Gielda(models.Model):
     id = models.AutoField(primary_key=True)
     loading_city = models.CharField(max_length=64)
+    loading_country = models.CharField(max_length=64)
     unloading_city = models.CharField(max_length=64)
+    unloading_country = models.CharField(max_length=64)
     loading_spedition = models.CharField(max_length=100)
     unloading_spedition = models.CharField(max_length=100)
     cargo = models.CharField(max_length=64)
     tonnage = models.IntegerField(default=0)
 
     class Trailer(models.TextChoices):
-        CURTAIN = 'curt', _('curtain')
-        REEFER = 'reef', _('reefer')
-        LOWDECK = 'ldc', _('low_deck')
-        CISTERN = 'cis', _('cistern')
-        TARP = 'trp', _('tarp')  # plandeka
-    trailer = models.CharField(choices=Trailer.choices, max_length=8)
+        CURTAIN = 'Firanka', _('curtain')
+        REEFER = 'Chłodnia', _('reefer')
+        LOWDECK = 'Niskopodłogowa', _('low_deck')
+        CISTERN = 'Cysterna', _('cistern')
+        TARP = 'Plandeka', _('tarp')  # plandeka
+    trailer = models.CharField(choices=Trailer.choices, max_length=14)
     price = models.PositiveIntegerField(default=0)
     creator = models.CharField(default='SYSTEM', max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)

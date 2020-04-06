@@ -1,0 +1,67 @@
+.brand-info,
+.current-driver {
+    display: flex;
+}
+
+.current-driver {
+    margin-top: 50px;
+}
+
+.vehicle-model,
+.driver-username {
+    align-self: center;
+    color: black;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.vehicle-model {
+    margin-left: 15px;
+}
+
+.hint {
+    color: #363636;
+    font-size: 11px;
+}
+
+.driver-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50px;
+}
+
+.current-driver-span {
+    margin-left: 20px;
+    align-self: center;
+}
+
+.vehicle-parameters {
+    margin-top: 35px;
+    color: black;
+    b {
+        font-size: 1.35rem;
+    }
+    p {
+        margin-top: 5px;
+    }
+}
+
+.company-offer:first-of-type {
+    margin-top: 35px;
+}
+
+img {
+    max-width: 400px;
+    max-height: 250px;
+}
+
+.add-vehicle {
+    color: white !important;
+    margin-left: 84% !important;
+    font-size: 1.35rem !important;
+    background-color: #C70000 !important;
+    &:hover {
+        color: #dddddd;
+    }
+    font-weight: 700;
+}

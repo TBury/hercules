@@ -56,11 +56,13 @@
         <div class="navbar-end is-hidden-mobile">
             <a class="navbar-item">
                 <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="img/avatar_krawczyk.jpg">
+                    <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
                 </figure>
                 <span class="user">
-                    <p class="username">kr4wczyk_</p>
-                    <p class="company">Nordic Transport System</p>
+                    <p class="username">{{ driver.nick }}</p>
+                    {% if driver.company_id %}
+                    <p class="company">{{ company.name }}</p>
+                    {% endif %}
                 </span>
             </a>
             <a class="navbar-item">
@@ -95,12 +97,12 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a class="is-active">
+                            <a>
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <a class="is-active">
                                 <p class="option add-delivery">Dodaj dostawę</p>
                             </a>
                         </li>

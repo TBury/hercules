@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pl-pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png ">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png ">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png ">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png ">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png ">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png ">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png ">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png ">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/android-icon-192x192.png ">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png ">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png ">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png ">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png ">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="panel.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="vehicle_details.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title> Panel użytkownika | Hercules</title>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-start">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="" width="194" height="55">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-end is-hidden-mobile">
+            <a class="navbar-item">
+                <figure class="image is-48x48 avatar-fig">
+                    <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
+                </figure>
+                <span class="user">
+                    <p class="username">{{ driver.nick }}</p>
+                    {% if driver.company_id %}
+                    <p class="company">{{ company.name }}</p>
+                    {% endif %}
+                </span>
+            </a>
+            <a class="navbar-item">
+                <span class="icon is-medium logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+                <p class="logout-text">Wyloguj się</p>
+            </a>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="columns">
+            <aside class="column is-2 aside is-hidden-mobile is-placed-left">
+                <nav class="menu">
+                    <p class="menu-label">
+                        Menu główne
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a class="panel-option">
+                                <p class="option main-site">Panel systemu</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="panel-option">
+                                <p class="option download">Pobierz aplikację</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Kierowca
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a>
+                                <p class="option driver-card">Karta kierowcy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option add-delivery">Dodaj dostawę</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option gielda">Giełda zleceń</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option dispositions">Dyspozycje</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Spedycja
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a>
+                                <p class="option search-company">
+                                    Znajdź firmę
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="is-active">
+                                <p class="option vehicles">Twoje pojazdy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option deliveries">Twoje dostawy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option settings">Ustawienia</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="column main">
+                <header>
+                    <h1 class="title">Pojazd WLS 23030 </h1>
+                </header>
+                <div class="box card">
+                    <div class="columns">
+                        <div class="column left">
+                            <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
+                            <span>
+                                
+                                <img src="img/VA15oIo-1.png" class="_vehicle-image">
+                                <label class="label image-label">Kliknij na zdjęcie, aby zmienić plik</label>
+                            </span>
+                        </div>
+                        <div class="column">
+                            <label class="label">Marka pojazdu</label>
+                            <input type="text" class="input" value="MAN">
+                            <label class="label">Model pojazdu</label>
+                            <input type="text" class="input" value="TGX Euro 5">
+                            <label class="label">Kabina pojazdu</label>
+                            <input type="text" class="input" value="XXL">
+                        </div>
+                    </div>
+                </div>
+                <div class="box card">
+                    <div class="columns">
+                        <div class="column left">
+                            <h2 class="basic-info-title"><span class="colored">Szczegóły</span> techniczne</h2>
+                            <div class="inputs">
+                                <label class="label">Silnik</label>
+                                <input type="text" class="input" value="440 KM">
+                                <label class="label">Rozstaw osi</label>
+                                <input type="text" class="input" value="4x2">
+                                <label class="label">Kabina pojazdu</label>
+                                <input type="text" class="input" value="Exclusive">
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="inputs-right">
+                                <label class="label">Przebieg</label>
+                                <input type="text" class="input" value="3 130 130 km">
+                                <label class="label">Skrzynia biegów</label>
+                                <input type="text" class="input" value="R13R31R 12-biegowa">
+                                <label class="label">Opony</label>
+                                <input type="text" class="input" value="Goodyear 31rnmr1f">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="" class="button edit-details">Zapisz zmiany</a>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
