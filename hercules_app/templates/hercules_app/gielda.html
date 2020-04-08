@@ -30,6 +30,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/panel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/gielda.css' %}">
+    <script defer src="{% static 'hercules_app/gielda.js' %}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <title>Giełda zleceń | Hercules</title>
 </head>
@@ -102,7 +103,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Gielda/show-offers">
+                            <a href="/Gielda/show-offers" class="is-active">
                                 <p class="option gielda">Giełda zleceń</p>
                             </a>
                         </li>
@@ -140,97 +141,84 @@
                 <header>
                     <h1 class="title">Giełda zleceń</h1>
                     <div class="box card filters">
-                        <form action="" method="get">
+                        <form action="/Gielda/show-offers" method="GET">
                             <div class="columns">
                                 <div class="column is-3">
                                     <div class="field">
                                         <p class="control">
-                                            <input class="input" type="text" placeholder="Miasto załadunku">
+                                            <input class="input" type="text" name="loading_city" placeholder="Miasto załadunku">
                                         </p>
                                     </div>
                                 </div>
                                 <div class="column is-3">
                                     <div class="field">
                                         <p class="control">
-                                            <input class="input" type="text" placeholder="Miasto rozładunku">
+                                            <input class="input" type="text"
+                                            name="unloading_city" placeholder="Miasto rozładunku">
                                         </p>
                                     </div>
                                 </div>
                                 <div class="column">
-                                    <div class="dropdown is-hoverable">
-                                        <div class="dropdown-trigger">
-                                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                                <span class="dropdown-title">Cena od</span>
-                                                <span class="icon is-small">
-                                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                                            <div class="dropdown-content">
-                                                <a href="#" class="dropdown-item">
+                                    <div class="dropdown">
+                                        <div class="select">
+                                            <select name="income_min" class="dropdown-content">
+                                                <option value="" selected class="option-placeholder">Cena od</option>
+                                               <option value="1000">
                                                     1 000 PLN
                                                 </a>
-                                                <a href="#" class="dropdown-item">
+                                               <option value="5000">
                                                     5 000 PLN
                                                 </a>
-                                                <a href="#" class="dropdown-item">
+                                               <option value="10000">
                                                     10 000 PLN
                                                 </a>
-                                                <a href="#" class="dropdown-item">
+                                               <option value="15000">
                                                     15 000 PLN
                                                 </a>
-                                                <a href="#" class="dropdown-item">
+                                               <option value="20000">
                                                     20 000 PLN
                                                 </a>
-                                                <a href="#" class="dropdown-item">
+                                               <option value="30000">
                                                     30 000 PLN
                                                 </a>
-                                                <a href="#" class="dropdown-item">
+                                               <option value="35000">
                                                     35 000 PLN
                                                 </a>
-                                                <a href="#" class="dropdown-item">
+                                               <option value="40000">
                                                     40 000 PLN
                                                 </a>
-                                            </div>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="dropdown is-hoverable">
-                                        <div class="dropdown-trigger">
-                                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                                <span class="dropdown-title">Cena do</span>
-                                                <span class="icon is-small">
-                                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                                            <div class="dropdown-content">
-                                                <a href="#" class="dropdown-item">
+                                    <div class="dropdown">
+                                        <div class="select">
+                                            <select name="income_max" class="dropdown-content">
+                                                <option value="" selected class="option-placeholder">Cena do</option>
+                                                <option value="1000">
                                                     1 000 PLN
-                                                </a>
-                                                <a href="#" class="dropdown-item">
+                                                    </a>
+                                                <option value="5000">
                                                     5 000 PLN
-                                                </a>
-                                                <a href="#" class="dropdown-item">
+                                                    </a>
+                                                <option value="10000">
                                                     10 000 PLN
-                                                </a>
-                                                <a href="#" class="dropdown-item">
+                                                    </a>
+                                                <option value="15000">
                                                     15 000 PLN
-                                                </a>
-                                                <a href="#" class="dropdown-item">
+                                                    </a>
+                                                <option value="20000">
                                                     20 000 PLN
-                                                </a>
-                                                <a href="#" class="dropdown-item">
+                                                    </a>
+                                                <option value="30000">
                                                     30 000 PLN
-                                                </a>
-                                                <a href="#" class="dropdown-item">
+                                                    </a>
+                                                <option value="35000">
                                                     35 000 PLN
-                                                </a>
-                                                <a href="#" class="dropdown-item">
+                                                    </a>
+                                                <option value="40000">
                                                     40 000 PLN
-                                                </a>
-                                            </div>
+                                                    </a>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -239,78 +227,83 @@
                                 <div class="column is-3">
                                     <div class="field">
                                         <p class="control">
-                                            <input class="input" type="text" placeholder="Kraj załadunku">
+                                            <input class="input" type="text"
+                                            name="loading_country" placeholder="Kraj załadunku">
                                         </p>
                                     </div>
                                 </div>
                                 <div class="column is-3">
                                     <div class="field">
                                         <p class="control">
-                                            <input class="input" type="text" placeholder="Kraj rozładunku">
+                                            <input class="input" type="text"
+                                            name="unloading_country" placeholder="Kraj rozładunku">
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <a href="" class="button search-offers">Szukaj zleceń</a>
+                            <button type="submit" class="button search-offers">Szukaj zleceń</button>
                         </form>
                     </div>
+                    <form class="sort-form" action="/Gielda/show-offers" method="GET">
                     <div class="sort">
                         <div class="select sort-select">
-                            <select>
-                                <option>Wyróżnione zlecenia</option>
-                                <option>Najdroższe</option>
-                                <option>Najtańsze</option>
-                                <option>Najcięższe</option>
-                                <option>Najnowsze</option>
+                            <select class="sort_by" name="sort_by">
+                                <option value="">Wyróżnione zlecenia</option>
+                                <option value="-price" {% if sort_by == '-price' %} selected {% endif %}>Najdroższe</option>
+                                <option value="price" {% if sort_by == 'price' %} selected {% endif %}>Najtańsze</option>
+                                <option value="-tonnage" {% if sort_by == '-tonnage' %} selected {% endif %}>Najcięższe</option>
+                                <option value="tonnage" {% if sort_by == 'tonnage' %} selected {% endif %}>Najlżejsze</option>
+                                <option value="-created_at" {% if sort_by == '-created_at' %} selected {% endif %}>Najnowsze</option>
                             </select>
                         </div>
                     </div>
+                    </form>
                     {% for offer in offers %}
                     <div class="box card offer-container">
-                        <nav class="level offer">
-                            <div class="level-item">
-                                {% with 'hercules_app/assets/countries'|add:offer.loading_country|add:'.png' as image_static %}
+                        <div class="columns offer">
+                            <div class="column place">
+                                {% with 'hercules_app/assets/countries/'|add:offer.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ offer.loading_city }}</p>
-                                    {% with 'hercules_app/assets/companies'|add:offer.loading_spedition|add:'.png' as image_static %}
-                                    <img src="{% static image_static %}" class="country-icon">
+                                    {% with 'hercules_app/assets/companies/'|add:offer.loading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
-                            <div class="level-item unloading-city">
-                                {% with 'hercules_app/assets/countries'|add:offer.unloading_country|add:'.png' as image_static %}
+                            <div class="column place">
+                                {% with 'hercules_app/assets/countries/'|add:offer.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ offer.unloading_city }}</p>
-                                    {% with 'hercules_app/assets/companies'|add:offer.unloading_spedition|add:'.png' as image_static %}
-                                    <img src="{% static image_static %}" class="country-icon">
+                                    {% with 'hercules_app/assets/companies/'|add:offer.unloading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
-                            <div class="level-item cargo">
+                            <div class="column">
                                 <span class="cargo">
                                     <b>{{ offer.cargo }}</b>
                                     <br>
                                     {{ offer.tonnage }}kg
                                 </span>
                             </div>
-                            <div class="level-item trailer">
+                            <div class="column">
                                 <span class="trailer">
                                     {{ offer.trailer }}
                                 </span>
                             </div>
-                            <div class="level-item income">
+                            <div class="column">
                                 <span class="income">
                                     <b>{{ offer.price }} zł</b>
                                 </span>
                             </div>
-                            <div class="level-item ">
+                            <div class="column">
                                 <a class="button check-details is-rounded">Sprawdź szczegóły</a>
                             </div>
-                        </nav>
+                        </div>
                     </div>
                     {% endfor %}
                 </header>

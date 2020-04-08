@@ -230,5 +230,19 @@ def add_waybill(request):
 @login_required
 def gielda(request):
     driver = Driver.objects.get(user=request.user)
-    offers = Gielda.objects.all()
-    return render(request, 'hercules_app/gielda.html', {'offers': offers, 'driver': driver})
+    parameters = ['loading_city', 'loading_country', 'unloading_city', 'unloading_country']
+    filters = {}
+    for parameter in parameters:
+        if request.GET.get(parameter):
+            filters[parameter] = request.GET.get(parameter)
+    income_min = 0
+    income_max = 1000000
+    sort_by = '-id'
+    if request.GET.get('income_min'):
+        income_min = int(request.GET.get('income_min'))
+    if request.GET.get('income_max'):
+        income_max = int(request.GET.get('income_max'))
+    if request.GET.get('sort_by'):
+        sort_by = request.GET.get('sort_by')
+    offers = Gielda.objects.all().filter(**filters, price__gte=income_min, price__lte=income_max).order_by(sort_by)
+    return render(request, 'hercules_app/gielda.html', {'offers': offers, 'driver': driver, 'sort_by': sort_by})
