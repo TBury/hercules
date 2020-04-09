@@ -141,7 +141,7 @@ class Gielda(models.Model):
     price = models.PositiveIntegerField(default=0)
     creator = models.CharField(default='SYSTEM', max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
-    adr = models.BooleanField(default=False)
+    adr = models.CharField(default='Nie dotyczy', max_length=24)
     oversized = models.BooleanField(default=False)
 
     def __str__(self):
