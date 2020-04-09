@@ -57,7 +57,7 @@
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
                     {% if driver.company_id %}
-                    <p class="company">{{ company.name }}</p>
+                    <p class="company">{{ driver.company.name }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -76,9 +76,9 @@
                     <p class="menu-label">
                         Menu główne
                     </p>
-                    <ul class="menu-list">
+                     <ul class="menu-list">
                         <li>
-                            <a class="panel-option" href="/panel">
+                            <a href="/panel">
                                 <p class="option main-site">Panel systemu</p>
                             </a>
                         </li>
@@ -103,7 +103,7 @@
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <a href="/Gielda/Offers">
                                 <p class="option gielda">Giełda zleceń</p>
                             </a>
                         </li>
@@ -166,7 +166,7 @@
                                     <article class="media">
                                         <div class="media-left">
                                             <figure class="image is-64x64">
-                                                <img src="{% static 'hercules_app/assets/distance-card.png' %}" alt="Image">
+                                                <img src="{% static 'hercules_app/assets/icons/distance-card.png' %}" alt="Image">
                                             </figure>
                                         </div>
                                         <div class="media-content">
@@ -187,7 +187,7 @@
                                     <article class="media">
                                         <div class="media-left">
                                             <figure class="image is-64x64">
-                                                <img src="{% static 'hercules_app/assets/gas-card.png' %}" alt="Image">
+                                                <img src="{% static 'hercules_app/assets/icons/gas-card.png' %}" alt="Image">
                                             </figure>
                                         </div>
                                         <div class="media-content">
@@ -209,7 +209,7 @@
                                     <article class="media">
                                         <div class="media-left">
                                             <figure class="image is-64x64">
-                                                <img src="{% static 'hercules_app/assets/finish.png' %}" alt="Image">
+                                                <img src="{% static 'hercules_app/assets/icons/finish.png' %}" alt="Image">
                                             </figure>
                                         </div>
                                         <div class="media-content">
@@ -233,7 +233,7 @@
                                             <article class="media">
                                                 <div class="media-left">
                                                     <figure class="image is-64x64">
-                                                        <img src="{% static 'hercules_app/assets/business.png' %}" alt="Image">
+                                                        <img src="{% static 'hercules_app/assets/icons/business.png' %}" alt="Image">
                                                     </figure>
                                                 </div>
                                                 <div class="media-content">
@@ -254,7 +254,7 @@
                                                 <article class="media">
                                                     <div class="media-left">
                                                         <figure class="image is-64x64">
-                                                            <img src="{% static 'hercules_app/assets/money.png' %}" alt="Image">
+                                                            <img src="{% static 'hercules_app/assets/icons/money.png' %}" alt="Image">
                                                         </figure>
                                                     </div>
                                                     <div class="media-content">
@@ -279,7 +279,7 @@
                                                         <span class="icon">
                                                             <i class="" aria-hidden="true">
                                                                 <figure class="image is-48x48">
-                                                                    <img src="{% static 'hercules_app/assets/steering-wheel.png' %}" alt="Image">
+                                                                    <img src="{% static 'hercules_app/assets/icons/steering-wheel.png' %}" alt="Image">
                                                                 </figure>
                                                             </i>
                                                         </span>
@@ -296,7 +296,7 @@
                                                     </div>
                                                     <div class="column">
                                                         <span class="vehicle-info">
-                                                            <img src="{% static 'hercules_app/assets/man.png' %}" alt="Image">
+                                                            <img src="{% static 'hercules_app/assets/manufacturers/man.png' %}" alt="Image">
                                                             <h2 class="vehicle-name">{{ vehicle.brand }}
                                                                 {{ vehicle.model }} {{ vehicle.cabin }}</h2>
                                                             <img src="{% static 'hercules_app/assets/WLS23090.png' %}" class="registration-number"
@@ -316,7 +316,7 @@
                                  <div class="tile is-child">
                                      <div class="box card achievements">
                                          <nav class="level">
-                                             <img src="{% static 'hercules_app/assets/leaf.png' %}" alt="">
+                                             <img src="{% static 'hercules_app/assets/icons/leaf.png' %}" alt="">
                                              <span class="achievement">
                                                  <h1 class="achievement-title">Ekologiczny <span
                                                          class="colored">kierowca</span>
@@ -329,7 +329,7 @@
                                              </span>
                                          </nav>
                                          <nav class="level">
-                                             <img src="{% static 'hercules_app/assets/speedometer.png' %}" alt="">
+                                             <img src="{% static 'hercules_app/assets/icons/speedometer.png' %}" alt="">
                                              <span class="achievement">
                                                  <h1 class="achievement-title">Długodystansowiec
                                                  </h1>
@@ -339,7 +339,7 @@
                                              </span>
                                          </nav>
                                          <nav class="level">
-                                             <img src="{% static 'hercules_app/assets/business.png' %}" alt="">
+                                             <img src="{% static 'hercules_app/assets/icons/business.png' %}" alt="">
                                              <span class="achievement">
                                                  <h1 class="achievement-title">Ciężki<span class="colored">
                                                          kaliber</span>
@@ -360,7 +360,7 @@
                             <span class="icon">
                                 <i class="" aria-hidden="true">
                                     <figure class="image is-48x48">
-                                        <img src="{% static 'hercules_app/assets/dispositions-card.png' %}" alt="Image">
+                                        <img src="{% static 'hercules_app/assets/icons/dispositions-card.png' %}" alt="Image">
                                     </figure>
                                 </i>
                             </span>

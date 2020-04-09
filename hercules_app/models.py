@@ -141,7 +141,15 @@ class Gielda(models.Model):
     price = models.PositiveIntegerField(default=0)
     creator = models.CharField(default='SYSTEM', max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
-    adr = models.CharField(default='Nie dotyczy', max_length=24)
+    class Adr(models.TextChoices):
+        NONE = 'Nie dotyczy', _('none')
+        EXPLOSIVES = 'ADR-1: materiały wybuchowe', _('explosives')
+        GASES = 'ADR-2: gazy', _('gases')
+        LIQUIDS = 'ADR-3: płyny łatwopalne', _('liquids')
+        SOLIDS = 'ADR-4: materiały stałe zapalne', _('solids')
+        TOXIC = 'ADR-6: toksyczne i zakaźne substancje', _('toxic')
+        CORROSIVE = 'ADR-8: toksyczne substancje', _('corrosive')
+    adr = models.CharField(choices=Adr.choices, max_length=64)
     oversized = models.BooleanField(default=False)
 
     def __str__(self):

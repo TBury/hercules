@@ -56,7 +56,7 @@
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
                     {% if driver.company_id %}
-                    <p class="company">{{ company.name }}</p>
+                    <p class="company">{{ driver.company.name }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -75,14 +75,14 @@
                     <p class="menu-label">
                         Menu główne
                     </p>
-                    <ul class="menu-list">
+                     <ul class="menu-list">
                         <li>
-                            <a class="panel-option">
+                            <a href="/panel">
                                 <p class="option main-site">Panel systemu</p>
                             </a>
                         </li>
                         <li>
-                            <a class="panel-option">
+                            <a class="panel-option" href="/download">
                                 <p class="option download">Pobierz aplikację</p>
                             </a>
                         </li>
@@ -92,17 +92,17 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a>
+                            <a href='/drivers-card'>
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <a href="/add-delivery">
                                 <p class="option add-delivery">Dodaj dostawę</p>
                             </a>
                         </li>
                         <li>
-                            <a class="is-active">
+                            <a class="is-active" href="/Gielda/Offers">
                                 <p class="option gielda">Giełda zleceń</p>
                             </a>
                         </li>
@@ -131,11 +131,6 @@
                         <li>
                             <a>
                                 <p class="option deliveries">Twoje dostawy</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <p class="option settings">Ustawienia</p>
                             </a>
                         </li>
                     </ul>
@@ -202,7 +197,7 @@
                         <div class="column">
                             <div class="adr-info">
                                 <p class="info-label">Klasa ADR</p>
-                                <h2 class="adr-class"> </h2>
+                                <h2 class="adr-class">{{ offer.adr }}</h2>
                             </div>
                         </div>
                         <div class="column">
@@ -236,7 +231,9 @@
 
                 <div class="field buttons">
                     <div class="control">
-                        <a class="button accept">Przyjmij zlecenie</a>
+                        <a {% if is_self_employed %} href="DisposeOffer/{{ driver.id }}" {% endif %}
+                            {% if is_self_employed == False %} href="DisposeOffer/{{ driver.id }}" {% endif %}
+                            class="button accept">Przyjmij zlecenie</a>
                     </div>
                 </div>
             </main>

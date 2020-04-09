@@ -40,6 +40,10 @@ def panel(request):
     if waybill_success is True:
         request.session.modified = True
         del request.session['waybill_success']
+    dispose_offer_success = request.session.get('dispose_offer_success')
+    if dispose_offer_success is True:
+        request.session.modified = True
+        del request.session['dispose_offer_success']
     driver = Driver.objects.get(user=request.user)
     statistics = DriverStatistics.objects.get(driver_id=driver)
     if driver.company_id is not None:
@@ -58,6 +62,7 @@ def panel(request):
         'vehicle': vehicle,
         'dispositions': dispositions,
         'waybill_success': waybill_success,
+        'dispose_offer_success': dispose_offer_success,
     }
     return render(request, 'hercules_app/panel.html', args)
 
@@ -84,19 +89,15 @@ def drivers_card(request):
     statistics = DriverStatistics.objects.get(driver_id=driver)
     if driver.company_id is not None:
         company = Company.objects.get(id=driver.company_id)
-    company = ""
-    if driver.vehicle_id is not None:
-        vehicle = Vehicle.objects.get(driver=driver)
-    vehicle = ""
+    vehicle = Vehicle.objects.get(driver=driver)
     dispositions = Disposition.objects.filter(driver=driver)[:5]
     args = {
         'driver': driver,
         'company': company,
         'statistics': statistics,
-        'dispositions': dispositions
+        'dispositions': dispositions,
+        'vehicle': vehicle
     }
-    if vehicle is not None:
-        args += {'vehicle': vehicle}
     return render(request, 'hercules_app/drivers-card.html', args)
 
 
@@ -229,6 +230,8 @@ def add_waybill(request):
 
 @login_required
 def OffersView(request):
+    if request.session.get('offer_id') is not None:
+        del request.session['offer_id']
     driver = Driver.objects.get(user=request.user)
     parameters = ['loading_city', 'loading_country', 'unloading_city', 'unloading_country']
     filters = {}
@@ -251,5 +254,42 @@ def OffersView(request):
 def OfferDetailsView(request, offer_id):
     driver = Driver.objects.get(user=request.user)
     offer = Gielda.objects.get(id=offer_id)
-    return render(request, 'hercules_app/offer_details.html', {'offer': offer, 'driver': driver})
+    company_drivers_count = Company.objects.values_list(
+        'drivers_count', flat=True).get(name=driver.company)
+    is_self_employed = False
+    request.session['offer_id'] = offer_id
+    if company_drivers_count == 1:
+        is_self_employed = True
+    return render(request, 'hercules_app/offer_details.html', {'offer': offer, 'driver': driver, 'is_self_employed': is_self_employed})
 
+@login_required
+def ChooseDriverView(request):
+    driver = Driver.objects.get(user=request.user)
+    company_drivers_count = Company.objects.values_list(
+            'drivers_count', flat=True).get(name=driver.company)
+    if company_drivers_count > 1:
+        company_drivers = Driver.objects.all().filter(company=driver.company)
+        company_drivers_vehicles = []
+        for company_driver in company_drivers:
+            company_drivers_vehicles.append(
+                Vehicle.objects.get(driver=company_driver))
+        return render(request, 'hercules_app/offer_dispose.html', {'driver': driver, 'drivers': company_drivers, 'vehicles': company_drivers_vehicles})
+    else:
+        return HttpResponse(status=500)
+
+
+@login_required
+def DisposeOffer(request, driver_id):
+    disposition = Disposition()
+    offer_id = request.session.get('offer_id')
+    offer = Gielda.objects.get(id=offer_id)
+    del request.session['offer_id']
+    disposition.loading_city = offer.loading_city
+    disposition.loading_spedition = offer.loading_spedition
+    disposition.unloading_city = offer.unloading_city
+    disposition.unloading_spedition = offer.unloading_spedition
+    disposition.cargo = offer.cargo
+    disposition.tonnage = offer.tonnage
+    disposition.driver = Driver.objects.get(id=driver_id)
+    request.session['dispose_offer_success'] = True
+    return redirect('panel')

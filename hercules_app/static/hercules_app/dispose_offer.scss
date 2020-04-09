@@ -3,15 +3,19 @@
     width: 75vw;
 }
 
-.driver-basic-info {
+.driver-basic-info,
+.driver-vehicle {
     display: flex;
 }
 
-.username {
-    align-self: center;
-    margin-left: 15px;
-    font-size: 1.5rem;
+.driver {
+    .username {
+        align-self: center;
+        margin-left: 15px;
+        font-size: 1.5rem;
+    }
 }
+
 
 .driver-avatar {
     border-radius: 25px;
@@ -20,6 +24,8 @@
 }
 
 .vehicle-brand {
+    width: 128px;
+    height: 32px;
     margin-right: 30px;
 }
 
@@ -29,6 +35,8 @@
 }
 
 .dispose {
+    float: right;
+    margin-right: 15px;
     background-color: #C70000 !important;
     color: white !important;
     font-weight: 700;
