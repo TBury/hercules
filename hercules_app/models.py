@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 class Company(models.Model):
@@ -141,6 +142,7 @@ class Gielda(models.Model):
     price = models.PositiveIntegerField(default=0)
     creator = models.CharField(default='SYSTEM', max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
+
     class Adr(models.TextChoices):
         NONE = 'Nie dotyczy', _('none')
         EXPLOSIVES = 'ADR-1: materiały wybuchowe', _('explosives')
@@ -156,6 +158,16 @@ class Gielda(models.Model):
         return str(self.id)
 
 
+class Rozpiska(models.Model):
+    rozpiska_id = models.IntegerField(default=0)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, default='')
+    first_disposition_id = models.IntegerField(default=0)
+    second_disposition_id = models.IntegerField(default=0)
+    third_disposition_id = models.IntegerField(default=0)
+    fourth_disposition_id = models.IntegerField(default=0)
+    fifth_disposition_id = models.IntegerField(default=0)
+
+
 class Disposition(models.Model):
     id = models.AutoField(primary_key=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, default='')
@@ -165,13 +177,13 @@ class Disposition(models.Model):
     unloading_spedition = models.CharField(max_length=100)
     cargo = models.CharField(max_length=64)
     tonnage = models.IntegerField(default=0)
+    deadline = models.DateTimeField(default=datetime.now, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_rozpiska = models.BooleanField(default=False)
+    rozpiska = models.ForeignKey(Rozpiska, on_delete=models.CASCADE, default=0)
 
     def __str__(self):
         return str(self.id)
-
-# TODO: klasa rozpiski
-# class Rozpiska(models.Model):
 
 
 class CompanySettings(models.Model):

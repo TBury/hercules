@@ -3,7 +3,15 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import user_passes_test
-from hercules_app.models import Driver, Company, DriverStatistics, Vehicle, Disposition, Waybill, Gielda
+from hercules_app.models import (
+    Driver,
+    Company,
+    DriverStatistics,
+    Vehicle,
+    Disposition,
+    Waybill,
+    Gielda,
+    Rozpiska)
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
@@ -293,3 +301,18 @@ def DisposeOffer(request, driver_id):
     disposition.driver = Driver.objects.get(id=driver_id)
     request.session['dispose_offer_success'] = True
     return redirect('panel')
+
+
+@login_required
+def ShowDispositionsView(request):
+    driver = Driver.objects.get(user=request.user)
+    dispositions = Disposition.objects.all().filter(driver=driver)
+    rozpiski_objects = Rozpiska.objects.all().filter(driver=driver)
+    rozpiski = []
+    for rozpiska in rozpiski_objects:
+        rozpiski.append(Disposition.objects.get(id=rozpiska.first_disposition_id))
+        rozpiski.append(Disposition.objects.get(id=rozpiska.second_disposition_id))
+        rozpiski.append(Disposition.objects.get(id=rozpiska.third_disposition_id))
+        rozpiski.append(Disposition.objects.get(id=rozpiska.fourth_disposition_id))
+        rozpiski.append(Disposition.objects.get(id=rozpiska.fifth_disposition_id))
+    return render(request, 'hercules_app/dispositions.html', {'driver': driver, 'dispositions': dispositions, 'rozpiski': rozpiski})

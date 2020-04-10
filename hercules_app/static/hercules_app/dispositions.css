@@ -7,6 +7,10 @@
   display: flex;
 }
 
+.city {
+  font-size: 1.2rem;
+}
+
 .rozpiska-loading-info:not(:last-child),
 .rozpiska-unloading-info:not(:last-child) {
   margin-bottom: 60px;
@@ -22,8 +26,8 @@
 }
 
 .country-icon {
-  width: 48px !important;
-  height: 48px !important;
+  width: 32px !important;
+  height: 32px !important;
 }
 
 .cargo {

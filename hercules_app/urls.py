@@ -30,4 +30,6 @@ urlpatterns = [
          views.ChooseDriverView, name="dispose-offer"),
     path('Gielda/Offers/DisposeOffer/<int:driver_id>',
          views.DisposeOffer, name="dispose-offer"),
+    path('Dispositions',
+         views.ShowDispositionsView, name="user-dispositions"),
 ]
