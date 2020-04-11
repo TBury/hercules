@@ -148,119 +148,159 @@
                 <div class="box card">
                     <div class="columns">
                         <div class="column">
-                            <div class="rozpiska-loading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-loading-info {% if rozpiski.0.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.0.loading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.0.loading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.0.loading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
-                            <div class="rozpiska-loading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-loading-info {% if rozpiski.1.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.1.loading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.1.loading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.1.loading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
-                            <div class="rozpiska-loading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-loading-info {% if rozpiski.2.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.2.loading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.2.loading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.2.loading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
-                            <div class="rozpiska-loading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-loading-info {% if rozpiski.3.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.3.loading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.3.loading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.3.loading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
-                            <div class="rozpiska-loading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-loading-info {% if rozpiski.4.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.4.loading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.4.loading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.4.loading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
                         </div>
                         <div class="column">
-                            <div class="rozpiska-unloading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-unloading-info {% if rozpiski.0.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.0.unloading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.0.unloading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.0.unloading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
-                            <div class="rozpiska-unloading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-unloading-info {% if rozpiski.1.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.1.unloading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.1.unloading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.1.unloading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
-                            <div class="rozpiska-unloading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-unloading-info {% if rozpiski.2.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.2.unloading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.2.unloading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.2.unloading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
-                            <div class="rozpiska-unloading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-unloading-info {% if rozpiski.3.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.3.unloading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.3.unloading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.3.unloading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
-                            <div class="rozpiska-unloading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                            <div
+                                class="rozpiska-unloading-info {% if rozpiski.4.finished == True %} finished {% endif %}">
+                                {% with 'hercules_app/assets/countries/'|add:rozpiski.4.unloading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiski.4.unloading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:rozpiski.4.unloading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
                         </div>
                         <div class="column">
-                            <div class="rozpiska-cargo">
+                            <div class="rozpiska-cargo {% if rozpiski.0.finished == True %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.0.cargo }}</b>
                                     <br>
                                     {{ rozpiski.0.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo">
+                            <div class="rozpiska-cargo {% if rozpiski.1.finished == True %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.1.cargo }}</b>
                                     <br>
                                     {{ rozpiski.1.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo">
+                            <div class="rozpiska-cargo {% if rozpiski.2.finished == True %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.2.cargo }}</b>
                                     <br>
                                     {{ rozpiski.2.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo">
+                            <div class="rozpiska-cargo {% if rozpiski.3.finished == True %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.3.cargo }}</b>
                                     <br>
                                     {{ rozpiski.3.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo">
+                            <div class="rozpiska-cargo {% if rozpiski.4.finished == True %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.4.cargo }}</b>
                                     <br>
@@ -269,35 +309,35 @@
                             </div>
                         </div>
                         <div class="column">
-                            <div class="rozpiska-deadline">
+                            <div class="rozpiska-deadline {% if rozpiski.0.finished == True %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
                                     {{ rozpiski.0.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline">
+                            <div class="rozpiska-deadline {% if rozpiski.1.finished == True %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
                                     {{ rozpiski.1.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline">
+                            <div class="rozpiska-deadline {% if rozpiski.2.finished == True %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
                                     {{ rozpiski.2.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline">
+                            <div class="rozpiska-deadline {% if rozpiski.3.finished == True %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
                                     {{ rozpiski.3.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline">
+                            <div class="rozpiska-deadline {% if rozpiski.4.finished == True %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
@@ -312,21 +352,27 @@
                     <div class="columns">
                         <div class="column">
                             <div class="loading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                                {% with 'hercules_app/assets/countries/'|add:disposition.loading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ disposition.loading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:disposition.loading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
                         </div>
                         <div class="column">
                             <div class="unloading-info">
-                                <img src="{% static 'hercules_app/assets/countries/france.png' %}" class="country-icon">
+                                {% with 'hercules_app/assets/countries/'|add:disposition.unloading_country|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="country-icon">
+                                {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ disposition.unloading_city }}</p>
-                                    <img src="{% static 'hercules_app/assets/companies/agronord.png' %}" alt=""
-                                        class="company">
+                                    {% with 'hercules_app/assets/companies/'|add:disposition.unloading_spedition|add:'.png' as image_static %}
+                                    <img src="{% static image_static %}" class="company">
+                                    {% endwith %}
                                 </span>
                             </div>
                         </div>

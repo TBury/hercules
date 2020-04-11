@@ -49,4 +49,8 @@
       -ms-grid-row-align: center;
       align-self: center;
 }
+
+.finished * {
+  opacity: .5;
+}
 /*# sourceMappingURL=dispositions.css.map */

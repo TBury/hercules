@@ -172,7 +172,9 @@ class Disposition(models.Model):
     id = models.AutoField(primary_key=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, default='')
     loading_city = models.CharField(max_length=64)
+    loading_country = models.CharField(max_length=64, default='')
     unloading_city = models.CharField(max_length=64)
+    unloading_country = models.CharField(max_length=64, default='')
     loading_spedition = models.CharField(max_length=100)
     unloading_spedition = models.CharField(max_length=100)
     cargo = models.CharField(max_length=64)
@@ -180,6 +182,7 @@ class Disposition(models.Model):
     deadline = models.DateTimeField(default=datetime.now, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_rozpiska = models.BooleanField(default=False)
+    finished = models.BooleanField(default=False) #field for dispositions from rozpiska only
     rozpiska = models.ForeignKey(Rozpiska, on_delete=models.CASCADE, default=0)
 
     def __str__(self):
