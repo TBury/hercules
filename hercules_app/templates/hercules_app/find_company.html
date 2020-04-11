@@ -56,8 +56,8 @@
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company_id %}
-                    <p class="company">{{ driver.company.name }}</p>
+                    {% if driver.company != "" %}
+                    <p class="company">{{ driver.company }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -147,67 +147,7 @@
                     <h1 class="title">Znajdź firmę</h1>
                 </header>
                 <div class="box card company-offer">
-                    <a href="/company/1030">
-                        <div class="columns">
-                            <div class="column">
-                                <img src="img/placeholder-1200x500-1.png" class="company-logo">
-                            </div>
-                            <div class="column">
-                                <h1 class="company-name">Nordic Transport Group</h1>
-                                <div class="tags">
-                                    <span class="tag is-small">ETS2</span>
-                                    <span class="tag is-small">ATS</span>
-                                    <span class="tag is-small">Singleplayer</span>
-                                    <span class="tag is-small">Multiplayer</span>
-                                    <span class="tag is-small">Promods</span>
-                                </div>
-                                <span class="tag is-success is-open-for-drivers is-large">Rekrutacja otwarta</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="box card company-offer">
-                    <a href="/company/1030">
-                        <div class="columns">
-                            <div class="column">
-                                <img src="img/placeholder-1200x500-1.png" class="company-logo">
-                            </div>
-                            <div class="column">
-                                <h1 class="company-name">Nordic Transport Group</h1>
-                                <div class="tags">
-                                    <span class="tag is-small">ETS2</span>
-                                    <span class="tag is-small">ATS</span>
-                                    <span class="tag is-small">Singleplayer</span>
-                                    <span class="tag is-small">Multiplayer</span>
-                                    <span class="tag is-small">Promods</span>
-                                </div>
-                                <span class="tag is-success is-open-for-drivers is-large">Rekrutacja otwarta</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="box card company-offer">
-                    <a href="/company/1030">
-                        <div class="columns">
-                            <div class="column">
-                                <img src="img/placeholder-1200x500-1.png" class="company-logo">
-                            </div>
-                            <div class="column">
-                                <h1 class="company-name">Nordic Transport Group</h1>
-                                <div class="tags">
-                                    <span class="tag is-small">ETS2</span>
-                                    <span class="tag is-small">ATS</span>
-                                    <span class="tag is-small">Singleplayer</span>
-                                    <span class="tag is-small">Multiplayer</span>
-                                    <span class="tag is-small">Promods</span>
-                                </div>
-                                <span class="tag is-success is-open-for-drivers is-large">Rekrutacja otwarta</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="box card company-offer">
-                    <a href="/company/">
+                    <a href="/Companies/">
                         <div class="columns">
                             <div class="column">
                                 <img src="img/placeholder-1200x500-1.png" class="company-logo">

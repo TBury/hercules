@@ -55,8 +55,8 @@
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company_id %}
-                    <p class="company">{{ driver.company.name }}</p>
+                    {% if driver.company != "" %}
+                    <p class="company">{{ driver.company }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -149,7 +149,7 @@
                     <div class="columns">
                         <div class="column">
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.0.finished == True %} finished {% endif %}">
+                                class="rozpiska-loading-info {% if rozpiski.0.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.0.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -161,7 +161,7 @@
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.1.finished == True %} finished {% endif %}">
+                                class="rozpiska-loading-info {% if rozpiski.1.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.1.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -173,7 +173,7 @@
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.2.finished == True %} finished {% endif %}">
+                                class="rozpiska-loading-info {% if rozpiski.2.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.2.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -185,7 +185,7 @@
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.3.finished == True %} finished {% endif %}">
+                                class="rozpiska-loading-info {% if rozpiski.3.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.3.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -197,7 +197,7 @@
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.4.finished == True %} finished {% endif %}">
+                                class="rozpiska-loading-info {% if rozpiski.4.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.4.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -211,7 +211,7 @@
                         </div>
                         <div class="column">
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.0.finished == True %} finished {% endif %}">
+                                class="rozpiska-unloading-info {% if rozpiski.0.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.0.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -223,7 +223,7 @@
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.1.finished == True %} finished {% endif %}">
+                                class="rozpiska-unloading-info {% if rozpiski.1.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.1.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -235,7 +235,7 @@
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.2.finished == True %} finished {% endif %}">
+                                class="rozpiska-unloading-info {% if rozpiski.2.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.2.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -247,7 +247,7 @@
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.3.finished == True %} finished {% endif %}">
+                                class="rozpiska-unloading-info {% if rozpiski.3.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.3.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -259,7 +259,7 @@
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.4.finished == True %} finished {% endif %}">
+                                class="rozpiska-unloading-info {% if rozpiski.4.finished %} finished {% endif %}">
                                 {% with 'hercules_app/assets/countries/'|add:rozpiski.4.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
@@ -272,35 +272,35 @@
                             </div>
                         </div>
                         <div class="column">
-                            <div class="rozpiska-cargo {% if rozpiski.0.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiski.0.finished %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.0.cargo }}</b>
                                     <br>
                                     {{ rozpiski.0.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo {% if rozpiski.1.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiski.1.finished %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.1.cargo }}</b>
                                     <br>
                                     {{ rozpiski.1.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo {% if rozpiski.2.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiski.2.finished %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.2.cargo }}</b>
                                     <br>
                                     {{ rozpiski.2.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo {% if rozpiski.3.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiski.3.finished %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.3.cargo }}</b>
                                     <br>
                                     {{ rozpiski.3.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo {% if rozpiski.4.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiski.4.finished %} finished {% endif %}">
                                 <span class="cargo">
                                     <b>{{ rozpiski.4.cargo }}</b>
                                     <br>
@@ -309,35 +309,35 @@
                             </div>
                         </div>
                         <div class="column">
-                            <div class="rozpiska-deadline {% if rozpiski.0.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiski.0.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
                                     {{ rozpiski.0.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline {% if rozpiski.1.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiski.1.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
                                     {{ rozpiski.1.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline {% if rozpiski.2.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiski.2.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
                                     {{ rozpiski.2.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline {% if rozpiski.3.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiski.3.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
                                     {{ rozpiski.3.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline {% if rozpiski.4.finished == True %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiski.4.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>

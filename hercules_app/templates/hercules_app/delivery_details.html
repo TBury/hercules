@@ -58,8 +58,8 @@
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company_id %}
-                    <p class="company">{{ driver.company.name }}</p>
+                    {% if driver.company != "" %}
+                    <p class="company">{{ driver.company }}</p>
                     {% endif %}
                 </span>
             </a>

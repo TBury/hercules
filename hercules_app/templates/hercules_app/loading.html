@@ -59,8 +59,10 @@
                     <img class="avatar" src="img/avatar_krawczyk.jpg">
                 </figure>
                 <span class="user">
-                    <p class="username">kr4wczyk_</p>
-                    <p class="company">Nordic Transport System</p>
+                    <p class="username">{{ nick }}</p>
+                    {% if company != "" %}
+                    <p class="company">{{ company }}</p>
+                    {% endif %}
                 </span>
             </a>
             <a class="navbar-item">

@@ -64,9 +64,9 @@
                     <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
                 </figure>
                 <span class="user">
-                    <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company_id %}
-                    <p class="company">{{ driver.company.name }}</p>
+                    <p class="username">{{ nick }}</p>
+                    {% if company != "" %}
+                    <p class="company">{{ company }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -178,8 +178,7 @@
                     </form>
                     {% endif %}
                     {% if is_automatic != True %}
-                    <form action="step-one" class="dropzone" id="endScreenDropzone"
-                        method="POST"
+                    <form action="step-one" class="dropzone" id="endScreenDropzone" method="POST"
                         enctype="multipart/form-data">
                         {% csrf_token %}
                         <h1 class="dz-message header">Kliknij lub przeciągnij i upuść screenshot w tym oknie.</h1>

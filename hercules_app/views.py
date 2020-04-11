@@ -18,6 +18,7 @@ from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
 from decimal import Decimal
 
+
 def index(request):
     return render(request, 'hercules_app/index.html')
 
@@ -48,26 +49,24 @@ def panel(request):
     if waybill_success is True:
         request.session.modified = True
         del request.session['waybill_success']
+
     dispose_offer_success = request.session.get('dispose_offer_success')
     if dispose_offer_success is True:
         request.session.modified = True
         del request.session['dispose_offer_success']
-    driver = Driver.objects.get(user=request.user)
-    statistics = DriverStatistics.objects.get(driver_id=driver)
-    if driver.company_id is not None:
-        company = Company.objects.get(id=driver.company_id)
-    company = ""
-    try:
-        vehicle = Vehicle.objects.get(driver=driver)
-    except:
-        vehicle = ""
 
+    driver = Driver.objects.get(user=request.user)
+
+    driver_info = Driver.GetDriverInfo(request)
+
+    statistics = DriverStatistics.get_driver_statistics(driver)
     dispositions = Disposition.objects.filter(driver=driver)[:3]
+
     args = {
-        'driver': driver,
-        'company': company,
+        'nick': driver_info.nick,
+        'company': driver_info.company,
         'statistics': statistics,
-        'vehicle': vehicle,
+        'vehicle': driver_info.vehicle,
         'dispositions': dispositions,
         'waybill_success': waybill_success,
         'dispose_offer_success': dispose_offer_success,
@@ -77,7 +76,11 @@ def panel(request):
 
 @login_required
 def download_assistant(request):
-    args = Driver.get_username(request.user)
+    driver_info = Driver.GetDriverInfo(request)
+    args = {
+        'nick': driver_info.nick,
+        'company': driver_info.company,
+    }
     return render(request, 'hercules_app/download.html', args)
 
 
@@ -94,38 +97,37 @@ def download_file(request):
 @login_required
 def drivers_card(request):
     driver = Driver.objects.get(user=request.user)
-    statistics = DriverStatistics.objects.get(driver_id=driver)
-    if driver.company_id is not None:
-        company = Company.objects.get(id=driver.company_id)
-    try:
-        vehicle = Vehicle.objects.get(driver=driver)
-    except:
-        vehicle = ""
+
+    driver_info = Driver.GetDriverInfo(request)
+
+    statistics = DriverStatistics.get_driver_statistics(driver)
     dispositions = Disposition.objects.filter(driver=driver)[:5]
     args = {
-        'driver': driver,
-        'company': company,
+        'nick': driver_info.nick,
+        'company': driver_info.company,
         'statistics': statistics,
         'dispositions': dispositions,
-        'vehicle': vehicle
+        'vehicle': driver_info.vehicle,
     }
     return render(request, 'hercules_app/drivers-card.html', args)
 
 
 @login_required
 def add_delivery(request):
-    driver = Driver.objects.get(user=request.user)
+    driver_info = Driver.GetDriverInfo(request)
     args = {
-        'driver': driver,
+        'nick': driver_info.nick,
+        'company': driver_info.company,
     }
     return render(request, 'hercules_app/add_delivery.html', args)
 
 
 @login_required
 def send_first_screenshot(request):
-    driver = Driver.objects.get(user=request.user)
+    driver_info = Driver.GetDriverInfo(request)
     args = {
-        'driver': driver,
+        'nick': driver_info.nick,
+        'company': driver_info.company,
     }
     if request.method == 'POST':
         form = FirstScreenshotForm(request.POST, request.FILES)
@@ -141,10 +143,10 @@ def send_first_screenshot(request):
 def send_second_screenshot(request, is_automatic):
     if is_automatic is None:
         is_automatic = True
-    driver = Driver.objects.get(user=request.user)
+    driver_info = Driver.GetDriverInfo(request)
     args = {
-        'driver': driver,
-        'is_automatic': is_automatic,
+        'nick': driver_info.nick,
+        'company': driver_info.company,
     }
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
@@ -161,7 +163,13 @@ def send_second_screenshot(request, is_automatic):
 
 @login_required
 def loading_page(request):
-    return render(request, 'hercules_app/loading.html')
+    driver_info = Driver.GetDriverInfo(request)
+    args = {
+        'nick': driver_info.nick,
+        'company': driver_info.company,
+    }
+    return render(request, 'hercules_app/loading.html', args)
+
 
 @login_required
 def manual_step_one(request):
@@ -169,6 +177,7 @@ def manual_step_one(request):
     waybill.save()
     request.session['waybill_id'] = waybill.id
     return send_second_screenshot(request, is_automatic=False)
+
 
 @login_required
 def process_waybill(request):
@@ -180,19 +189,19 @@ def process_waybill(request):
     args = info.get()
     if args is not None:
         request.session['screen_information'] = args
-        return HttpResponse(status = 200)
+        return HttpResponse(status=200)
     else:
-        return HttpResponse(status = 500)
+        return HttpResponse(status=500)
 
 
 @login_required
 def add_waybill(request):
     is_automatic = True
     args = ''
+    driver = Driver.objects.get(user=request.user)
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
     waybill = Waybill.objects.get(id=waybill_id)
-    driver = Driver.objects.get(user=request.user)
     if waybill.first_screen.name == "":
         is_automatic = False
     else:
@@ -209,11 +218,11 @@ def add_waybill(request):
                     income=statistics.income + int(form.data['income']),
                     fuel=statistics.income + int(form.data['fuel']),
                     average_fuel=round(Decimal(statistics.fuel + int(form.data['fuel']))/Decimal(
-                    statistics.distance + int(form.data['distance']))*100, 2),
+                        statistics.distance + int(form.data['distance']))*100, 2),
                     deliveries_count=statistics.deliveries_count + 1,
                 )
                 Waybill.objects.filter(id=waybill_id).update(
-                        status="accepted")
+                    status="accepted")
                 request.session.modified = True
                 request.session['waybill_success'] = True
                 del request.session['waybill_id']
@@ -235,6 +244,11 @@ def add_waybill(request):
             })
         else:
             form = AddWaybillForm()
+    driver_info = Driver.GetDriverInfo(request)
+    driver = {
+        'nick': driver_info.nick,
+        'company': driver_info.company,
+    }
 
     return render(request, 'hercules_app/verify.html', {'form': form, 'args': args, 'driver': driver})
 
@@ -243,8 +257,13 @@ def add_waybill(request):
 def OffersView(request):
     if request.session.get('offer_id') is not None:
         del request.session['offer_id']
-    driver = Driver.objects.get(user=request.user)
-    parameters = ['loading_city', 'loading_country', 'unloading_city', 'unloading_country']
+    driver_info = Driver.GetDriverInfo(request)
+    driver = {
+        'nick': driver_info.nick,
+        'company': driver_info.company,
+    }
+    parameters = ['loading_city', 'loading_country',
+                  'unloading_city', 'unloading_country']
     filters = {}
     for parameter in parameters:
         if request.GET.get(parameter):
@@ -258,28 +277,39 @@ def OffersView(request):
         income_max = int(request.GET.get('income_max'))
     if request.GET.get('sort_by'):
         sort_by = request.GET.get('sort_by')
-    offers = Gielda.objects.all().filter(**filters, price__gte=income_min, price__lte=income_max).order_by(sort_by)
+    offers = Gielda.objects.all().filter(**filters, price__gte=income_min,
+                                         price__lte=income_max).order_by(sort_by)
     return render(request, 'hercules_app/gielda.html', {'offers': offers, 'driver': driver, 'sort_by': sort_by})
+
 
 @login_required
 def OfferDetailsView(request, offer_id):
-    driver = Driver.objects.get(user=request.user)
+    driver_info = Driver.GetDriverInfo(request)
+    driver = {
+        'nick': driver_info.nick,
+        'company': driver_info.company,
+    }
     offer = Gielda.objects.get(id=offer_id)
     company_drivers_count = Company.objects.values_list(
-        'drivers_count', flat=True).get(name=driver.company)
+        'drivers_count', flat=True).get(name=driver_info.company)
     is_self_employed = False
     request.session['offer_id'] = offer_id
     if company_drivers_count == 1:
         is_self_employed = True
     return render(request, 'hercules_app/offer_details.html', {'offer': offer, 'driver': driver, 'is_self_employed': is_self_employed})
 
+
 @login_required
 def ChooseDriverView(request):
-    driver = Driver.objects.get(user=request.user)
+    driver_info = Driver.GetDriverInfo(request)
+    driver = {
+        'nick': driver_info.nick,
+        'company': driver_info.company,
+    }
     company_drivers_count = Company.objects.values_list(
-            'drivers_count', flat=True).get(name=driver.company)
+        'drivers_count', flat=True).get(name=driver_info.company)
     if company_drivers_count > 1:
-        company_drivers = Driver.objects.all().filter(company=driver.company)
+        company_drivers = Driver.objects.all().filter(company=driver_info.company)
         company_drivers_vehicles = []
         for company_driver in company_drivers:
             company_drivers_vehicles.append(
@@ -313,9 +343,24 @@ def ShowDispositionsView(request):
     rozpiski_objects = Rozpiska.objects.all().filter(driver=driver)
     rozpiski = []
     for rozpiska in rozpiski_objects:
-        rozpiski.append(Disposition.objects.get(id=rozpiska.first_disposition_id))
-        rozpiski.append(Disposition.objects.get(id=rozpiska.second_disposition_id))
-        rozpiski.append(Disposition.objects.get(id=rozpiska.third_disposition_id))
-        rozpiski.append(Disposition.objects.get(id=rozpiska.fourth_disposition_id))
-        rozpiski.append(Disposition.objects.get(id=rozpiska.fifth_disposition_id))
+        rozpiski.append(Disposition.objects.get(
+            id=rozpiska.first_disposition_id))
+        rozpiski.append(Disposition.objects.get(
+            id=rozpiska.second_disposition_id))
+        rozpiski.append(Disposition.objects.get(
+            id=rozpiska.third_disposition_id))
+        rozpiski.append(Disposition.objects.get(
+            id=rozpiska.fourth_disposition_id))
+        rozpiski.append(Disposition.objects.get(
+            id=rozpiska.fifth_disposition_id))
     return render(request, 'hercules_app/dispositions.html', {'driver': driver, 'dispositions': dispositions, 'rozpiski': rozpiski})
+
+
+def FindCompanyView(request):
+    driver_info = Driver.GetDriverInfo(request)
+    driver = {
+        'nick': driver_info.nick,
+        'company': driver_info.company,
+    }
+    companies = Company.objects.all().order_by('is_recruiting')
+    return render(request, 'hercules_app/find_company.html', {'driver': driver, 'companies': companies})

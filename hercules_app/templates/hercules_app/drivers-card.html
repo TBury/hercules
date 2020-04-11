@@ -55,11 +55,11 @@
                     <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg">
                 </figure>
                 <span class="user">
-                    <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company_id %}
-                    <p class="company">{{ driver.company.name }}</p>
+                    <p class="username">{{ nick }}</p>
+                    {% if company != "" %}
+                    <p class=" company">{{ company }}</p>
                     {% endif %}
-                </span>
+                    </span>
             </a>
             <a class="navbar-item">
                 <span class="icon is-medium logout">
@@ -76,7 +76,7 @@
                     <p class="menu-label">
                         Menu główne
                     </p>
-                     <ul class="menu-list">
+                    <ul class="menu-list">
                         <li>
                             <a href="/panel">
                                 <p class="option main-site">Panel systemu</p>
@@ -151,8 +151,8 @@
                                     <img class="avatar user-info-avatar" src="">
                                 </figure>
                                 <span class="user-info-details">
-                                    <h1 class="title user-info-username">{{ driver.nick }}</h1>
-                                    <h2 class="range"><strong></strong> firmy {{ driver.company }}p</h2>
+                                    <h1 class="title user-info-username">{{ nick }}</h1>
+                                    <h2 class="range"><strong></strong> firmy {{ company }}p</h2>
                                 </span>
                             </div>
                         </div>
@@ -166,7 +166,8 @@
                                     <article class="media">
                                         <div class="media-left">
                                             <figure class="image is-64x64">
-                                                <img src="{% static 'hercules_app/assets/icons/distance-card.png' %}" alt="Image">
+                                                <img src="{% static 'hercules_app/assets/icons/distance-card.png' %}"
+                                                    alt="Image">
                                             </figure>
                                         </div>
                                         <div class="media-content">
@@ -187,13 +188,15 @@
                                     <article class="media">
                                         <div class="media-left">
                                             <figure class="image is-64x64">
-                                                <img src="{% static 'hercules_app/assets/icons/gas-card.png' %}" alt="Image">
+                                                <img src="{% static 'hercules_app/assets/icons/gas-card.png' %}"
+                                                    alt="Image">
                                             </figure>
                                         </div>
                                         <div class="media-content">
                                             <div class="content">
                                                 <h6 class="card-title">Średnia paliwa</h6>
-                                                <h1 class="card-value used-fuel">{{ statistics.average_fuel }} <span class="colored">l/100
+                                                <h1 class="card-value used-fuel">{{ statistics.average_fuel }} <span
+                                                        class="colored">l/100
                                                         km</span>
                                                 </h1>
                                             </div>
@@ -209,13 +212,15 @@
                                     <article class="media">
                                         <div class="media-left">
                                             <figure class="image is-64x64">
-                                                <img src="{% static 'hercules_app/assets/icons/finish.png' %}" alt="Image">
+                                                <img src="{% static 'hercules_app/assets/icons/finish.png' %}"
+                                                    alt="Image">
                                             </figure>
                                         </div>
                                         <div class="media-content">
                                             <div class="content">
                                                 <h6 class="card-title">Liczba tras</h6>
-                                                <h1 class="card-value used-fuel">{{ statistics.deliveries_count }} <span class="colored">tras</span>
+                                                <h1 class="card-value used-fuel">{{ statistics.deliveries_count }} <span
+                                                        class="colored">tras</span>
                                                 </h1>
                                             </div>
                                         </div>
@@ -233,7 +238,8 @@
                                             <article class="media">
                                                 <div class="media-left">
                                                     <figure class="image is-64x64">
-                                                        <img src="{% static 'hercules_app/assets/icons/business.png' %}" alt="Image">
+                                                        <img src="{% static 'hercules_app/assets/icons/business.png' %}"
+                                                            alt="Image">
                                                     </figure>
                                                 </div>
                                                 <div class="media-content">
@@ -249,110 +255,115 @@
                                     </div>
                                 </div>
                                 <div class="tile is-parent">
-                                        <div class="tile is-child">
-                                            <div class="box card money-card">
-                                                <article class="media">
-                                                    <div class="media-left">
-                                                        <figure class="image is-64x64">
-                                                            <img src="{% static 'hercules_app/assets/icons/money.png' %}" alt="Image">
+                                    <div class="tile is-child">
+                                        <div class="box card money-card">
+                                            <article class="media">
+                                                <div class="media-left">
+                                                    <figure class="image is-64x64">
+                                                        <img src="{% static 'hercules_app/assets/icons/money.png' %}"
+                                                            alt="Image">
+                                                    </figure>
+                                                </div>
+                                                <div class="media-content">
+                                                    <div class="content">
+                                                        <h6 class="card-title">Osiągnięty dochód</h6>
+                                                        <h1 class="card-value used-fuel">
+                                                            {{ statistics.income }}<span class="colored"> zł</span>
+                                                        </h1>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tile is-parent">
+                                <div class="tile is-child">
+                                    <div class="box card">
+                                        <header class="card-header">
+                                            <a href="" class="card-header-icon">
+                                                <span class="icon">
+                                                    <i class="" aria-hidden="true">
+                                                        <figure class="image is-48x48">
+                                                            <img src="{% static 'hercules_app/assets/icons/steering-wheel.png' %}"
+                                                                alt="Image">
                                                         </figure>
-                                                    </div>
-                                                    <div class="media-content">
-                                                        <div class="content">
-                                                            <h6 class="card-title">Osiągnięty dochód</h6>
-                                                            <h1 class="card-value used-fuel">
-                                                                {{ statistics.income }}<span
-                                                                    class="colored"> zł</span>
-                                                            </h1>
-                                                        </div>
-                                                    </div>
-                                                </article>
+                                                    </i>
+                                                </span>
+                                            </a>
+                                            <p class="card-header-title">
+                                                Twój pojazd
+                                            </p>
+                                        </header>
+                                        <div class="columns">
+                                            <div class="column">
+                                                <figure class="vehicle-image">
+                                                    <img class="" src="{% static 'hercules_app/assets/VA15oIo.png' %}"
+                                                        alt="">
+                                                </figure>
+                                            </div>
+                                            <div class="column">
+                                                <span class="vehicle-info">
+                                                    <img src="{% static 'hercules_app/assets/manufacturers/man.png' %}"
+                                                        alt="Image">
+                                                    <h2 class="vehicle-name">{{ vehicle.brand }}
+                                                        {{ vehicle.model }} {{ vehicle.cabin }}</h2>
+                                                    <img src="{% static 'hercules_app/assets/WLS23090.png' %}"
+                                                        class="registration-number" alt="Numer rejestracyjny">
+                                                    <p class="engine-power"><strong>Moc silnika: </strong>
+                                                        {{ vehicle.engine }}
+                                                        KM</p>
+                                                    <p class="odometer"><strong>Przebieg</strong>:
+                                                        {{ vehicle.odometer }} km
+                                                    </p>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tile is-parent">
-                                        <div class="tile is-child">
-                                            <div class="box card">
-                                                <header class="card-header">
-                                                    <a href="" class="card-header-icon">
-                                                        <span class="icon">
-                                                            <i class="" aria-hidden="true">
-                                                                <figure class="image is-48x48">
-                                                                    <img src="{% static 'hercules_app/assets/icons/steering-wheel.png' %}" alt="Image">
-                                                                </figure>
-                                                            </i>
-                                                        </span>
-                                                    </a>
-                                                    <p class="card-header-title">
-                                                        Twój pojazd
-                                                    </p>
-                                                </header>
-                                                <div class="columns">
-                                                    <div class="column">
-                                                        <figure class="vehicle-image">
-                                                            <img class="" src="{% static 'hercules_app/assets/VA15oIo.png' %}" alt="">
-                                                        </figure>
-                                                    </div>
-                                                    <div class="column">
-                                                        <span class="vehicle-info">
-                                                            <img src="{% static 'hercules_app/assets/manufacturers/man.png' %}" alt="Image">
-                                                            <h2 class="vehicle-name">{{ vehicle.brand }}
-                                                                {{ vehicle.model }} {{ vehicle.cabin }}</h2>
-                                                            <img src="{% static 'hercules_app/assets/WLS23090.png' %}" class="registration-number"
-                                                                alt="Numer rejestracyjny">
-                                                            <p class="engine-power"><strong>Moc silnika: </strong> {{ vehicle.engine }}
-                                                                KM</p>
-                                                            <p class="odometer"><strong>Przebieg</strong>: {{ vehicle.odometer }} km
-                                                            </p>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                            </div>
+                        </div>
+                        <div class="tile is-parent">
+                            <div class="tile is-child">
+                                <div class="box card achievements">
+                                    <nav class="level">
+                                        <img src="{% static 'hercules_app/assets/icons/leaf.png' %}" alt="">
+                                        <span class="achievement">
+                                            <h1 class="achievement-title">Ekologiczny <span
+                                                    class="colored">kierowca</span>
+                                            </h1>
+                                            <p class="achievement-text">
+                                                Kierowca jeździ ekologicznie i ekonomicznie - jego średnie spalanie
+                                                daje
+                                                wymierne korzyści.
+                                            </p>
+                                        </span>
+                                    </nav>
+                                    <nav class="level">
+                                        <img src="{% static 'hercules_app/assets/icons/speedometer.png' %}" alt="">
+                                        <span class="achievement">
+                                            <h1 class="achievement-title">Długodystansowiec
+                                            </h1>
+                                            <p class="achievement-text">
+                                                Kierowca przejechał ponad 1 milion kilometrów w barwach firmy.
+                                            </p>
+                                        </span>
+                                    </nav>
+                                    <nav class="level">
+                                        <img src="{% static 'hercules_app/assets/icons/business.png' %}" alt="">
+                                        <span class="achievement">
+                                            <h1 class="achievement-title">Ciężki<span class="colored">
+                                                    kaliber</span>
+                                            </h1>
+                                            <p class="achievement-text">
+                                                Kierowca przewiózł ponad 1 milion ton w barwach firmy.
+                                            </p>
+                                        </span>
+                                    </nav>
                                 </div>
                             </div>
-                             <div class="tile is-parent">
-                                 <div class="tile is-child">
-                                     <div class="box card achievements">
-                                         <nav class="level">
-                                             <img src="{% static 'hercules_app/assets/icons/leaf.png' %}" alt="">
-                                             <span class="achievement">
-                                                 <h1 class="achievement-title">Ekologiczny <span
-                                                         class="colored">kierowca</span>
-                                                 </h1>
-                                                 <p class="achievement-text">
-                                                     Kierowca jeździ ekologicznie i ekonomicznie - jego średnie spalanie
-                                                     daje
-                                                     wymierne korzyści.
-                                                 </p>
-                                             </span>
-                                         </nav>
-                                         <nav class="level">
-                                             <img src="{% static 'hercules_app/assets/icons/speedometer.png' %}" alt="">
-                                             <span class="achievement">
-                                                 <h1 class="achievement-title">Długodystansowiec
-                                                 </h1>
-                                                 <p class="achievement-text">
-                                                     Kierowca przejechał ponad 1 milion kilometrów w barwach firmy.
-                                                 </p>
-                                             </span>
-                                         </nav>
-                                         <nav class="level">
-                                             <img src="{% static 'hercules_app/assets/icons/business.png' %}" alt="">
-                                             <span class="achievement">
-                                                 <h1 class="achievement-title">Ciężki<span class="colored">
-                                                         kaliber</span>
-                                                 </h1>
-                                                 <p class="achievement-text">
-                                                     Kierowca przewiózł ponad 1 milion ton w barwach firmy.
-                                                 </p>
-                                             </span>
-                                         </nav>
-                                     </div>
-                                 </div>
-                             </div>
-                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="box card">
                     <header class="card-header">
@@ -360,7 +371,8 @@
                             <span class="icon">
                                 <i class="" aria-hidden="true">
                                     <figure class="image is-48x48">
-                                        <img src="{% static 'hercules_app/assets/icons/dispositions-card.png' %}" alt="Image">
+                                        <img src="{% static 'hercules_app/assets/icons/dispositions-card.png' %}"
+                                            alt="Image">
                                     </figure>
                                 </i>
                             </span>

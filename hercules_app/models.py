@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 from datetime import datetime
+from typing import NamedTuple
 
 
 class Company(models.Model):
@@ -14,17 +15,19 @@ class Company(models.Model):
     income = models.PositiveIntegerField(default=0)
     waybill_count = models.PositiveIntegerField(default=0)
     description = models.TextField(default='')
+    is_recruiting = models.BooleanField(default=True)
 
     def get_company_name(self):
         return self.name
 
     def get_company_statistics(self):
-        statistics = {'distance': self.distance,
-                      'average_fuel': self.average_fuel,
-                      'income': self.income,
-                      'waybills': self.waybill_count,
-                      'drivers_count': self.drivers_count,
-                      }
+        statistics = {
+            'distance': self.distance,
+            'average_fuel': self.average_fuel,
+            'income': self.income,
+            'waybills': self.waybill_count,
+            'drivers_count': self.drivers_count,
+        }
         return statistics
 
     def __str__(self):
@@ -44,12 +47,48 @@ class Driver(models.Model):
     def __str__(self):
         return self.user.username
 
-    def get_username(username):
+    def get_driver_info_from_database(username):
         driver = Driver.objects.get(user=username)
-        args = {
-            'driver': driver,
+        if driver.is_employeed:
+            company = Company.objects.get(name=Company)
+            company = company.name
+        else:
+            company = ""
+
+        try:
+            vehicle = Vehicle.objects.get(driver=driver)
+        except:
+            vehicle = ""
+
+        driver_info = {
+            'nick': driver.nick,
+            'company': company,
+            'vehicle': vehicle,
         }
-        return args
+        return driver_info
+
+    def SetDriverInfo(request):
+        driver_info = Driver.get_driver_info_from_database(request.user)
+        request.session['driver_info'] = driver_info
+
+    def GetDriverInfo(request):
+        Driver.SetDriverInfo(request)
+
+        class DriverInfo(NamedTuple):
+            nick: str
+            company: str
+            vehicle: Vehicle
+        try:
+            driver_info = request.session.get('driver_info')
+        except driver_info is None:
+            SetDriverInfo(request)
+        finally:
+            info = DriverInfo(
+                driver_info['nick'],
+                driver_info['company'],
+                driver_info['vehicle']
+            )
+        return info
 
 
 class Vehicle(models.Model):
@@ -87,6 +126,15 @@ class DriverStatistics(models.Model):
     fuel = models.PositiveIntegerField(default=0)
     average_fuel = models.FloatField(default=0.0)
     deliveries_count = models.PositiveIntegerField(default=0)
+
+    def get_driver_statistics(driver):
+        try:
+            statistics = DriverStatistics.objects.get(driver_id=driver)
+        except:
+            # TODO: implement exception
+            statistics = ''
+        finally:
+            return statistics
 
     def __str__(self):
         return self.driver.nick
@@ -182,7 +230,8 @@ class Disposition(models.Model):
     deadline = models.DateTimeField(default=datetime.now, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_rozpiska = models.BooleanField(default=False)
-    finished = models.BooleanField(default=False) #field for dispositions from rozpiska only
+    # field for dispositions from rozpiska only
+    finished = models.BooleanField(default=False)
     rozpiska = models.ForeignKey(Rozpiska, on_delete=models.CASCADE, default=0)
 
     def __str__(self):

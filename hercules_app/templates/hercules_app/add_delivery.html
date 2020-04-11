@@ -54,9 +54,9 @@
                     <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
                 </figure>
                 <span class="user">
-                    <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company_id %}
-                    <p class="company"></p>
+                    <p class="username">{{ nick }}</p>
+                    {% if company != "" %}
+                    <p class="company"> {{ company }} </p>
                     {% endif %}
                 </span>
             </a>
@@ -146,26 +146,28 @@
 
                 <div class="box card">
                     <a href="automatic-step-1">
-                    <div class="content">
-                        <h1 class="header">Sposób <span class="colored">automatyczny</span></h1>
-                        <p class="subtitle is-6">Wybierz sposób automatyczny, aby <span class="colored"><b>Hercules</b></span> sam wypełnił za Ciebie list przewozowy.</p>
-                        <p class="subtitle is-5"><b>Wymagane dwa screenshoty: jeden z widocznym oknem Doradcy Drogowego ze
-                            szczegółami zlecenia i po oddaniu ładunku.</b></p>
-                        <img src="{% static 'hercules_app/assets/automatic.png' %}" alt="">
-                    </div>
+                        <div class="content">
+                            <h1 class="header">Sposób <span class="colored">automatyczny</span></h1>
+                            <p class="subtitle is-6">Wybierz sposób automatyczny, aby <span
+                                    class="colored"><b>Hercules</b></span> sam wypełnił za Ciebie list przewozowy.</p>
+                            <p class="subtitle is-5"><b>Wymagane dwa screenshoty: jeden z widocznym oknem Doradcy
+                                    Drogowego ze
+                                    szczegółami zlecenia i po oddaniu ładunku.</b></p>
+                            <img src="{% static 'hercules_app/assets/automatic.png' %}" alt="">
+                        </div>
                     </a>
 
                 </div>
 
                 <div class="box card">
                     <a href="Waybill/AddWaybill/Manual/step-one">
-                    <div class="content">
-                        <h1 class="header">Sposób <span class="colored">ręczny</span></h1>
-                        <p class="subtitle is-6">Wybierz sposób ręczny, aby samemu dopilnować wypełnienia listu
-                            przewozowego.</p>
-                        <p class="subtitle is-5"><b>Wymagany jeden screenshot po oddaniu ładunku.</b></p>
-                        <img src="{% static 'hercules_app/assets/manual.png' %}" alt="">
-                    </div>
+                        <div class="content">
+                            <h1 class="header">Sposób <span class="colored">ręczny</span></h1>
+                            <p class="subtitle is-6">Wybierz sposób ręczny, aby samemu dopilnować wypełnienia listu
+                                przewozowego.</p>
+                            <p class="subtitle is-5"><b>Wymagany jeden screenshot po oddaniu ładunku.</b></p>
+                            <img src="{% static 'hercules_app/assets/manual.png' %}" alt="">
+                        </div>
                     </a>
                 </div>
             </main>
