@@ -152,7 +152,9 @@
                                 </figure>
                                 <span class="user-info-details">
                                     <h1 class="title user-info-username">{{ nick }}</h1>
-                                    <h2 class="range"><strong></strong> firmy {{ company }}p</h2>
+                                    {% if company %}
+                                    <h2 class="range"><strong></strong> firmy {{ company }}</h2>
+                                    {% endif %}
                                 </span>
                             </div>
                         </div>
@@ -303,6 +305,7 @@
                                                 </figure>
                                             </div>
                                             <div class="column">
+                                                {% if vehicle %}
                                                 <span class="vehicle-info">
                                                     <img src="{% static 'hercules_app/assets/manufacturers/man.png' %}"
                                                         alt="Image">
@@ -317,6 +320,7 @@
                                                         {{ vehicle.odometer }} km
                                                     </p>
                                                 </span>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>

@@ -140,13 +140,18 @@ def send_first_screenshot(request):
 
 
 @login_required
-def send_second_screenshot(request, is_automatic):
+def send_second_screenshot(request):
+    is_automatic = request.session.get('waybill_automatic')
     if is_automatic is None:
         is_automatic = True
+    else:
+        is_automatic = False
+
     driver_info = Driver.GetDriverInfo(request)
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'is_automatic': is_automatic,
     }
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
@@ -176,7 +181,8 @@ def manual_step_one(request):
     waybill = Waybill()
     waybill.save()
     request.session['waybill_id'] = waybill.id
-    return send_second_screenshot(request, is_automatic=False)
+    request.session['waybill_automatic'] = False
+    return send_second_screenshot(request)
 
 
 @login_required

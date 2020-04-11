@@ -32,4 +32,6 @@ urlpatterns = [
          views.DisposeOffer, name="dispose-offer"),
     path('Dispositions',
          views.ShowDispositionsView, name="user-dispositions"),
+    path('Companies',
+         views.FindCompanyView, name="find-company"),
 ]
