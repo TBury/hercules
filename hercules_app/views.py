@@ -97,7 +97,10 @@ def drivers_card(request):
     statistics = DriverStatistics.objects.get(driver_id=driver)
     if driver.company_id is not None:
         company = Company.objects.get(id=driver.company_id)
-    vehicle = Vehicle.objects.get(driver=driver)
+    try:
+        vehicle = Vehicle.objects.get(driver=driver)
+    except:
+        vehicle = ""
     dispositions = Disposition.objects.filter(driver=driver)[:5]
     args = {
         'driver': driver,
