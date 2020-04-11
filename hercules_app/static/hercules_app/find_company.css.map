@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "AAAA,AAAA,aAAa,CAAC;EACV,WAAW,EAAE,GAAG;EAChB,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,KAAK;CACf;;AAED,AAAA,IAAI,CAAC;EACD,WAAW,EAAE,GAAG;CACnB;;AAED,AAAA,cAAc,CAAC;EACX,UAAU,EAAE,IAAI;CACnB;;AAED,AAAA,iBAAiB,CAAC;EACd,WAAW,EAAE,GAAG;CACnB",
     "sources": [
-        "companies.scss"
+        "find_company.scss"
     ],
     "names": [],
-    "file": "companies.css"
+    "file": "find_company.css"
 }
