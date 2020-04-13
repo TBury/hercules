@@ -13,6 +13,7 @@ class Company(models.Model):
     distance = models.PositiveIntegerField(default=0)
     average_fuel = models.FloatField(default=0.0)
     income = models.PositiveIntegerField(default=0)
+    tonnage = models.PositiveIntegerField(default=0)
     waybill_count = models.PositiveIntegerField(default=0)
     description = models.TextField(default='')
     is_recruiting = models.BooleanField(default=True)

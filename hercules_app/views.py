@@ -375,3 +375,15 @@ def FindCompanyView(request):
     }
     companies = Company.objects.all().order_by('is_recruiting')
     return render(request, 'hercules_app/find_company.html', {'driver': driver, 'companies': companies})
+
+
+def CompanyDetailsView(request, company_id):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    company = Company.objects.get(id = company_id)
+
+    return render(request, 'hercules_app/company_profile.html', {'driver': driver, 'company': company})

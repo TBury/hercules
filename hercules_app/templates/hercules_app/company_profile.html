@@ -27,13 +27,12 @@
     <meta name="msapplication-TileImage" content="{% static '/assets/icons/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="css/panel.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/companies.css">
-    <link rel="stylesheet" type="text/css" href="css/company_profile.css">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/company_profile.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title> Panel użytkownika | Hercules</title>
+    <title> Szczegóły firmy {{ company.name }} | Hercules</title>
 </head>
 
 <body>
@@ -53,7 +52,7 @@
         <div class="navbar-end is-hidden-mobile">
             <a class="navbar-item">
                 <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{% static '/assets/avatar_krawczyk.jpg' %}">
+                    <img class="avatar" src="{{ driver.avatar }}">
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
@@ -150,19 +149,34 @@
                 <div class="box basic-info">
                     <div class="columns">
                         <div class="column">
-                            <img src="img/placeholder-1200x500-1.png" class="company-logo">
+                            <img src="{{ company.logo.url }}" class="company-logo">
                         </div>
                         <div class="column">
-                            <h1 class="company-name">Nordic Transport Group</h1>
+                            <h1 class="company-name">{{ company.name }}</h1>
                             <div class="tags">
+                                {% if company.is_ets2 %}
                                 <span class="tag is-small">ETS2</span>
+                                {% endif %}
+                                {% if company.is_ats %}
                                 <span class="tag is-small">ATS</span>
+                                {% endif %}
+                                {% if company.is_singleplayer %}
                                 <span class="tag is-small">Singleplayer</span>
+                                {% endif %}
+                                {% if company.is_multiplayer %}
                                 <span class="tag is-small">Multiplayer</span>
+                                {% endif %}
+                                {% if company.is_promods %}
                                 <span class="tag is-small">Promods</span>
+                                {% endif %}
                             </div>
                             <div class="tags">
-                                <span class="tag is-success is-open-for-drivers is-medium">Rekrutacja otwarta</span>
+                                {% if company.is_recruiting %}
+                                <span class="tag is-success is-large">Rekrutacja otwarta</span>
+                                {% endif %}
+                                {% if company.is_recruiting == False %}
+                                <span class="tag is-danger is-large">Rekrutacja zamknięta</span>
+                                {% endif %}
                             </div>
                             <a class="button is-danger send-application">Złóż podanie</a>
                         </div>
@@ -174,13 +188,13 @@
                             <article class="media">
                                 <div class="media-left">
                                     <figure class="image is-64x64">
-                                        <img src="img/distance-card.png">
+                                        <img src="{% static '/assets/icons/distance-card.png' %}">
                                     </figure>
                                 </div>
                                 <div class="media-content">
                                     <div class="content">
                                         <h6 class="card-title">Pokonany dystans</h6>
-                                        <h1 class="card-value distance">4 401 310 <span class="colored">km</span></h1>
+                                        <h1 class="card-value distance">{{ company.distance }} <span class="colored">km</span></h1>
                                     </div>
                                 </div>
                             </article>
@@ -189,13 +203,13 @@
                             <article class="media">
                                 <div class="media-left">
                                     <figure class="image is-64x64">
-                                        <img src="img/business.png">
+                                        <img src="{% static '/assets/icons/business.png' %}">
                                     </figure>
                                 </div>
                                 <div class="media-content">
                                     <div class="content">
                                         <h6 class="card-title">Przewieziony tonaż</h6>
-                                        <h1 class="card-value distance">5 510 310<span class="colored"> t</span>
+                                        <h1 class="card-value distance">{{ company.tonnage }}<span class="colored"> kg</span>
                                         </h1>
                                     </div>
                                 </div>
@@ -205,7 +219,8 @@
                             <article class="media">
                                 <div class="media-left">
                                     <figure class="image is-64x64">
-                                        <img src="img/multiple-users-silhouette.png" alt="Image">
+                                        <img src="{% static '/assets/icons/multiple-users-silhouette.png' %}"
+                                            alt="Image">
                                     </figure>
                                 </div>
                                 <div class="media-content">
@@ -223,7 +238,7 @@
                             <article class="media">
                                 <div class="media-left">
                                     <figure class="image is-64x64">
-                                        <img src="img/gas-card.png " alt="Image">
+                                        <img src="{% static '/assets/icons/gas-card.png' %}" alt="Image">
                                     </figure>
                                 </div>
                                 <div class="media-content">
@@ -239,7 +254,7 @@
                             <article class="media">
                                 <div class="media-left">
                                     <figure class="image is-64x64">
-                                        <img src="img/money.png">
+                                        <img src="{% static '/assets/icons/money.png' %}">
                                     </figure>
                                 </div>
                                 <div class="media-content">
@@ -256,7 +271,7 @@
                             <article class="media">
                                 <div class="media-left">
                                     <figure class="image is-64x64">
-                                        <img src="img/finish.png" alt="Image">
+                                        <img src="{% static '/assets/icons/finish.png' %}" alt="Image">
                                     </figure>
                                 </div>
                                 <div class="media-content">
@@ -273,20 +288,7 @@
                 <div class="box description">
                     <label class="label">Opis</label>
                     <p class="company-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget tortor eu dui bibendum
-                        pulvinar vel quis turpis. Cras ultrices nunc sem, nec tristique velit tincidunt nec. Sed non
-                        ipsum ac erat accumsan ornare. Duis blandit ligula id iaculis efficitur. Maecenas convallis
-                        aliquam sapien, in consequat mi posuere quis. Aenean id urna sit amet dui sollicitudin suscipit
-                        a sit amet lectus. Donec lobortis finibus cursus.
-
-                        Suspendisse orci leo, dictum quis lacus vulputate, vulputate posuere nibh. Morbi hendrerit lorem
-                        orci, id pulvinar orci cursus eu. Etiam cursus, nisl accumsan egestas hendrerit, ligula ex
-                        feugiat nibh, ac hendrerit purus sapien ac tortor. Maecenas urna elit, sagittis nec molestie in,
-                        cursus in erat. Pellentesque consectetur, metus dictum gravida tincidunt, nunc est tempus lacus,
-                        id mattis augue elit non orci. Nullam vulputate, eros vitae vulputate tempus, ante metus maximus
-                        elit, eu mattis lorem urna feugiat lorem. Aliquam sodales sapien eget rutrum varius. Etiam
-                        fermentum molestie risus, sit amet varius neque. Maecenas accumsan semper enim, in cursus tellus
-                        placerat ac. Etiam mattis felis a libero facilisis placerat.
+                        {{ company.description }}
                     </p>
                 </div>
             </main>
