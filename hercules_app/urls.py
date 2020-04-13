@@ -36,4 +36,5 @@ urlpatterns = [
          views.ShowDispositionsView, name="user-dispositions"),
     path('Companies',
          views.FindCompanyView, name="find-company"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
