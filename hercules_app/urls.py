@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 from register import views as register_views
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -34,4 +36,4 @@ urlpatterns = [
          views.ShowDispositionsView, name="user-dispositions"),
     path('Companies',
          views.FindCompanyView, name="find-company"),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

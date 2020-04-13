@@ -11,7 +11,8 @@ from hercules_app.models import (
     Disposition,
     Waybill,
     Gielda,
-    Rozpiska)
+    Rozpiska
+    )
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
@@ -57,7 +58,7 @@ def panel(request):
 
     driver = Driver.objects.get(user=request.user)
 
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
 
     statistics = DriverStatistics.get_driver_statistics(driver)
     dispositions = Disposition.objects.filter(driver=driver)[:3]
@@ -296,8 +297,11 @@ def OfferDetailsView(request, offer_id):
         'company': driver_info.company,
     }
     offer = Gielda.objects.get(id=offer_id)
-    company_drivers_count = Company.objects.values_list(
-        'drivers_count', flat=True).get(name=driver_info.company)
+    try:
+        company_drivers_count = Company.objects.values_list(
+            'drivers_count', flat=True).get(name=driver_info.company)
+    except:
+        company_drivers_count = 1
     is_self_employed = False
     request.session['offer_id'] = offer_id
     if company_drivers_count == 1:

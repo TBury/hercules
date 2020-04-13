@@ -25,10 +25,10 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png ">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="panel.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="stylesheet" type="text/css" href="dispositions.css">
-    <link rel="stylesheet" type="text/css" href="deliveries.css">
+    <link rel="stylesheet" type="text/css" href="css/panel.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/dispositions.css">
+    <link rel="stylesheet" type="text/css" href="css/deliveries.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <title>Twoje dostawy | Hercules</title>
@@ -39,7 +39,7 @@
         <div class="navbar-start">
             <div class="navbar-brand">
                 <a class="navbar-item">
-                    <img src="{% static 'hercules_app/assets/logo.png' %}" width="194" height="55">
+                    <img src="{% static '/assets/logo.png' %}" width="194" height="55">
                 </a>
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
                     <span aria-hidden="true"></span>
@@ -51,7 +51,7 @@
         <div class="navbar-end is-hidden-mobile">
             <a class="navbar-item">
                 <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
+                    <img class="avatar" src="{% static '/assets/avatar_krawczyk.jpg' %}">
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>

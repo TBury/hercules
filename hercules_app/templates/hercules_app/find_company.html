@@ -8,28 +8,28 @@
     <meta name="description"
         content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'hercules_app/assets/icons/apple-icon-57x57.png}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'hercules_app/assets/icons/apple-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'hercules_app/assets/icons/apple-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'hercules_app/assets/icons/apple-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'hercules_app/assets/icons/apple-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'hercules_app/assets/icons/apple-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'hercules_app/assets/icons/apple-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'hercules_app/assets/icons/apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'hercules_app/assets/icons/apple-icon-180x180.png' %}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static '/assets/icons/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static '/assets/icons/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static '/assets/icons/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static '/assets/icons/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static '/assets/icons/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static '/assets/icons/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static '/assets/icons/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static '/assets/icons/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/assets/icons/apple-icon-180x180.png' %}">
     <link rel="icon" type="image/png" sizes="192x192"
-        href="{% static 'hercules_app/assets/icons/android-icon-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'hercules_app/assets/icons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'hercules_app/assets/icons/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'hercules_app/assets/icons/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'hercules_app/assets//manifest.json' %} ">
+        href="{% static '/assets/icons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/assets/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static '/assets/icons/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/assets/icons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static '/assets//manifest.json' %} ">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{% static 'hercules_app/icons/ms-icon-144x144.png' %}">
+    <meta name="msapplication-TileImage" content="{% static '/assets/icons/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/panel.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'hercules_app/find_company.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/find_company.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <title>Znajdź firmę | Hercules</title>
@@ -40,7 +40,7 @@
         <div class="navbar-start">
             <div class="navbar-brand">
                 <a class="navbar-item">
-                    <img src="{% static 'hercules_app/assets/logo.png' %}" width="194" height="55">
+                    <img src="{% static '/assets/logo.png' %}" width="194" height="55">
                 </a>
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
                     <span aria-hidden="true"></span>
@@ -52,7 +52,7 @@
         <div class="navbar-end is-hidden-mobile">
             <a class="navbar-item">
                 <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
+                    <img class="avatar" src="{% static '/assets/avatar_krawczyk.jpg' %}">
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
@@ -146,26 +146,43 @@
                 <header>
                     <h1 class="title">Znajdź firmę</h1>
                 </header>
+                {% for company in companies %}
                 <div class="box card company-offer">
-                    <a href="/Companies/">
+                    <a href="/Companies/{{ company.id }}">
                         <div class="columns">
                             <div class="column">
-                                <img src="img/placeholder-1200x500-1.png" class="company-logo">
+                                <img src="{{ company.logo.name }}" class="company-logo">
                             </div>
                             <div class="column">
-                                <h1 class="company-name">Nordic Transport Group</h1>
+                                <h1 class="company-name">{{ company.name }}</h1>
                                 <div class="tags">
+                                    {% if company.is_ets2 %}
                                     <span class="tag is-small">ETS2</span>
+                                    {% endif %}
+                                    {% if company.is_ats %}
                                     <span class="tag is-small">ATS</span>
+                                    {% endif %}
+                                    {% if company.is_singleplayer %}
                                     <span class="tag is-small">Singleplayer</span>
+                                    {% endif %}
+                                    {% if company.is_multiplayer %}
                                     <span class="tag is-small">Multiplayer</span>
+                                    {% endif %}
+                                    {% if company.is_promods %}
                                     <span class="tag is-small">Promods</span>
+                                    {% endif %}
                                 </div>
-                                <span class="tag is-success is-open-for-drivers is-large">Rekrutacja otwarta</span>
+                                {% if company.is_recruiting %}
+                                <span class="tag is-success is-large">Rekrutacja otwarta</span>
+                                {% endif %}
+                                {% if company.is_recruiting == False %}
+                                <span class="tag is-danger is-large">Rekrutacja zamknięta</span>
+                                {% endif %}
                             </div>
                         </div>
                     </a>
                 </div>
+                {% endfor %}
             </main>
         </div>
     </div>

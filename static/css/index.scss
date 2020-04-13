@@ -4,7 +4,6 @@ $main-red: #C70000;
 
 html,
 body {
-    overflow: hidden;
     margin: 0 auto;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -39,7 +38,7 @@ body {
 
 .has-bg-img {
     height: 100vh;
-    background-image: url('assets/hero.png');
+    background-image: url('/static/assets/hero.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;

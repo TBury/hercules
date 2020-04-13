@@ -9,13 +9,18 @@ class Company(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=128)
     drivers_count = models.SmallIntegerField(default=0)
-    logo = models.FileField(upload_to='logos/', default='')
+    logo = models.ImageField(upload_to='logos', default='')
     distance = models.PositiveIntegerField(default=0)
     average_fuel = models.FloatField(default=0.0)
     income = models.PositiveIntegerField(default=0)
     waybill_count = models.PositiveIntegerField(default=0)
     description = models.TextField(default='')
     is_recruiting = models.BooleanField(default=True)
+    is_ets2 = models.BooleanField(default=True)
+    is_ats = models.BooleanField(default=False)
+    is_singleplayer = models.BooleanField(default=True)
+    is_multiplayer = models.BooleanField(default=True)
+    is_promods = models.BooleanField(default=False)
 
     def get_company_name(self):
         return self.name
@@ -38,7 +43,7 @@ class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     nick = models.CharField(max_length=64, null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
-    avatar = models.FileField(upload_to='avatars/', null=True)
+    avatar = models.ImageField(upload_to='avatars', null=True)
     last_delivery = models.DateTimeField(auto_now_add=True)
     length_of_service = models.DateTimeField(auto_now_add=True)
     position = models.CharField(max_length=20, null=True)
@@ -47,18 +52,31 @@ class Driver(models.Model):
     def __str__(self):
         return self.user.username
 
+
+    def get_vehicle_info(driver):
+        try:
+            vehicle = Vehicle.objects.get(driver=driver)
+            vehicle_info = {
+                'brand': vehicle.brand,
+                'model': vehicle.model,
+                'cabin': vehicle.cabin,
+                'engine': vehicle.engine,
+                'odometer': vehicle.odometer,
+            }
+        except:
+            vehicle_info = ''
+        finally:
+            return vehicle_info
+
     def get_driver_info_from_database(username):
         driver = Driver.objects.get(user=username)
         if driver.is_employeed:
-            company = Company.objects.get(name=Company)
+            company = Company.objects.get(name=driver.company.name)
             company = company.name
         else:
             company = ""
 
-        try:
-            vehicle = Vehicle.objects.get(driver=driver)
-        except:
-            vehicle = ""
+        vehicle = Driver.get_vehicle_info(driver)
 
         driver_info = {
             'nick': driver.nick,
@@ -67,12 +85,13 @@ class Driver(models.Model):
         }
         return driver_info
 
-    def SetDriverInfo(request):
+
+    def set_driver_info(request):
         driver_info = Driver.get_driver_info_from_database(request.user)
         request.session['driver_info'] = driver_info
 
-    def GetDriverInfo(request):
-        Driver.SetDriverInfo(request)
+    def get_driver_info(request):
+        Driver.set_driver_info(request)
 
         class DriverInfo(NamedTuple):
             nick: str
@@ -153,8 +172,8 @@ class Waybill(models.Model):
     fuel = models.IntegerField(default=0)
     damage = models.SmallIntegerField(default=0)
     note = models.TextField(default='')
-    first_screen = models.ImageField(upload_to='media/', default="")
-    end_screen = models.ImageField(upload_to='media/', default="")
+    first_screen = models.ImageField(upload_to='waybills', default="")
+    end_screen = models.ImageField(upload_to='waybills', default="")
 
     class WaybillStatus(models.TextChoices):
         ACCEPTED = 'acc', _('accepted')
