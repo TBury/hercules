@@ -21,17 +21,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static '/assets/icons/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static '/assets/icons/favicon-96x96.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static '/assets/icons/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static '/assets/manifest.json' %} ">
+    <link rel="manifest" href="{% static '/assets/icons/manifest.json' %} ">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{% static '/assets/icons/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/vehicle_details.css' %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dispose_offer.css' %}">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title> Szczegóły pojazdu | Hercules</title>
+    <title>Przydziel zlecenie | Hercules</title>
 </head>
 
 <body>
@@ -102,7 +101,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Gielda/Offers">
+                            <a class="is-active" href="/Gielda/Offers">
                                 <p class="option gielda">Giełda zleceń</p>
                             </a>
                         </li>
@@ -124,7 +123,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active">
+                            <a>
                                 <p class="option vehicles">Twoje pojazdy</p>
                             </a>
                         </li>
@@ -138,60 +137,23 @@
             </aside>
             <main class="column main">
                 <header>
-                    <h1 class="title">Pojazd {{ vehicle.registration_number }} </h1>
+                    <h1 class="title">Przydziel pojazd</h1>
                 </header>
-                <form action="/Vehicles/{{ vehicle.id }}" method="post">
-                    {% csrf_token %}
-                <div class="box card">
+                {% for driver in drivers %}
+                <div class="box card driver">
                     <div class="columns">
-                        <div class="column left">
-                            <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
-                            <span>
-                                <img src="{{ vehicle.photo.url }}" class="_vehicle-image">
-                                <label class="label image-label">Kliknij na zdjęcie, aby zmienić plik.</label>
-                            </span>
-                        </div>
-                        <div class="column basic-vehicle-info">
-                            <label class="label">Marka pojazdu</label>
-                            {{ form.brand }}
-                            <label class="label">Model pojazdu</label>
-                            {{ form.model }}
-                            <label class="label">Kabina pojazdu</label>
-                            {{ form.cabin }}
-                            <div class="company-drivers">
-                                <label class="label">Obecny kierowca</label>
-                                {{ form.driver }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box card">
-                    <div class="columns">
-                        <div class="column left">
-                            <h2 class="basic-info-title"><span class="colored">Szczegóły</span> techniczne</h2>
-                            <div class="inputs">
-                                <label class="label">Silnik</label>
-                                {{ form.engine }}
-                                <label class="label">Rozstaw osi</label>
-                                {{ form.wheelbase }}
-                                <label class="label">Kabina pojazdu</label>
-                                {{ form.cabin }}
+                        <div class="column">
+                            <div class="driver-basic-info">
+                                <img src="{% static '/assets/avatar_krawczyk.jpg' %}" class="driver-avatar">
+                                <p class="username">{{ driver.nick }}</p>
                             </div>
                         </div>
                         <div class="column">
-                            <div class="inputs-right">
-                                <label class="label">Przebieg</label>
-                                {{ form.odometer }}
-                                <label class="label">Skrzynia biegów</label>
-                                {{ form.gearbox }}
-                                <label class="label">Opony</label>
-                                {{ form.wheels }}
-                            </div>
+                            <a href="{{ driver.id }}" class="button dispose is-rounded">Przydziel</a>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="button edit-details">Zapisz zmiany</a>
-                </form>
+                {% endfor %}
             </main>
         </div>
     </div>

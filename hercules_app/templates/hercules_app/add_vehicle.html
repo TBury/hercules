@@ -30,8 +30,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/vehicle_details.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link href="{% static 'css/dropzone.min.css' %}" type="text/css" rel="stylesheet" />
+    <link href="{% static 'css/basic.min.css' %}" type="text/css" rel="stylesheet" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title> Szczegóły pojazdu | Hercules</title>
+    <script defer src="{% static 'css/dropzone.min.js' %}"></script>
+    <script defer src="{% static 'css/dropzone_add_vehicle.js' %}"></script>
+    <title> Dodaj nowy pojazd | Hercules</title>
 </head>
 
 <body>
@@ -138,59 +142,64 @@
             </aside>
             <main class="column main">
                 <header>
-                    <h1 class="title">Pojazd {{ vehicle.registration_number }} </h1>
+                    <h1 class="title">Dodaj nowy pojazd</h1>
                 </header>
-                <form action="/Vehicles/{{ vehicle.id }}" method="post">
+                <form action="/Vehicles/AddNewVehicle" class="dropzone" id="vehiclePhotoDropzone" method="POST"
+                    enctype="multipart/form-data">
                     {% csrf_token %}
-                <div class="box card">
-                    <div class="columns">
-                        <div class="column left">
-                            <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
-                            <span>
-                                <img src="{{ vehicle.photo.url }}" class="_vehicle-image">
-                                <label class="label image-label">Kliknij na zdjęcie, aby zmienić plik.</label>
-                            </span>
-                        </div>
-                        <div class="column basic-vehicle-info">
-                            <label class="label">Marka pojazdu</label>
-                            {{ form.brand }}
-                            <label class="label">Model pojazdu</label>
-                            {{ form.model }}
-                            <label class="label">Kabina pojazdu</label>
-                            {{ form.cabin }}
-                            <div class="company-drivers">
+                    <div class="box card">
+                        <div class="columns">
+                            <div class="column left">
+                                <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
+                                <span>
+                                    <h1 class="dz-message header">Kliknij lub przeciągnij i upuść zdjęcie pojazdu w tym oknie.</h1>
+                                    <div class="fallback">
+                                        <input type="file" name="vehicle_photo" class="file-area">
+                                    </div>
+                                </span>
                                 <label class="label">Obecny kierowca</label>
-                                {{ form.driver }}
+                                <select name="company-drivers" class="input">
+                                    {% for driver in drivers %}
+                                    <option value="{{ driver.nick }}"></option>
+                                    {% endfor %}
+                                </select>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box card">
-                    <div class="columns">
-                        <div class="column left">
-                            <h2 class="basic-info-title"><span class="colored">Szczegóły</span> techniczne</h2>
-                            <div class="inputs">
-                                <label class="label">Silnik</label>
-                                {{ form.engine }}
-                                <label class="label">Rozstaw osi</label>
-                                {{ form.wheelbase }}
+                            <div class="column">
+                                <label class="label">Marka pojazdu</label>
+                                {{ form.brand }}
+                                <label class="label">Model pojazdu</label>
+                                {{ form.model }}
                                 <label class="label">Kabina pojazdu</label>
                                 {{ form.cabin }}
                             </div>
                         </div>
-                        <div class="column">
-                            <div class="inputs-right">
-                                <label class="label">Przebieg</label>
-                                {{ form.odometer }}
-                                <label class="label">Skrzynia biegów</label>
-                                {{ form.gearbox }}
-                                <label class="label">Opony</label>
-                                {{ form.wheels }}
+                    </div>
+                    <div class="box card">
+                        <div class="columns">
+                            <div class="column left">
+                                <h2 class="basic-info-title"><span class="colored">Szczegóły</span> techniczne</h2>
+                                <div class="inputs">
+                                    <label class="label">Silnik</label>
+                                    {{ form.engine }}
+                                    <label class="label">Rozstaw osi</label>
+                                    {{ form.wheelbase }}
+                                    <label class="label">Kabina pojazdu</label>
+                                    {{ form.cabin }}
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="inputs-right">
+                                    <label class="label">Przebieg</label>
+                                    {{ form.odometer }}
+                                    <label class="label">Skrzynia biegów</label>
+                                    {{ form.gearbox }}
+                                    <label class="label">Opony</label>
+                                    {{ form.wheels }}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <button type="submit" class="button edit-details">Zapisz zmiany</a>
+                    <button type="submit" class="button edit-details">Zapisz zmiany</a>
                 </form>
             </main>
         </div>

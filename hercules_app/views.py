@@ -13,7 +13,7 @@ from hercules_app.models import (
     Gielda,
     Rozpiska
     )
-from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm
+from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
@@ -413,25 +413,35 @@ def VehicleDetailsView(request, vehicle_id):
         'company': driver_info.company,
     }
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
-    form = EditVehicleForm(initial={
-                'brand': vehicle.brand,
-                'model': vehicle.model,
-                'cabin': vehicle.cabin,
-                'engine': vehicle.engine,
-                'gearbox': vehicle.gearbox,
-                'wheelbase': vehicle.wheelbase,
-                'wheels': vehicle.wheels,
-                'odometer': vehicle.odometer,
-                }
-    )
+    company_id = Company.objects.only('id').filter(name=driver_info.company)
+    company_drivers = Driver.objects.only('nick').filter(company=company_id[0])
+    drivers_dict = {}
+    for company_driver in company_drivers:
+        drivers_dict[company_driver.id] = company_driver.nick
+    drivers = tuple(drivers_dict.items())
+    current_driver = vehicle.driver.id
+    form = EditVehicleForm(drivers, current_driver, initial={
+        'brand': vehicle.brand,
+        'model': vehicle.model,
+        'cabin': vehicle.cabin,
+        'engine': vehicle.engine,
+        'gearbox': vehicle.gearbox,
+        'wheelbase': vehicle.wheelbase,
+        'wheels': vehicle.wheels,
+        'odometer': vehicle.odometer,
+        'driver': current_driver,
+    })
     if request.method == "POST":
-        form = EditVehicleForm(request.POST, instance=vehicle)
+        form = EditVehicleForm(drivers, current_driver, request.POST, instance=vehicle)
         if form.is_valid():
+            new_driver = Driver.objects.get(id=form.data['driver'])
+            form = form.save(commit=False)
+            form.driver = new_driver
             form.save()
             request.session['vehicle_edited'] = True
             return redirect('/Vehicles')
         else:
-            form = EditVehicleForm(initial={
+            form = EditVehicleForm(drivers, current_driver, initial={
             'brand': vehicle.brand,
             'model': vehicle.model,
             'cabin': vehicle.cabin,
@@ -443,3 +453,21 @@ def VehicleDetailsView(request, vehicle_id):
             }
             )
     return render(request, 'hercules_app/vehicle_details.html', {'driver': driver, 'form': form, 'vehicle': vehicle})
+
+def AddNewVehicleView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    form = AddVehicleForm()
+    if request.method == "POST":
+        form = AddVehicleForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            request.session['vehicle_added'] = True
+            return redirect('/Vehicles')
+        else:
+            form = EditVehicleForm()
+    return render(request, 'hercules_app/add_vehicle.html', {'driver': driver, 'form': form})

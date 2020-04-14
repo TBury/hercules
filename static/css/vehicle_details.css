@@ -9,6 +9,14 @@ select {
   max-width: 350px !important;
 }
 
+.basic-vehicle-info {
+  margin-top: 50px;
+}
+
+.company-drivers {
+  margin-top: 25px;
+}
+
 .left {
   margin-left: 10%;
 }

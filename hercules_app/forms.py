@@ -65,6 +65,27 @@ class EditVehicleForm(ModelForm):
             'odometer',
         )
 
+    def __init__(self, drivers, current_driver, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['driver'] = forms.ChoiceField(widget = forms.Select(), choices=drivers, required=True, initial=current_driver)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'input'})
+
+class AddVehicleForm(ModelForm):
+    class Meta:
+        model = Vehicle
+        fields = (
+            'photo',
+            'brand',
+            'model',
+            'cabin',
+            'engine',
+            'gearbox',
+            'wheelbase',
+            'wheels',
+            'odometer',
+        )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields:
