@@ -140,11 +140,6 @@
                                 <p class="option deliveries">Twoje dostawy</p>
                             </a>
                         </li>
-                        <li>
-                            <a>
-                                <p class="option settings">Ustawienia</p>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
             </aside>
@@ -152,7 +147,7 @@
                 <header>
                     <h1 class="title">Twoje pojazdy </h1>
                 </header>
-                <a class="button add-vehicle">+ Dodaj pojazd</a>
+                <a href="Vehicles/AddNewVehicle" class="button add-vehicle">+ Dodaj pojazd</a>
                 {% for vehicle in vehicles %}
                 <div class="box card company-offer">
                     <a href="Vehicles/{{ vehicle.id }}">

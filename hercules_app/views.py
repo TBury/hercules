@@ -461,13 +461,19 @@ def AddNewVehicleView(request):
         'avatar': driver_info.avatar,
         'company': driver_info.company,
     }
-    form = AddVehicleForm()
+    company_id = Company.objects.only('id').filter(name=driver_info.company)
+    company_drivers = Driver.objects.only('nick').filter(company=company_id[0])
+    drivers_dict = {}
+    for company_driver in company_drivers:
+        drivers_dict[company_driver.id] = company_driver.nick
+    drivers = tuple(drivers_dict.items())
+    form = AddVehicleForm(drivers)
     if request.method == "POST":
-        form = AddVehicleForm(request.POST, request.FILES)
+        form = AddVehicleForm(drivers, request.POST, request.FILES)
         if form.is_valid():
             form.save()
             request.session['vehicle_added'] = True
             return redirect('/Vehicles')
         else:
-            form = EditVehicleForm()
+            form = AddVehicleForm(drivers)
     return render(request, 'hercules_app/add_vehicle.html', {'driver': driver, 'form': form})
