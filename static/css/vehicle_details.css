@@ -25,6 +25,10 @@ select {
   margin-top: 25px !important;
 }
 
+.vehicle-photo {
+  margin-top: 50px;
+}
+
 .inputs {
   margin-top: 25px;
 }

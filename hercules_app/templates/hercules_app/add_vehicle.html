@@ -29,13 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/vehicle_details.css' %}">
-    <link href="{% static 'css/dropzone.min.css' %}" type="text/css" rel="stylesheet" />
-    <link href="{% static 'css/basic.min.css' %}" type="text/css" rel="stylesheet" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script defer src="{% static 'js/dropzone.min.js' %}"></script>
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script defer src="{% static 'js/dropzone_add_vehicle.js' %}"></script>
     <title> Dodaj nowy pojazd | Hercules</title>
 </head>
 
@@ -151,12 +145,9 @@
                         <div class="columns">
                             <div class="column left">
                                 <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
-                                <div class="dropzone" id="myDropzone">
-                                    <h1 class="dz-message header">Kliknij lub przeciągnij i upuść zdjęcie pojazdu w tym
-                                        oknie.</h1>
-                                    <div class="fallback">
-                                        <input type="file" name="vehicle-photo" class="file-area">
-                                    </div>
+                                <div class="vehicle-photo">
+                                    <label class="label">Zdjęcie pojazdu</label>
+                                    {{ form.photo }}
                                 </div>
                             </div>
                             <div class="column">

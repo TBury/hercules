@@ -394,6 +394,13 @@ def CompanyVehiclesView(request):
         del request.session['vehicle_edited']
     except:
         is_edited = False
+
+    try:
+        is_added = request.session.get('vehicle_added')
+        del request.session['vehicle_added']
+    except:
+        is_added = False
+
     driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
@@ -403,7 +410,7 @@ def CompanyVehiclesView(request):
     company_id = Company.objects.only('id').filter(name=driver_info.company)
     vehicles = Vehicle.objects.all().filter(
         company=company_id[0])  # querysets are lazy
-    return render(request, 'hercules_app/vehicles.html', {'driver': driver, 'vehicles': vehicles, 'is_edited': is_edited})
+    return render(request, 'hercules_app/vehicles.html', {'driver': driver, 'vehicles': vehicles, 'is_edited': is_edited, 'is_added': is_added})
 
 def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
@@ -471,7 +478,11 @@ def AddNewVehicleView(request):
     if request.method == "POST":
         form = AddVehicleForm(drivers, request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            vehicle = form.save(commit=False)
+            company = Company.objects.get(name=driver_info.company)
+            vehicle.company = company
+            vehicle.driver = Driver.objects.get(id=form.data['driver'])
+            vehicle.save()
             request.session['vehicle_added'] = True
             return redirect('/Vehicles')
         else:
