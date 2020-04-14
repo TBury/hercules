@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
@@ -13,7 +13,7 @@ from hercules_app.models import (
     Gielda,
     Rozpiska
     )
-from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm
+from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
@@ -387,3 +387,59 @@ def CompanyDetailsView(request, company_id):
     company = Company.objects.get(id = company_id)
 
     return render(request, 'hercules_app/company_profile.html', {'driver': driver, 'company': company})
+
+def CompanyVehiclesView(request):
+    try:
+        is_edited = request.session.get('vehicle_edited')
+        del request.session['vehicle_edited']
+    except:
+        is_edited = False
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    company_id = Company.objects.only('id').filter(name=driver_info.company)
+    vehicles = Vehicle.objects.all().filter(
+        company=company_id[0])  # querysets are lazy
+    return render(request, 'hercules_app/vehicles.html', {'driver': driver, 'vehicles': vehicles, 'is_edited': is_edited})
+
+def VehicleDetailsView(request, vehicle_id):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    vehicle = get_object_or_404(Vehicle, id=vehicle_id)
+    form = EditVehicleForm(initial={
+                'brand': vehicle.brand,
+                'model': vehicle.model,
+                'cabin': vehicle.cabin,
+                'engine': vehicle.engine,
+                'gearbox': vehicle.gearbox,
+                'wheelbase': vehicle.wheelbase,
+                'wheels': vehicle.wheels,
+                'odometer': vehicle.odometer,
+                }
+    )
+    if request.method == "POST":
+        form = EditVehicleForm(request.POST, instance=vehicle)
+        if form.is_valid():
+            form.save()
+            request.session['vehicle_edited'] = True
+            return redirect('/Vehicles')
+        else:
+            form = EditVehicleForm(initial={
+            'brand': vehicle.brand,
+            'model': vehicle.model,
+            'cabin': vehicle.cabin,
+            'engine': vehicle.engine,
+            'gearbox': vehicle.gearbox,
+            'wheelbase': vehicle.wheelbase,
+            'wheels': vehicle.wheels,
+            'odometer': vehicle.odometer,
+            }
+            )
+    return render(request, 'hercules_app/vehicle_details.html', {'driver': driver, 'form': form, 'vehicle': vehicle})

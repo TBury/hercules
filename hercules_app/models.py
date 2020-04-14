@@ -80,6 +80,11 @@ class Driver(models.Model):
 
         vehicle = Driver.get_vehicle_info(driver)
 
+        try:
+            avatar = driver.avatar.url
+        except:
+            avatar = ''
+
         driver_info = {
             'nick': driver.nick,
             'company': company,

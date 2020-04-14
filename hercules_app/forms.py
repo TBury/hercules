@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from hercules_app.models import Driver, Waybill, DriverStatistics
+from hercules_app.models import Driver, Waybill, DriverStatistics, Vehicle
 
 
 class SetNickForm(ModelForm):
@@ -43,6 +43,26 @@ class AddWaybillForm(ModelForm):
             'income',
             'damage',
             'note',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'input'})
+
+
+class EditVehicleForm(ModelForm):
+    class Meta:
+        model = Vehicle
+        fields = (
+            'brand',
+            'model',
+            'cabin',
+            'engine',
+            'gearbox',
+            'wheelbase',
+            'wheels',
+            'odometer',
         )
 
     def __init__(self, *args, **kwargs):
