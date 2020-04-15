@@ -68,7 +68,7 @@
                 <span class="user">
                     <p class="username">{{ nick }}</p>
                     {% if company != "" %}
-                    <p class="company">{{ company }}</p>
+                    <p class="user-company">{{ company }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -273,6 +273,7 @@
                                 </p>
                             </header>
                             <div class="columns">
+                                {% if vehicle %}
                                 <div class="column">
                                     <figure class="vehicle-image">
                                         <img class="" src="{{ vehicle.photo }}" alt="">
@@ -293,6 +294,7 @@
                                         </p>
                                     </span>
                                 </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

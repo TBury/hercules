@@ -14,6 +14,10 @@
   border-left: 10px solid #0282FC;
 }
 
+.to-edit {
+  border-left: 10px solid #ffdd57;
+}
+
 .check-details {
   margin-top: 5%;
 }

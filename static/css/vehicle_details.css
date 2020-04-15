@@ -48,10 +48,11 @@ select {
 .edit-details {
   background-color: #C70000 !important;
   color: white !important;
+  font-family: 'Montserrat', font-family;
   padding: 0 2em;
   font-size: 1.4rem !important;
   font-weight: 700;
-  margin-left: 68vw;
+  margin-left: 62vw;
   margin-top: 50px;
   margin-bottom: 50px;
 }

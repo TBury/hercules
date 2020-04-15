@@ -44,5 +44,9 @@ urlpatterns = [
          views.VehicleDetailsView, name="vehicle-details"),
     path('Vehicles/AddNewVehicle',
          views.AddNewVehicleView, name="add-vehicle"),
+    path('Deliveries',
+         views.ShowDeliveriesView, name="user-deliveries"),
+     path('Deliveries/<int:waybill_id>',
+         views.ShowDeliveryDetailsView, name="delivery-details"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

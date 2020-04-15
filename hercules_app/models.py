@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 from datetime import datetime
 from typing import NamedTuple
+from django.utils import timezone
 
 
 class Company(models.Model):
@@ -172,8 +173,11 @@ class DriverStatistics(models.Model):
 
 class Waybill(models.Model):
     id = models.AutoField(primary_key=True)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True)
     loading_city = models.CharField(max_length=64)
+    loading_country = models.CharField(max_length=100, default='')
     unloading_city = models.CharField(max_length=64)
+    unloading_country = models.CharField(max_length=100, default='')
     loading_spedition = models.CharField(max_length=100)
     unloading_spedition = models.CharField(max_length=100)
     cargo = models.CharField(max_length=64)
@@ -182,15 +186,17 @@ class Waybill(models.Model):
     income = models.IntegerField(default=0)
     fuel = models.IntegerField(default=0)
     damage = models.SmallIntegerField(default=0)
-    note = models.TextField(default='')
+    note = models.TextField(default='', blank=True)
     first_screen = models.ImageField(upload_to='waybills', default="")
     end_screen = models.ImageField(upload_to='waybills', default="")
+    finish_date = models.DateTimeField(auto_now_add=True)
+    screens_id = models.CharField(max_length=72, default='')
 
     class WaybillStatus(models.TextChoices):
-        ACCEPTED = 'acc', _('accepted')
-        DECLINED = 'dec', _('declined')
-        TO_EDIT = 'edt', _('to_edit')
-        NOT_CHECKED = 'ntc', _('not_checked')
+        ACCEPTED = 'accepted', _('accepted')
+        DECLINED = 'declined', _('declined')
+        TO_EDIT = 'to-edit', _('to_edit')
+        NOT_CHECKED = 'not-checked', _('not_checked')
 
     status = models.CharField(
         choices=WaybillStatus.choices, default=WaybillStatus.NOT_CHECKED, max_length=12)

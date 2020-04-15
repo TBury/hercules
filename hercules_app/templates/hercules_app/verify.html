@@ -59,7 +59,7 @@
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company = "" %}
+                    {% if driver.company == "" %}
                     <p class="company">{{ driver.company }}</p>
                     {% endif %}
                 </span>
@@ -191,7 +191,7 @@
                                         </div>
                                         {% if is_automatic %}
                                         <img class="loading-city-screen screenshot"
-                                            src="{% static args.loading_info_image %}">
+                                            src="{{ args.loading_info_image }}">
                                         {% endif %}
 
                                     </div>
@@ -202,7 +202,7 @@
                                         </div>
                                         {% if is_automatic %}
                                         <img class="loading-city-screen screenshot"
-                                            src="{% static args.loading_info_image %}">
+                                            src="{{ args.loading_info_image }}">
                                         {% endif %}
                                     </div>
                                     <div class="field">
@@ -212,7 +212,7 @@
                                         </div>
                                         {% if is_automatic %}
                                         <img class=" loading-city-screen screenshot"
-                                            src="{% static args.cargo_image %}">
+                                            src="{{ args.cargo_image }}">
                                         {% endif %}
                                     </div>
 
@@ -228,7 +228,7 @@
                                         </div>
                                         {% if is_automatic %}
                                         <img class="unloading-city-screen screenshot"
-                                            src="{% static args.unloading_info_image %}">
+                                            src="{{ args.unloading_info_image }}">
                                         {% endif %}
                                     </div>
                                     <div class="field">
@@ -238,7 +238,7 @@
                                         </div>
                                         {% if is_automatic %}
                                         <img class="unloading-city-screen screenshot"
-                                            src="{% static args.unloading_info_image %}">
+                                            src="{{ args.unloading_info_image }}">
                                         {% endif %}
                                     </div>
                                     <div class="static-field">
@@ -255,7 +255,7 @@
                                         </div>
                                         {% if is_automatic %}
                                         <img class="unloading-spedition-screen static-screenshot"
-                                            src="{% static args.tonnage_image %}">
+                                            src="{{ args.tonnage_image }}">
                                         {% endif %}
                                     </div>
                                     <hr>
@@ -278,7 +278,7 @@
                                             </div>
                                             {% if is_automatic %}
                                             <img class="unloading-spedition-screen static-screenshot"
-                                                src="{% static args.distance_image %}">
+                                                src="{{ args.distance_image }}">
                                             {% endif %}
                                         </div>
                                         <div class="static-field">
@@ -311,7 +311,7 @@
                                             </div>
                                             {% if is_automatic %}
                                             <img class="unloading-spedition-screen static-screenshot"
-                                                src="{% static args.fuel_image %}">
+                                                src="{{ args.fuel_image }}">
                                             {% endif %}
                                         </div>
                                         <div class="static-field">
@@ -336,7 +336,7 @@
                                             </div>
                                             {% if is_automatic %}
                                             <img class="unloading-spedition-screen static-screenshot"
-                                                src="{% static args.income_image %}">
+                                                src="{{ args.income_image }}">
                                             {% endif %}
                                         </div>
                                     </div>
