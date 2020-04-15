@@ -13,6 +13,7 @@ class Company(models.Model):
     distance = models.PositiveIntegerField(default=0)
     average_fuel = models.FloatField(default=0.0)
     income = models.PositiveIntegerField(default=0)
+    tonnage = models.PositiveIntegerField(default=0)
     waybill_count = models.PositiveIntegerField(default=0)
     description = models.TextField(default='')
     is_recruiting = models.BooleanField(default=True)
@@ -62,6 +63,7 @@ class Driver(models.Model):
                 'cabin': vehicle.cabin,
                 'engine': vehicle.engine,
                 'odometer': vehicle.odometer,
+                'photo': vehicle.photo.url,
             }
         except:
             vehicle_info = ''
@@ -82,6 +84,7 @@ class Driver(models.Model):
             'nick': driver.nick,
             'company': company,
             'vehicle': vehicle,
+            'avatar': driver.avatar.url,
         }
         return driver_info
 
@@ -97,6 +100,7 @@ class Driver(models.Model):
             nick: str
             company: str
             vehicle: Vehicle
+            avatar: str
         try:
             driver_info = request.session.get('driver_info')
         except driver_info is None:
@@ -105,7 +109,8 @@ class Driver(models.Model):
             info = DriverInfo(
                 driver_info['nick'],
                 driver_info['company'],
-                driver_info['vehicle']
+                driver_info['vehicle'],
+                driver_info['avatar'],
             )
         return info
 
@@ -114,6 +119,7 @@ class Vehicle(models.Model):
     id = models.AutoField(primary_key=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='vehicles', null=True)
     model = models.CharField(max_length=80)
     cabin = models.CharField(max_length=64)
     registration_number = models.CharField(max_length=8)

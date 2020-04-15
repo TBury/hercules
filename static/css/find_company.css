@@ -8,6 +8,11 @@
   font-weight: 700;
 }
 
+.company-logo {
+  max-width: 256px;
+  max-height: 256px;
+}
+
 .company-offer {
   margin-top: 20px;
 }

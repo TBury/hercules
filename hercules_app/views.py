@@ -65,6 +65,7 @@ def panel(request):
 
     args = {
         'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
         'company': driver_info.company,
         'statistics': statistics,
         'vehicle': driver_info.vehicle,
@@ -77,7 +78,7 @@ def panel(request):
 
 @login_required
 def download_assistant(request):
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -99,7 +100,7 @@ def download_file(request):
 def drivers_card(request):
     driver = Driver.objects.get(user=request.user)
 
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
 
     statistics = DriverStatistics.get_driver_statistics(driver)
     dispositions = Disposition.objects.filter(driver=driver)[:5]
@@ -115,7 +116,7 @@ def drivers_card(request):
 
 @login_required
 def add_delivery(request):
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -125,7 +126,7 @@ def add_delivery(request):
 
 @login_required
 def send_first_screenshot(request):
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -148,7 +149,7 @@ def send_second_screenshot(request):
     else:
         is_automatic = False
 
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -169,7 +170,7 @@ def send_second_screenshot(request):
 
 @login_required
 def loading_page(request):
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -251,7 +252,7 @@ def add_waybill(request):
             })
         else:
             form = AddWaybillForm()
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -264,7 +265,7 @@ def add_waybill(request):
 def OffersView(request):
     if request.session.get('offer_id') is not None:
         del request.session['offer_id']
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -291,7 +292,7 @@ def OffersView(request):
 
 @login_required
 def OfferDetailsView(request, offer_id):
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -311,7 +312,7 @@ def OfferDetailsView(request, offer_id):
 
 @login_required
 def ChooseDriverView(request):
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -367,10 +368,22 @@ def ShowDispositionsView(request):
 
 
 def FindCompanyView(request):
-    driver_info = Driver.GetDriverInfo(request)
+    driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'company': driver_info.company,
     }
     companies = Company.objects.all().order_by('is_recruiting')
     return render(request, 'hercules_app/find_company.html', {'driver': driver, 'companies': companies})
+
+
+def CompanyDetailsView(request, company_id):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    company = Company.objects.get(id = company_id)
+
+    return render(request, 'hercules_app/company_profile.html', {'driver': driver, 'company': company})
