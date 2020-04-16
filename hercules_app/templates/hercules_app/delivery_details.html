@@ -138,10 +138,171 @@
                 </nav>
             </aside>
             <main class="column main">
+                
                 <h1 class="title">Dostawa #{{ delivery.id }} </h1>
                 <div class="box card">
                     <div class="basic-info">
                         <b><span class="colored">Podstawowe </span> informacje</b>
+                        {% if delivery.status == 'to-edit' %}
+                        <form action="/EditWaybill/{{ delivery.id }}" method="POST">
+                            {% csrf_token %}
+                                <div class="columns basic-info-cols is-gapless">
+                                    <div class="column">
+                                        <div class="field">
+                                            <label class="label">Miasto załadunku</label>
+                                            <div class="control">
+                                                {{ form.loading_city }}
+                                            </div>
+                                            {% with '/assets/waybills/'|add:delivery.screens_id|add:'loading-info.png' as image_static %}
+                                            <img src="{% static image_static %}" class="static-screenshot">
+                                            {% endwith %}
+                                        </div>
+                                        <div class="field">
+                                            <label class="label">Spedycja załadunku</label>
+                                            <div class="control">
+                                                {{ form.loading_spedition }}
+                                            </div>
+                                            {% with '/assets/waybills/'|add:delivery.screens_id|add:'loading-info.png' as image_static %}
+                                            <img src="{% static image_static %}" class="static-screenshot">
+                                            {% endwith %}
+                                        </div>
+                                        <div class="field">
+                                            <label class="label">Ładunek</label>
+                                            <div class="control">
+                                                {{ form.cargo }}
+                                            </div>
+                                            {% with '/assets/waybills/'|add:delivery.screens_id|add:'cargo.png' as image_static %}
+                                            <img src="{% static image_static %}" class="static-screenshot">
+                                            {% endwith %}
+                                        </div>
+
+                                        <hr>
+
+                                        <b><span class="colored">Statystyki </span></b>
+                                    </div>
+                                    <div class="column">
+                                        <div class="field">
+                                            <label class="label">Miasto rozładunku</label>
+                                            <div class="control">
+                                                {{ form.unloading_city }}
+                                            </div>
+                                            {% with '/assets/waybills/'|add:delivery.screens_id|add:'unloading-info.png' as image_static %}
+                                            <img src="{% static image_static %}" class="static-screenshot">
+                                            {% endwith %}
+                                        </div>
+                                        <div class="field">
+                                            <label class="label">Spedycja rozładunku</label>
+                                            <div class="control">
+                                                {{ form.unloading_spedition }}
+                                            </div>
+                                            {% with '/assets/waybills/'|add:delivery.screens_id|add:'unloading-info.png' as image_static %}
+                                            <img src="{% static image_static %}" class="static-screenshot">
+                                            {% endwith %}
+                                        </div>
+                                        <div class="static-field">
+                                            <label for="" class="label static-label">Tonaż</label>
+                                            <div class="field has-addons">
+                                                <div class="control">
+                                                    {{ form.tonnage }}
+                                                </div>
+                                                <div class="control">
+                                                    <a class="button is-static">
+                                                        kg
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            {% with '/assets/waybills/'|add:delivery.screens_id|add:'tonnage.png' as image_static %}
+                                            <img src="{% static image_static %}" class="static-screenshot">
+                                            {% endwith %}
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class=" stats">
+                                    <div class="columns">
+                                        <div class="column">
+                                            <div class="static-field">
+                                                <label for="" class="label static-label">Przejechany dystans</label>
+                                                <div class="field has-addons">
+                                                    <div class="control">
+                                                        {{ form.distance }}
+                                                    </div>
+                                                    <div class="control">
+                                                        <a class="button is-static">
+                                                            km
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                {% with '/assets/waybills/'|add:delivery.screens_id|add:'distance.png' as image_static %}
+                                                <img src="{% static image_static %}" class="static-screenshot">
+                                                {% endwith %}
+                                            </div>
+                                            <div class="static-field">
+                                                <label for="" class="label static-label">Uszkodzenia towaru</label>
+                                                <div class="field has-addons">
+                                                    <div class="control">
+                                                        {{ form.damage }}
+                                                    </div>
+                                                    <div class="control">
+                                                        <a class="button is-static">
+                                                            %
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <div class="static-field">
+                                                <label for="" class="label static-label">Spalone paliwo</label>
+                                                <div class="field has-addons">
+                                                    <div class="control">
+                                                        {{ form.fuel }}
+                                                    </div>
+                                                    <div class="control">
+                                                        <a class="button is-static">
+                                                            litrów
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                               {% with '/assets/waybills/'|add:delivery.screens_id|add:'fuel.png' as image_static %}
+                                               <img src="{% static image_static %}" class="static-screenshot">
+                                               {% endwith %}
+
+                                            </div>
+                                            <div class="static-field">
+                                                <label for="" class="label static-label">Notatka kierowcy</label>
+                                                <div class="field has-addons">
+                                                    <textarea class="textarea has-fixed-size"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <div class="static-field">
+                                                <label for="" class="label static-label">Dochód</label>
+                                                <div class="field has-addons">
+                                                    <div class="control">
+                                                        {{ form.income }}
+                                                    </div>
+                                                    <div class=" control">
+                                                        <a class="button is-static">
+                                                            zł
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                {% with '/assets/waybills/'|add:delivery.screens_id|add:'income.png' as image_static %}
+                                                <img src="{% static image_static %}" class="static-screenshot">
+                                                {% endwith %}
+                                            </div>
+                                        </div>
+                                    </div>
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button type="submit" class="button next">Popraw trasę</a>
+                                </div>
+                            </div>
+                        </form>
+                        {% endif %}
+                        {% if delivery.status != 'to-edit' %}
                         <div class="columns basic-info-cols is-gapless">
                             <div class="column">
                                 <div class="field">
@@ -149,28 +310,18 @@
                                     <div class="control">
                                         <input type="text" class="input" readonly value="{{ delivery.loading_city }}">
                                     </div>
-                                    {% with '/assets/waybills/'|add:delivery.screens_id|add:'loading-info.png' as image_static %}
-                                    <img src="{% static image_static %}"
-                                        class="static-screenshot">
-                                    {% endwith %}
                                 </div>
                                 <div class="field">
                                     <label class="label">Spedycja załadunku</label>
                                     <div class="control">
                                         <input type="text" class="input" readonly value="{{ delivery.loading_spedition }}">
                                     </div>
-                                    {% with '/assets/waybills/'|add:delivery.screens_id|add:'loading-info.png' as image_static %}
-                                    <img src="{% static image_static %}" class="static-screenshot">
-                                    {% endwith %}
                                 </div>
                                 <div class="field">
                                     <label class="label">Ładunek</label>
                                     <div class="control">
                                         <input type="text" class="input" readonly value="{{ delivery.cargo }}">
                                     </div>
-                                    {% with '/assets/waybills/'|add:delivery.screens_id|add:'cargo.png' as image_static %}
-                                    <img src="{% static image_static %}" class="static-screenshot">
-                                    {% endwith %}
                                 </div>
                                 <b><span class="colored">Statystyki </span></b>
                             </div>
@@ -180,17 +331,12 @@
                                     <div class="control">
                                         <input type="text" class="input" readonly value="{{ delivery.unloading_city }}">
                                     </div>
-                                    {% with '/assets/waybills/'|add:delivery.screens_id|add:'loading_city.png' as image_static %}
-                                    <img src="{% static image_static %}" class="static-screenshot">
-                                    {% endwith %}
                                 </div>
                                 <div class="field">
                                     <label class="label">Spedycja rozładunku</label>
                                     <div class="control">
                                         <input type="text" class="input" readonly value="{{ delivery.unloading_spedition }}">
                                     </div>
-                                    <img class="unloading-city-screen screenshot"
-                                        src="">
                                 </div>
                                 <div class="static-field">
                                     <label for="" class="label static-label">Tonaż</label>
@@ -205,10 +351,6 @@
                                             </a>
                                         </div>
                                     </div>
-                                    {% with '/assets/waybills/'|add:delivery.screens_id|add:'tonnage.png' as image_static %}
-                                    <img src="{% static image_static %}"
-                                        class="unloading-spedition-screen static-screenshot">
-                                    {% endwith %}
                                 </div>
                             </div>
                         </div>
@@ -228,8 +370,6 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <img class="unloading-spedition-screen static-screenshot"
-                                            src="">
                                     </div>
                                     <div class="static-field">
                                         <label for="" class="label static-label">Uszkodzenia towaru</label>
@@ -243,7 +383,6 @@
                                                     %
                                                 </a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -261,8 +400,6 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <img class="unloading-spedition-screen static-screenshot"
-                                            src="">
                                     </div>
                                     <div class="static-field">
                                         <label for="" class="label static-label">Notatka kierowcy</label>
@@ -285,15 +422,13 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <img class="unloading-spedition-screen static-screenshot"
-                                            src="">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
+                {% endif %}
             </main>
         </div>
     </div>

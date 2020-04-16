@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
+from datetime import datetime
 from django.contrib.auth.decorators import user_passes_test
 from hercules_app.models import (
     Driver,
@@ -514,4 +515,33 @@ def ShowDeliveryDetailsView(request, waybill_id):
         'company': driver_info.company,
     }
     delivery = Waybill.objects.get(id=waybill_id)
-    return render(request, 'hercules_app/delivery_details.html', {'driver': driver, 'delivery': delivery})
+    if delivery.status == 'to-edit':
+        form = AddWaybillForm(initial={
+                'loading_city': delivery.loading_city,
+                'loading_spedition': delivery.loading_spedition,
+                'unloading_city': delivery.unloading_city,
+                'unloading_spedition': delivery.unloading_spedition,
+                'cargo': delivery.cargo,
+                'fuel': delivery.fuel,
+                'tonnage': delivery.tonnage,
+                'distance': delivery.distance,
+                'income': delivery.income,
+            })
+        return render(request, 'hercules_app/delivery_details.html', {'driver': driver, 'form': form, 'delivery': delivery})
+    else:
+        return render(request, 'hercules_app/delivery_details.html', {'driver': driver, 'delivery': delivery})
+
+def EditWaybill(request, waybill_id):
+    if request.POST:
+        waybill = Waybill.objects.get(id=waybill_id)
+        form = AddWaybillForm(request.POST, instance=waybill)
+        if form.is_valid():
+            new_waybill = form.save(commit=False)
+            new_waybill.status = 'not-checked'
+            new_waybill.finish_date = datetime.now
+            new_waybill.save()
+            request.session.modified = True
+            request.session['waybill_success'] = True
+            return redirect('panel')
+    else:
+        return HttpResponse(status=500)
