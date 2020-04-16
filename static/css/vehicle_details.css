@@ -45,18 +45,75 @@ select {
   color: #a3a3a3 !important;
 }
 
-.edit-details {
+.edit-details,
+.delete-vehicle {
   background-color: #C70000 !important;
   color: white !important;
   padding: 0 2em;
-  font-size: 1.4rem !important;
   font-weight: 700;
-  margin-left: 68vw;
+}
+
+.edit-details:hover,
+.delete-vehicle:hover {
+  color: #dddddd;
+}
+
+.edit-details {
+  font-size: 1.4rem !important;
+  margin-left: 62vw;
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-.edit-details:hover {
-  color: #dddddd;
+.delete-vehicle {
+  font-size: 1.2rem !important;
+  float: right;
+}
+
+.delete-vehicle svg {
+  margin-right: 15px !important;
+}
+
+.modal {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-content {
+  padding-bottom: 5rem;
+}
+
+.modal-content h1 {
+  text-align: center;
+}
+
+.modal-content .content {
+  padding-bottom: 5rem;
+}
+
+.modal-text {
+  text-align: center;
+  color: #a3a3a3;
+}
+
+.modal-buttons {
+  margin-top: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-buttons .button:first-of-type {
+  margin-right: 15px;
+}
+
+.modal-buttons .button {
+  font-size: 1.2rem !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 /*# sourceMappingURL=vehicle_details.css.map */

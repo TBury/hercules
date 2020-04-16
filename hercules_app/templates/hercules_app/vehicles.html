@@ -43,7 +43,9 @@
     {% if is_added %}
     <script src="{% static 'js/added_vehicle.js' %}"></script>
     {% endif %}
-
+    {% if is_removed %}
+    <script src="{% static 'js/deleted_vehicle.js' %}"></script>
+    {% endif %}
     <title> Twoje pojazdy | Hercules</title>
 </head>
 
