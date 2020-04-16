@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/vehicle_details.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="{% static 'js/delete_vehicle.js' %}"></script>
     <title> Szczegóły pojazdu | Hercules</title>
 </head>
 
@@ -143,6 +144,8 @@
                 <form action="/Vehicles/{{ vehicle.id }}" method="post">
                     {% csrf_token %}
                 <div class="box card">
+                    <a class="button delete-vehicle">
+                        <i class="fas fas fa-trash-alt delete-icon"> </i> Usuń pojazd</a>
                     <div class="columns">
                         <div class="column left">
                             <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
@@ -194,6 +197,23 @@
                 </form>
             </main>
         </div>
+    </div>
+    <div class="modal" id="page-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <form action="/Vehicles/{{ vehicle.id }}/DeleteVehicle" method="post">
+                    {% csrf_token %}
+                <h1 class="title">Usunąć pojazd {{ vehicle.brand }} {{ vehicle.model }} {{ vehicle.cabin }}?</h1>
+                <p class="modal-text">Tej akcji nie będzie można już wycofać!</p>
+                <div class="modal-buttons">
+                    <a class="button" data-dismiss="modal">Nie</a>
+                    <button type="submit" class="button is-danger" id="deleteButton" href="#">Tak, usuń pojazd</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
     </div>
 </body>
 

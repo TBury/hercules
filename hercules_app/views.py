@@ -400,6 +400,11 @@ def CompanyVehiclesView(request):
         del request.session['vehicle_added']
     except:
         is_added = False
+    try:
+        is_removed = request.session.get('vehicle_deleted')
+        del request.session['vehicle_deleted']
+    except:
+        is_removed = False
 
     driver_info = Driver.get_driver_info(request)
     driver = {
@@ -410,7 +415,7 @@ def CompanyVehiclesView(request):
     company_id = Company.objects.only('id').filter(name=driver_info.company)
     vehicles = Vehicle.objects.all().filter(
         company=company_id[0])  # querysets are lazy
-    return render(request, 'hercules_app/vehicles.html', {'driver': driver, 'vehicles': vehicles, 'is_edited': is_edited, 'is_added': is_added})
+    return render(request, 'hercules_app/vehicles.html', {'driver': driver, 'vehicles': vehicles, 'is_edited': is_edited, 'is_added': is_added, 'is_removed': is_removed})
 
 def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
@@ -488,3 +493,64 @@ def AddNewVehicleView(request):
         else:
             form = AddVehicleForm(drivers)
     return render(request, 'hercules_app/add_vehicle.html', {'driver': driver, 'form': form})
+
+def ShowDeliveriesView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    driver = Driver.objects.get(nick=driver_info.nick)
+    deliveries = Waybill.objects.all().order_by(
+        '-finish_date').filter(driver=driver)
+
+    return render(request, 'hercules_app/deliveries.html', {'driver': driver, 'deliveries': deliveries})
+
+def ShowDeliveryDetailsView(request, waybill_id):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    delivery = Waybill.objects.get(id=waybill_id)
+    if delivery.status == 'to-edit':
+        form = AddWaybillForm(initial={
+                'loading_city': delivery.loading_city,
+                'loading_spedition': delivery.loading_spedition,
+                'unloading_city': delivery.unloading_city,
+                'unloading_spedition': delivery.unloading_spedition,
+                'cargo': delivery.cargo,
+                'fuel': delivery.fuel,
+                'tonnage': delivery.tonnage,
+                'distance': delivery.distance,
+                'income': delivery.income,
+            })
+        return render(request, 'hercules_app/delivery_details.html', {'driver': driver, 'form': form, 'delivery': delivery})
+    else:
+        return render(request, 'hercules_app/delivery_details.html', {'driver': driver, 'delivery': delivery})
+
+def EditWaybill(request, waybill_id):
+    if request.POST:
+        waybill = Waybill.objects.get(id=waybill_id)
+        form = AddWaybillForm(request.POST, instance=waybill)
+        if form.is_valid():
+            new_waybill = form.save(commit=False)
+            new_waybill.status = 'not-checked'
+            new_waybill.finish_date = datetime.now
+            new_waybill.save()
+            request.session.modified = True
+            request.session['waybill_success'] = True
+            return redirect('panel')
+    else:
+        return HttpResponse(status=500)
+
+def DeleteVehicle(request, vehicle_id):
+    if request.POST:
+        Vehicle.objects.filter(id=vehicle_id).delete()
+        request.session.modified = True
+        request.session['vehicle_deleted'] = True
+        return redirect('/Vehicles')
+    else:
+        return HttpResponse(status=500)

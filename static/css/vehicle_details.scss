@@ -45,7 +45,8 @@ select {
     color: #a3a3a3 !important;
 }
 
-.edit-details {
+.edit-details,
+.delete-vehicle {
     background-color: #C70000 !important;
     color: white !important;
 
@@ -54,9 +55,51 @@ select {
     }
 
     padding: 0 2em;
-    font-size: 1.4rem !important;
     font-weight: 700;
-    margin-left: 68vw;
+}
+
+.edit-details {
+    font-size: 1.4rem !important;
+    margin-left: 62vw;
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+.delete-vehicle {
+    font-size: 1.2rem !important;
+    svg {
+        margin-right: 15px !important;
+    }
+    float: right;
+}
+
+.modal {
+    justify-content: center;
+}
+.modal-content {
+    h1 {
+        text-align: center;
+    }
+    .content {
+        padding-bottom: 5rem;;
+    }
+    padding-bottom: 5rem;
+}
+.modal-text {
+    text-align: center;
+    color: #a3a3a3;
+}
+
+.modal-buttons {
+    margin-top: 55px;
+    display: flex;
+    justify-content: center;
+    .button:first-of-type {
+        margin-right: 15px;
+    }
+    .button {
+        font-size: 1.2rem !important;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+    }
 }
