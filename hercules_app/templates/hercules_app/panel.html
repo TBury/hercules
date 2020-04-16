@@ -68,7 +68,7 @@
                 <span class="user">
                     <p class="username">{{ nick }}</p>
                     {% if company != "" %}
-                    <p class="company">{{ company }}</p>
+                    <p class="user-company">{{ company }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -129,19 +129,19 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a>
+                            <a href="/Companies">
                                 <p class="option search-company">
                                     Znajdź firmę
                                 </p>
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <a href="/Vehicles">
                                 <p class="option vehicles">Twoje pojazdy</p>
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <a href="/Deliveries">
                                 <p class="option deliveries">Twoje dostawy</p>
                             </a>
                         </li>
@@ -273,6 +273,7 @@
                                 </p>
                             </header>
                             <div class="columns">
+                                {% if vehicle %}
                                 <div class="column">
                                     <figure class="vehicle-image">
                                         <img class="" src="{{ vehicle.photo }}" alt="">
@@ -293,6 +294,7 @@
                                         </p>
                                     </span>
                                 </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

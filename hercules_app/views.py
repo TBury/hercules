@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
+from datetime import datetime
 from django.contrib.auth.decorators import user_passes_test
 from hercules_app.models import (
     Driver,
@@ -207,6 +208,12 @@ def add_waybill(request):
     is_automatic = True
     args = ''
     driver = Driver.objects.get(user=request.user)
+    driver_info = Driver.get_driver_info(request)
+    driver_inf = {
+        'nick': driver_info.nick,
+        'company': driver_info.company,
+    }
+
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
     waybill = Waybill.objects.get(id=waybill_id)
@@ -217,7 +224,10 @@ def add_waybill(request):
     if request.method == "POST":
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
-            form.save()
+            waybill = form.save(commit=False)
+            waybill.driver = driver
+            waybill.screens_id = args['screen_id']
+            waybill.save()
             if driver.is_employeed == False:
                 statistics = DriverStatistics.objects.get(driver_id=driver)
                 DriverStatistics.objects.filter(driver_id=driver).update(
@@ -231,12 +241,12 @@ def add_waybill(request):
                 )
                 Waybill.objects.filter(id=waybill_id).update(
                     status="accepted")
-                request.session.modified = True
-                request.session['waybill_success'] = True
-                del request.session['waybill_id']
-                if is_automatic:
-                    del request.session['screen_information']
-                return redirect('panel')
+            request.session.modified = True
+            request.session['waybill_success'] = True
+            del request.session['waybill_id']
+            if is_automatic:
+                del request.session['screen_information']
+            return redirect('panel')
     else:
         if is_automatic:
             form = AddWaybillForm(initial={
@@ -252,13 +262,8 @@ def add_waybill(request):
             })
         else:
             form = AddWaybillForm()
-    driver_info = Driver.get_driver_info(request)
-    driver = {
-        'nick': driver_info.nick,
-        'company': driver_info.company,
-    }
 
-    return render(request, 'hercules_app/verify.html', {'form': form, 'args': args, 'driver': driver})
+    return render(request, 'hercules_app/verify.html', {'form': form, 'args': args, 'driver': driver_inf, 'is_automatic': is_automatic})
 
 
 @login_required

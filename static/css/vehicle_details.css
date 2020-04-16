@@ -49,6 +49,7 @@ select {
 .delete-vehicle {
   background-color: #C70000 !important;
   color: white !important;
+  font-family: 'Montserrat', font-family;
   padding: 0 2em;
   font-weight: 700;
 }
