@@ -205,6 +205,7 @@
                                     Twoje dyspozycje
                                 </p>
                             </header>
+                            {% if dispositions %}
                             {% for disposition in dispositions %}
                             <div class="columns disposition">
                                 <div class="column">
@@ -249,6 +250,18 @@
                                 </div>
                             </div>
                             {% endfor %}
+                            {% else %}
+                            <div class="no-disposition">
+                                <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
+                                <span class="no-disposition-text">
+                                    <h1 class="no-disposition-title">Nie masz żadnych dyspozycji.</h1>
+                                    <p class="sub-text">
+                                        Tutaj pojawią się zlecenia od spedycji lub zlecenia,
+                                        które potwierdziłeś na giełdzie zleceń.
+                                    </p>
+                                </span>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="column">
@@ -284,8 +297,8 @@
                                     Twój pojazd
                                 </p>
                             </header>
+                            {% if vehicle %}
                             <div class="columns">
-                                {% if vehicle %}
                                 <div class="column">
                                     <figure class="vehicle-image">
                                         <img class="" src="{{ vehicle.photo }}" alt="">
@@ -306,8 +319,23 @@
                                         </p>
                                     </span>
                                 </div>
-                                {% endif %}
                             </div>
+                            {% else %}
+                            <div class="no-vehicle">
+                                <img src="{% static 'assets/icons/no_vehicle.png' %}" class="no-vehicle-icon">
+                                <span class="no-vehicle-text">
+                                    <h1 class="no-vehicle-title">Nie masz żadnego pojazdu.</h1>
+                                    <p class="sub-text">
+                                        Nie został Ci przydzielony żaden pojazd.
+                                        {% if position == "Właściciel" or position == "Dyspozytor" %}
+                                        Dodaj pojazd w zakładce Pojazdy.
+                                        {% else %}
+                                        Zgłoś tę informację właścicielowi lub dyspozytorowi firmy.
+                                        {% endif %}
+                                    </p>
+                                </span>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
             </main>

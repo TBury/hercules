@@ -74,6 +74,7 @@ def panel(request):
         'dispositions': dispositions,
         'waybill_success': waybill_success,
         'dispose_offer_success': dispose_offer_success,
+        'position': driver.position,
     }
     return render(request, 'hercules_app/panel.html', args)
 

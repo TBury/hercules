@@ -123,7 +123,7 @@ class Driver(models.Model):
 
 class Vehicle(models.Model):
     id = models.AutoField(primary_key=True)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='vehicles', null=True)
     model = models.CharField(max_length=80)
