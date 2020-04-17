@@ -83,6 +83,7 @@ def download_assistant(request):
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'avatar': driver_info.avatar,
     }
     return render(request, 'hercules_app/download.html', args)
 
@@ -107,6 +108,7 @@ def drivers_card(request):
     dispositions = Disposition.objects.filter(driver=driver)[:5]
     args = {
         'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
         'company': driver_info.company,
         'statistics': statistics,
         'dispositions': dispositions,
@@ -121,6 +123,7 @@ def add_delivery(request):
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'avatar': driver_info.avatar,
     }
     return render(request, 'hercules_app/add_delivery.html', args)
 
@@ -131,6 +134,7 @@ def send_first_screenshot(request):
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'avatar': driver_info.avatar,
     }
     if request.method == 'POST':
         form = FirstScreenshotForm(request.POST, request.FILES)
@@ -155,6 +159,7 @@ def send_second_screenshot(request):
         'nick': driver_info.nick,
         'company': driver_info.company,
         'is_automatic': is_automatic,
+        'avatar': driver_info.avatar,
     }
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
@@ -212,6 +217,7 @@ def add_waybill(request):
     driver_inf = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'avatar': driver_info.avatar,
     }
 
     waybill_id = request.session.get('waybill_id')
@@ -274,6 +280,7 @@ def OffersView(request):
     driver = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'avatar': driver_info.avatar,
     }
     parameters = ['loading_city', 'loading_country',
                   'unloading_city', 'unloading_country']
@@ -298,11 +305,8 @@ def OffersView(request):
 @login_required
 def OfferDetailsView(request, offer_id):
     driver_info = Driver.get_driver_info(request)
-    driver = {
-        'nick': driver_info.nick,
-        'company': driver_info.company,
-    }
     offer = Gielda.objects.get(id=offer_id)
+    driver = Driver.objects.get(nick=driver_info.nick)
     try:
         company_drivers_count = Company.objects.values_list(
             'drivers_count', flat=True).get(name=driver_info.company)
@@ -320,6 +324,7 @@ def ChooseDriverView(request):
     driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
         'company': driver_info.company,
     }
     company_drivers_count = Company.objects.values_list(
@@ -349,6 +354,7 @@ def DisposeOffer(request, driver_id):
     disposition.tonnage = offer.tonnage
     disposition.driver = Driver.objects.get(id=driver_id)
     request.session['dispose_offer_success'] = True
+    Gielda.objects.get(id=offer_id).delete()
     return redirect('panel')
 
 
@@ -377,6 +383,7 @@ def FindCompanyView(request):
     driver = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'avatar': driver_info.avatar,
     }
     companies = Company.objects.all().order_by('is_recruiting')
     return render(request, 'hercules_app/find_company.html', {'driver': driver, 'companies': companies})

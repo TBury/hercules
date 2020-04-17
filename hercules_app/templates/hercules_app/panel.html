@@ -206,36 +206,48 @@
                                 </p>
                             </header>
                             {% for disposition in dispositions %}
-                            <nav class="level disposition">
-                                <div class="level-item loading-city">
-                                    <img src="{% static '/assets/countries/france.png' %}"
-                                        class="country-icon">
-                                    <span class="city-and-company">
-                                        <p class="city">{{ disposition.loading_city }}</p>
-                                        <img src="{% static '/assets/companies/renar_logistik.png' %}"
-                                            alt="">
-                                    </span>
+                            <div class="columns disposition">
+                                <div class="column">
+                                    <div class="level-item loading-city">
+                                        {% with '/assets/countries/'|add:disposition.loading_country|add:'.png' as image_static %}
+                                        <img src="{% static image_static %}" class="country-icon">
+                                        {% endwith %}
+                                        <span class="city-and-company">
+                                            <p class="city">{{ disposition.loading_city }}</p>
+                                            {% with '/assets/companies/'|add:disposition.loading_spedition|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="spedition">
+                                            {% endwith %}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="level-item unloading-city">
-                                    <img src="{% static '/assets/countries/france.png' %}"
-                                        class="country-icon">
-                                    <span class="city-and-company">
-                                        <p class="city">{{ disposition.unloading_city }}</p>
-                                        <img src="{% static '/assets/companies/renar_logistik.png' %}"
-                                            alt="">
-                                    </span>
+                                <div class="column">
+                                    <div class="level-item unloading-city">
+                                        {% with '/assets/countries/'|add:disposition.unloading_country|add:'.png' as image_static %}
+                                        <img src="{% static image_static %}" class="country-icon">
+                                        {% endwith %}
+                                        <span class="city-and-company">
+                                            <p class="city">{{ disposition.unloading_city }}</p>
+                                            {% with '/assets/companies/'|add:disposition.unloading_spedition|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="spedition">
+                                            {% endwith %}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="level-item cargo">
-                                    <span class="cargo">
-                                        {{ disposition.cargo }}
-                                        <br>
-                                        {{ disposition.tonnage }} kg
-                                        </sp>
+                                <div class="column">
+                                    <div class="level-item cargo">
+                                        <span class="cargo">
+                                            <b>{{ disposition.cargo }}</b>
+                                            <br>
+                                            {{ disposition.tonnage }} kg
+                                            </sp>
+                                    </div>
                                 </div>
-                                <div class="level-item ">
-                                    <a class="button check-details is-rounded">Sprawdź szczegóły</a>
+                                <div class="column">
+                                    <div class="level-item ">
+                                        <a class="button check-details is-rounded">Sprawdź szczegóły</a>
+                                    </div>
                                 </div>
-                            </nav>
+                            </div>
                             {% endfor %}
                         </div>
                     </div>

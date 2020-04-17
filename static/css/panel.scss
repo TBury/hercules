@@ -73,9 +73,17 @@
 
 .disposition {
     margin-top: 25px !important;
+    .country-icon {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    .spedition {
+         width: 96px;
+         height: 48px;
+    }
 }
 .cargo {
-    font-size: 12px;
+    font-size: 15px;
     text-align: right;
 }
 

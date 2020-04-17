@@ -51,7 +51,7 @@
         <div class="navbar-end is-hidden-mobile">
             <a class="navbar-item">
                 <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{% static '/assets/avatar_krawczyk.jpg' %}">
+                    <img class="avatar" src="{{ avatar }}">
                 </figure>
                 <span class="user">
                     <p class="username">{{ nick }}</p>
@@ -91,23 +91,26 @@
                         Kierowca
                     </p>
                     <ul class="menu-list">
-                        <li>
-                            <a href="/Companies">
-                                <p class="option search-company">
-                                    Znajdź firmę
-                                </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Vehicles">
-                                <p class="option vehicles">Twoje pojazdy</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Deliveries">
-                                <p class="option deliveries">Twoje dostawy</p>
-                            </a>
-                        </li>
+                         <li>
+                             <a href="/drivers-card">
+                                 <p class="option driver-card">Karta kierowcy</p>
+                             </a>
+                         </li>
+                         <li>
+                             <a class="is-active">
+                                 <p class="option add-delivery">Dodaj dostawę</p>
+                             </a>
+                         </li>
+                         <li>
+                             <a href="/Gielda/Offers">
+                                 <p class="option gielda">Giełda zleceń</p>
+                             </a>
+                         </li>
+                         <li>
+                             <a href="/Dispositions">
+                                 <p class="option dispositions">Dyspozycje</p>
+                             </a>
+                         </li>
                     </ul>
                     <p class="menu-label">
                         Spedycja
