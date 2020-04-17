@@ -19,6 +19,7 @@ from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
 from decimal import Decimal
+import os, glob
 
 
 def index(request):
@@ -180,6 +181,7 @@ def loading_page(request):
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'avatar': driver_info.avatar,
     }
     return render(request, 'hercules_app/loading.html', args)
 
@@ -232,8 +234,21 @@ def add_waybill(request):
         if form.is_valid():
             waybill = form.save(commit=False)
             waybill.driver = driver
-            waybill.screens_id = args['screen_id']
+            if is_automatic:
+                waybill.screens_id = args['screen_id']
             waybill.save()
+            try:
+                disposition = Disposition.objects.filter(
+                    driver = driver,
+                    loading_city = waybill.loading_city,
+                    loading_spedition = waybill.loading_spedition,
+                    unloading_city = waybill.unloading_city,
+                    unloading_spedition = waybill.unloading_spedition,
+                    cargo = waybill.cargo,
+                    tonnage = waybill.tonnage,
+                ).delete()
+            except:
+                pass
             if driver.is_employeed == False:
                 statistics = DriverStatistics.objects.get(driver_id=driver)
                 DriverStatistics.objects.filter(driver_id=driver).update(
@@ -247,6 +262,9 @@ def add_waybill(request):
                 )
                 Waybill.objects.filter(id=waybill_id).update(
                     status="accepted")
+                if is_automatic:
+                    for screen in glob.glob('static/assets/waybills/' + args['screen_id'] + "*.png"):
+                        os.remove(screen)
             request.session.modified = True
             request.session['waybill_success'] = True
             del request.session['waybill_id']
@@ -270,6 +288,7 @@ def add_waybill(request):
             form = AddWaybillForm()
 
     return render(request, 'hercules_app/verify.html', {'form': form, 'args': args, 'driver': driver_inf, 'is_automatic': is_automatic})
+
 
 
 @login_required

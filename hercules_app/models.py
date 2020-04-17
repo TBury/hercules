@@ -44,7 +44,7 @@ class Company(models.Model):
 class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     nick = models.CharField(max_length=64, null=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
     avatar = models.ImageField(upload_to='avatars', null=True)
     last_delivery = models.DateTimeField(auto_now_add=True)
     length_of_service = models.DateTimeField(auto_now_add=True)
