@@ -55,6 +55,7 @@ def panel(request):
 
     statistics = DriverStatistics.get_driver_statistics(driver)
     dispositions = Disposition.objects.filter(driver=driver)[:3]
+    offers = Gielda.objects.all()[:3]
 
     args = {
         'nick': driver_info.nick,
@@ -64,6 +65,7 @@ def panel(request):
         'vehicle': driver_info.vehicle,
         'dispositions': dispositions,
         'position': driver.position,
+        'offers': offers,
     }
     response = render(request, 'hercules_app/panel.html', args)
 

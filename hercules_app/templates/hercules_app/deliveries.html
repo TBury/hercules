@@ -142,6 +142,7 @@
                 <header>
                     <h1 class="title">Twoje dostawy</h1>
                 </header>
+                {% if deliveries %}
                 {% for delivery in deliveries %}
                 <div class="box delivery {{ delivery.status }}">
                     <div class="columns">
@@ -195,6 +196,20 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% else %}
+                <div class="box delivery">
+                    <div class="no-disposition">
+                        <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
+                        <span class="no-disposition-text">
+                            <h1 class="no-disposition-title">Nie masz żadnych ostatnich zleceń.</h1>
+                            <p class="sub-text">
+                                Wykonaj zlecenia w grze, a następnie dodaj je przez formularz Nowa dostawa lub włącz
+                                aplikację Assistant, która zadba o automatyczne wysłanie po zakończeniu trasy.
+                            </p>
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
             </main>
         </div>
     </div>

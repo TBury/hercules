@@ -128,7 +128,11 @@
     }
 
     .settings:before {
-        background: url('/static/assets/icons/settings_active.png') no-repeat;
+        background: url('/static/assets/icons/settings.png') no-repeat;
+    }
+
+    .drivers:before {
+        background: url('/static/assets/icons/drivers.png') no-repeat;
     }
 }
 

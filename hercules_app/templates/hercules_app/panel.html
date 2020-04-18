@@ -121,6 +121,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
+                        {% if position == "" %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -128,9 +129,19 @@
                                 </p>
                             </a>
                         </li>
+                        {% endif %}
+                        {% if position != "" %}
+                        <li>
+                            <a href="/Drivers">
+                                <p class="option drivers">
+                                    Kierowcy
+                                </p>
+                            </a>
+                        </li>
+                        {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">Twoje pojazdy</p>
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy firmowe {% endif %}</p>
                             </a>
                         </li>
                         <li>
@@ -238,7 +249,7 @@
                                 </div>
                                 <div class="column">
                                     <div class="level-item ">
-                                        <a class="button check-details is-rounded">Sprawdź szczegóły</a>
+                                        <a href="/Dispositions" class="button check-details is-rounded">Sprawdź szczegóły</a>
                                     </div>
                                 </div>
                             </div>
@@ -329,6 +340,86 @@
                                 </span>
                             </div>
                             {% endif %}
+                        </div>
+                        <div class="box card">
+                            <header class="card-header">
+                                <a href="" class="card-header-icon">
+                                    <span class="icon">
+                                        <i class="" aria-hidden="true">
+                                            <figure class="image is-48x48">
+                                                <img src="{% static '/assets/icons/dispositions-card.png' %}"
+                                                    alt="Image">
+                                            </figure>
+                                        </i>
+                                    </span>
+                                </a>
+                                <p class="card-header-title">
+                                    Promowane oferty z Giełdy zleceń
+                                </p>
+                            </header>
+                            {% if offers %}
+                            {% for offer in offers %}
+                            <div class="columns disposition">
+                                <div class="column">
+                                    <div class="level-item loading-city">
+                                        {% with '/assets/countries/'|add:offer.loading_country|add:'.png' as image_static %}
+                                        <img src="{% static image_static %}" class="country-icon">
+                                        {% endwith %}
+                                        <span class="city-and-company">
+                                            <p class="city">{{ offer.loading_city }}</p>
+                                            {% with '/assets/companies/'|add:offer.loading_spedition|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="spedition">
+                                            {% endwith %}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="level-item unloading-city">
+                                        {% with '/assets/countries/'|add:offer.unloading_country|add:'.png' as image_static %}
+                                        <img src="{% static image_static %}" class="country-icon">
+                                        {% endwith %}
+                                        <span class="city-and-company">
+                                            <p class="city">{{ offer.unloading_city }}</p>
+                                            {% with '/assets/companies/'|add:offer.unloading_spedition|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="spedition">
+                                            {% endwith %}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="level-item cargo">
+                                        <span class="cargo">
+                                            <b>{{ offer.cargo }}</b>
+                                            <br>
+                                            {{ offer.tonnage }} kg
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="level-item price">
+                                        <b>{{ offer.price }}</b>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="level-item ">
+                                        <a href="/Gielda/Offers/{{ offer.id }}" class="button check-details is-rounded">Sprawdź
+                                            szczegóły</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            <div class="no-disposition">
+                                <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
+                                <span class="no-disposition-text">
+                                    <h1 class="no-disposition-title">Nie ma żadnych zleceń.</h1>
+                                    <p class="sub-text">
+                                        Tutaj pojawią się zlecenia z giełdy zleceń, które chcemy Ci polecić.
+                                    </p>
+                                </span>
+                            </div>
+                            {% endif %}
+                        </div>
                         </div>
                     </div>
             </main>

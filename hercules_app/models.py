@@ -243,9 +243,10 @@ class Gielda(models.Model):
         return str(self.id)
 
 class Rozpiska(models.Model):
-    rozpiska_id = models.AutoField(primary_key=True)
+    rozpiska_id = models.IntegerField(default=0)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, default='')
-    first_disposition = models.ForeignKey('Disposition', on_delete=models.CASCADE, related_name='first_disposition', default='')
+    first_disposition = models.ForeignKey(
+        'Disposition', on_delete=models.CASCADE, related_name='first_disposition', default='')
     second_disposition = models.ForeignKey(
         'Disposition', on_delete=models.CASCADE, related_name='second_disposition', default='')
     third_disposition = models.ForeignKey(
