@@ -341,40 +341,59 @@
                         <div class="tile is-parent">
                             <div class="tile is-child">
                                 <div class="box card achievements">
-                                    <nav class="level">
-                                        <img src="{% static '/assets/icons/leaf.png' %}" alt="">
-                                        <span class="achievement">
-                                            <h1 class="achievement-title">Ekologiczny <span
-                                                    class="colored">kierowca</span>
-                                            </h1>
-                                            <p class="achievement-text">
-                                                Kierowca jeździ ekologicznie i ekonomicznie - jego średnie spalanie
-                                                daje
-                                                wymierne korzyści.
-                                            </p>
-                                        </span>
-                                    </nav>
-                                    <nav class="level">
-                                        <img src="{% static '/assets/icons/speedometer.png' %}" alt="">
-                                        <span class="achievement">
-                                            <h1 class="achievement-title">Długodystansowiec
-                                            </h1>
-                                            <p class="achievement-text">
-                                                Kierowca przejechał ponad 1 milion kilometrów w barwach firmy.
-                                            </p>
-                                        </span>
-                                    </nav>
-                                    <nav class="level">
-                                        <img src="{% static '/assets/icons/business.png' %}" alt="">
-                                        <span class="achievement">
-                                            <h1 class="achievement-title">Ciężki<span class="colored">
-                                                    kaliber</span>
-                                            </h1>
-                                            <p class="achievement-text">
-                                                Kierowca przewiózł ponad 1 milion ton w barwach firmy.
-                                            </p>
-                                        </span>
-                                    </nav>
+                                    {% if achievements.first_timer %}
+                                        <nav class="level">
+                                            <i class="hello-icon">👋</i>
+                                            <span class="achievement">
+                                                <h1 class="achievement-title">Pierwsze <span
+                                                        class="colored">kroki</span>
+                                                </h1>
+                                                <p class="achievement-text">
+                                                    Pierwsze osiągnięcie kierowcy. Zaczął on przygodę z systemem Hercules.
+                                                </p>
+                                            </span>
+                                        </nav>
+                                        {% endif %}
+                                        {% if achievements.eco_driver %}
+                                        <nav class="level">
+                                            <img src="{% static '/assets/icons/leaf.png' %}" alt="">
+                                            <span class="achievement">
+                                                <h1 class="achievement-title">Ekologiczny <span
+                                                        class="colored">kierowca</span>
+                                                </h1>
+                                                <p class="achievement-text">
+                                                    Kierowca jeździ ekologicznie i ekonomicznie - jego średnie spalanie
+                                                    daje
+                                                    wymierne korzyści.
+                                                </p>
+                                            </span>
+                                        </nav>
+                                        {% endif %}
+                                        {% if achievements.long_distance_drivr %}
+                                        <nav class="level">
+                                            <img src="{% static '/assets/icons/speedometer.png' %}" alt="">
+                                            <span class="achievement">
+                                                <h1 class="achievement-title">Długodystansowiec
+                                                </h1>
+                                                <p class="achievement-text">
+                                                    Kierowca przejechał ponad 1 milion kilometrów w barwach firmy.
+                                                </p>
+                                            </span>
+                                        </nav>
+                                        {% endif %}
+                                        {% if achievements.heavy_driver %}
+                                        <nav class="level">
+                                            <img src="{% static '/assets/icons/business.png' %}" alt="">
+                                            <span class="achievement">
+                                                <h1 class="achievement-title">Ciężki<span class="colored">
+                                                        kaliber</span>
+                                                </h1>
+                                                <p class="achievement-text">
+                                                    Kierowca przewiózł ponad 1 milion ton w barwach firmy.
+                                                </p>
+                                            </span>
+                                        </nav>
+                                        {% endif %}
                                 </div>
                             </div>
                         </div>

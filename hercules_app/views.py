@@ -12,7 +12,8 @@ from hercules_app.models import (
     Disposition,
     Waybill,
     Gielda,
-    Rozpiska
+    Rozpiska,
+    Achievement,
     )
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm
 from django.utils.encoding import smart_str
@@ -114,6 +115,7 @@ def drivers_card(request):
     driver_info = Driver.get_driver_info(request)
 
     statistics = DriverStatistics.get_driver_statistics(driver)
+    achievements = Achievement.objects.get(driver=driver)
     waybills = Waybill.objects.filter(driver=driver)[:5]
     args = {
         'nick': driver_info.nick,
@@ -122,6 +124,7 @@ def drivers_card(request):
         'statistics': statistics,
         'waybills': waybills,
         'vehicle': driver_info.vehicle,
+        'achievements': achievements,
     }
     return render(request, 'hercules_app/drivers-card.html', args)
 

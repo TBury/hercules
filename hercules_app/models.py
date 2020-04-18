@@ -304,3 +304,10 @@ class WorkApplications(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class Achievement(models.Model):
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    first_timer = models.BooleanField(default=True)
+    eco_driver = models.BooleanField(default=False)
+    long_distance_driver = models.BooleanField(default=False)
+    heavy_driver = models.BooleanField(default=False)

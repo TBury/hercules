@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
-from hercules_app.models import Driver, DriverStatistics
+from hercules_app.models import Driver, DriverStatistics, Achievement
 from .forms import CreateUserForm
 
 
@@ -16,6 +16,8 @@ def register(response):
             driver.save()
             statistics = DriverStatistics(driver_id=driver.id)
             statistics.save()
+            achievements = Achievement(driver=driver)
+            achievements.save()
             login(response, user)
             return redirect('hello')
         else:
