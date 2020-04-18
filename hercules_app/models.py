@@ -242,15 +242,19 @@ class Gielda(models.Model):
     def __str__(self):
         return str(self.id)
 
-
 class Rozpiska(models.Model):
-    rozpiska_id = models.IntegerField(default=0)
+    rozpiska_id = models.AutoField(primary_key=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, default='')
-    first_disposition_id = models.IntegerField(default=0)
-    second_disposition_id = models.IntegerField(default=0)
-    third_disposition_id = models.IntegerField(default=0)
-    fourth_disposition_id = models.IntegerField(default=0)
-    fifth_disposition_id = models.IntegerField(default=0)
+    first_disposition = models.ForeignKey('Disposition', on_delete=models.CASCADE, related_name='first_disposition', default='')
+    second_disposition = models.ForeignKey(
+        'Disposition', on_delete=models.CASCADE, related_name='second_disposition', default='')
+    third_disposition = models.ForeignKey(
+        'Disposition', on_delete=models.CASCADE, related_name='third_disposition', default='')
+    fourth_disposition = models.ForeignKey(
+        'Disposition', on_delete=models.CASCADE, related_name='fourth_disposition', default='')
+    fifth_disposition = models.ForeignKey(
+        'Disposition', on_delete=models.CASCADE, related_name='fifth_disposition', default='')
+
 
 
 class Disposition(models.Model):
@@ -269,10 +273,12 @@ class Disposition(models.Model):
     is_rozpiska = models.BooleanField(default=False)
     # field for dispositions from rozpiska only
     finished = models.BooleanField(default=False)
-    rozpiska = models.ForeignKey(Rozpiska, on_delete=models.CASCADE, default=0)
+    rozpiska = models.ForeignKey(Rozpiska, on_delete=models.CASCADE, default=0, blank=True, null=True)
 
     def __str__(self):
         return str(self.id)
+
+
 
 
 class CompanySettings(models.Model):

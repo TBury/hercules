@@ -391,20 +391,8 @@ def DisposeOffer(request, driver_id):
 @login_required
 def ShowDispositionsView(request):
     driver = Driver.objects.get(user=request.user)
-    dispositions = Disposition.objects.all().filter(driver=driver)
-    rozpiski_objects = Rozpiska.objects.all().filter(driver=driver)
-    rozpiski = []
-    for rozpiska in rozpiski_objects:
-        rozpiski.append(Disposition.objects.get(
-            id=rozpiska.first_disposition_id))
-        rozpiski.append(Disposition.objects.get(
-            id=rozpiska.second_disposition_id))
-        rozpiski.append(Disposition.objects.get(
-            id=rozpiska.third_disposition_id))
-        rozpiski.append(Disposition.objects.get(
-            id=rozpiska.fourth_disposition_id))
-        rozpiski.append(Disposition.objects.get(
-            id=rozpiska.fifth_disposition_id))
+    dispositions = Disposition.objects.all().filter(driver=driver).exclude(is_rozpiska=True)
+    rozpiski = Rozpiska.objects.all().filter(driver=driver)
     return render(request, 'hercules_app/dispositions.html', {'driver': driver, 'dispositions': dispositions, 'rozpiski': rozpiski})
 
 

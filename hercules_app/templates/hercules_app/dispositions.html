@@ -140,65 +140,67 @@
                 <header>
                     <h1 class="title">Dyspozycje</h1>
                 </header>
+                {% if rozpiski %}
+                {% for rozpiska in rozpiski %}
                 <div class="box card">
                     <div class="columns">
                         <div class="column">
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.0.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.0.loading_country|add:'.png' as image_static %}
+                                class="rozpiska-loading-info {% if rozpiska.first_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.first_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.0.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.0.loading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.first_disposition.loading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.first_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.1.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.1.loading_country|add:'.png' as image_static %}
+                                class="rozpiska-loading-info {% if rozpiska.second_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.second_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.1.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.1.loading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.second_disposition.loading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.second_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.2.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.2.loading_country|add:'.png' as image_static %}
+                                class="rozpiska-loading-info {% if rozpiska.third_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.third_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.2.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.2.loading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.third_disposition.loading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.third_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.3.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.3.loading_country|add:'.png' as image_static %}
+                                class="rozpiska-loading-info {% if rozpiska.fourth_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.fourth_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.3.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.3.loading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.fourth_disposition.loading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.fourth_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-loading-info {% if rozpiski.4.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.4.loading_country|add:'.png' as image_static %}
+                                class="rozpiska-loading-info {% if rozpiska.fifth_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.fifth_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.4.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.4.loading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.fifth_disposition.loading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.fifth_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -206,142 +208,145 @@
                         </div>
                         <div class="column">
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.0.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.0.unloading_country|add:'.png' as image_static %}
+                                class="rozpiska-unloading-info {% if rozpiska.first_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.first_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.0.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.0.unloading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.first_disposition.unloading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.first_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.1.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.1.unloading_country|add:'.png' as image_static %}
+                                class="rozpiska-unloading-info {% if rozpiska.second_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.second_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.1.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.1.unloading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.second_disposition.unloading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.second_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.2.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.2.unloading_country|add:'.png' as image_static %}
+                                class="rozpiska-unloading-info {% if rozpiska.third_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.third_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.2.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.2.unloading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.third_disposition.unloading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.third_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.3.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.3.unloading_country|add:'.png' as image_static %}
+                                class="rozpiska-unloading-info {% if rozpiska.fourth_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.fourth_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.3.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.3.unloading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.fourth_disposition.unloading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.fourth_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
-                                class="rozpiska-unloading-info {% if rozpiski.4.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:rozpiski.4.unloading_country|add:'.png' as image_static %}
+                                class="rozpiska-unloading-info {% if rozpiska.fifth_disposition.finished %} finished {% endif %}">
+                                {% with '/assets/countries/'|add:rozpiska.fifth_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ rozpiski.4.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:rozpiski.4.unloading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ rozpiska.fifth_disposition.unloading_city }}</p>
+                                    {% with '/assets/companies/'|add:rozpiska.fifth_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                         </div>
                         <div class="column">
-                            <div class="rozpiska-cargo {% if rozpiski.0.finished %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiska.first_disposition.finished %} finished {% endif %}">
                                 <span class="cargo">
-                                    <b>{{ rozpiski.0.cargo }}</b>
+                                    <b>{{ rozpiska.first_disposition.cargo }}</b>
                                     <br>
-                                    {{ rozpiski.0.tonnage }} kg
+                                    {{ rozpiska.first_disposition.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo {% if rozpiski.1.finished %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiska.second_disposition.finished %} finished {% endif %}">
                                 <span class="cargo">
-                                    <b>{{ rozpiski.1.cargo }}</b>
+                                    <b>{{ rozpiska.second_disposition.cargo }}</b>
                                     <br>
-                                    {{ rozpiski.1.tonnage }} kg
+                                    {{ rozpiska.second_disposition.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo {% if rozpiski.2.finished %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiska.third_disposition.finished %} finished {% endif %}">
                                 <span class="cargo">
-                                    <b>{{ rozpiski.2.cargo }}</b>
+                                    <b>{{ rozpiska.third_disposition.cargo }}</b>
                                     <br>
-                                    {{ rozpiski.2.tonnage }} kg
+                                    {{ rozpiska.third_disposition.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo {% if rozpiski.3.finished %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiska.fourth_disposition.finished %} finished {% endif %}">
                                 <span class="cargo">
-                                    <b>{{ rozpiski.3.cargo }}</b>
+                                    <b>{{ rozpiska.fourth_disposition.cargo }}</b>
                                     <br>
-                                    {{ rozpiski.3.tonnage }} kg
+                                    {{ rozpiska.fourth_disposition.tonnage }} kg
                                 </span>
                             </div>
-                            <div class="rozpiska-cargo {% if rozpiski.4.finished %} finished {% endif %}">
+                            <div class="rozpiska-cargo {% if rozpiska.fifth_disposition.finished %} finished {% endif %}">
                                 <span class="cargo">
-                                    <b>{{ rozpiski.4.cargo }}</b>
+                                    <b>{{ rozpiska.fifth_disposition.cargo }}</b>
                                     <br>
-                                    {{ rozpiski.4.tonnage }} kg
+                                    {{ rozpiska.fifth_disposition.tonnage }} kg
                                 </span>
                             </div>
                         </div>
                         <div class="column">
-                            <div class="rozpiska-deadline {% if rozpiski.0.finished %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiska.first_disposition.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
-                                    {{ rozpiski.0.deadline }}
+                                    {{ rozpiska.first_disposition.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline {% if rozpiski.1.finished %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiska.second_disposition.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
-                                    {{ rozpiski.1.deadline }}
+                                    {{ rozpiska.second_disposition.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline {% if rozpiski.2.finished %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiska.third_disposition.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
-                                    {{ rozpiski.2.deadline }}
+                                    {{ rozpiska.third_disposition.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline {% if rozpiski.3.finished %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiska.fourth_disposition.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
-                                    {{ rozpiski.3.deadline }}
+                                    {{ rozpiska.fourth_disposition.deadline }}
                                 </span>
                             </div>
-                            <div class="rozpiska-deadline {% if rozpiski.4.finished %} finished {% endif %}">
+                            <div class="rozpiska-deadline {% if rozpiska.fifth_disposition.finished %} finished {% endif %}">
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
-                                    {{ rozpiski.4.deadline }}
+                                    {{ rozpiska.fifth_disposition.deadline }}
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% endif %}
+
                 {% for disposition in dispositions %}
                 <div class="box card">
                     <div class="columns">
