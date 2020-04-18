@@ -66,12 +66,12 @@
         <div class="navbar-end is-hidden-mobile">
             <a class="navbar-item">
                 <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{{ driver.avatar }}">
+                    <img class="avatar" src="{{ args.avatar }}">
                 </figure>
                 <span class="user">
-                    <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company != "" %}
-                    <p class="company">{{ driver.company }}</p>
+                    <p class="username">{{ args.nick }}</p>
+                    {% if args.company != "" %}
+                    <p class="company">{{ args.company }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -156,6 +156,7 @@
                     <h1 class="title">Twoje pojazdy </h1>
                 </header>
                 <a href="Vehicles/AddNewVehicle" class="button add-vehicle">+ Dodaj pojazd</a>
+                {% if vehicles %}
                 {% for vehicle in vehicles %}
                 <div class="box card company-offer">
                     <a href="Vehicles/{{ vehicle.id }}">
@@ -193,6 +194,24 @@
                     </a>
                 </div>
                 {% endfor %}
+                {% else %}
+                <div class="box card no-vehicle-container">
+                    <div class="no-vehicle">
+                        <img src="{% static 'assets/icons/no_vehicle.png' %}" class="no-vehicle-icon">
+                        <span class="no-vehicle-text">
+                            <h1 class="no-vehicle-title">Nie masz żadnego pojazdu.</h1>
+                            <p class="sub-text">
+                                Nie został Ci przydzielony żaden pojazd.
+                                {% if position == "Właściciel" or position == "Dyspozytor" %}
+                                Dodaj pojazd w zakładce Pojazdy.
+                                {% else %}
+                                Zgłoś tę informację właścicielowi lub dyspozytorowi firmy.
+                                {% endif %}
+                            </p>
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
             </main>
         </div>
     </div>

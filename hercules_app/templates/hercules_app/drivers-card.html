@@ -396,16 +396,17 @@
                             Ostatnie zlecenia
                         </p>
                     </header>
-                    {% for disposition in dispositions %}
-                    <div class="columns disposition">
+                    {% if waybills %}
+                    {% for waybill in waybills %}
+                    <div class="columns waybill">
                         <div class="column">
                             <div class="level-item loading-city">
-                                {% with '/assets/countries/'|add:disposition.loading_country|add:'.png' as image_static %}
+                                {% with '/assets/countries/'|add:waybill.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ disposition.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:disposition.loading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ waybill.loading_city }}</p>
+                                    {% with '/assets/companies/'|add:waybill.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="spedition">
                                     {% endwith %}
                                 </span>
@@ -413,12 +414,12 @@
                         </div>
                         <div class="column">
                             <div class="level-item unloading-city">
-                                {% with '/assets/countries/'|add:disposition.unloading_country|add:'.png' as image_static %}
+                                {% with '/assets/countries/'|add:waybill.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
-                                    <p class="city">{{ disposition.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:disposition.unloading_spedition|add:'.png' as image_static %}
+                                    <p class="city">{{ waybill.unloading_city }}</p>
+                                    {% with '/assets/companies/'|add:waybill.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="spedition">
                                     {% endwith %}
                                 </span>
@@ -427,19 +428,30 @@
                         <div class="column">
                             <div class="level-item cargo">
                                 <span class="cargo">
-                                    <b>{{ disposition.cargo }}</b>
+                                    <b>{{ waybill.cargo }}</b>
                                     <br>
-                                    {{ disposition.tonnage }} kg
+                                    {{ waybill.tonnage }} kg
                                     </sp>
                             </div>
                         </div>
                         <div class="column">
                             <div class="level-item ">
-                                <a class="button check-details is-rounded">Sprawdź szczegóły</a>
+                                <a href="Deliveries/{{ waybill.id }}" class="button check-details is-rounded">Sprawdź szczegóły</a>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
+                    {% else %}
+                    <div class="no-disposition">
+                        <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
+                        <span class="no-disposition-text">
+                            <h1 class="no-disposition-title">Nie masz żadnych ostatnich zleceń.</h1>
+                            <p class="sub-text">
+                                Wykonaj zlecenia w grze, a następnie dodaj je przez formularz Nowa dostawa lub włącz aplikację Assistant, która zadba o automatyczne wysłanie po zakończeniu trasy.
+                            </p>
+                        </span>
+                    </div>
+                    {% endif %}
                 </div>
             </main>
         </div>

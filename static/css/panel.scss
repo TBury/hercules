@@ -100,14 +100,16 @@
 }
 
 .no-disposition-icon,
-.no-vehicle-icon {
+.no-vehicle-icon,
+.no-offers-icon {
     width: 64px;
     height: 64px;
     margin-right: 25px;
 }
 
 .no-disposition,
-.no-vehicle {
+.no-vehicle,
+.no-offers {
     display: flex;
     justify-content: center;
     margin-top: 25px;
@@ -115,7 +117,8 @@
 }
 
 .no-disposition-title,
-.no-vehicle-title {
+.no-vehicle-title,
+.no-offers-title {
     font-weight: 700;
     font-size: 1.75rem;
 }

@@ -107,13 +107,13 @@ def drivers_card(request):
     driver_info = Driver.get_driver_info(request)
 
     statistics = DriverStatistics.get_driver_statistics(driver)
-    dispositions = Disposition.objects.filter(driver=driver)[:5]
+    waybills = Waybill.objects.filter(driver=driver)[:5]
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
         'company': driver_info.company,
         'statistics': statistics,
-        'dispositions': dispositions,
+        'waybills': waybills,
         'vehicle': driver_info.vehicle,
     }
     return render(request, 'hercules_app/drivers-card.html', args)
@@ -439,15 +439,21 @@ def CompanyVehiclesView(request):
         is_removed = False
 
     driver_info = Driver.get_driver_info(request)
-    driver = {
+    args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
         'company': driver_info.company,
     }
-    company_id = Company.objects.only('id').filter(name=driver_info.company)
-    vehicles = Vehicle.objects.all().filter(
+
+
+    if driver_info.company != "":
+        company_id = Company.objects.only('id').filter(name=driver_info.company)
+        vehicles = Vehicle.objects.all().filter(
         company=company_id[0])  # querysets are lazy
-    return render(request, 'hercules_app/vehicles.html', {'driver': driver, 'vehicles': vehicles, 'is_edited': is_edited, 'is_added': is_added, 'is_removed': is_removed})
+    else:
+        driver = Driver.objects.get(nick=driver_info.nick)
+        vehicles = Vehicle.objects.all().filter(driver=driver)
+    return render(request, 'hercules_app/vehicles.html', {'args': args, 'vehicles': vehicles, 'is_edited': is_edited, 'is_added': is_added, 'is_removed': is_removed})
 
 def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)

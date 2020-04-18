@@ -264,6 +264,7 @@
                             </div>
                         </div>
                     </form>
+                    {% if offers %}
                     {% for offer in offers %}
                     <div class="box card offer-container">
                         <div class="columns offer">
@@ -312,6 +313,19 @@
                         </div>
                     </div>
                     {% endfor %}
+                    {% else %}
+                    <div class="box card no-offers-container">
+                        <div class="no-offers">
+                            <img src="{% static 'assets/icons/no_offers.png' %}" class="no-offers-icon">
+                            <span class="no-offers-text">
+                                <h1 class="no-offers-title">Nic nie znaleźliśmy.</h1>
+                                <p class="sub-text">
+                                    Spróbuj zmienić filtry wyszukiwania. Możesz też dodać własne zlecenie.
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                    {% endif %}
                 </header>
             </main>
         </div>
