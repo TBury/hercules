@@ -48,16 +48,6 @@ def hello(request):
 
 @login_required
 def panel(request):
-    waybill_success = request.session.get('waybill_success')
-    if waybill_success is True:
-        request.session.modified = True
-        del request.session['waybill_success']
-
-    dispose_offer_success = request.session.get('dispose_offer_success')
-    if dispose_offer_success is True:
-        request.session.modified = True
-        del request.session['dispose_offer_success']
-
     driver = Driver.objects.get(user=request.user)
 
     driver_info = Driver.get_driver_info(request)
@@ -72,11 +62,28 @@ def panel(request):
         'statistics': statistics,
         'vehicle': driver_info.vehicle,
         'dispositions': dispositions,
-        'waybill_success': waybill_success,
-        'dispose_offer_success': dispose_offer_success,
         'position': driver.position,
     }
-    return render(request, 'hercules_app/panel.html', args)
+    response = render(request, 'hercules_app/panel.html', args)
+
+    waybill_success = request.session.get('waybill_success')
+    if waybill_success is True:
+        cookie = SetCookie(request, response, 'waybill_success')
+
+    dispose_offer_success = request.session.get('dispose_offer_success')
+    if dispose_offer_success is True:
+        cookie = SetCookie(request, response, 'dispose_offer_success')
+    return response
+
+
+def SetCookie(request, response, parameter_name):
+    '''
+    Set cookie for given parameter
+    '''
+    request.session.modified = True
+    del request.session[parameter_name]
+    response.set_cookie(parameter_name, 'True', max_age=5, samesite='Strict')
+    return response
 
 
 @login_required
@@ -421,23 +428,6 @@ def CompanyDetailsView(request, company_id):
     return render(request, 'hercules_app/company_profile.html', {'driver': driver, 'company': company})
 
 def CompanyVehiclesView(request):
-    try:
-        is_edited = request.session.get('vehicle_edited')
-        del request.session['vehicle_edited']
-    except:
-        is_edited = False
-
-    try:
-        is_added = request.session.get('vehicle_added')
-        del request.session['vehicle_added']
-    except:
-        is_added = False
-    try:
-        is_removed = request.session.get('vehicle_deleted')
-        del request.session['vehicle_deleted']
-    except:
-        is_removed = False
-
     driver_info = Driver.get_driver_info(request)
     args = {
         'nick': driver_info.nick,
@@ -445,15 +435,29 @@ def CompanyVehiclesView(request):
         'company': driver_info.company,
     }
 
-
     if driver_info.company != "":
-        company_id = Company.objects.only('id').filter(name=driver_info.company)
+        company_id = Company.objects.only(
+            'id').filter(name=driver_info.company)
         vehicles = Vehicle.objects.all().filter(
-        company=company_id[0])  # querysets are lazy
+            company=company_id[0])  # querysets are lazy
     else:
         driver = Driver.objects.get(nick=driver_info.nick)
         vehicles = Vehicle.objects.all().filter(driver=driver)
-    return render(request, 'hercules_app/vehicles.html', {'args': args, 'vehicles': vehicles, 'is_edited': is_edited, 'is_added': is_added, 'is_removed': is_removed})
+
+    response = render(request, 'hercules_app/vehicles.html',
+                      {'args': args, 'vehicles': vehicles})
+
+    is_edited = request.session.get('vehicle_edited')
+    if is_edited:
+        cookie = SetCookie(request, response, 'vehicle_edited')
+    is_added = request.session.get('vehicle_added')
+    if is_added:
+        cookie = SetCookie(request, response, 'vehicle_added')
+    is_removed = request.session.get('vehicle_deleted')
+    if is_removed:
+        cookie = SetCookie(request, response, 'vehicle_deleted')
+
+    return response
 
 def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
@@ -463,12 +467,19 @@ def VehicleDetailsView(request, vehicle_id):
         'company': driver_info.company,
     }
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
-    company_id = Company.objects.only('id').filter(name=driver_info.company)
-    company_drivers = Driver.objects.only('nick').filter(company=company_id[0])
-    drivers_dict = {}
-    for company_driver in company_drivers:
-        drivers_dict[company_driver.id] = company_driver.nick
-    drivers = tuple(drivers_dict.items())
+    if driver_info.company != "":
+        company_id = Company.objects.only(
+            'id').filter(name=driver_info.company)
+        company_drivers = Driver.objects.only(
+            'nick').filter(company=company_id[0])
+        drivers_dict = {}
+        for company_driver in company_drivers:
+            drivers_dict[company_driver.id] = company_driver.nick
+            drivers = tuple(drivers_dict.items())
+    else:
+        driver = Driver.objects.get(nick=driver_info.nick)
+        driver_dict = {driver.id: driver.nick}
+        drivers = tuple(driver_dict.items())
     current_driver = vehicle.driver.id
     form = EditVehicleForm(drivers, current_driver, initial={
         'brand': vehicle.brand,
@@ -482,7 +493,7 @@ def VehicleDetailsView(request, vehicle_id):
         'driver': current_driver,
     })
     if request.method == "POST":
-        form = EditVehicleForm(drivers, current_driver, request.POST, instance=vehicle)
+        form = EditVehicleForm(drivers, current_driver, request.POST, request.FILES, instance=vehicle)
         if form.is_valid():
             new_driver = Driver.objects.get(id=form.data['driver'])
             form = form.save(commit=False)
@@ -511,19 +522,26 @@ def AddNewVehicleView(request):
         'avatar': driver_info.avatar,
         'company': driver_info.company,
     }
-    company_id = Company.objects.only('id').filter(name=driver_info.company)
-    company_drivers = Driver.objects.only('nick').filter(company=company_id[0])
-    drivers_dict = {}
-    for company_driver in company_drivers:
-        drivers_dict[company_driver.id] = company_driver.nick
-    drivers = tuple(drivers_dict.items())
-    form = AddVehicleForm(drivers)
+    if driver_info.company != "":
+        company_id = Company.objects.only('id').filter(name=driver_info.company)
+        company_drivers = Driver.objects.only('nick').filter(company=company_id[0])
+        drivers_dict = {}
+        for company_driver in company_drivers:
+            drivers_dict[company_driver.id] = company_driver.nick
+            drivers = tuple(drivers_dict.items())
+            form = AddVehicleForm(drivers)
+    else:
+        driver = Driver.objects.get(nick=driver_info.nick)
+        driver_dict = {driver.id: driver.nick}
+        drivers = tuple(driver_dict.items())
+        form = AddVehicleForm(drivers)
     if request.method == "POST":
         form = AddVehicleForm(drivers, request.POST, request.FILES)
         if form.is_valid():
             vehicle = form.save(commit=False)
-            company = Company.objects.get(name=driver_info.company)
-            vehicle.company = company
+            if driver_info.company != "":
+                company = Company.objects.get(name=driver_info.company)
+                vehicle.company = company
             vehicle.driver = Driver.objects.get(id=form.data['driver'])
             vehicle.save()
             request.session['vehicle_added'] = True

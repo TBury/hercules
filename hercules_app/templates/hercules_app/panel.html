@@ -31,18 +31,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    {% if waybill_success or dispose_offer_success %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-    {% endif %}
-    {% if waybill_success %}
-    <script src="{% static 'js/add_waybill_success.js' %}"></script>
-    {% endif %}
-    {% if dispose_offer_success %}
-    <script src="{% static 'js/dispose_offer_success.js' %}"></script>
-    {% endif %}
+    <script src="{% static 'js/toast.js' %}"></script>
     <title> Panel użytkownika | Hercules</title>
 </head>
 

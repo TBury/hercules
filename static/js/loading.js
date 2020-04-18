@@ -4,6 +4,9 @@ $.ajax({
         location.href = "/add-waybill"
     },
     error: function () {
-        console.log("Wystąpił błąd z połączeniem");
+        toastr.options = {
+            toastClass: 'notification is-danger',
+        };
+        toastr.error("Wystąpił problem z połączeniem. Sprawdź swoje łącze internetowe", "Mamy problem");
     }
 });

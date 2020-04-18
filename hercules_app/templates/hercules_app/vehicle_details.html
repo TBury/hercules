@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script defer src="{% static 'js/delete_vehicle.js' %}"></script>
+    <script defer src="{% static 'js/edit_vehicle.js' %}"></script>
     <title> Szczegóły pojazdu | Hercules</title>
 </head>
 
@@ -56,7 +57,7 @@
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company != "" %}
+                    {% if driver.company is not None %}
                     <p class="company">{{ driver.company }}</p>
                     {% endif %}
                 </span>
@@ -141,26 +142,24 @@
                 <header>
                     <h1 class="title">Pojazd {{ vehicle.registration_number }} </h1>
                 </header>
-                <form action="/Vehicles/{{ vehicle.id }}" method="post">
+                <form action="/Vehicles/{{ vehicle.id }}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                <div class="box card">
-                    <a class="button delete-vehicle">
-                        <i class="fas fas fa-trash-alt delete-icon"> </i> Usuń pojazd</a>
-                    <div class="columns">
-                        <div class="column left">
-                            <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
-                            <span>
-                                <img src="{{ vehicle.photo.url }}" class="_vehicle-image">
-                                <label class="label image-label">Kliknij na zdjęcie, aby zmienić plik.</label>
-                            </span>
+                    <div class="box card">
+                        <a class="button delete-vehicle">
+                            <i class="fas fas fa-trash-alt delete-icon"> </i> Usuń pojazd</a>
+                        <div class="columns">
+                            <div class="column left">
+                                <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
+                                <span>
+                                    <img src="{{ vehicle.photo.url }}" class="_vehicle-image">
+                                    {{ form.photo }}
+                                </span>
                         </div>
                         <div class="column basic-vehicle-info">
                             <label class="label">Marka pojazdu</label>
                             {{ form.brand }}
                             <label class="label">Model pojazdu</label>
                             {{ form.model }}
-                            <label class="label">Kabina pojazdu</label>
-                            {{ form.cabin }}
                             <div class="company-drivers">
                                 <label class="label">Obecny kierowca</label>
                                 {{ form.driver }}

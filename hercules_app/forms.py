@@ -55,6 +55,7 @@ class EditVehicleForm(ModelForm):
     class Meta:
         model = Vehicle
         fields = (
+            'photo',
             'brand',
             'model',
             'cabin',
