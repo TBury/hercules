@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -75,9 +76,11 @@ class Driver(models.Model):
         driver = Driver.objects.get(user=username)
         if driver.is_employeed:
             company = Company.objects.get(name=driver.company.name)
+            company_id = company.id
             company = company.name
         else:
             company = ""
+            company_id = 0
 
         vehicle = Driver.get_vehicle_info(driver)
 
@@ -89,6 +92,7 @@ class Driver(models.Model):
         driver_info = {
             'nick': driver.nick,
             'company': company,
+            'company_id': company_id,
             'vehicle': vehicle,
             'avatar': driver.avatar.url,
         }
@@ -291,6 +295,8 @@ class CompanySettings(models.Model):
     periodic_norm_type = models.CharField(
         choices=PeriodicNormType.choices, default=PeriodicNormType.WEEK, max_length=5)
     periodic_norm_distance = models.PositiveIntegerField(default=0)
+    periodic_norm_start_date = models.DateTimeField(default=datetime.now())
+    periodic_norm_end_date = models.DateTimeField(default=datetime.now())
     disposition_norm = models.IntegerField(default=0)
     disposition_norm_type = models.CharField(
         choices=PeriodicNormType.choices, default=PeriodicNormType.WEEK, max_length=5)
@@ -301,6 +307,14 @@ class CompanySettings(models.Model):
 
     def __str__(self):
         return str(self.company_id)
+
+    def check_periodic_norm_distance(driver):
+        settings = CompanySettings.objects.get(company=driver.company)
+        distance_count = Waybill.objects.filter(driver=driver, finish_date__gte=settings.periodic_norm_start_date, finish_date__lte=settings.periodic_norm_end_date).aggregate(Sum('distance'))
+        distance_count = distance_count.get('distance__sum')
+        if distance_count is None:
+            distance_count = 0
+        return distance_count
 
 
 class WorkApplications(models.Model):

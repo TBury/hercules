@@ -14,6 +14,7 @@ from hercules_app.models import (
     Gielda,
     Rozpiska,
     Achievement,
+    CompanySettings,
     )
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm
 from django.utils.encoding import smart_str
@@ -55,8 +56,13 @@ def panel(request):
 
     statistics = DriverStatistics.get_driver_statistics(driver)
     dispositions = Disposition.objects.filter(driver=driver)[:3]
+    company = Company.objects.get(name=driver_info.company)
     offers = Gielda.objects.all()[:3]
 
+    periodic_norm_distance = CompanySettings.check_periodic_norm_distance(driver)
+    periodic_norm = CompanySettings.objects.get(company=company)
+    periodic_norm = periodic_norm.periodic_norm_distance
+    realised = periodic_norm_distance >= periodic_norm
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
@@ -66,8 +72,12 @@ def panel(request):
         'dispositions': dispositions,
         'position': driver.position,
         'offers': offers,
+        'periodic_norm_distance': periodic_norm_distance,
+        'periodic_norm': periodic_norm,
+        'realised': realised,
     }
     response = render(request, 'hercules_app/panel.html', args)
+
 
     waybill_success = request.session.get('waybill_success')
     if waybill_success is True:

@@ -107,25 +107,8 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active">
+                            <a class="is-active" href="/Dispositions">
                                 <p class="option dispositions">Dyspozycje</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="menu-label">
-                        Spedycja
-                    </p>
-                    <ul class="menu-list">
-                        <li>
-                            <a href="/Companies">
-                                <p class="option search-company">
-                                    Znajdź firmę
-                                </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Vehicles">
-                                <p class="option vehicles">Twoje pojazdy</p>
                             </a>
                         </li>
                         <li>
@@ -133,6 +116,61 @@
                                 <p class="option deliveries">Twoje dostawy</p>
                             </a>
                         </li>
+                    </ul>
+                    <p class="menu-label">
+                        Spedycja
+                    </p>
+                    <ul class="menu-list">
+                        {% if position == "" %}
+                        <li>
+                            <a href="/Companies">
+                                <p class="option search-company">
+                                    Znajdź firmę
+                                </p>
+                            </a>
+                        </li>
+                        {% elif position != "" %}
+                        <li>
+                            <a href="/Companies/">
+                                <p class="option company-profile">
+                                    Profil firmy
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Drivers">
+                                <p class="option drivers">
+                                    Kierowcy
+                                </p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="/Vehicles">
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% if position == "Właściciel" or position == "Spedytor" %}
+                        <li>
+                            <a href="/Waybills">
+                                <p class="option waybills">Listy przewozowe</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if position == "Właściciel" %}
+                        <li>
+                            <a href="/Settings">
+                                <p class="option settings">Ustawienia firmy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Statistics/">
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </aside>
@@ -347,6 +385,7 @@
                 {% endfor %}
                 {% endif %}
 
+                {% if dispositions %}
                 {% for disposition in dispositions %}
                 <div class="box card">
                     <div class="columns">
@@ -397,6 +436,18 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% else %}
+                <div class="box card no-disposition">
+                    <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
+                    <span class="no-disposition-text">
+                        <h1 class="no-disposition-title">Nie masz żadnych dyspozycji.</h1>
+                        <p class="sub-text">
+                            Tutaj pojawią się zlecenia od spedycji lub zlecenia,
+                            które potwierdziłeś na giełdzie zleceń.
+                        </p>
+                    </span>
+                </div>
+                {% endif %}
             </main>
         </div>
     </div>

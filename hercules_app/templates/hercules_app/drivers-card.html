@@ -93,7 +93,7 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a class="is-active">
+                            <a class="is-active" href='/drivers-card'>
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
@@ -112,11 +112,17 @@
                                 <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="/Deliveries">
+                                <p class="option deliveries">Twoje dostawy</p>
+                            </a>
+                        </li>
                     </ul>
                     <p class="menu-label">
                         Spedycja
                     </p>
                     <ul class="menu-list">
+                        {% if position == "" %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -124,16 +130,48 @@
                                 </p>
                             </a>
                         </li>
+                        {% elif position != "" %}
+                        <li>
+                            <a href="/Companies/">
+                                <p class="option company-profile">
+                                    Profil firmy
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Drivers">
+                                <p class="option drivers">
+                                    Kierowcy
+                                </p>
+                            </a>
+                        </li>
+                        {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">Twoje pojazdy</p>
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% if position == "Właściciel" or position == "Spedytor" %}
+                        <li>
+                            <a href="/Waybills">
+                                <p class="option waybills">Listy przewozowe</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if position == "Właściciel" %}
+                        <li>
+                            <a href="/Settings">
+                                <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/Deliveries">
-                                <p class="option deliveries">Twoje dostawy</p>
+                            <a href="/Statistics/">
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </aside>
@@ -296,14 +334,18 @@
                                         <div class="columns">
                                             <div class="column">
                                                 <figure class="vehicle-image">
+                                                    {% if vehicle.photo %}
                                                     <img class="" src="{{ vehicle.photo.url }}"
                                                         alt="">
+                                                    {% endif %}
                                                 </figure>
                                             </div>
                                             <div class="column">
                                                 <span class="vehicle-info">
-                                                    <img src="{% static '/assets/manufacturers/man.png' %}"
+                                                    {% with '/assets/manufacturers/'|add:vehicle.brand|lower|add:'.png' as image_static %}
+                                                    <img src="{% static image_static %}" class="manufacturer"
                                                         alt="Image">
+                                                    {% endwith %}
                                                     <h2 class="vehicle-name">{{ vehicle.brand }}
                                                         {{ vehicle.model }} {{ vehicle.cabin }}</h2>
                                                     <img src="{% static '/assets/WLS23090.png' %}"

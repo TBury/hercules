@@ -91,41 +91,24 @@
                         Kierowca
                     </p>
                     <ul class="menu-list">
-                         <li>
-                             <a href="/drivers-card">
-                                 <p class="option driver-card">Karta kierowcy</p>
-                             </a>
-                         </li>
-                         <li>
-                             <a class="is-active">
-                                 <p class="option add-delivery">Dodaj dostawę</p>
-                             </a>
-                         </li>
-                         <li>
-                             <a href="/Gielda/Offers">
-                                 <p class="option gielda">Giełda zleceń</p>
-                             </a>
-                         </li>
-                         <li>
-                             <a href="/Dispositions">
-                                 <p class="option dispositions">Dyspozycje</p>
-                             </a>
-                         </li>
-                    </ul>
-                    <p class="menu-label">
-                        Spedycja
-                    </p>
-                    <ul class="menu-list">
                         <li>
-                            <a href="/Companies">
-                                <p class="option search-company">
-                                    Znajdź firmę
-                                </p>
+                            <a href='/drivers-card'>
+                                <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/Vehicles">
-                                <p class="option vehicles">Twoje pojazdy</p>
+                            <a class="is-active" href="/add-delivery">
+                                <p class="option add-delivery">Dodaj dostawę</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Gielda/Offers">
+                                <p class="option gielda">Giełda zleceń</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Dispositions">
+                                <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
                         <li>
@@ -133,6 +116,61 @@
                                 <p class="option deliveries">Twoje dostawy</p>
                             </a>
                         </li>
+                    </ul>
+                    <p class="menu-label">
+                        Spedycja
+                    </p>
+                    <ul class="menu-list">
+                        {% if position == "" %}
+                        <li>
+                            <a href="/Companies">
+                                <p class="option search-company">
+                                    Znajdź firmę
+                                </p>
+                            </a>
+                        </li>
+                        {% elif position != "" %}
+                        <li>
+                            <a href="/Companies/">
+                                <p class="option company-profile">
+                                    Profil firmy
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Drivers">
+                                <p class="option drivers">
+                                    Kierowcy
+                                </p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="/Vehicles">
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% if position == "Właściciel" or position == "Spedytor" %}
+                        <li>
+                            <a href="/Waybills">
+                                <p class="option waybills">Listy przewozowe</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if position == "Właściciel" %}
+                        <li>
+                            <a href="/Settings">
+                                <p class="option settings">Ustawienia firmy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Statistics/">
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </aside>

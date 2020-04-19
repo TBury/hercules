@@ -71,6 +71,10 @@
     margin-left: 15px;
 }
 
+.manufacturer {
+    width: 96px;
+}
+
 .disposition {
     margin-top: 25px !important;
     .country-icon {
@@ -116,6 +120,22 @@
     padding-bottom: 20px;
 }
 
+.periodic-norm {
+    display: flex;
+    margin-top: 25px;
+    padding-bottom: 15px;
+}
+
+.periodic-norm-card {
+    width: 536px !important;
+}
+
+.periodic-norm-text {
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+}
+
 .no-disposition-title,
 .no-vehicle-title,
 .no-offers-title {
@@ -123,8 +143,29 @@
     font-size: 1.75rem;
 }
 
+.no-offers-container {
+    margin-top: 65px;
+}
+
 .sub-text {
     font-size: 14px;
     max-width: 360px;
     word-wrap: break-word;
+}
+
+.periodic-norm-distance {
+    font-size: 1.8rem;
+}
+
+.periodic-norm-distance.realised {
+    color: #44C4A1;
+}
+
+.periodic-norm-distance.not-realised {
+    color: #C70000;
+}
+
+.tick {
+    margin-left: 45px !important;
+    margin: auto;
 }

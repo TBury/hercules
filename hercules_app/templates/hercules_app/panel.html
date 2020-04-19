@@ -116,6 +116,11 @@
                                 <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="/Deliveries">
+                                <p class="option deliveries">Twoje dostawy</p>
+                            </a>
+                        </li>
                     </ul>
                     <p class="menu-label">
                         Spedycja
@@ -129,8 +134,14 @@
                                 </p>
                             </a>
                         </li>
-                        {% endif %}
-                        {% if position != "" %}
+                        {% elif position != "" %}
+                        <li>
+                            <a href="/Companies/">
+                                <p class="option company-profile">
+                                    Profil firmy
+                                </p>
+                            </a>
+                        </li>
                         <li>
                             <a href="/Drivers">
                                 <p class="option drivers">
@@ -141,14 +152,30 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy firmowe {% endif %}</p>
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% if position == "Właściciel" or position == "Spedytor" %}
+                        <li>
+                            <a href="/Waybills">
+                                <p class="option waybills">Listy przewozowe</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if position == "Właściciel" %}
+                        <li>
+                            <a href="/Settings">
+                                <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/Deliveries">
-                                <p class="option deliveries">Twoje dostawy</p>
+                            <a href="/Statistics/">
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </aside>
@@ -172,6 +199,32 @@
                                     </div>
                                 </div>
                             </article>
+                        </div>
+                        <div class="box card periodic-norm-card">
+                            <header class="card-header">
+                                <a href="" class="card-header-icon">
+                                    <span class="icon">
+                                        <i class="" aria-hidden="true">
+                                            <figure class="image is-48x48">
+                                                <img src="{% static '/assets/icons/periodic-norm.png' %}" alt="Image">
+                                            </figure>
+                                        </i>
+                                    </span>
+                                </a>
+                                <p class="card-header-title">
+                                    Norma tygodniowa
+                                </p>
+                            </header>
+                                <div class="periodic-norm">
+                                    <img src="{% static 'assets/icons/distance-card.png' %}" class="image is-64x64">
+                                    <span class="periodic-norm-text">
+                                        <label class="label">Pokonany dystans</label>
+                                        <b class="periodic-norm-distance {% if realised %} realised {% else %} not-realised {% endif %}">{{ periodic_norm_distance }} km</b> / {{ periodic_norm }} km
+                                    </span>
+                                    {% if realised %}
+                                    <img src="{% static 'assets/icons/tick.png' %}" class="image is-48x48 tick">
+                                    {% endif %}
+                                </div>
                         </div>
                         <div class="box card status-card">
                             <article class="media">
@@ -310,7 +363,9 @@
                                 </div>
                                 <div class="column">
                                     <span class="vehicle-info">
-                                        <img src="{% static '/assets/man.png' %}" alt="Image">
+                                        {% with '/assets/manufacturers/'|add:vehicle.brand|lower|add:'.png' as image_static %}
+                                        <img src="{% static image_static %}" class="manufacturer" alt="Image">
+                                        {% endwith %}
                                         <h2 class="vehicle-name">{% if vehicle %} {{ vehicle.brand }}
                                             {{ vehicle.model }} {{ vehicle.cabin }} {% endif %}</h2>
                                         <img src="{% static '/assets/WLS23090.png' %}"
