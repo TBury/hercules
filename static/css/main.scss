@@ -49,44 +49,44 @@
         height: 24px;
     }
 
-    a[class=is-active] > .main-site:before {
+    a[class=is-active]>.main-site:before {
         background: url('/static/assets/icons/main-panel-active.png') no-repeat;
     }
 
-    a[class=is-active] > .download:before {
+    a[class=is-active]>.download:before {
         background: url('/static/assets/icons/download_active.png') no-repeat;
     }
 
-    a[class=is-active] > .driver-card:before {
+    a[class=is-active]>.driver-card:before {
         background: url('/static/assets/icons/driver_card_active.png') no-repeat;
     }
 
-    a[class=is-active] > .add-delivery:before {
+    a[class=is-active]>.add-delivery:before {
         background: url('/static/assets/icons/add_delivery_active.png') no-repeat;
     }
 
-    a[class=is-active] > .gielda:before {
+    a[class=is-active]>.gielda:before {
         background: url('/static/assets/icons/gielda_active.png') no-repeat;
     }
 
-    a[class=is-active] > .dispositions:before {
+    a[class=is-active]>.dispositions:before {
         background: url('/static/assets/icons/map_active.png') no-repeat;
         height: 27px;
     }
 
-    a[class=is-active] > .search-company:before {
+    a[class=is-active]>.search-company:before {
         background: url('/static/assets/icons/search_active.png') no-repeat;
     }
 
-    a[class=is-active] > .vehicles:before {
+    a[class=is-active]>.vehicles:before {
         background: url('/static/assets/icons/vehicles_active.png') no-repeat;
     }
 
-    a[class=is-active] > .deliveries:before {
+    a[class=is-active]>.deliveries:before {
         background: url('/static/assets/icons/deliveries_active.png') no-repeat;
     }
 
-    a[class=is-active] > .settings:before {
+    a[class=is-active]>.settings:before {
         background: url('/static/assets/icons/settings_active.png') no-repeat;
     }
 

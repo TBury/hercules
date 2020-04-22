@@ -95,6 +95,7 @@ class Driver(models.Model):
             'company_id': company_id,
             'vehicle': vehicle,
             'avatar': driver.avatar.url,
+            'is_employeed': driver.is_employeed,
         }
         return driver_info
 
@@ -111,6 +112,7 @@ class Driver(models.Model):
             company: str
             vehicle: Vehicle
             avatar: str
+            is_employeed: bool
         try:
             driver_info = request.session.get('driver_info')
         except driver_info is None:
@@ -121,6 +123,7 @@ class Driver(models.Model):
                 driver_info['company'],
                 driver_info['vehicle'],
                 driver_info['avatar'],
+                driver_info['is_employeed'],
             )
         return info
 

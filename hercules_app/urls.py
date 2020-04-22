@@ -52,5 +52,7 @@ urlpatterns = [
          views.ShowDeliveryDetailsView, name="delivery-details"),
     path('EditWaybill/<int:waybill_id>',
          views.EditWaybill, name="edit-delivery"),
+     path('CompanyProfile',
+         views.ShowCompanyProfileView, name="show-company-profile"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

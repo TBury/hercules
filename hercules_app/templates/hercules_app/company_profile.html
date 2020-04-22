@@ -132,7 +132,7 @@
                         </li>
                         {% elif position != "" %}
                         <li>
-                            <a class="is-active" href="/Companies/">
+                            <a class="is-active" href="/CompanyProfile">
                                 <p class="option company-profile">
                                     Profil firmy
                                 </p>
@@ -211,7 +211,9 @@
                                 <span class="tag is-danger is-large">Rekrutacja zamknięta</span>
                                 {% endif %}
                             </div>
+                            {% if company.is_recruiting and is_employeed == False %}
                             <a class="button is-danger send-application">Złóż podanie</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -259,7 +261,8 @@
                                 <div class="media-content">
                                     <div class="content">
                                         <h6 class="card-title">Liczba kierowców</h6>
-                                        <h1 class="card-value used-fuel">16
+                                        <h1 class="card-value used-fuel">
+                                            {{ company.drivers_count }}
                                         </h1>
                                     </div>
                                 </div>
@@ -277,7 +280,7 @@
                                 <div class="media-content">
                                     <div class="content">
                                         <h6 class="card-title">Średnia paliwa</h6>
-                                        <h1 class="card-value used-fuel">35.55 <span class="colored">l/100 km</span>
+                                        <h1 class="card-value used-fuel">{{ company.average_fuel }}<span class="colored"> l/100 km</span>
                                         </h1>
                                     </div>
                                 </div>
@@ -293,8 +296,8 @@
                                 <div class="media-content">
                                     <div class="content">
                                         <h6 class="card-title">Osiągnięty dochód</h6>
-                                        <h1 class="card-value used-fuel">
-                                            5 531 301<span class="colored"> zł</span>
+                                        <h1 class="card-value used-fuel"> {{ company.income }}
+                                            <span class="colored"> zł</span>
                                         </h1>
                                     </div>
                                 </div>
@@ -310,7 +313,8 @@
                                 <div class="media-content">
                                     <div class="content">
                                         <h6 class="card-title">Liczba tras</h6>
-                                        <h1 class="card-value used-fuel">5 310 <span class="colored"> tras</span>
+                                        <h1 class="card-value used-fuel">{{ company.waybill_count }}<span
+                                                class="colored"> tras</span>
                                         </h1>
                                     </div>
                                 </div>

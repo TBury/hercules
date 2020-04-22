@@ -613,3 +613,18 @@ def DeleteVehicle(request, vehicle_id):
         return redirect('/Vehicles')
     else:
         return HttpResponse(status=500)
+
+def ShowCompanyProfileView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+        'is_employeed': driver_info.is_employeed,
+    }
+    if driver_info.company is not None:
+        company = Company.objects.get(name=driver_info.company)
+        return render(request, 'hercules_app/company_profile.html', {'driver': driver, 'company': company})
+    else:
+        return HttpResponse(status = 500)
+

@@ -4,6 +4,15 @@
   margin-top: 40px;
 }
 
+.company-name {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.tag {
+  font-weight: 700;
+}
+
 .basic-info,
 .statistics,
 .description {
@@ -11,12 +20,12 @@
   margin-right: 15% !important;
 }
 
-.setting {
-  margin-right: 25px;
-}
-
 .stats-column {
   padding-left: 0 !important;
+}
+
+.setting {
+  margin-right: 25px;
 }
 
 .selectize-control.multi {

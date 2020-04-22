@@ -50,45 +50,90 @@
   height: 24px;
 }
 
+.menu a[class=is-active] > .main-site:before {
+  background: url("/static/assets/icons/main-panel-active.png") no-repeat;
+}
+
+.menu a[class=is-active] > .download:before {
+  background: url("/static/assets/icons/download_active.png") no-repeat;
+}
+
+.menu a[class=is-active] > .driver-card:before {
+  background: url("/static/assets/icons/driver_card_active.png") no-repeat;
+}
+
+.menu a[class=is-active] > .add-delivery:before {
+  background: url("/static/assets/icons/add_delivery_active.png") no-repeat;
+}
+
+.menu a[class=is-active] > .gielda:before {
+  background: url("/static/assets/icons/gielda_active.png") no-repeat;
+}
+
+.menu a[class=is-active] > .dispositions:before {
+  background: url("/static/assets/icons/map_active.png") no-repeat;
+  height: 27px;
+}
+
+.menu a[class=is-active] > .search-company:before {
+  background: url("/static/assets/icons/search_active.png") no-repeat;
+}
+
+.menu a[class=is-active] > .vehicles:before {
+  background: url("/static/assets/icons/vehicles_active.png") no-repeat;
+}
+
+.menu a[class=is-active] > .deliveries:before {
+  background: url("/static/assets/icons/deliveries_active.png") no-repeat;
+}
+
+.menu a[class=is-active] > .settings:before {
+  background: url("/static/assets/icons/settings_active.png") no-repeat;
+}
+
 .menu .main-site:before {
-  background: url("assets/main-panel.png") no-repeat;
+  background: url("/static/assets/icons/main-panel.png") no-repeat;
 }
 
 .menu .download:before {
-  background: url("assets/download.png") no-repeat;
+  background: url("/static/assets/icons/download.png") no-repeat;
 }
 
 .menu .driver-card:before {
-  background: url("assets/driver_card.png") no-repeat;
+  background: url("/static/assets/icons/driver_card.png") no-repeat;
 }
 
 .menu .add-delivery:before {
-  background: url("assets/add_delivery.png") no-repeat;
+  background: url("/static/assets/icons/add_delivery.png") no-repeat;
 }
 
 .menu .gielda:before {
-  background: url("assets/gielda.png") no-repeat;
+  background: url("/static/assets/icons/gielda.png") no-repeat;
 }
 
 .menu .dispositions:before {
-  background: url("assets/map.png") no-repeat;
+  background: url("/static/assets/icons/map.png") no-repeat;
   height: 27px;
 }
 
 .menu .search-company:before {
-  background: url("assets/search.png") no-repeat;
+  background: url("/static/assets/icons/search.png") no-repeat;
 }
 
 .menu .vehicles:before {
-  background: url("assets/vehicles.png") no-repeat;
+  background: url("/static/assets/icons/vehicles.png") no-repeat;
 }
 
 .menu .deliveries:before {
-  background: url("assets/deliveries.png") no-repeat;
+  background: url("/static/assets/icons/deliveries.png") no-repeat;
 }
 
 .menu .settings:before {
-  background: url("assets/settings.png") no-repeat;
+  background: url("/static/assets/icons/settings.png") no-repeat;
+}
+
+.menu .drivers:before {
+  background: url("/static/assets/icons/drivers.png") no-repeat;
 }
 
 .title {
