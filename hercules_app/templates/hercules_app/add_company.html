@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl-pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'hercules_app/assets/apple-icon-57x57.png}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'hercules_app/assets//apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'hercules_app/assets//apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'hercules_app/assets//apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'hercules_app/assets//apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'hercules_app/assets//apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'hercules_app/assets//apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'hercules_app/assets//apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'hercules_app/assets//apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{% static 'hercules_app/assets//android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'hercules_app/assets//favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'hercules_app/assets//favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'hercules_app/assets//favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'hercules_app/assets//manifest.json' %} ">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="companies.css">
+    <link rel="stylesheet" type="text/css" href="company_profile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel='stylesheet prefetch'
+        href='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.min.css'>
+    <link rel='stylesheet'
+        href='bulma-switch.min.css'>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title> Panel użytkownika | Hercules</title>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-start">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="" width="194" height="55">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-end is-hidden-mobile">
+            <a class="navbar-item">
+                <figure class="image is-48x48 avatar-fig">
+                    <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
+                </figure>
+                <span class="user">
+                    <p class="username">{{ driver.nick }}</p>
+                    {% if driver.company_id %}
+                    <p class="company">{{ company.name }}</p>
+                    {% endif %}
+                </span>
+            </a>
+            <a class="navbar-item">
+                <span class="icon is-medium logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+                <p class="logout-text">Wyloguj się</p>
+            </a>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="columns">
+            <aside class="column is-2 aside is-hidden-mobile is-placed-left">
+                <nav class="menu">
+                    <p class="menu-label">
+                        Menu główne
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a class="panel-option">
+                                <p class="option main-site">Panel systemu</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="panel-option">
+                                <p class="option download">Pobierz aplikację</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Kierowca
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a>
+                                <p class="option driver-card">Karta kierowcy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option add-delivery">Dodaj dostawę</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option gielda">Giełda zleceń</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option dispositions">Dyspozycje</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Spedycja
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a class="is-active">
+                                <p class="option search-company">
+                                    Znajdź firmę
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option vehicles">Twoje pojazdy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option deliveries">Twoje dostawy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option settings">Ustawienia</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="column main">
+                <header>
+                    <h1 class="title">Ustawienia firmy</h1>
+                </header>
+                <div class="box basic-info">
+                    <div class="columns">
+                        <div class="column">
+                            <img src="img/placeholder-1200x500-1.png" class="company-logo">
+                        </div>
+                        <div class="column">
+                            <label class="label">Nazwa firmy</label>
+                            <input type="text" class="input">
+                            <label class="label">Opcje firmy</label>
+                            <select id="select-options" multiple></select>
+                            <div class="field">
+                                <input id="switchRoundedDefault" type="checkbox" name="switchRoundedDefault"
+                                    class="switch is-rounded" checked="checked">
+                                <label for="switchRoundedDefault" class="label" >Przyjmujemy nowych kierowców</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box description">
+                    <div class="columns">
+                        <div class="column">
+                            <label for="" class="label">Strona internetowa</label>
+                            <input type="url" class="input">
+                            <label class="label">Wymagane DLC</label>
+                            <select id="select-dlc" multiple></select>
+                        </div>
+                        <div class="column">
+                            <label for="" class="label">Link do komunikatora</label>
+                            <input type="url" class="input">
+                            <div class="field">
+                                <input id="switchRoundedInfo" type="checkbox" name="switchRoundedInfo"
+                                    class="switch is-rounded is-info" checked="checked">
+                                <label class="label" for="switchRoundedInfo">Maksymalnie 90 km/h</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box description">
+                    <label class="label">Opis</label>
+                    <textarea class="textarea" cols="40"></textarea>
+                </div>
+                <button class="button add-new-company" type="submit">Stwórz firmę</button>
+            </main>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js'></script>
+<script src="{% static 'js/add_company.js' %}"></script>
+</html>

@@ -7,28 +7,32 @@
     <meta name="description"
         content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png ">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png ">
-    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png ">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png ">
-    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png ">
-    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png ">
-    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png ">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png ">
-    <link rel="icon" type="image/png" sizes="192x192" href="img/android-icon-192x192.png ">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png ">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png ">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png ">
-    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'hercules_app/assets/apple-icon-57x57.png}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'hercules_app/assets//apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'hercules_app/assets//apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'hercules_app/assets//apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'hercules_app/assets//apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'hercules_app/assets//apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'hercules_app/assets//apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'hercules_app/assets//apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'hercules_app/assets//apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{% static 'hercules_app/assets//android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'hercules_app/assets//favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'hercules_app/assets//favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'hercules_app/assets//favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'hercules_app/assets//manifest.json' %} ">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png ">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="panel.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="companies.css">
     <link rel="stylesheet" type="text/css" href="company_profile.css">
+    <link rel="stylesheet" type="text/css" href="send_application.css">
+    <link rel='stylesheet prefetch'
+        href='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.min.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <title> Panel użytkownika | Hercules</title>
@@ -39,7 +43,7 @@
         <div class="navbar-start">
             <div class="navbar-brand">
                 <a class="navbar-item">
-                    <img src="{% static '/assets/logo.png' %}" width="194" height="55">
+                    <img src="" width="194" height="55">
                 </a>
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
                     <span aria-hidden="true"></span>
@@ -51,12 +55,12 @@
         <div class="navbar-end is-hidden-mobile">
             <a class="navbar-item">
                 <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{{ driver.avatar }}">
+                    <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company != "" %}
-                    <p class="company">{{ driver.company }}</p>
+                    {% if driver.company_id %}
+                    <p class="company">{{ company.name }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -77,12 +81,12 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a href="/panel">
+                            <a class="panel-option">
                                 <p class="option main-site">Panel systemu</p>
                             </a>
                         </li>
                         <li>
-                            <a class="panel-option" href="/download">
+                            <a class="panel-option">
                                 <p class="option download">Pobierz aplikację</p>
                             </a>
                         </li>
@@ -92,22 +96,22 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a href='/drivers-card'>
+                            <a>
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/add-delivery">
+                            <a>
                                 <p class="option add-delivery">Dodaj dostawę</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/Gielda/Offers">
+                            <a>
                                 <p class="option gielda">Giełda zleceń</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/Dispositions">
+                            <a>
                                 <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
@@ -117,20 +121,25 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a href="/Companies">
+                            <a class="is-active">
                                 <p class="option search-company">
                                     Znajdź firmę
                                 </p>
                             </a>
                         </li>
                         <li>
-                            <a href="/Vehicles">
+                            <a>
                                 <p class="option vehicles">Twoje pojazdy</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/Deliveries">
+                            <a>
                                 <p class="option deliveries">Twoje dostawy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option settings">Ustawienia</p>
                             </a>
                         </li>
                     </ul>
@@ -140,41 +149,49 @@
                 <header>
                     <h1 class="title">Złóż podanie</h1>
                 </header>
-                <div class="box card username">
-                    <label class="label">Nick</label>
-                    <input type="text" class="input">
+                <div class="box basic-info">
+                    <div class="columns">
+                        <div class="column">
+                            <label class="label">Nick</label>
+                            <input type="text" class="input">
+                            <label class="label">Miejsce zamieszkania</label>
+                            <input type="text" class="input">
+                            <label class="label">Kontroler</label>
+                            <select id="select-controllers" multiple></select>
+                        </div>
+                        <div class="column">
+                            <label class="label">Wiek</label>
+                            <input type="number" class="input age" min="1" max="99">
+                            <label class="label">Posiadane DLC</label>
+                            <select id="select-dlc" multiple></select>
+                        </div>
+                    </div>
                 </div>
-                <div class="box card age">
-                    <label class="label">Wiek</label>
-                    <input type="text" class="input">
+                <div class="box basic-info">
+                    <div class="columns">
+                        <div class="column">
+                            <label class="label">Link do profilu Steam</label>
+                            <input type="url" class="input">
+                        </div>
+                        <div class="column">
+                            <label class="label">Link do profilu TruckersMP (opcjonalne)</label>
+                            <input type="url" class="input">
+                        </div>
+                    </div>
+                    <label for="" class="label">O mnie</label>
+                    <textarea class="textarea"></textarea>
                 </div>
-                <div class="box card place">
-                    <label class="label">Miejsce zamieszkania</label>
-                    <input type="text" class="input">
-                </div>
-                <div class="box card steering">
-                    <label class="label">Sterowanie</label>
-                    <input type="text" class="input">
-                </div>
-                <div class="box card steam-profile">
-                    <label class="label">Link do profilu Steam</label>
-                    <input type="text" class="input">
-                </div>
-                <div class="box card previous-companies">
-                    <label class="label">Poprzednie firmy</label>
-                    <input type="text" class="input">
-                </div>
-                <div class="box card steering">
-                    <label class="label">Zainteresowania</label>
-                    <input type="text" class="input">
-                </div>
-                <div class="box card steering">
-                    <label class="label">Posiadane DLC</label>
-                    <input type="text" class="input">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button type="submit" class="button send-cv">Wyślij podanie</a>
+                    </div>
                 </div>
             </main>
         </div>
     </div>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js'></script>
+<script src='send_application.js'></script>
 </html>

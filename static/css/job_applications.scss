@@ -1,0 +1,38 @@
+.job-application {
+    margin-top: 30px !important;
+    width: 75vw;
+}
+
+.application-company,
+.application-user {
+    display: flex;
+}
+
+.company-name,
+.user-name {
+    align-self: center;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-left: 15px;
+}
+
+.company-logo,
+.user-avatar {
+    width: 64px;
+}
+
+.application-not-checked,
+.application-rejected {
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+.check-cv {
+    font-weight: 700;
+    background-color: #C70000 !important;
+    color: white !important;
+    border-radius: 20px !important;
+    padding: 15px 35px 15px 35px !important;
+    margin-top: 10px;
+    margin-left: 50%;
+}

@@ -1,0 +1,380 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl-pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="{% static 'hercules_app/assets/apple-icon-57x57.png}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'hercules_app/assets//apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'hercules_app/assets//apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'hercules_app/assets//apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'hercules_app/assets//apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'hercules_app/assets//apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'hercules_app/assets//apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'hercules_app/assets//apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'hercules_app/assets//apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{% static 'hercules_app/assets//android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'hercules_app/assets//favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'hercules_app/assets//favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'hercules_app/assets//favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'hercules_app/assets//manifest.json' %} ">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/verify.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/verify_waybill.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="{% static 'js/verify_waybill.js' %}"></script>
+    <title> Dodaj nową dostawę | Hercules</title>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-start">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="logo.png" width="194" height="55">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-end is-hidden-mobile">
+            <a class="navbar-item">
+                <figure class="image is-48x48 avatar-fig">
+                    <img class="avatar" src="assets/avatar_krawczyk.jpg">
+                </figure>
+                <span class="user">
+                    <p class="username">{{ driver.nick }}</p>
+                    {% if driver.company_id %}
+                    <p class="company">{{ company.name }}</p>
+                    {% endif %}
+                </span>
+            </a>
+            <a class="navbar-item">
+                <span class="icon is-medium logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+                <p class="logout-text">Wyloguj się</p>
+            </a>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="columns">
+            <aside class="column is-2 aside is-hidden-mobile is-placed-left">
+                <nav class="menu">
+                    <p class="menu-label">
+                        Menu główne
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a class="panel-option">
+                                <p class="option main-site">Panel systemu</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="panel-option">
+                                <p class="option download">Pobierz aplikację</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Kierowca
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a>
+                                <p class="option driver-card">Karta kierowcy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="is-active">
+                                <p class="option add-delivery">Dodaj dostawę</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option gielda">Giełda zleceń</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option dispositions">Dyspozycje</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Spedycja
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <a>
+                                <p class="option search-company">
+                                    Znajdź firmę
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option vehicles">Twoje pojazdy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option deliveries">Twoje dostawy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <p class="option settings">Ustawienia</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <div class="modal" id="reject-modal">
+                <div class="reject-modal-background"></div>
+                <div class="reject-modal-content">
+                    <div class="box">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <h1 class="title">Potwierdź odrzucenie trasy #48283</h1>
+                            <p class="modal-text">Wpisz powód w pole poniżej.</p>
+                            <div class="modal-buttons">
+                                <a class="button reject-modal-close" data-dismiss="modal">Wróć</a>
+                                <button type="submit" class="button is-danger" id="reject-confirm" href="#">Odrzuć
+                                    trasę</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button class="reject-modal-close is-large" aria-label="close"></button>
+            </div>
+            <main class="column main">
+                <h1 class="title">Dostawa #312833</span> </h1>
+
+                <div class="box card">
+                    <form action="/add-waybill" method="POST">
+                        {% csrf_token %}
+                        <div class="basic-info">
+                            <b><span class="colored">Podstawowe </span> informacje</b>
+                            <div class="columns basic-info-cols is-gapless">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto załadunku</label>
+                                        <div class="control">
+                                            {{ form.loading_city }}
+                                        </div>
+                                        <img class="loading-city-screen screenshot"
+                                            src="{% static args.loading_info_image %}">
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja załadunku</label>
+                                        <div class="control">
+                                            {{ form.loading_spedition }}
+                                        </div>
+                                        <img class="loading-city-screen screenshot"
+                                            src="{% static args.loading_info_image %}">
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Ładunek</label>
+                                        <div class="control">
+                                            {{ form.cargo }}
+                                        </div>
+                                        <img class=" loading-city-screen screenshot"
+                                            src="{% static args.cargo_image %}">
+                                    </div>
+
+                                    <hr>
+
+                                    <b><span class="colored">Statystyki </span></b>
+                                </div>
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto rozładunku</label>
+                                        <div class="control">
+                                            {{ form.unloading_city }}
+                                        </div>
+                                        <img class="unloading-city-screen screenshot"
+                                            src="{% static args.unloading_info_image %}">
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja rozładunku</label>
+                                        <div class="control">
+                                            {{ form.unloading_spedition }}
+                                        </div>
+                                        <img class="unloading-city-screen screenshot"
+                                            src="{% static args.unloading_info_image %}">
+                                    </div>
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Tonaż</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                {{ form.tonnage }}
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-static">
+                                                    kg
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <img class="unloading-spedition-screen static-screenshot"
+                                            src="{% static args.tonnage_image %}">
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="stats">
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class="static-field">
+                                            <label for="" class="label static-label">Przejechany dystans</label>
+                                            <div class="field has-addons">
+                                                <div class="control">
+                                                    {{ form.distance }}
+                                                </div>
+                                                <div class="control">
+                                                    <a class="button is-static">
+                                                        km
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <img class="unloading-spedition-screen static-screenshot"
+                                                src="{% static args.distance_image %}">
+                                        </div>
+                                        <div class="static-field">
+                                            <label for="" class="label static-label">Uszkodzenia towaru</label>
+                                            <div class="field has-addons">
+                                                <div class="control">
+                                                    {{ form.damage }}
+                                                </div>
+                                                <div class="control">
+                                                    <a class="button is-static">
+                                                        %
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="static-field">
+                                            <label for="" class="label static-label">Spalone paliwo</label>
+                                            <div class="field has-addons">
+                                                <div class="control">
+                                                    {{ form.fuel }}
+                                                </div>
+                                                <div class="control">
+                                                    <a class="button is-static">
+                                                        litrów
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <img class="unloading-spedition-screen static-screenshot"
+                                                src="{% static args.fuel_image %}">
+                                        </div>
+                                        <div class="static-field">
+                                            <label for="" class="label static-label">Notatka kierowcy</label>
+                                            <div class="field has-addons">
+                                                <textarea class="textarea has-fixed-size"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="static-field">
+                                            <label for="" class="label static-label">Dochód</label>
+                                            <div class="field has-addons">
+                                                <div class="control">
+                                                    {{ form.income }}
+                                                </div>
+                                                <div class=" control">
+                                                    <a class="button is-static">
+                                                        zł
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <img class="unloading-spedition-screen static-screenshot"
+                                                src="{% static args.income_image %}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button type="submit" class="button reject">Odrzuć</a>
+                    </div>
+                    <div class="control">
+                        <button type="submit" class="button to-edit">Do poprawki</a>
+                    </div>
+                    <div class="control">
+                        <button type="submit" class="button accept">Zaakceptuj</a>
+                    </div>
+                </div>
+            </main>
+            <div class="modal reject-modal" id="page-modal">
+                <div class="modal-background reject-background"></div>
+                <div class="modal-content">
+                    <div class="box">
+                        <form action="/Vehicles/{{ vehicle.id }}/DeleteVehicle" method="post">
+                            {% csrf_token %}
+                            <span>
+                                <h1 class="title">Potwierdź odrzucenie trasy #3143
+                                </h1>
+                                <p class="subtitle is-5">Wpisz poniżej powód odrzucenia trasy.</p>
+                            </span>
+                            <div class="reject-reason">
+                                <label for="" class="label">Powód odrzucenia</label>
+                                <input type="text" class="input reject-reason-input">
+                            </div>
+                            <div class="modal-buttons">
+                                <a class="button cancel-reject" data-dismiss="modal">Wróć</a>
+                                <button type="submit" class="button" id="rejectButton" href="#">Odrzuć trasę</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button class="modal-close is-large reject-close" aria-label="close"></button>
+            </div>
+            <div class="modal toEdit-modal" id="page-modal">
+                <div class="modal-background toEdit-background"></div>
+                <div class="modal-content">
+                    <div class="box">
+                        <form action="/Vehicles/{{ vehicle.id }}/DeleteVehicle" method="post">
+                            {% csrf_token %}
+                            <span>
+                                <h1 class="title">Potwierdź odesłanie trasy #3143 do poprawki
+                                </h1>
+                                <p class="subtitle is-5">Wpisz poniżej powód odesłania trasy do poprawki.</p>
+                            </span>
+                            <div class="toEdit-reason">
+                                <label for="" class="label">Powód odesłania trasy do poprawki</label>
+                                <input type="text" class="input toEdit-reason-input">
+                            </div>
+                            <div class="modal-buttons">
+                                <a class="button cancel-toEdit" data-dismiss="modal">Wróć</a>
+                                <button type="submit" class="button" id="toEditButton" href="#">Do poprawki</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button class="modal-close is-large toEdit-close" aria-label="close"></button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

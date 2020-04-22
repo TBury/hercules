@@ -76,26 +76,12 @@
   font-weight: 700;
 }
 
-.manufacturer {
-  width: 96px;
-}
-
 .disposition {
   margin-top: 25px !important;
 }
 
-.disposition .country-icon {
-  width: 32px !important;
-  height: 32px !important;
-}
-
-.disposition .spedition {
-  width: 96px;
-  height: 48px;
-}
-
 .cargo {
-  font-size: 15px;
+  font-size: 12px;
   text-align: right;
 }
 
@@ -109,83 +95,5 @@
 
 .check-details:hover {
   color: #dddddd;
-}
-
-.no-disposition-icon,
-.no-vehicle-icon,
-.no-offers-icon {
-  width: 64px;
-  height: 64px;
-  margin-right: 25px;
-}
-
-.no-disposition,
-.no-vehicle,
-.no-offers {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 25px;
-  padding-bottom: 20px;
-}
-
-.periodic-norm {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 25px;
-  padding-bottom: 15px;
-}
-
-.periodic-norm-card {
-  width: 536px !important;
-}
-
-.periodic-norm-text {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-left: 20px;
-}
-
-.no-disposition-title,
-.no-vehicle-title,
-.no-offers-title {
-  font-weight: 700;
-  font-size: 1.75rem;
-}
-
-.no-offers-container {
-  margin-top: 65px;
-}
-
-.sub-text {
-  font-size: 14px;
-  max-width: 360px;
-  word-wrap: break-word;
-}
-
-.periodic-norm-distance {
-  font-size: 1.8rem;
-}
-
-.periodic-norm-distance.realised {
-  color: #44C4A1;
-}
-
-.periodic-norm-distance.not-realised {
-  color: #C70000;
-}
-
-.tick {
-  margin-left: 45px !important;
-  margin: auto;
 }
 /*# sourceMappingURL=panel.css.map */

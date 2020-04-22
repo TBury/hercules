@@ -58,25 +58,12 @@
     width: 85vw;
 }
 
-.columns.waybill {
-    margin-top: 15px;
-}
-
-.cargo {
-    text-align: left;
-}
-
-.country-icon {
-    width: 32px !important;
-    height: 32px !important;
-}
-
-.spedition {
-    width: 96px;
-    height: 48px;
-}
-
-.hello-icon {
-    font-size: 55px;
-    margin-left: 6px;
+.range-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    .range {
+        margin-top: 8px;
+        margin-left: 20px;
+    }
 }
