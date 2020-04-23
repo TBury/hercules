@@ -50,4 +50,15 @@
   margin-top: 25px;
   margin-left: 50%;
 }
+
+.driver-username {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-left: 15px;
+}
+
+.username {
+  font-size: 16px !important;
+  margin-left: 0 !important;
+}
 /*# sourceMappingURL=drivers.css.map */

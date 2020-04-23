@@ -22,6 +22,7 @@ from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
 from decimal import Decimal
 import os, glob
+from collections import OrderedDict
 
 
 def index(request):
@@ -628,3 +629,30 @@ def ShowCompanyProfileView(request):
     else:
         return HttpResponse(status = 500)
 
+
+def ShowCompanyDriversView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+
+    if driver_info.company is not None:
+        company = Company.objects.get(name=driver_info.company)
+        sort_type = request.GET.get('sort_by')
+        if sort_type is not None:
+            company_drivers = Company.get_company_drivers_info(company.id, sort_type)
+        else:
+            company_drivers = Company.get_company_drivers_info(
+                company.id, '-position')
+        driver_nick = request.GET.get('driver_nick')
+        if driver_nick is not None:
+            for company_driver in company_drivers:
+                if company_driver['nick'] == driver_nick:
+                    return render(request, 'hercules_app/drivers.html', {'driver': driver, 'company_driver': company_driver})
+                    break
+                else:
+                    return render(request, 'hercules_app/drivers.html', {'driver': driver, 'not_found': True, 'sort_by': sort_type})
+        else:
+            return render(request, 'hercules_app/drivers.html', {'driver': driver, 'company_drivers': company_drivers, 'sort_by': sort_type})

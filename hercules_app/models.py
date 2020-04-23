@@ -2,9 +2,12 @@ from django.db import models
 from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import NamedTuple
 from django.utils import timezone
+import pytz
+
+
 
 
 class Company(models.Model):
@@ -37,6 +40,61 @@ class Company(models.Model):
             'drivers_count': self.drivers_count,
         }
         return statistics
+
+    def get_company_drivers_info(company_id, sort_by):
+        if sort_by == "-position":
+            drivers = Driver.objects.all().filter(company=company_id).order_by(sort_by)
+        else:
+            drivers = Driver.objects.all().filter(company=company_id)
+        company_drivers = []
+        for driver in drivers:
+            statistics = DriverStatistics.objects.get(driver=driver)
+
+            try:
+                last_waybill = Waybill.objects.get(driver=driver)
+                last_waybill = last_waybill.finish_date
+            except Waybill.DoesNotExist:
+                last_waybill = "Brak danych"
+            utc = pytz.UTC
+            today = datetime.today().replace(tzinfo=utc)
+            length_of_service = abs(
+                (today - driver.length_of_service).days)
+            periodic_norm_distance = CompanySettings.check_periodic_norm_distance(
+                driver)
+            periodic_norm = CompanySettings.objects.get(company=company_id)
+            periodic_norm = periodic_norm.periodic_norm_distance
+            realised = periodic_norm_distance >= periodic_norm
+            company_driver = {
+                'id': driver.id,
+                'nick': driver.nick,
+                'avatar': driver.avatar.url,
+                'position': driver.position,
+                'distance': statistics.distance,
+                'last_delivery': last_waybill,
+                'length_of_service': length_of_service,
+                'realised': realised,
+            }
+            if sort_by == 'realised':
+                if realised:
+                    company_drivers.append(company_driver)
+            elif sort_by == 'not-realised':
+                if not realised:
+                    company_drivers.append(company_driver)
+            else:
+                company_drivers.append(company_driver)
+        if sort_by == "service-length":
+            company_drivers = sorted(company_drivers, key = lambda i: i['length_of_service'])
+        elif sort_by == "-service-length":
+            company_drivers = sorted(company_drivers, key = lambda i: i['length_of_service'], reverse = True)
+        elif sort_by == 'last-delivery':
+            company_drivers = sorted(
+                company_drivers, key=lambda i: i['last_delivery'])
+        elif sort_by == '-last-delivery':
+            company_drivers = sorted(
+                company_drivers, key=lambda i: i['last_delivery'], reverse = True)
+        else:
+            pass
+        return company_drivers
 
     def __str__(self):
         return self.name
@@ -318,6 +376,7 @@ class CompanySettings(models.Model):
         if distance_count is None:
             distance_count = 0
         return distance_count
+
 
 
 class WorkApplications(models.Model):

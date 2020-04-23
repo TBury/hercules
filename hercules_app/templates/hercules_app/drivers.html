@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pl-pl">
 
@@ -32,7 +33,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/drivers.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title> Panel użytkownika | Hercules</title>
+    <script defer src="{% static 'js/drivers.js' %}"></script>
+    <title> Kierowcy firmy {{ driver.company }} | Hercules</title>
 </head>
 
 <body>
@@ -56,8 +58,8 @@
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company_id %}
-                    <p class="company">{{ company.name }}</p>
+                    {% if driver.company != "" %}
+                    <p class="user-company">{{ driver.company }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -93,95 +95,138 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a>
+                            <a href='/drivers-card'>
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <a href="/add-delivery">
                                 <p class="option add-delivery">Dodaj dostawę</p>
                             </a>
                         </li>
                         <li>
-                            <a class="is-active">
+                            <a href="/Gielda/Offers">
                                 <p class="option gielda">Giełda zleceń</p>
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <a href="/Dispositions">
                                 <p class="option dispositions">Dyspozycje</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Deliveries">
+                                <p class="option deliveries">Twoje dostawy</p>
                             </a>
                         </li>
                     </ul>
                     <p class="menu-label">
                         Spedycja
                     </p>
-                    <ul class="menu-list">
+                        <ul class="menu-list">
+                        {% if position == "" %}
                         <li>
-                            <a>
+                            <a href="/Companies">
                                 <p class="option search-company">
                                     Znajdź firmę
                                 </p>
                             </a>
                         </li>
+                        {% elif position != "" %}
                         <li>
-                            <a>
-                                <p class="option vehicles">Twoje pojazdy</p>
+                            <a class="is-active" href="/CompanyProfile">
+                                <p class="option company-profile">
+                                    Profil firmy
+                                </p>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                <p class="option deliveries">Twoje dostawy</p>
+                            <a href="/Drivers">
+                                <p class="option drivers">
+                                    Kierowcy
+                                </p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="/Vehicles">
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% if position == "Właściciel" or position == "Spedytor" %}
+                        <li>
+                            <a href="/Waybills">
+                                <p class="option waybills">Listy przewozowe</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if position == "Właściciel" %}
+                        <li>
+                            <a href="/Settings">
+                                <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                <p class="option settings">Ustawienia</p>
+                            <a href="/Statistics/">
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                    firmowe {% endif %}</p>
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </aside>
             <main class="column main">
                 <header>
-                    <h1 class="title">Kierowcy firmy Nordic Transport Group</h1>
+                    <h1 class="title">Kierowcy firmy {{ driver.company }}</h1>
                 </header>
                 <div class="box card filters">
-                    <form action="" method="get">
+                    <form action="/Drivers" method="get">
                         <div class="columns">
                             <div class="column">
                                 <div class="field">
                                     <p class="control">
                                         <label for="" class="label">Nick kierowcy</label>
-                                        <input class="input" type="text" placeholder="">
+                                        <input class="input" type="text" placeholder="" name="driver_nick">
                                     </p>
                                 </div>
                             </div>
                         </div>
+                        <button type="submit" class="button search-offers">Szukaj kierowcy</button>
                     </form>
-                    <a href="" class="button search-offers">Szukaj kierowcy</a>
                 </div>
-                <div class="sort">
-                    <div class="select sort-select">
-                        <select>
-                            <option>Według rangi</option>
-                            <option>Niezaliczona norma</option>
-                            <option>Zaliczona norma</option>
-                            <option>Najkrótszy staż pracy</option>
-                            <option>Najdłuższy staż pracy</option>
-                            <option>Najwcześniejsza ostatnia trasa</option>
-                            <option>Najpóźniejsza ostatnia trasa</option>
-                        </select>
+                <form class="sort-form" action="">
+                    <div class="sort">
+                        <div class="select sort-select">
+                            <select class="sort_by" name="sort_by">
+                                <option value="-position" {% if sort_by == '-position' %} selected {% endif %}>Według rangi
+                                </option>
+                                <option value="not-realised" {% if sort_by == 'not-realised' %} selected {% endif %}>
+                                    Niezaliczona norma</option>
+                                <option value="realised" {% if sort_by == 'realised' %} selected {% endif %}>Zaliczona
+                                    norma</option>
+                                <option value="service-length" {% if sort_by == 'service-length' %} selected {% endif %}>
+                                    Najkrótszy staż pracy</option>
+                                <option value="-service-length" {% if sort_by == '-service-length' %} selected {% endif %}>
+                                    Najdłuższy staż pracy</option>
+                                <option value="last-delivery" {% if sort_by == 'last-delivery' %} selected {% endif %}>
+                                    Najwcześniejsza ostatnia trasa</option>
+                                <option value="-last-delivery" {% if sort_by == '-last-delivery' %} selected {% endif %}>
+                                    Najpóźniejsza ostatnia trasa</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                </form>
+                {% if company_driver %}
                 <div class="box card driver">
                     <div class="columns">
                         <div class="column is-3">
                             <div class="driver-basic-info">
-                                <img src="img/france.png" class="driver-avatar">
+                                <img src="{{ company_driver.avatar }}" class="driver-avatar">
                                 <span class="user">
-                                    <p class="username">kr4wczyk</p>
-                                    <p class="position">Właściciel</p>
+                                    <p class="driver-username">{{ company_driver.nick }}</p>
+                                    <p class="position">{{ company_driver.position }}</p>
                                 </span>
                             </div>
                         </div>
@@ -189,7 +234,7 @@
                             <div class="stat-distance">
                                 <span class="driven-distance">
                                     <label class="hint">Przejechany dystans</label>
-                                    <p class="distance">43 392 km</p>
+                                    <p class="distance">{{ company_driver.distance }} km</p>
                                 </span>
                             </div>
                         </div>
@@ -197,7 +242,7 @@
                             <div class="stat-last-delivery">
                                 <span class="last-delivery">
                                     <label class="hint">Ostatnia trasa</label>
-                                    <p><b class="time">30 minut temu</b></p>
+                                    <p><b class="time">{{ company_driver.last_delivery }}</b></p>
                                 </span>
                             </div>
                         </div>
@@ -205,30 +250,36 @@
                             <div class="stat-joining-date">
                                 <span class="joining-date">
                                     <label class="hint">Staż pracy</label>
-                                    <p><b class="time">12 miesięcy</b></p>
+                                    <p><b class="time">{{ company_driver.length_of_service }} dni</b></p>
                                 </span>
                             </div>
                         </div>
-                        <div class="column">
+                        <div class="column is-2">
                             <div class="tags">
-                                <span class="tag is-danger periodic-norm-tag is-medium">Norma niezaliczona</span>
+                                {% if company_driver.realised %}
+                                <span class="tag periodic-norm-tag is-medium is-success">Norma zaliczona</span>
+                                {% else %}
+                                <span class="tag periodic-norm-tag is-medium is-danger">Norma niezaliczona</span>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="column">
                             <div class="check-profile">
-                                <a href="/Drivers/" class="button dispose is-rounded">Sprawdź profil</a>
+                                <a href="/Drivers/{{ company_driver.id }}" class="button dispose is-rounded">Sprawdź profil</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% else %}
+                {% for company_driver in company_drivers %}
                 <div class="box card driver">
                     <div class="columns">
                         <div class="column is-3">
                             <div class="driver-basic-info">
-                                <img src="img/france.png" class="driver-avatar">
+                                <img src="{{ company_driver.avatar }}" class="driver-avatar">
                                 <span class="user">
-                                    <p class="username">kr4wczyk</p>
-                                    <p class="position">Właściciel</p>
+                                    <p class="driver-username">{{ company_driver.nick }}</p>
+                                    <p class="position">{{ company_driver.position }}</p>
                                 </span>
                             </div>
                         </div>
@@ -236,7 +287,7 @@
                             <div class="stat-distance">
                                 <span class="driven-distance">
                                     <label class="hint">Przejechany dystans</label>
-                                    <p class="distance">43 392 km</p>
+                                    <p class="distance">{{ company_driver.distance }} km</p>
                                 </span>
                             </div>
                         </div>
@@ -244,7 +295,7 @@
                             <div class="stat-last-delivery">
                                 <span class="last-delivery">
                                     <label class="hint">Ostatnia trasa</label>
-                                    <p><b class="time">30 minut temu</b></p>
+                                    <p><b class="time">{{ company_driver.last_delivery }}</b></p>
                                 </span>
                             </div>
                         </div>
@@ -252,22 +303,41 @@
                             <div class="stat-joining-date">
                                 <span class="joining-date">
                                     <label class="hint">Staż pracy</label>
-                                    <p><b class="time">12 miesięcy</b></p>
+                                    <p><b class="time">{{ company_driver.length_of_service }} dni</b></p>
                                 </span>
                             </div>
                         </div>
-                        <div class="column">
+                        <div class="column is-2">
                             <div class="tags">
-                                <span class="tag is-success periodic-norm-tag is-medium">Norma zaliczona</span>
+                                {% if company_driver.realised %}
+                                <span class="tag periodic-norm-tag is-medium is-success">Norma zaliczona</span>
+                                {% else %}
+                                <span class="tag periodic-norm-tag is-medium is-danger">Norma niezaliczona</span>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="column">
                             <div class="check-profile">
-                                <a href="/Drivers/" class="button dispose is-rounded">Sprawdź profil</a>
+                                <a href="/Drivers/{{ company_driver.id }}" class="button dispose is-rounded">Sprawdź profil</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% endif %}
+                {% if not_found or company_drivers|length == 0 %}
+                <div class="box card driver">
+                    <div class="no-offers">
+                        <img src="{% static 'assets/icons/no_offers.png' %}" class="no-offers-icon">
+                        <span class="no-offers-text">
+                            <h1 class="no-offers-title">Nic nie znaleźliśmy.</h1>
+                            <p class="sub-text">
+                                Nie znaleźliśmy takiego kierowcy w Twojej firmie. Sprawdź poprawność zapisu.
+                            </p>
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
             </main>
         </div>
     </div>
