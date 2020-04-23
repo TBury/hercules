@@ -32,6 +32,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/drivers-card.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    
+    <script defer src="{% static 'js/drivers_card.js' %}"></script>
     <title> Karta kierowcy | Hercules</title>
 </head>
 
@@ -93,7 +95,7 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a class="is-active" href='/drivers-card'>
+                            <a {% if not is_company_driver %} class="is-active" {% endif %} href='/drivers-card'>
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
@@ -139,7 +141,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Drivers">
+                            
+                            <a {% if is_company_driver %} class="is-active" {% endif %} href="/Drivers">
                                 <p class="option drivers">
                                     Kierowcy
                                 </p>
@@ -180,15 +183,52 @@
                     <div class="level">
                         <div class="level-left">
                             <div class="level-item user-info-basic">
+                                {% if is_company_driver %}
+                                <figure class="image is-96x96 ">
+                                    <img class="avatar user-info-avatar" src="{{ avatar }}">
+                                </figure>
+                                <span class="user-info-details">
+                                    <h1 class="title user-info-username">{{ company_driver_nick }}</h1>
+                                    {% if is_chef %}
+                                    <div class="range-container">
+                                        <form action="/ChangePosition/{{ company_driver_id }}" method="post" class="change-position-form">
+                                            {% csrf_token %}
+                                            <div class="select position-select">
+                                                <select class="change-position" name="change-position">
+                                                    <option value="Kierowca"
+                                                        {% if company_driver_position == "Kierowca" %}
+                                                        selected {% endif %}>Kierowca</option>
+                                                    <option value="Spedytor"
+                                                        {% if company_driver_position == "Spedytor" %} selected
+                                                        {% endif %}>Spedytor</option>
+                                                    <option value="Szef" {% if company_driver_position == "Szef" %}
+                                                        selected {% endif %}>Szef</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                        {% if company %}
+                                        <h2 class="range"> firmy
+                                            {{ company_driver_company }}</h2>
+                                        {% endif %}
+                                    </div>
+                                    {% else %}
+                                        {% if company %}
+                                        <h2 class="range"><strong>{{ company_driver_position }}</strong> firmy {{ company_driver_company }}</h2>
+                                        {% endif %}
+                                    {% endif %}
+                                </span>
+                                {% else %}
                                 <figure class="image is-96x96 ">
                                     <img class="avatar user-info-avatar" src="{{ avatar }}">
                                 </figure>
                                 <span class="user-info-details">
                                     <h1 class="title user-info-username">{{ nick }}</h1>
                                     {% if company %}
-                                    <h2 class="range"><strong></strong> firmy {{ company }}</h2>
+                                    <h2 class="range"><strong>{{ position }}</strong> firmy
+                                        {{ company }}</h2>
                                     {% endif %}
                                 </span>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -335,7 +375,7 @@
                                             <div class="column">
                                                 <figure class="vehicle-image">
                                                     {% if vehicle.photo %}
-                                                    <img class="" src="{{ vehicle.photo.url }}"
+                                                    <img class="" src="{{ vehicle.photo }}"
                                                         alt="">
                                                     {% endif %}
                                                 </figure>
@@ -515,6 +555,29 @@
                     {% endif %}
                 </div>
             </main>
+            {% if is_company_driver %}
+            <div class="modal" id="page-modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="box">
+                        <form action="/ChangePosition/{{ company_driver_id }}" method="post">
+                            {% csrf_token %}
+                            <h1 class="title">Przyznać użytkownikowi uprawnienia szefa?
+                            </h1>
+                            <p class="subtitle is-4">
+                                Pamiętaj, aby zweryfikować, czy użytkownik powinien otrzymać uprawnienia szefa. Możesz je wycofać w każdej chwili.
+                            </p>
+                            <div class="modal-buttons">
+                                <a class="button cancel" data-dismiss="modal">Nie</a>
+                                <button type="submit" class="button is-danger" id="deleteButton" href="#">Tak, przyznaj
+                                    uprawnienia</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button class="modal-close is-large" aria-label="close"></button>
+            </div>
+            {% endif %}
         </div>
     </div>
 </body>

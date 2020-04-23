@@ -74,4 +74,12 @@ img {
 .add-vehicle:hover {
   color: #dddddd;
 }
+
+._vehicle-brand {
+  width: 96px;
+}
+
+.no-vehicle-container {
+  margin-top: 25px;
+}
 /*# sourceMappingURL=vehicles.css.map */

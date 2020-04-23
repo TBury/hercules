@@ -55,5 +55,8 @@ urlpatterns = [
      path('CompanyProfile',
          views.ShowCompanyProfileView, name="show-company-profile"),
      path('Drivers/', views.ShowCompanyDriversView, name="show-company-drivers"),
+    path('Drivers/<int:driver_id>', views.ShowCompanyDriverView, name="show-company-driver"),
+    path('ChangePosition/<int:driver_id>', views.ChangePosition, name="change-position"),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

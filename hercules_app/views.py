@@ -133,6 +133,7 @@ def drivers_card(request):
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
+        'position': driver_info.position,
         'company': driver_info.company,
         'statistics': statistics,
         'waybills': waybills,
@@ -638,6 +639,9 @@ def ShowCompanyDriversView(request):
         'company': driver_info.company,
     }
 
+    changed_position = request.session.get('changed-position')
+    
+
     if driver_info.company is not None:
         company = Company.objects.get(name=driver_info.company)
         sort_type = request.GET.get('sort_by')
@@ -650,9 +654,57 @@ def ShowCompanyDriversView(request):
         if driver_nick is not None:
             for company_driver in company_drivers:
                 if company_driver['nick'] == driver_nick:
-                    return render(request, 'hercules_app/drivers.html', {'driver': driver, 'company_driver': company_driver})
+                    response = render(request, 'hercules_app/drivers.html',
+                                     {'driver': driver, 'company_driver': company_driver})
                     break
                 else:
-                    return render(request, 'hercules_app/drivers.html', {'driver': driver, 'not_found': True, 'sort_by': sort_type})
+                    response = render(request, 'hercules_app/drivers.html',
+                                      {'driver': driver, 'not_found': True, 'sort_by': sort_type})
         else:
-            return render(request, 'hercules_app/drivers.html', {'driver': driver, 'company_drivers': company_drivers, 'sort_by': sort_type})
+            response = render(request, 'hercules_app/drivers.html', {'driver': driver, 'company_drivers': company_drivers, 'sort_by': sort_type})
+        if changed_position is True:
+            cookie = SetCookie(request, response, 'changed-position')
+        return response
+
+def ShowCompanyDriverView(request, driver_id):
+    driver_info = Driver.get_driver_info(request)
+    current_driver = Driver.objects.get(nick=driver_info.nick)
+    company_driver = Driver.objects.get(id=driver_id)
+    if company_driver == current_driver:
+        return redirect('/drivers-card')
+    statistics = DriverStatistics.get_driver_statistics(company_driver)
+    achievements = Achievement.objects.get(driver=company_driver)
+    waybills = Waybill.objects.filter(driver=company_driver)[:5]
+
+    if company_driver.company.name == driver_info.company and current_driver.position == 'Szef':
+        is_chef = True
+    else:
+        is_chef = False
+
+    args = {
+        'nick': driver_info.nick,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+        'company_driver_id': company_driver.id,
+        'company_driver_nick': company_driver.nick,
+        'company_driver_position': company_driver.position,
+        'company_driver_company': company_driver.company,
+        'statistics': statistics,
+        'achievements': achievements,
+        'waybills': waybills,
+        'is_chef': is_chef,
+        'is_company_driver': True,
+    }
+
+    return render(request, 'hercules_app/drivers-card.html', args)
+
+def ChangePosition(request, driver_id):
+    if request.POST:
+        company_driver = Driver.objects.get(id=driver_id)
+        new_position = request.POST['change-position']
+        company_driver.position = new_position
+        company_driver.save()
+        request.session['changed-position'] = True
+        return redirect('/Drivers')
+    else:
+        return HttpResponse(status=500)

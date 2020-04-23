@@ -52,4 +52,9 @@ if (showCookie("dispose_offer_success") == 'True') {
     deleteCookie("dispose_offer_success");
 }
 
+if (showCookie("changed-position") == 'True') {
+    showToast('Pomyślnie zmieniono rangę pracownika.', 'Sukces!');
+    deleteCookie("changed-position");
+}
+
 

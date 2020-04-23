@@ -149,6 +149,7 @@ class Driver(models.Model):
 
         driver_info = {
             'nick': driver.nick,
+            'position': driver.position,
             'company': company,
             'company_id': company_id,
             'vehicle': vehicle,
@@ -167,6 +168,7 @@ class Driver(models.Model):
 
         class DriverInfo(NamedTuple):
             nick: str
+            position: str
             company: str
             vehicle: Vehicle
             avatar: str
@@ -178,6 +180,7 @@ class Driver(models.Model):
         finally:
             info = DriverInfo(
                 driver_info['nick'],
+                driver_info['position'],
                 driver_info['company'],
                 driver_info['vehicle'],
                 driver_info['avatar'],

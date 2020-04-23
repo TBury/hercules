@@ -3,14 +3,20 @@
   border-top: 3px solid #0282FC !important;
 }
 
-.dropdown-title {
+.dropdown-content {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+}
+
+option {
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 500;
 }
 
-.dropdown-content {
-  max-height: 15em;
-  overflow: auto;
-  font-weight: 400 !important;
+.place {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .search-offers {
@@ -25,16 +31,18 @@
 .sort {
   font-weight: 500;
   margin-left: 80%;
+  margin-bottom: 25px;
 }
 
-.sort-select {
+.sort_by {
+  border-top: 3px solid #0282FC !important;
   font-family: 'Montserrat', sans-serif !important;
   font-weight: 700;
-  margin-bottom: 15px;
 }
 
 .country-icon {
-  width: 2rem;
+  width: 32px;
+  height: 32px;
 }
 
 .city {
@@ -42,12 +50,12 @@
 }
 
 .cargo {
-  font-size: 15px !important;
+  font-size: 18px !important;
 }
 
 .trailer {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 17px;
 }
 
 .income {
