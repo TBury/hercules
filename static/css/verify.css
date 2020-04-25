@@ -60,4 +60,15 @@
   margin-top: 3rem;
   float: right;
 }
+
+.notification-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.notification.is-warning {
+  background-color: #E67E22 !important;
+  color: white !important;
+}
 /*# sourceMappingURL=verify.css.map */

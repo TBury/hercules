@@ -15,13 +15,14 @@ from hercules_app.models import (
     Rozpiska,
     Achievement,
     CompanySettings,
-    )
-from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm
+)
+from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm, EditSettingsForm, EditCompanyInformationForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
 from decimal import Decimal
-import os, glob
+import os
+import glob
 from collections import OrderedDict
 
 
@@ -57,13 +58,21 @@ def panel(request):
 
     statistics = DriverStatistics.get_driver_statistics(driver)
     dispositions = Disposition.objects.filter(driver=driver)[:3]
-    company = Company.objects.get(name=driver_info.company)
+    if driver_info.company is not None:
+        company = Company.objects.get(name=driver_info.company)
+        periodic_norm_distance = CompanySettings.check_periodic_norm_distance(
+            driver)
+        periodic_norm = CompanySettings.objects.get(company=company)
+        periodic_norm = periodic_norm.periodic_norm_distance
+        realised = periodic_norm_distance >= periodic_norm
+    else:
+        company = None
+        periodic_norm_distance = None
+        periodic_norm = None
+        realised = None
+
     offers = Gielda.objects.all()[:3]
 
-    periodic_norm_distance = CompanySettings.check_periodic_norm_distance(driver)
-    periodic_norm = CompanySettings.objects.get(company=company)
-    periodic_norm = periodic_norm.periodic_norm_distance
-    realised = periodic_norm_distance >= periodic_norm
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
@@ -78,7 +87,6 @@ def panel(request):
         'realised': realised,
     }
     response = render(request, 'hercules_app/panel.html', args)
-
 
     waybill_success = request.session.get('waybill_success')
     if waybill_success is True:
@@ -105,6 +113,7 @@ def download_assistant(request):
     driver_info = Driver.get_driver_info(request)
     args = {
         'nick': driver_info.nick,
+        'position': driver_info.position,
         'company': driver_info.company,
         'avatar': driver_info.avatar,
     }
@@ -148,6 +157,7 @@ def add_delivery(request):
     driver_info = Driver.get_driver_info(request)
     args = {
         'nick': driver_info.nick,
+        'position': driver_info.position,
         'company': driver_info.company,
         'avatar': driver_info.avatar,
     }
@@ -159,6 +169,7 @@ def send_first_screenshot(request):
     driver_info = Driver.get_driver_info(request)
     args = {
         'nick': driver_info.nick,
+        'position': driver_info.position,
         'company': driver_info.company,
         'avatar': driver_info.avatar,
     }
@@ -243,6 +254,7 @@ def add_waybill(request):
     driver_info = Driver.get_driver_info(request)
     driver_inf = {
         'nick': driver_info.nick,
+        'position': driver_info.position,
         'company': driver_info.company,
         'avatar': driver_info.avatar,
     }
@@ -264,13 +276,13 @@ def add_waybill(request):
             waybill.save()
             try:
                 disposition = Disposition.objects.filter(
-                    driver = driver,
-                    loading_city = waybill.loading_city,
-                    loading_spedition = waybill.loading_spedition,
-                    unloading_city = waybill.unloading_city,
-                    unloading_spedition = waybill.unloading_spedition,
-                    cargo = waybill.cargo,
-                    tonnage = waybill.tonnage,
+                    driver=driver,
+                    loading_city=waybill.loading_city,
+                    loading_spedition=waybill.loading_spedition,
+                    unloading_city=waybill.unloading_city,
+                    unloading_spedition=waybill.unloading_spedition,
+                    cargo=waybill.cargo,
+                    tonnage=waybill.tonnage,
                 ).delete()
             except:
                 pass
@@ -313,7 +325,6 @@ def add_waybill(request):
             form = AddWaybillForm()
 
     return render(request, 'hercules_app/verify.html', {'form': form, 'args': args, 'driver': driver_inf, 'is_automatic': is_automatic})
-
 
 
 @login_required
@@ -368,6 +379,7 @@ def ChooseDriverView(request):
     driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
+        'position': driver_info.position,
         'avatar': driver_info.avatar,
         'company': driver_info.company,
     }
@@ -405,7 +417,8 @@ def DisposeOffer(request, driver_id):
 @login_required
 def ShowDispositionsView(request):
     driver = Driver.objects.get(user=request.user)
-    dispositions = Disposition.objects.all().filter(driver=driver).exclude(is_rozpiska=True)
+    dispositions = Disposition.objects.all().filter(
+        driver=driver).exclude(is_rozpiska=True)
     rozpiski = Rozpiska.objects.all().filter(driver=driver)
     return render(request, 'hercules_app/dispositions.html', {'driver': driver, 'dispositions': dispositions, 'rozpiski': rozpiski})
 
@@ -415,6 +428,7 @@ def FindCompanyView(request):
     driver = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'position': driver_info.position,
         'avatar': driver_info.avatar,
     }
     companies = Company.objects.all().order_by('is_recruiting')
@@ -427,10 +441,12 @@ def CompanyDetailsView(request, company_id):
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
         'company': driver_info.company,
+        'position': driver_info.position,
     }
-    company = Company.objects.get(id = company_id)
+    company = Company.objects.get(id=company_id)
 
     return render(request, 'hercules_app/company_profile.html', {'driver': driver, 'company': company})
+
 
 def CompanyVehiclesView(request):
     driver_info = Driver.get_driver_info(request)
@@ -438,6 +454,7 @@ def CompanyVehiclesView(request):
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
         'company': driver_info.company,
+        'position': driver_info.position,
     }
 
     if driver_info.company != "":
@@ -464,12 +481,14 @@ def CompanyVehiclesView(request):
 
     return response
 
+
 def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
         'company': driver_info.company,
+        'position': driver_info.position,
     }
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
     if driver_info.company != "":
@@ -498,9 +517,10 @@ def VehicleDetailsView(request, vehicle_id):
         'driver': current_driver,
     })
     if request.method == "POST":
-        form = EditVehicleForm(drivers, current_driver, request.POST, request.FILES, instance=vehicle)
+        form = EditVehicleForm(drivers, current_driver,
+                               request.POST, request.FILES, instance=vehicle)
         if form.is_valid():
-            new_driver = Driver.objects.get(id=form.data['driver'])
+            new_driver = Driver.objects.get(id=form.data.get("driver"))
             form = form.save(commit=False)
             form.driver = new_driver
             form.save()
@@ -508,28 +528,32 @@ def VehicleDetailsView(request, vehicle_id):
             return redirect('/Vehicles')
         else:
             form = EditVehicleForm(drivers, current_driver, initial={
-            'brand': vehicle.brand,
-            'model': vehicle.model,
-            'cabin': vehicle.cabin,
-            'engine': vehicle.engine,
-            'gearbox': vehicle.gearbox,
-            'wheelbase': vehicle.wheelbase,
-            'wheels': vehicle.wheels,
-            'odometer': vehicle.odometer,
+                'brand': vehicle.brand,
+                'model': vehicle.model,
+                'cabin': vehicle.cabin,
+                'engine': vehicle.engine,
+                'gearbox': vehicle.gearbox,
+                'wheelbase': vehicle.wheelbase,
+                'wheels': vehicle.wheels,
+                'odometer': vehicle.odometer,
             }
             )
     return render(request, 'hercules_app/vehicle_details.html', {'driver': driver, 'form': form, 'vehicle': vehicle})
+
 
 def AddNewVehicleView(request):
     driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
+        'position': driver_info.position,
         'company': driver_info.company,
     }
     if driver_info.company != "":
-        company_id = Company.objects.only('id').filter(name=driver_info.company)
-        company_drivers = Driver.objects.only('nick').filter(company=company_id[0])
+        company_id = Company.objects.only(
+            'id').filter(name=driver_info.company)
+        company_drivers = Driver.objects.only(
+            'nick').filter(company=company_id[0])
         drivers_dict = {}
         for company_driver in company_drivers:
             drivers_dict[company_driver.id] = company_driver.nick
@@ -555,11 +579,13 @@ def AddNewVehicleView(request):
             form = AddVehicleForm(drivers)
     return render(request, 'hercules_app/add_vehicle.html', {'driver': driver, 'form': form})
 
+
 def ShowDeliveriesView(request):
     driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
+        'position': driver_info.position,
         'company': driver_info.company,
     }
     driver = Driver.objects.get(nick=driver_info.nick)
@@ -568,29 +594,32 @@ def ShowDeliveriesView(request):
 
     return render(request, 'hercules_app/deliveries.html', {'driver': driver, 'deliveries': deliveries})
 
+
 def ShowDeliveryDetailsView(request, waybill_id):
     driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
         'company': driver_info.company,
+        'position': driver_info.position,
     }
     delivery = Waybill.objects.get(id=waybill_id)
     if delivery.status == 'to-edit':
         form = AddWaybillForm(initial={
-                'loading_city': delivery.loading_city,
-                'loading_spedition': delivery.loading_spedition,
-                'unloading_city': delivery.unloading_city,
-                'unloading_spedition': delivery.unloading_spedition,
-                'cargo': delivery.cargo,
-                'fuel': delivery.fuel,
-                'tonnage': delivery.tonnage,
-                'distance': delivery.distance,
-                'income': delivery.income,
-            })
+            'loading_city': delivery.loading_city,
+            'loading_spedition': delivery.loading_spedition,
+            'unloading_city': delivery.unloading_city,
+            'unloading_spedition': delivery.unloading_spedition,
+            'cargo': delivery.cargo,
+            'fuel': delivery.fuel,
+            'tonnage': delivery.tonnage,
+            'distance': delivery.distance,
+            'income': delivery.income,
+        })
         return render(request, 'hercules_app/delivery_details.html', {'driver': driver, 'form': form, 'delivery': delivery})
     else:
         return render(request, 'hercules_app/delivery_details.html', {'driver': driver, 'delivery': delivery})
+
 
 def EditWaybill(request, waybill_id):
     if request.POST:
@@ -607,6 +636,7 @@ def EditWaybill(request, waybill_id):
     else:
         return HttpResponse(status=500)
 
+
 def DeleteVehicle(request, vehicle_id):
     if request.POST:
         Vehicle.objects.filter(id=vehicle_id).delete()
@@ -616,11 +646,13 @@ def DeleteVehicle(request, vehicle_id):
     else:
         return HttpResponse(status=500)
 
+
 def ShowCompanyProfileView(request):
     driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
+        'position': driver_info.position,
         'company': driver_info.company,
         'is_employeed': driver_info.is_employeed,
     }
@@ -628,25 +660,25 @@ def ShowCompanyProfileView(request):
         company = Company.objects.get(name=driver_info.company)
         return render(request, 'hercules_app/company_profile.html', {'driver': driver, 'company': company})
     else:
-        return HttpResponse(status = 500)
+        return HttpResponse(status=500)
 
 
 def ShowCompanyDriversView(request):
     driver_info = Driver.get_driver_info(request)
     driver = {
         'nick': driver_info.nick,
+        'position': driver_info.position,
         'avatar': driver_info.avatar,
         'company': driver_info.company,
     }
 
     changed_position = request.session.get('changed-position')
-    
-
     if driver_info.company is not None:
         company = Company.objects.get(name=driver_info.company)
         sort_type = request.GET.get('sort_by')
         if sort_type is not None:
-            company_drivers = Company.get_company_drivers_info(company.id, sort_type)
+            company_drivers = Company.get_company_drivers_info(
+                company.id, sort_type)
         else:
             company_drivers = Company.get_company_drivers_info(
                 company.id, '-position')
@@ -655,16 +687,18 @@ def ShowCompanyDriversView(request):
             for company_driver in company_drivers:
                 if company_driver['nick'] == driver_nick:
                     response = render(request, 'hercules_app/drivers.html',
-                                     {'driver': driver, 'company_driver': company_driver})
+                                      {'driver': driver, 'company_driver': company_driver})
                     break
                 else:
                     response = render(request, 'hercules_app/drivers.html',
                                       {'driver': driver, 'not_found': True, 'sort_by': sort_type})
         else:
-            response = render(request, 'hercules_app/drivers.html', {'driver': driver, 'company_drivers': company_drivers, 'sort_by': sort_type})
+            response = render(request, 'hercules_app/drivers.html', {
+                              'driver': driver, 'company_drivers': company_drivers, 'sort_by': sort_type})
         if changed_position is True:
             cookie = SetCookie(request, response, 'changed-position')
         return response
+
 
 def ShowCompanyDriverView(request, driver_id):
     driver_info = Driver.get_driver_info(request)
@@ -698,6 +732,7 @@ def ShowCompanyDriverView(request, driver_id):
 
     return render(request, 'hercules_app/drivers-card.html', args)
 
+
 def ChangePosition(request, driver_id):
     if request.POST:
         company_driver = Driver.objects.get(id=driver_id)
@@ -708,3 +743,235 @@ def ChangePosition(request, driver_id):
         return redirect('/Drivers')
     else:
         return HttpResponse(status=500)
+
+
+def CompanyWaybillsView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'position': driver_info.position,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    company = Company.objects.get(name=driver_info.company)
+    drivers = Driver.objects.all().filter(company=company)
+    company_deliveries = []
+    for company_driver in drivers:
+        deliveries = Waybill.objects.all().order_by(
+            '-finish_date').filter(driver=company_driver)
+        for delivery in deliveries:
+            company_deliveries.append(delivery)
+    company_deliveries = sorted(
+        company_deliveries, key=lambda x: x.finish_date)
+    response = render(request, 'hercules_app/deliveries.html',
+                      {'driver': driver, 'deliveries': company_deliveries, 'is_speditor_view': True})
+    company_deliveries = reversed(company_deliveries)
+    waybill_accepted = request.session.get('waybill_accepted')
+    if waybill_accepted is True:
+        cookie = SetCookie(request, response, 'waybill_accepted')
+    waybill_to_edit = request.session.get('waybill_to_edit')
+    if waybill_to_edit is True:
+        cookie = SetCookie(request, response, 'waybill_to_edit')
+    waybill_rejected = request.session.get('waybill_rejected')
+    if waybill_rejected is True:
+        cookie = SetCookie(request, response, 'waybill_rejected')
+    return response
+
+
+def VerifyWaybillView(request, waybill_id):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'position': driver_info.position,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    waybill = Waybill.objects.get(id=waybill_id)
+
+    return render(request, 'hercules_app/verify_waybill.html', {'driver': driver, 'waybill': waybill})
+
+
+def AcceptWaybill(request, waybill_id):
+    if request.GET:
+        return HttpResponse(status=403)
+    else:
+        driver_info = Driver.get_driver_info(request)
+        if (driver_info.position != "Szef" or driver_info.position != "Spedytor"):
+            waybill = Waybill.objects.get(id=waybill_id)
+            driver = waybill.driver
+            if driver.company.name != driver_info.company:
+                return HttpResponse(status=403)
+            else:
+                waybill.status = "accepted"
+                waybill.save()
+                driver_statistics = DriverStatistics.objects.get(
+                    driver_id=driver)
+                DriverStatistics.objects.filter(driver_id=driver).update(
+                    distance=statistics.distance + waybill.distance,
+                    tonnage=statistics.tonnage + waybill.tonnage,
+                    income=statistics.income + waybill.income,
+                    fuel=statistics.fuel + waybill.fuel,
+                    average_fuel=round(Decimal(statistics.fuel + waybill.fuel)/Decimal(
+                        statistics.distance + waybill.distance)*100, 2),
+                    deliveries_count=statistics.deliveries_count + 1,
+                )
+                request.session['waybill_accepted'] = True
+                return redirect('/Waybills')
+        else:
+            return HttpResponse(status=403)
+
+
+def ToEditWaybill(request, waybill_id):
+    if request.GET:
+        return HttpResponse(status=403)
+    else:
+        driver_info = Driver.get_driver_info(request)
+        if (driver_info.position != "Szef" or driver_info.position != "Spedytor"):
+            waybill = Waybill.objects.get(id=waybill_id)
+            driver = waybill.driver
+            if driver.company.name != driver_info.company:
+                return HttpResponse(status=403)
+            else:
+                waybill.status = "to-edit"
+                waybill.to_edit_reason = request.POST['to-edit-reason']
+                waybill.save()
+                request.session['waybill_to_edit'] = True
+                return redirect('/Waybills')
+        else:
+            return HttpResponse(status=403)
+
+
+def RejectWaybill(request, waybill_id):
+    if request.GET:
+        return HttpResponse(status=403)
+    else:
+        driver_info = Driver.get_driver_info(request)
+        if (driver_info.position == "Szef" or driver_info.position == "Spedytor"):
+            waybill = Waybill.objects.get(id=waybill_id)
+            driver = waybill.driver
+            if driver.company.name != driver_info.company:
+                return HttpResponse(status=403)
+            else:
+                waybill.status = "declined"
+                waybill.to_edit_reason = request.POST['reject-reason']
+                waybill.save()
+                request.session['waybill_rejected'] = True
+                return redirect('/Waybills')
+        else:
+            return HttpResponse(status=403)
+
+
+def CompanySettingsView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'position': driver_info.position,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    driver_info = Driver.get_driver_info(request)
+    if (driver_info.position == "Szef"):
+        company = Company.objects.get(name=driver_info.company)
+        settings = CompanySettings.objects.get(company=company)
+        edit_company_form = EditCompanyInformationForm(
+            company.is_recruiting, instance=company)
+        edit_company_settings_form = EditSettingsForm(settings.random_vehicle, settings.auto_synchronization, settings.only_assistant, settings.max_90, instance=settings)
+
+        response = render(request, 'hercules_app/settings.html',
+                      {'driver': driver, 'edit_company_form': edit_company_form, 'edit_company_settings_form': edit_company_settings_form, 'company': company})
+        information_changed = request.session.get('information_changed')
+        if information_changed is True:
+            cookie = SetCookie(request, response, 'information_changed')
+        settings_changed = request.session.get('settings_changed')
+        if settings_changed is True:
+            cookie = SetCookie(request, response, 'settings_changed')
+        games = ""
+        if company.is_ats:
+            games += "1"
+        if company.is_ets2:
+            games += "2"
+        if company.is_singleplayer:
+            games += "3"
+        if company.is_multiplayer:
+            games += "4"
+        if company.is_promods:
+            games += "5"
+        response.set_cookie('dlc', company.dlc, max_age=5, samesite='Strict')
+        response.set_cookie('games', games, max_age=5, samesite='Strict')
+        return response
+    else:
+        return HttpResponse(status=403)
+
+def EditCompanyInformation(request):
+    if request.GET:
+        return HttpResponse(status=503)
+    else:
+        driver_info = Driver.get_driver_info(request)
+        if (driver_info.position == "Szef"):
+            company = Company.objects.get(name=driver_info.company)
+            form = EditCompanyInformationForm(
+                company.is_recruiting, request.POST, request.FILES, instance=company)
+            if form.is_valid():
+                information = form.save(commit=False)
+                dlc = form.data.get("dlc")
+                games = Company.convert_select_from_company_form(form.data.get("games"), False, True)
+                if games is not None:
+                    for game in games:
+                        if game == "ETS2":
+                            information.is_ets2 = True
+                        elif game == "ATS":
+                            information.is_ats = True
+                        elif game == "Singleplayer":
+                            information.is_singleplayer = True
+                        elif game == "Multiplayer":
+                            information.is_multiplayer = True
+                        elif game == "Promods":
+                            information.is_ats = True
+                information.dlc = dlc
+                information.save()
+                request.session['information_changed'] = True
+                return redirect('/Settings')
+            else:
+                return redirect('/Settings')
+        else:
+            return HttpResponse(status=403)
+
+
+def EditCompanySettings(request):
+    if request.GET:
+        return HttpResponse(status=403)
+    else:
+        driver_info = Driver.get_driver_info(request)
+        if (driver_info.position == "Szef"):
+            company = Company.objects.get(name=driver_info.company)
+            settings = CompanySettings.objects.get(company=company)
+            form = EditSettingsForm(settings.random_vehicle, settings.  auto_synchronization, settings.only_assistant, settings.max_90, request.POST, instance=settings)
+            if form.is_valid():
+                form.save()
+                request.session['settings_changed'] = True
+                return redirect('/Settings')
+            else:
+                return redirect('/Settings')
+        else:
+            return HttpResponse(status=403)
+
+def DeleteCompany(request):
+    if request.GET:
+        return HttpResponse(status=403)
+    else:
+        driver_info = Driver.get_driver_info(request)
+        if (driver_info.position == "Szef" or driver_info.position == "Spedytor"):
+            company = Company.objects.get(name=driver_info.company)
+            if company.name != driver_info.company:
+                return HttpResponse(status=403)
+            else:
+                drivers = Driver.objects.filter(company=company)
+                for driver in drivers:
+                    Driver.objects.filter(nick=driver.nick).update(is_employeed = False, company = None, position = None)
+                Vehicle.objects.filter(company=company).delete()
+                CompanySettings.objects.filter(company=company).delete()
+                #WorkApplications
+                Company.objects.filter(name=driver_info.company).delete()
+                return redirect('/panel')
+        else:
+            return HttpResponse(status=403)

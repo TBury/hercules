@@ -37,9 +37,20 @@
     <link rel='stylesheet' href="{% static 'css/bulma-switch.min.css' %}">
     <link rel='stylesheet' href="{% static 'css/bulma-checkradio.min.css' %}">
     <link rel='stylesheet' href="{% static 'css/bulma-accordion.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title> Panel użytkownika | Hercules</title>
+    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script defer src='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js'>
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script defer src="{% static 'js/add_company.js' %}"></script>
+    <script defer src="{% static 'js/delete_company.js' %}"></script>
+    <script defer src="{% static 'js/toast.js' %}"></script>
+    <script src="{% static 'js/bulma-accordion.js' %}"></script>
+    <title> Ustawienia firmy | Hercules</title>
 </head>
 
 <body>
@@ -47,7 +58,7 @@
         <div class="navbar-start">
             <div class="navbar-brand">
                 <a class="navbar-item">
-                    <img src="" width="194" height="55">
+                    <img src="{% static '/assets/logo.png' %}" width="194" height="55">
                 </a>
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
                     <span aria-hidden="true"></span>
@@ -59,12 +70,12 @@
         <div class="navbar-end is-hidden-mobile">
             <a class="navbar-item">
                 <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{% static 'hercules_app/assets/avatar_krawczyk.jpg' %}">
+                    <img class="avatar" src="{{ driver.avatar }}">
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company_id %}
-                    <p class="company">{{ company.name }}</p>
+                    {% if driver.company != "" and driver.company != None %}
+                    <p class="user-company">{{ driver.company }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -124,32 +135,61 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
+                        {% if driver.position == "" %}
                         <li>
-                            <a class="is-active">
+                            <a href="/Companies">
                                 <p class="option search-company">
                                     Znajdź firmę
                                 </p>
                             </a>
                         </li>
+                        {% elif driver.position != "" %}
                         <li>
-                            <a>
-                                <p class="option vehicles">Twoje pojazdy</p>
+                            <a href="/CompanyProfile">
+                                <p class="option company-profile">
+                                    Profil firmy
+                                </p>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                <p class="option deliveries">Twoje dostawy</p>
+                            <a href="/Drivers">
+                                <p class="option drivers">
+                                    Kierowcy
+                                </p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="/Vehicles">
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %}
+                                    Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% if driver.position == "Szef" or driver.position == "Spedytor" %}
+                        <li>
+                            <a href="/Waybills">
+                                <p class="option waybills">Listy przewozowe</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if driver.position == "Szef" %}
+                        <li>
+                            <a href="/Settings">
+                                <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                <p class="option settings">Ustawienia</p>
+                            <a href="/Statistics/">
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %}
+                                    Pojazdy
+                                    firmowe {% endif %}</p>
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </aside>
-            
             <main class="column main">
                 <header>
                     <h1 class="title">Stwórz nową firmę</h1>
@@ -161,56 +201,60 @@
                             <button class="toggle" aria-label="toggle"></button>
                         </div>
                         <div class="accordion-body">
-                            <div class="box basic-info">
-                                <div class="columns">
-                                    <div class="column">
-                                        <img src="img/placeholder-1200x500-1.png" class="company-logo">
-                                    </div>
-                                    <div class="column">
-                                        <label class="label">Nazwa firmy</label>
-                                        <input type="text" class="input">
-                                        <label class="label">Opcje firmy</label>
-                                        <select id="select-options" multiple></select>
-                                        <div class="field">
-                                            <input id="switchRoundedDefault" type="checkbox" name="switchRoundedDefault"
-                                                class="switch is-rounded" checked="checked">
-                                            <label for="switchRoundedDefault" class="label">Przyjmujemy nowych
-                                                kierowców</label>
+                            <form action="/Settings/EditCompanyInformation" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="box basic-info">
+                                    <div class="columns">
+                                        <div class="column">
+                                            <img src="{{ company.logo.url }}" class="company-logo">
+                                            {{ edit_company_form.logo }}
+
+                                        </div>
+                                        <div class="column">
+                                            <label class="label">Nazwa firmy</label>
+                                            {{ edit_company_form.name }}
+                                            <label class="label">Gry</label>
+                                            <select id="select-options" multiple></select>
+                                            {{ edit_company_form.games }}
+                                            <div class="field">
+                                                {{ edit_company_form.is_recruiting }}
+                                                <label for="switchRoundedDefault" class="label">Przyjmujemy nowych
+                                                    kierowców</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="box description">
-                                <div class="columns">
-                                    <div class="column">
-                                        <label for="" class="label">Strona internetowa</label>
-                                        <input type="url" class="input">
-                                        <label class="label">Wymagane DLC</label>
-                                        <select id="select-dlc" multiple></select>
-                                    </div>
-                                    <div class="column">
-                                        <label for="" class="label">Link do komunikatora</label>
-                                        <input type="url" class="input">
-                                        <div class="field">
-                                            <input id="switchRoundedInfo" type="checkbox" name="switchRoundedInfo"
-                                                class="switch is-rounded is-info" checked="checked">
-                                            <label class="label" for="switchRoundedInfo">Maksymalnie 90 km/h</label>
+                                <div class="box description">
+                                    <div class="columns">
+                                        <div class="column">
+                                            <label for="" class="label">Strona internetowa</label>
+                                            {{ edit_company_form.website }}
+                                            <label class="label">Wymagane DLC</label>
+                                            <select id="select-dlc" multiple></select>
+                                            {{ edit_company_form.dlc }}
+                                        </div>
+                                        <div class="column">
+                                            <label for="" class="label">Link do komunikatora</label>
+                                            {{ edit_company_form.communicator_url }}
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="box description">
-                                <label class="label">Opis</label>
-                                <textarea class="textarea" cols="40"></textarea>
-                            </div>
+                                <div class="box description">
+                                    <label class="label">Opis</label>
+                                    {{ edit_company_form.description }}
+                                </div>
+                                <button class="button add-new-company" type="submit">Zapisz zmiany</button>
+                            </form>
                         </div>
                     </article>
                     <article class="accordion is-active">
                         <div class="accordion-header">
                             <b>Ustawienia firmy</b>
-                            <button class="toggle" aria-label="toggle"></button>
+                            <a class="toggle" aria-label="toggle"></a>
                         </div>
                         <div class="accordion-body">
+                            <form action="/Settings/EditCompanySettings" method="POST">
+                                {% csrf_token %}
                             <div class="box description">
                                 <div class="columns">
                                     <div class="column setting">
@@ -218,7 +262,7 @@
                                             <label class="label">Norma okresowa</label>
                                             <div class="field has-addons">
                                                 <div class="control">
-                                                    <input type="number" class="input" value="1000" step="100" min="0">
+                                                    {{ edit_company_settings_form.periodic_norm_distance }}
                                                 </div>
                                                 <div class="control">
                                                     <a class="button is-static">
@@ -227,34 +271,30 @@
                                                 </div>
                                             </div>
                                             <div class="field">
-                                                <input class="is-checkradio" id="periodic-norm-week" type="radio"
-                                                    name="periodic-norm" checked="checked">
-                                                <label for="periodic-norm-week" class="label">Tydzień</label>
-                                                <input class="is-checkradio" id="periodic-norm-month" type="radio"
-                                                    name="periodic-norm">
-                                                <label for="periodic-norm-month" class="label">Miesiąc</label>
+                                                {% for choice in edit_company_settings_form.periodic_norm_type %}
+                                                    {{ choice.tag }}
+                                                    <label for="{{ choice.data.attrs.id }}"
+                                                        class="label">{{ choice.choice_label }}</label>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="random-vehicle-container">
                                             <div class="field">
-                                                <input id="random-vehicle" type="checkbox" name="random-vehicle"
-                                                    class="switch is-rounded is-info">
+                                                {{ edit_company_settings_form.random_vehicle }}
                                                 <label class="label" for="random-vehicle">Losowe przydzielanie
                                                     pojazdu</label>
                                             </div>
                                             <div class="field">
-                                                <input class="is-checkradio" id="random-vehicle-week" type="radio"
-                                                    name="random-vehicle-time" checked="checked">
-                                                <label for="random-vehicle-week" class="label">Tydzień</label>
-                                                <input class="is-checkradio" id="random-vehicle-month" type="radio"
-                                                    name="random-vehicle-time">
-                                                <label for="random-vehicle-month" class="label">Miesiąc</label>
+                                                {% for choice in edit_company_settings_form.random_vehicle_type %}
+                                                {{ choice.tag }}
+                                                <label for="{{ choice.data.attrs.id }}"
+                                                    class="label">{{ choice.choice_label }}</label>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="only-assistant-container">
                                             <div class="field">
-                                                <input id="only-assistant" type="checkbox" name="only-assistant-check"
-                                                    class="switch is-rounded is-info">
+                                                {{ edit_company_settings_form.only_assistant }}
                                                 <label class="label" for="only-assistant">Tylko trasy z Hercules
                                                     Assistant</label>
                                             </div>
@@ -264,9 +304,7 @@
                                         <div class="disposition-norm-container">
                                             <label class="label">Norma dyspozycyjna</label>
                                             <div class="field has-addons">
-                                                <div class="control">
-                                                    <input type="number" class="input" value="5" step="1" min="1">
-                                                </div>
+                                                {{ edit_company_settings_form.disposition_norm }}
                                                 <div class="control">
                                                     <a class="button is-static">
                                                         dyspozycji
@@ -274,19 +312,17 @@
                                                 </div>
                                             </div>
                                             <div class="field">
-                                                <input class="is-checkradio" id="disposition-norm-week" type="radio"
-                                                    name="disposition-norm" checked="checked">
-                                                <label for="disposition-norm-week" class="label">Tydzień</label>
-                                                <input class="is-checkradio" id="disposition-norm-month" type="radio"
-                                                    name="disposition-norm">
-                                                <label for="disposition-norm-month" class="label">Miesiąc</label>
+                                                {% for choice in edit_company_settings_form.disposition_norm_type %}
+                                                {{ choice.tag }}
+                                                <label for="{{ choice.data.attrs.id }}"
+                                                    class="label">{{ choice.choice_label }}</label>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="save-sync-container">
                                             <div class="field">
                                                 <div class="field">
-                                                    <input id="sync-save-check" type="checkbox" name="sync-save"
-                                                        class="switch is-rounded is-info">
+                                                    {{ edit_company_settings_form.auto_synchronization }}
                                                     <label class="label" for="sync-save-check">Automatyczna
                                                         synchronizacja
                                                         zapisów gry</label>
@@ -297,35 +333,59 @@
                                                     </p>
                                                 </div>
                                             </div>
+                                            <div class="field">
+                                                {{ edit_company_settings_form.max_90 }}
+                                                <label class="label" for="max-90-check">Maksymalnie 90 km/h</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <button class="button add-new-company" type="submit">Zapisz zmiany</button>
+                            </form>
                         </div>
                     </article>
                     <article class="accordion">
+
                         <div class="accordion-header">
                             <b>Zamknięcie firmy</b>
-                            <button class="toggle" aria-label="toggle"></button>
+                            <button class="toggle"></button>
                         </div>
                         <div class="accordion-body">
-                           <div class="box description">
-                               <label class="label">Zamknięcie firmy</label>
-                               <button class="button is-danger">Zamknij firmę</button>
-                           </div>
+                            <div class="box description">
+                                <label class="label">Zamknięcie firmy</label>
+                                <button class="button is-danger delete-company">Zamknij firmę</button>
+                            </div>
                         </div>
+
                     </article>
                 </section>
-                 <button class="button add-new-company" type="submit">Zapisz zmiany</button>
+
+        </div>
+        </main>
+        <div class="modal delete-company-modal" id="page-modal">
+            <div class="modal-background delete-company-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <form action="/Companies/DeleteCompany" method="post">
+                        {% csrf_token %}
+                        <span>
+                            <h1 class="title">Czy na pewno usunąć firmę?
+                            </h1>
+                            <p class="subtitle is-5">Statystyki firmy oraz pojazdy firmowe zostaną bezpowrotnie usunięte. Zachowasz swoje statystyki. Tej operacji nie można wycofać. </p>
+                        </span>
+                        <div class="modal-buttons">
+                            <a class="button cancel-delete" data-dismiss="modal">Wróć</a>
+                            <button type="submit" class="button is-danger" id="deleteCompanyButton" href="#">Usuń firmę</button>
+                        </div>
+                    </form>
                 </div>
-            </main>
+            </div>
+            <button class="modal-close is-large delete-company-close" aria-label="close"></button>
         </div>
     </div>
+    </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js'></script>
-<script src="{% static 'js/add_company.js' %}"></script>
-<script src="{% static 'bulma-accordion.min.js' %}"></script>
+
 
 </html>

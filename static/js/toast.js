@@ -57,4 +57,27 @@ if (showCookie("changed-position") == 'True') {
     deleteCookie("changed-position");
 }
 
+if (showCookie("waybill_accepted") == 'True') {
+    showToast('Pomyślnie zaakceptowano list przewozowy.', 'Akceptacja');
+    deleteCookie("waybill_accepted");
+}
 
+if (showCookie("waybill_to_edit") == 'True') {
+    showToast('Pomyślnie odesłano list przewozowy do poprawki.', 'Odesłany do poprawki');
+    deleteCookie("waybill_to_edit");
+}
+
+if (showCookie("waybill_rejected") == 'True') {
+    showToast('Pomyślnie odrzucono list przewozowy.', 'Odrzucony');
+    deleteCookie("waybill_rejected");
+}
+
+if (showCookie("information_changed") == 'True') {
+    showToast('Pomyślnie zmieniono informacje o firmie.', 'Zmieniono');
+    deleteCookie("information_changed");
+}
+
+if (showCookie("settings_changed") == 'True') {
+    showToast('Pomyślnie zmieniono ustawienia firmy.', 'Zmieniono');
+    deleteCookie("settings_changed");
+}

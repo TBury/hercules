@@ -60,7 +60,7 @@
                 </figure>
                 <span class="user">
                     <p class="username">{{ nick }}</p>
-                    {% if company != "" %}
+                    {% if company != "" and company != None %}
                     <p class="user-company">{{ company }}</p>
                     {% endif %}
                 </span>
@@ -126,7 +126,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if position == "" %}
+                        {% if driver.position == "" %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -134,7 +134,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif position != "" %}
+                        {% elif driver.position != "" %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -152,18 +152,18 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
-                        {% if position == "Właściciel" or position == "Spedytor" %}
+                        {% if driver.position == "Szef" or driver.position == "Spedytor" %}
                         <li>
                             <a href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         {% endif %}
-                        {% if position == "Właściciel" %}
+                        {% if driver.position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
@@ -171,7 +171,7 @@
                         </li>
                         <li>
                             <a href="/Statistics/">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
@@ -200,6 +200,7 @@
                                 </div>
                             </article>
                         </div>
+                        {% if periodic_norm and company %}
                         <div class="box card periodic-norm-card">
                             <header class="card-header">
                                 <a href="" class="card-header-icon">
@@ -226,6 +227,7 @@
                                     {% endif %}
                                 </div>
                         </div>
+                        {% endif %}
                         <div class="box card status-card">
                             <article class="media">
                                 <div class="media-left">
@@ -386,10 +388,10 @@
                                     <h1 class="no-vehicle-title">Nie masz żadnego pojazdu.</h1>
                                     <p class="sub-text">
                                         Nie został Ci przydzielony żaden pojazd.
-                                        {% if position == "Właściciel" or position == "Dyspozytor" %}
+                                        {% if driver.position == "Szef" or driver.position == "Dyspozytor" %}
                                         Dodaj pojazd w zakładce Pojazdy.
                                         {% else %}
-                                        Zgłoś tę informację właścicielowi lub dyspozytorowi firmy.
+                                        Zgłoś tę informację Szefowi lub dyspozytorowi firmy.
                                         {% endif %}
                                     </p>
                                 </span>

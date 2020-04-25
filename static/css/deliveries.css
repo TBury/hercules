@@ -21,4 +21,25 @@
 .check-details {
   margin-top: 5%;
 }
+
+.driver-basic-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.driver-username {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-left: 15px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.driver-avatar {
+  border-radius: 25px;
+  width: 48px;
+  height: 48px;
+}
 /*# sourceMappingURL=deliveries.css.map */

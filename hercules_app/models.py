@@ -21,12 +21,15 @@ class Company(models.Model):
     tonnage = models.PositiveIntegerField(default=0)
     waybill_count = models.PositiveIntegerField(default=0)
     description = models.TextField(default='')
-    is_recruiting = models.BooleanField(default=True)
+    website = models.URLField(default='', blank=True, null=True)
+    communicator_url = models.URLField(default='', blank=True, null=True)
+    is_recruiting = models.BooleanField(default=True, blank=True)
     is_ets2 = models.BooleanField(default=True)
     is_ats = models.BooleanField(default=False)
     is_singleplayer = models.BooleanField(default=True)
     is_multiplayer = models.BooleanField(default=True)
     is_promods = models.BooleanField(default=False)
+    dlc = models.CharField(max_length=256, default='', blank=True, null=True)
 
     def get_company_name(self):
         return self.name
@@ -96,6 +99,37 @@ class Company(models.Model):
             pass
         return company_drivers
 
+    def convert_select_from_company_form(input, is_dlc, is_games):
+        dlc_dictionary = {
+            '1': 'Going East!',
+            '2': 'Skandynawia',
+            '3': 'Viva la France',
+            '4': 'Italia',
+            '5': 'Beyond the Baltic Sea',
+            '6': 'Road to the Black Sea',
+            '7': 'Iberia',
+        }
+        games_dictionary = {
+            '1': 'ATS',
+            '2': 'ETS2',
+            '3': 'Singleplayer',
+            '4': 'Multiplayer',
+            '5': 'Promods',
+        }
+        if input is not None:
+            translation = []
+            if is_dlc:
+                for number in input:
+                    translation.append(dlc_dictionary.get(number, ""))
+            elif is_games:
+                for number in input:
+                    translation.append(games_dictionary.get(number, ""))
+            else:
+                return "error"
+            return translation
+        else:
+            return None
+
     def __str__(self):
         return self.name
 
@@ -137,7 +171,7 @@ class Driver(models.Model):
             company_id = company.id
             company = company.name
         else:
-            company = ""
+            company = None
             company_id = 0
 
         vehicle = Driver.get_vehicle_info(driver)
@@ -194,7 +228,7 @@ class Vehicle(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True)
     company = models.ForeignKey(
         Company, on_delete=models.CASCADE, null=True, blank=True)
-    photo = models.ImageField(upload_to='vehicles', null=True)
+    photo = models.ImageField(upload_to='vehicles', null=True, blank=True)
     model = models.CharField(max_length=80)
     cabin = models.CharField(max_length=64)
     registration_number = models.CharField(max_length=8)
@@ -260,6 +294,8 @@ class Waybill(models.Model):
     end_screen = models.ImageField(upload_to='waybills', default="")
     finish_date = models.DateTimeField(auto_now_add=True)
     screens_id = models.CharField(max_length=72, default='')
+    reject_reason = models.TextField(default='', blank=True)
+    to_edit_reason = models.TextField(default='', blank=True)
 
     class WaybillStatus(models.TextChoices):
         ACCEPTED = 'accepted', _('accepted')
@@ -354,8 +390,8 @@ class CompanySettings(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
     class PeriodicNormType(models.TextChoices):
-        WEEK = 'wk', _('week')
-        MONTH = 'mth', _('month')
+        WEEK = 'wk', _('Tydzień')
+        MONTH = 'mth', _('Miesiąc')
     periodic_norm_type = models.CharField(
         choices=PeriodicNormType.choices, default=PeriodicNormType.WEEK, max_length=5)
     periodic_norm_distance = models.PositiveIntegerField(default=0)
@@ -365,9 +401,11 @@ class CompanySettings(models.Model):
     disposition_norm_type = models.CharField(
         choices=PeriodicNormType.choices, default=PeriodicNormType.WEEK, max_length=5)
     random_vehicle = models.BooleanField(default=False)
+    random_vehicle_type = models.CharField(choices=PeriodicNormType.choices, default=PeriodicNormType.WEEK, max_length=5)
     random_vehicle_timestamp = models.DateTimeField(auto_now_add=True)
     only_assistant = models.BooleanField(default=False)
     auto_synchronization = models.BooleanField(default=False)
+    max_90 = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.company_id)

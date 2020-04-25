@@ -32,7 +32,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/deliveries.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script defer src="{% static 'js/toast.js' %}"></script>
     <title> Twoje dostawy | Hercules</title>
 </head>
 
@@ -114,7 +118,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active" href="/Deliveries">
+                            <a {% if not is_speditor_view %} class="is-active" {% endif %} href="/Deliveries">
                                 <p class="option deliveries">Twoje dostawy</p>
                             </a>
                         </li>
@@ -123,7 +127,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if position == "" %}
+                        {% if driver.position == "" %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -131,7 +135,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif position != "" %}
+                        {% elif driver.position != "" %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -149,26 +153,21 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
-                        {% if position == "Właściciel" or position == "Spedytor" %}
+                        {% if driver.position == "Szef" or driver.position == "Spedytor" %}
                         <li>
-                            <a href="/Waybills">
+                            <a {% if is_speditor_view %} class="is-active" {% endif %} href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         {% endif %}
-                        {% if position == "Właściciel" %}
+                        {% if driver.position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Statistics/">
-                                <p class="option vehicles">Statystyki firmowe </p>
                             </a>
                         </li>
                         {% endif %}
@@ -176,6 +175,7 @@
                 </nav>
             </aside>
             <main class="column main">
+                {% if not is_speditor_view %}
                 <header>
                     <h1 class="title">Twoje dostawy</h1>
                 </header>
@@ -247,6 +247,86 @@
                     </div>
                 </div>
                 {% endif %}
+            {% else %}
+            <header>
+                <h1 class="title">Dostawy spedycji</h1>
+            </header>
+            {% if deliveries %}
+            {% for delivery in deliveries %}
+            <div class="box delivery {{ delivery.status }}">
+                <div class="columns">
+                    <div class="column">
+                        <div class="driver-basic-info">
+                            <img src="{{ delivery.driver.avatar.url }}" class="driver-avatar">
+                            <span class="user">
+                                <p class="driver-username">{{ delivery.driver.nick }}</p>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="loading-info">
+                            {% with '/assets/countries/'|add:delivery.loading_country|add:'.png' as image_static %}
+                            <img src="{% static image_static %}" class="country-icon">
+                            {% endwith %}
+                            <span class="city-and-company">
+                                <p class="city">{{ delivery.loading_city }}</p>
+                                {% with '/assets/companies/'|add:delivery.loading_spedition|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="company">
+                                {% endwith %}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="unloading-info">
+                            {% with '/assets/countries/'|add:delivery.unloading_country|add:'.png' as image_static %}
+                            <img src="{% static image_static %}" class="country-icon">
+                            {% endwith %}
+                            <span class="city-and-company">
+                                <p class="city">{{ delivery.unloading_city }}</p>
+                                {% with '/assets/companies/'|add:delivery.loading_spedition|add:'.png' as image_static %}
+                                <img src="{% static image_static %}" class="company">
+                                {% endwith %}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="cargo">
+                            <span class="cargo">
+                                <b>{{ delivery.cargo }}</b>
+                                <br>
+                                {{ delivery.tonnage }} kg
+                            </span>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="deadline">
+                            <span class="date">
+                                <b>Data wykonania:</b>
+                                <br>
+                                {{ delivery.finish_date }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <a href="/Waybills/{{ delivery.id }}" class="button check-details">Sprawdź szczegóły</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="box delivery">
+                <div class="no-disposition">
+                    <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
+                    <span class="no-disposition-text">
+                        <h1 class="no-disposition-title">Nie masz żadnych zleceń.</h1>
+                        <p class="sub-text">
+                            Spedycja nie przyjęła żadnych zleceń, które możesz sprawdzić.
+                        </p>
+                    </span>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
             </main>
         </div>
     </div>

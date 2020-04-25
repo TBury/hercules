@@ -57,6 +57,20 @@ urlpatterns = [
      path('Drivers/', views.ShowCompanyDriversView, name="show-company-drivers"),
     path('Drivers/<int:driver_id>', views.ShowCompanyDriverView, name="show-company-driver"),
     path('ChangePosition/<int:driver_id>', views.ChangePosition, name="change-position"),
+    path('Waybills', views.CompanyWaybillsView, name="show-company-waybills"),
+    path('Waybills/<int:waybill_id>', views.VerifyWaybillView, name="verify-waybill"),
+    path('Waybills/Accept/<int:waybill_id>', views.AcceptWaybill, name="accept-waybill"),
+    path('Waybills/ToEdit/<int:waybill_id>',
+         views.ToEditWaybill, name="to-edit-waybill"),
+    path('Waybills/Reject/<int:waybill_id>',
+         views.RejectWaybill, name="reject-waybill"),
+    path('Settings',
+         views.CompanySettingsView, name="company-settings"),
+    path('Settings/EditCompanyInformation',
+         views.EditCompanyInformation, name="edit-company-information"),
+    path('Settings/EditCompanySettings',
+         views.EditCompanySettings, name="edit-company-information"),
+     path('Companies/DeleteCompany', views.DeleteCompany, name="delete-company"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

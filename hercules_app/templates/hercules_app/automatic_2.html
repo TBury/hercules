@@ -130,7 +130,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if position == "" %}
+                        {% if driver.position == "" %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -138,7 +138,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif position != "" %}
+                        {% elif driver.position != "" %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -156,18 +156,18 @@
                         {% endif %}
                         <li>
                             <a class="is-active" href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
-                        {% if position == "Właściciel" or position == "Spedytor" %}
+                        {% if driver.position == "Szef" or driver.position == "Spedytor" %}
                         <li>
                             <a href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         {% endif %}
-                        {% if position == "Właściciel" %}
+                        {% if driver.position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
@@ -175,7 +175,7 @@
                         </li>
                         <li>
                             <a href="/Statistics/">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>

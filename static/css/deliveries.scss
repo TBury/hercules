@@ -15,9 +15,26 @@
 }
 
 .to-edit {
-    border-left: 10px solid rgb(255, 221, 87);
+    border-left: 10px solid #ffdd57;
 }
 
 .check-details {
     margin-top: 5%;
+}
+
+.driver-basic-info {
+    display: flex;
+}
+
+.driver-username {
+    align-self: center;
+    margin-left: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.driver-avatar {
+    border-radius: 25px;
+    width: 48px;
+    height: 48px;
 }
