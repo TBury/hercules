@@ -31,11 +31,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/verify.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link href="{% static 'css/bulma-calendar.css' %}" rel="stylesheet">
     <link href="{% static 'hercules_app/basic.min.css' %}" type="text/css" rel="stylesheet" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <link rel='stylesheet' href='bulma-switch.min.css'>
-    <link rel='stylesheet' href='bulma-checkradio.min.css'>
-    <title> Dodaj nową dostawę | Hercules</title>
+    <link rel='stylesheet' href="{% static 'css/bulma-switch.min.css' %}">
+    <link rel='stylesheet' href="{% static 'css/bulma-checkradio.min.css' %}">
+    <title> Nowa dyspozycja | Hercules</title>
 </head>
 
 <body>
@@ -43,7 +44,7 @@
         <div class="navbar-start">
             <div class="navbar-brand">
                 <a class="navbar-item">
-                    <img src="logo.png" width="194" height="55">
+                    <img src="{% static '/assets/logo.png' %}" width="194" height="55">
                 </a>
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
                     <span aria-hidden="true"></span>
@@ -59,8 +60,8 @@
                 </figure>
                 <span class="user">
                     <p class="username">{{ driver.nick }}</p>
-                    {% if driver.company_id %}
-                    <p class="company">{{ company.name }}</p>
+                    {% if driver.company %}
+                    <p class="company">{{ driver.company }}</p>
                     {% endif %}
                 </span>
             </a>
@@ -120,35 +121,63 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
+                        {% if driver.position == "" %}
                         <li>
-                            <a>
+                            <a href="/Companies">
                                 <p class="option search-company">
                                     Znajdź firmę
                                 </p>
                             </a>
                         </li>
+                        {% elif driver.position != "" %}
                         <li>
-                            <a>
-                                <p class="option vehicles">Twoje pojazdy</p>
+                            <a href="/CompanyProfile">
+                                <p class="option company-profile">
+                                    Profil firmy
+                                </p>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                <p class="option deliveries">Twoje dostawy</p>
+                            <a href="/Drivers">
+                                <p class="option drivers">
+                                    Kierowcy
+                                </p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="/Vehicles">
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %}
+                                    Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% if driver.position == "Szef" or driver.position == "Spedytor" %}
+                        <li>
+                            <a href="/Waybills">
+                                <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                <p class="option settings">Ustawienia</p>
+                            <a href="/CompanyDispositions">
+                                <p class="option vehicles">Dyspozycje firmowe</p>
                             </a>
                         </li>
+                        {% endif %}
+                        {% if driver.position == "Szef" %}
+                        <li>
+                            <a href="/Settings">
+                                <p class="option settings">Ustawienia firmy</p>
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </aside>
             <main class="column main">
                 <h1 class="title">Nowa <span class="colored">dyspozycja</span> </h1>
                 <div class="box card">
-                    <form action="/add-waybill" method="POST">
+                    <form action="/Dispositions/AddNewDisposition/NewDisposition" method="POST" class="newDispositionForm">
                         {% csrf_token %}
                         <div class="basic-info">
                             <b><span class="colored">Podstawowe </span> informacje</b>
@@ -157,45 +186,55 @@
                                     <div class="field">
                                         <label class="label">Miasto załadunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ form.loading_city }}
                                         </div>
                                     </div>
+                                    {{ form.loading_country }}
                                     <div class="field">
                                         <label class="label">Spedycja załadunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ form.loading_spedition }}
                                         </div>
                                     </div>
                                     <div class="field">
                                         <label class="label">Ładunek</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ form.cargo }}
+                                        </div>
+                                    </div>
+                                    <div class="field driver-field">
+                                        <label class="label">Kierowca</label>
+                                        <div class="control">
+                                            {{ form.driver }}
                                         </div>
                                     </div>
                                     <div class="field random-disposition">
-                                        <input id="disposition" type="checkbox" name="random-disposition-switch"
-                                            class="switch is-rounded" checked="checked">
-                                        <label for="disposition" class="label">Losowe dane zlecenia</label>
+                                        <div class="control">
+                                            <input id="disposition" type="checkbox" name="random-disposition-switch"
+                                                class="switch is-rounded">
+                                            <label for="disposition" class="label">Losowe dane zlecenia</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="column">
                                     <div class="field">
                                         <label class="label">Miasto rozładunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ form.unloading_city }}
                                         </div>
                                     </div>
+                                    {{ form.loading_country }}
                                     <div class="field">
                                         <label class="label">Spedycja rozładunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ form.unloading_spedition }}
                                         </div>
                                     </div>
-                                    <div class="static-field">
-                                        <label for="" class="label static-label">Tonaż</label>
+                                    <div class="field">
+                                        <label for="" class="label">Tonaż</label>
                                         <div class="field has-addons">
                                             <div class="control">
-                                                <input type="text" class="input">
+                                                {{ form.tonnage }}
                                             </div>
                                             <div class="control">
                                                 <a class="button is-static">
@@ -203,6 +242,12 @@
                                                 </a>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="" class="label">Data zakończenia</label>
+                                            <div class="control">
+                                                {{ form.deadline }}
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -217,5 +262,10 @@
         </div>
     </div>
 </body>
+<script defer src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js">
+    </script>
 
+<script defer src="{% static 'js/autocomplete.js' %}"></script>
+<script defer src="{% static 'js/bulma-calendar.js' %}"></script>
+<script defer src="{% static 'js/create-disposition.js' %}"></script>
 </html>

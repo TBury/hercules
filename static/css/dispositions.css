@@ -72,4 +72,14 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
+
+.add-disposition {
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  background-color: #C70000 !important;
+  color: white !important;
+  border-radius: 30px !important;
+  margin-left: 81%;
+}
 /*# sourceMappingURL=dispositions.css.map */

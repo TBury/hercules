@@ -347,20 +347,18 @@ class Gielda(models.Model):
         return str(self.id)
 
 class Rozpiska(models.Model):
-    rozpiska_id = models.IntegerField(default=0)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, default='')
+    id = models.AutoField(primary_key=True)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, default=None)
     first_disposition = models.ForeignKey(
-        'Disposition', on_delete=models.CASCADE, related_name='first_disposition', default='')
+        'Disposition', on_delete=models.CASCADE, related_name='first_disposition', default=None, null=True)
     second_disposition = models.ForeignKey(
-        'Disposition', on_delete=models.CASCADE, related_name='second_disposition', default='')
+        'Disposition', on_delete=models.CASCADE, related_name='second_disposition', default=None, null=True)
     third_disposition = models.ForeignKey(
-        'Disposition', on_delete=models.CASCADE, related_name='third_disposition', default='')
+        'Disposition', on_delete=models.CASCADE, related_name='third_disposition', default=None, null=True)
     fourth_disposition = models.ForeignKey(
-        'Disposition', on_delete=models.CASCADE, related_name='fourth_disposition', default='')
+        'Disposition', on_delete=models.CASCADE, related_name='fourth_disposition', default=None, null=True)
     fifth_disposition = models.ForeignKey(
-        'Disposition', on_delete=models.CASCADE, related_name='fifth_disposition', default='')
-
-
+        'Disposition', on_delete=models.CASCADE, related_name='fifth_disposition', default=None, null=True)
 
 class Disposition(models.Model):
     id = models.AutoField(primary_key=True)
@@ -373,22 +371,18 @@ class Disposition(models.Model):
     unloading_spedition = models.CharField(max_length=100)
     cargo = models.CharField(max_length=64)
     tonnage = models.IntegerField(default=0)
-    deadline = models.DateTimeField(default=datetime.now, blank=True)
+    deadline = models.DateTimeField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_rozpiska = models.BooleanField(default=False)
     # field for dispositions from rozpiska only
     finished = models.BooleanField(default=False)
-    rozpiska = models.ForeignKey(Rozpiska, on_delete=models.CASCADE, default=0, blank=True, null=True)
+    rozpiska = models.ForeignKey("Rozpiska", on_delete=models.CASCADE, default=None, blank=True, null=True)
 
     def __str__(self):
         return str(self.id)
 
-
-
-
 class CompanySettings(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
-
     class PeriodicNormType(models.TextChoices):
         WEEK = 'wk', _('Tydzień')
         MONTH = 'mth', _('Miesiąc')

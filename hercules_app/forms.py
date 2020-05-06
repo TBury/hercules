@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from hercules_app.models import Driver, Waybill, DriverStatistics, Company, Vehicle, CompanySettings
+from hercules_app.models import Driver, Waybill, DriverStatistics, Company, Vehicle, CompanySettings, Disposition, Rozpiska
 
 
 class SetNickForm(ModelForm):
@@ -183,5 +183,50 @@ class EditSettingsForm(ModelForm):
                 else:
                     self.fields[field].widget.attrs.update({'class': 'switch is-rounded', 'id': 'max-90-check',
                         'name': 'max-90', })
+            else:
+                self.fields[field].widget.attrs.update({'class': 'input'})
+
+class NewDispositionForm(ModelForm):
+    deadline = forms.DateTimeField(
+                                   widget=forms.DateTimeInput(attrs={
+                                       'class': 'datetimepicker',
+                                       'type': 'datetime'
+                                   }, format="%d/%m/%Y %H:%M",
+                                   )
+    )
+    class Meta:
+        model = Disposition
+        fields = (
+            'loading_city',
+            'loading_country',
+            'loading_spedition',
+            'unloading_city',
+            'unloading_country',
+            'unloading_spedition',
+            'cargo',
+            'tonnage',
+            'deadline',
+        )
+
+    def __init__(self, drivers, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['driver'] = forms.ChoiceField(
+            widget=forms.Select(), choices=drivers, required=True)
+        for field in self.fields:
+            if field == "loading_city":
+                self.fields[field].widget.attrs.update({'id': 'autoCompleteCities'})
+            if field == "unloading_city":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteUnloadingCities'})
+            if field == "loading_spedition":
+                self.fields[field].widget.attrs.update({'id': 'autoCompleteSpedition'})
+            if field == "unloading_spedition":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteUnloadingSpedition'})
+            if field == "cargo":
+                self.fields[field].widget.attrs.update({'id': 'autoCompleteCargo'})
+            if field == "loading_country" or field == "unloading_country":
+                self.fields[field].widget.attrs.update({'class': 'hidden'})
+                self.fields[field].required = False
             else:
                 self.fields[field].widget.attrs.update({'class': 'input'})

@@ -71,6 +71,13 @@ urlpatterns = [
     path('Settings/EditCompanySettings',
          views.EditCompanySettings, name="edit-company-information"),
      path('Companies/DeleteCompany', views.DeleteCompany, name="delete-company"),
+     path("CompanyDispositions", views.ShowCompanyDispositionsView, name="show-company-dispositions"),
+     path("Dispositions/AddNewDisposition", views.ChooseDispositionView, name="choose-disposition"),
+     path("Dispositions/AddNewDisposition/NewDisposition", views.CreateNewDispositionView, name="create-disposition"),
+     path("Dispositions/AddNewDisposition/NewRozpiska",
+         views.CreateNewRozpiskaView, name="create-rozpiska"),
+     path("Dispositions/RandomDisposition", views.GetRandomDispositionInfo, name="random-disposition"),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

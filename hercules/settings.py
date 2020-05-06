@@ -116,10 +116,11 @@ TIME_ZONE = 'Europe/Warsaw'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 USE_THOUSAND_SEPARATOR = True
 
-USE_TZ = True
+DATETIME_INPUT_FORMATS = ["%d/%m/%Y %H:%M"]
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

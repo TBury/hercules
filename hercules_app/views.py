@@ -16,7 +16,7 @@ from hercules_app.models import (
     Achievement,
     CompanySettings,
 )
-from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm, EditSettingsForm, EditCompanyInformationForm
+from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
@@ -24,6 +24,9 @@ from decimal import Decimal
 import os
 import glob
 from collections import OrderedDict
+import json
+from random import randint
+
 
 
 def index(request):
@@ -869,7 +872,6 @@ def CompanySettingsView(request):
         'avatar': driver_info.avatar,
         'company': driver_info.company,
     }
-    driver_info = Driver.get_driver_info(request)
     if (driver_info.position == "Szef"):
         company = Company.objects.get(name=driver_info.company)
         settings = CompanySettings.objects.get(company=company)
@@ -942,7 +944,7 @@ def EditCompanySettings(request):
         return HttpResponse(status=403)
     else:
         driver_info = Driver.get_driver_info(request)
-        if (driver_info.position == "Szef"):
+        if driver_info.position == "Szef":
             company = Company.objects.get(name=driver_info.company)
             settings = CompanySettings.objects.get(company=company)
             form = EditSettingsForm(settings.random_vehicle, settings.  auto_synchronization, settings.only_assistant, settings.max_90, request.POST, instance=settings)
@@ -960,7 +962,7 @@ def DeleteCompany(request):
         return HttpResponse(status=403)
     else:
         driver_info = Driver.get_driver_info(request)
-        if (driver_info.position == "Szef" or driver_info.position == "Spedytor"):
+        if driver_info.position == "Szef" or driver_info.position == "Spedytor":
             company = Company.objects.get(name=driver_info.company)
             if company.name != driver_info.company:
                 return HttpResponse(status=403)
@@ -975,3 +977,204 @@ def DeleteCompany(request):
                 return redirect('/panel')
         else:
             return HttpResponse(status=403)
+
+
+@login_required
+def ShowCompanyDispositionsView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'position': driver_info.position,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    company = Company.objects.get(name=driver_info.company)
+    company_drivers_count = Company.objects.values_list(
+        'drivers_count', flat=True).get(name=company.name)
+    company_dispositions = []
+    company_rozpiski = []
+    if company_drivers_count >= 1:
+        company_drivers = Driver.objects.all().filter(company=company)
+        for company_driver in company_drivers:
+            dispositions = Disposition.objects.filter(
+            driver=company_driver).exclude(is_rozpiska=True)
+            if dispositions:
+                company_dispositions.append(dispositions)
+            rozpiski = Rozpiska.objects.filter(driver=company_driver)
+            if rozpiski:
+                company_rozpiski.append(rozpiski)
+    return render(request, 'hercules_app/dispositions_chef.html', {'driver': driver, 'dispositions': company_dispositions, 'rozpiski': company_rozpiski})
+
+def ChooseDispositionView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'position': driver_info.position,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    return render(request, 'hercules_app/choose_disposition_type.html', {'driver': driver})
+
+def CreateNewDispositionView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+            'nick': driver_info.nick,
+            'position': driver_info.position,
+            'avatar': driver_info.avatar,
+            'company': driver_info.company,
+        }
+    if driver_info.company != "":
+        company_id = Company.objects.only(
+            'id').filter(name=driver_info.company)
+        company_drivers = Driver.objects.only(
+            'nick').filter(company=company_id[0])
+        drivers_dict = {}
+        for company_driver in company_drivers:
+            drivers_dict[company_driver.id] = company_driver.nick
+            drivers = tuple(drivers_dict.items())
+    else:
+        return HttpResponse(status = 500)
+    if request.POST:
+        form = NewDispositionForm(drivers, data=request.POST)
+        if form.is_valid():
+            disposed_driver = Driver.objects.get(id=request.POST['driver'])
+            disposition = form.save(commit=False)
+            disposition.loading_country = 'test'
+            disposition.driver = disposed_driver
+            disposition.save()
+            request.session['created_disposition'] = True
+            return redirect('/CompanyDispositions')
+        else:
+            form = NewDispositionForm(drivers)
+            return render(request, 'hercules_app/create_disposition.html', {'driver': driver, 'form': form})
+    else:
+        form = NewDispositionForm(drivers)
+        return render(request, 'hercules_app/create_disposition.html', {'driver': driver, 'form': form})
+
+
+def CreateNewRozpiskaView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = {
+        'nick': driver_info.nick,
+        'position': driver_info.position,
+        'avatar': driver_info.avatar,
+        'company': driver_info.company,
+    }
+    if driver_info.company != "":
+        company_id = Company.objects.only(
+            'id').filter(name=driver_info.company)
+        company_drivers = Driver.objects.only(
+            'nick').filter(company=company_id[0])
+        drivers_dict = {}
+        for company_driver in company_drivers:
+            drivers_dict[company_driver.id] = company_driver.nick
+            drivers = tuple(drivers_dict.items())
+    else:
+        return HttpResponse(status=500)
+    dispositions = []
+    forms = []
+    if request.POST:
+        first_disposition_form = NewDispositionForm(
+            drivers, data=request.POST, prefix="first_disposition_form")
+        second_disposition_form = NewDispositionForm(
+            drivers, data=request.POST, prefix="second_disposition_form")
+        third_disposition_form = NewDispositionForm(
+            drivers, data=request.POST, prefix="third_disposition_form")
+        fourth_disposition_form = NewDispositionForm(
+            drivers, data=request.POST, prefix="fourth_disposition_form")
+        fifth_disposition_form = NewDispositionForm(
+            drivers, data=request.POST, prefix="fifth_disposition_form")
+        forms.append(first_disposition_form)
+        forms.append(second_disposition_form)
+        forms.append(third_disposition_form)
+        forms.append(fourth_disposition_form)
+        forms.append(fifth_disposition_form)
+        rozpiska = Rozpiska()
+        rozpiska.driver = Driver.objects.get(nick=driver_info.nick)
+        rozpiska.save()
+        disposed_driver = Driver.objects.get(
+            id=request.POST['first_disposition_form-driver'])
+        for form in forms:
+            if form.is_valid():
+                disposition = form.save(commit=False)
+                disposition.loading_country = 'test'
+                disposition.driver = disposed_driver
+                disposition.is_rozpiska = True
+                disposition.rozpiska = rozpiska
+                disposition.save()
+                dispositions.append(disposition)
+            else:
+                first_disposition_form = NewDispositionForm(
+                    drivers, prefix="first_disposition_form")
+                second_disposition_form = NewDispositionForm(
+                    drivers, prefix="second_disposition_form")
+                third_disposition_form = NewDispositionForm(
+                    drivers, prefix="third_disposition_form")
+                fourth_disposition_form = NewDispositionForm(
+                drivers, prefix="fourth_disposition_form")
+                fifth_disposition_form = NewDispositionForm(
+                drivers, prefix="fifth_disposition_form")
+                return render(request, 'hercules_app/create_rozpiska.html', {
+                    'driver': driver,
+                    'first_disposition_form': first_disposition_form, 'second_disposition_form': second_disposition_form,
+                    'third_disposition_form': third_disposition_form,
+                    'fourth_disposition_form': fourth_disposition_form,
+                    'fifth_disposition_form': fifth_disposition_form
+                })
+        rozpiska.first_disposition = dispositions[0]
+        rozpiska.second_disposition = dispositions[1]
+        rozpiska.third_disposition = dispositions[2]
+        rozpiska.fourth_disposition = dispositions[3]
+        rozpiska.fifth_disposition = dispositions[4]
+        rozpiska.save()
+        request.session['created_disposition'] = True
+        return redirect('/CompanyDispositions')
+    else:
+        first_disposition_form = NewDispositionForm(
+                drivers, prefix="first_disposition_form")
+        second_disposition_form = NewDispositionForm(
+            drivers, prefix="second_disposition_form")
+        third_disposition_form = NewDispositionForm(
+            drivers, prefix="third_disposition_form")
+        fourth_disposition_form = NewDispositionForm(
+            drivers, prefix="fourth_disposition_form")
+        fifth_disposition_form = NewDispositionForm(
+            drivers, prefix="fifth_disposition_form")
+        return render(request, 'hercules_app/create_rozpiska.html', {
+                'driver': driver,
+                'first_disposition_form': first_disposition_form,'second_disposition_form': second_disposition_form,
+                'third_disposition_form': third_disposition_form,
+                'fourth_disposition_form': fourth_disposition_form,
+                'fifth_disposition_form': fifth_disposition_form
+        })
+
+
+def GetRandomDispositionInfo(request):
+    cities = {}
+    cargos = {}
+    with open('static/assets/files/companies.json', 'r') as cities_json:
+        cities = json.load(cities_json)
+    first_city = cities[randint(0, len(cities) - 1)].get("city_name")
+    for city in cities:
+        if city["city_name"] == first_city:
+            companies = city["companies"]
+    loading_company = companies[randint(0, len(companies) - 1)]
+    unloading_city = cities[randint(0, len(cities) - 1)].get("city_name")
+    for city in cities:
+        if city["city_name"] == unloading_city:
+            companies = city["companies"]
+    unloading_company = companies[randint(0, len(companies) -1 )]
+    with open('static/assets/files/cargo.json', 'r', encoding="utf-8") as cargo_json:
+        cargos = json.load(cargo_json)
+    cargo = cargos[randint(0, len(cargos) - 1)]
+    cargo_name = cargo["cargo_name"]
+    tonnage = cargo["mass"]
+    disposition = {
+        'loading_city': first_city,
+        'loading_spedition': loading_company,
+        'unloading_city': unloading_city,
+        'unloading_spedition': unloading_company,
+        'cargo': cargo_name,
+        'tonnage': tonnage,
+    }
+    return JsonResponse(disposition)

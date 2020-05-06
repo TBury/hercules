@@ -29,8 +29,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="verify.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/verify.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link href="{% static 'css/bulma-calendar.css' %}" rel="stylesheet">
     <link href="{% static 'hercules_app/basic.min.css' %}" type="text/css" rel="stylesheet" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel='stylesheet' href="{% static 'css/bulma-switch.min.css' %}">
@@ -120,36 +121,64 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
+                        {% if driver.position == "" %}
                         <li>
-                            <a>
+                            <a href="/Companies">
                                 <p class="option search-company">
                                     Znajdź firmę
                                 </p>
                             </a>
                         </li>
+                        {% elif driver.position != "" %}
                         <li>
-                            <a>
-                                <p class="option vehicles">Twoje pojazdy</p>
+                            <a href="/CompanyProfile">
+                                <p class="option company-profile">
+                                    Profil firmy
+                                </p>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                <p class="option deliveries">Twoje dostawy</p>
+                            <a href="/Drivers">
+                                <p class="option drivers">
+                                    Kierowcy
+                                </p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="/Vehicles">
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %}
+                                    Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% if driver.position == "Szef" or driver.position == "Spedytor" %}
+                        <li>
+                            <a href="/Waybills">
+                                <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                <p class="option settings">Ustawienia</p>
+                            <a href="/CompanyDispositions">
+                                <p class="option vehicles">Dyspozycje firmowe</p>
                             </a>
                         </li>
+                        {% endif %}
+                        {% if driver.position == "Szef" %}
+                        <li>
+                            <a href="/Settings">
+                                <p class="option settings">Ustawienia firmy</p>
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </aside>
             <main class="column main">
+                <form action="/Dispositions/AddNewDisposition/NewRozpiska" method="POST">
+                    {% csrf_token %}
                 <h1 class="title">Nowa <span class="colored">rozpiska</span> </h1>
                 <div class="box card">
-                    <form action="/add-waybill" method="POST">
-                        {% csrf_token %}
                         <div class="basic-info">
                             <b><span class="colored">Trasa #1 </span></b>
                             <div class="columns basic-info-cols is-gapless">
@@ -157,45 +186,51 @@
                                     <div class="field">
                                         <label class="label">Miasto załadunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ first_disposition_form.loading_city }}
                                         </div>
                                     </div>
                                     <div class="field">
                                         <label class="label">Spedycja załadunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ first_disposition_form.loading_spedition }}
                                         </div>
                                     </div>
                                     <div class="field">
                                         <label class="label">Ładunek</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ first_disposition_form.cargo }}
+                                        </div>
+                                    </div>
+                                    <div class="field driver-field">
+                                        <label class="label">Kierowca</label>
+                                        <div class="control">
+                                            {{ first_disposition_form.driver }}
                                         </div>
                                     </div>
                                     <div class="field random-disposition">
-                                        <input id="disposition" type="checkbox" name="random-disposition-switch"
-                                            class="switch is-rounded" checked="checked">
-                                        <label for="disposition" class="label">Losowe dane zlecenia</label>
+                                        <input id="first-disposition" type="checkbox" name="first-random-disposition-switch"
+                                            class="switch is-rounded">
+                                        <label for="first-disposition" class="label">Losowe dane zlecenia</label>
                                     </div>
                                 </div>
                                 <div class="column">
                                     <div class="field">
                                         <label class="label">Miasto rozładunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ first_disposition_form.unloading_city }}
                                         </div>
                                     </div>
                                     <div class="field">
                                         <label class="label">Spedycja rozładunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
+                                            {{ first_disposition_form.unloading_spedition }}
                                         </div>
                                     </div>
                                     <div class="static-field">
                                         <label for="" class="label static-label">Tonaż</label>
                                         <div class="field has-addons">
                                             <div class="control">
-                                                <input type="text" class="input">
+                                                {{ first_disposition_form.tonnage }}
                                             </div>
                                             <div class="control">
                                                 <a class="button is-static">
@@ -204,267 +239,314 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="field">
+                                        <label for="" class="label">Data zakończenia</label>
+                                        <div class="control">
+                                            {{ first_disposition_form.deadline }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                    </form>
                 </div>
             </div>
             <div class="box card">
-                <form action="/add-waybill" method="POST">
-                    {% csrf_token %}
                     <div class="basic-info">
                         <b><span class="colored">Trasa #2 </span></b>
-                        <div class="columns basic-info-cols is-gapless">
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label">Miasto załadunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Spedycja załadunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Ładunek</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field random-disposition">
-                                    <input id="disposition" type="checkbox" name="random-disposition-switch"
-                                        class="switch is-rounded" checked="checked">
-                                    <label for="disposition" class="label">Losowe dane zlecenia</label>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label">Miasto rozładunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Spedycja rozładunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="static-field">
-                                    <label for="" class="label static-label">Tonaż</label>
-                                    <div class="field has-addons">
+                                                    <div class="columns basic-info-cols is-gapless">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto załadunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
-                                        </div>
-                                        <div class="control">
-                                            <a class="button is-static">
-                                                kg
-                                            </a>
+                                            {{ second_disposition_form.loading_city }}
                                         </div>
                                     </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja załadunku</label>
+                                        <div class="control">
+                                            {{ second_disposition_form.loading_spedition }}
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Ładunek</label>
+                                        <div class="control">
+                                            {{ second_disposition_form.cargo }}
+                                        </div>
+                                    </div>
+                                    <div class="field driver-field">
+                                        <label class="label">Kierowca</label>
+                                        <div class="control">
+                                            {{ second_disposition_form.driver }}
+                                        </div>
+                                    </div>
+                                    <div class="field random-disposition">
+                                        <input id="second-disposition" type="checkbox" name="second-random-disposition-switch"
+                                            class="switch is-rounded">
+                                        <label for="second-disposition" class="label">Losowe dane zlecenia</label>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto rozładunku</label>
+                                        <div class="control">
+                                            {{ second_disposition_form.unloading_city }}
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja rozładunku</label>
+                                        <div class="control">
+                                            {{ second_disposition_form.unloading_spedition }}
+                                        </div>
+                                    </div>
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Tonaż</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                {{ second_disposition_form.tonnage }}
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-static">
+                                                    kg
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="" class="label">Data zakończenia</label>
+                                        <div class="control">
+                                            {{ second_disposition_form.deadline }}
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                    </form>
                 </div>
             </div>
             <div class="box card">
-                <form action="/add-waybill" method="POST">
-                    {% csrf_token %}
                     <div class="basic-info">
                         <b><span class="colored">Trasa #3 </span></b>
-                        <div class="columns basic-info-cols is-gapless">
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label">Miasto załadunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Spedycja załadunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Ładunek</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field random-disposition">
-                                    <input id="disposition" type="checkbox" name="random-disposition-switch"
-                                        class="switch is-rounded" checked="checked">
-                                    <label for="disposition" class="label">Losowe dane zlecenia</label>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label">Miasto rozładunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Spedycja rozładunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="static-field">
-                                    <label for="" class="label static-label">Tonaż</label>
-                                    <div class="field has-addons">
+                                                    <div class="columns basic-info-cols is-gapless">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto załadunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
-                                        </div>
-                                        <div class="control">
-                                            <a class="button is-static">
-                                                kg
-                                            </a>
+                                            {{ third_disposition_form.loading_city }}
                                         </div>
                                     </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja załadunku</label>
+                                        <div class="control">
+                                            {{ third_disposition_form.loading_spedition }}
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Ładunek</label>
+                                        <div class="control">
+                                            {{ third_disposition_form.cargo }}
+                                        </div>
+                                    </div>
+                                    <div class="field driver-field">
+                                        <label class="label">Kierowca</label>
+                                        <div class="control">
+                                            {{ third_disposition_form.driver }}
+                                        </div>
+                                    </div>
+                                    <div class="field random-disposition">
+                                        <input id="third-disposition" type="checkbox" name="third-random-disposition-switch"
+                                            class="switch is-rounded">
+                                        <label for="third-disposition" class="label">Losowe dane zlecenia</label>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto rozładunku</label>
+                                        <div class="control">
+                                            {{ third_disposition_form.unloading_city }}
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja rozładunku</label>
+                                        <div class="control">
+                                            {{ third_disposition_form.unloading_spedition }}
+                                        </div>
+                                    </div>
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Tonaż</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                {{ third_disposition_form.tonnage }}
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-static">
+                                                    kg
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="" class="label">Data zakończenia</label>
+                                        <div class="control">
+                                            {{ third_disposition_form.deadline }}
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                </form>
             </div>
             </div>
             <div class="box card">
-                <form action="/add-waybill" method="POST">
-                    {% csrf_token %}
                     <div class="basic-info">
                         <b><span class="colored">Trasa #4 </span></b>
-                        <div class="columns basic-info-cols is-gapless">
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label">Miasto załadunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Spedycja załadunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Ładunek</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field random-disposition">
-                                    <input id="disposition" type="checkbox" name="random-disposition-switch"
-                                        class="switch is-rounded" checked="checked">
-                                    <label for="disposition" class="label">Losowe dane zlecenia</label>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label">Miasto rozładunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Spedycja rozładunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="static-field">
-                                    <label for="" class="label static-label">Tonaż</label>
-                                    <div class="field has-addons">
+                                                    <div class="columns basic-info-cols is-gapless">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto załadunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
-                                        </div>
-                                        <div class="control">
-                                            <a class="button is-static">
-                                                kg
-                                            </a>
+                                            {{ fourth_disposition_form.loading_city }}
                                         </div>
                                     </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja załadunku</label>
+                                        <div class="control">
+                                            {{ fourth_disposition_form.loading_spedition }}
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Ładunek</label>
+                                        <div class="control">
+                                            {{ fourth_disposition_form.cargo }}
+                                        </div>
+                                    </div>
+                                    <div class="field driver-field">
+                                        <label class="label">Kierowca</label>
+                                        <div class="control">
+                                            {{ fourth_disposition_form.driver }}
+                                        </div>
+                                    </div>
+                                    <div class="field random-disposition">
+                                        <input id="fourth-disposition" type="checkbox" name="fourth-random-disposition-switch"
+                                            class="switch is-rounded">
+                                        <label for="fourth-disposition" class="label">Losowe dane zlecenia</label>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto rozładunku</label>
+                                        <div class="control">
+                                            {{ fourth_disposition_form.unloading_city }}
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja rozładunku</label>
+                                        <div class="control">
+                                            {{ fourth_disposition_form.unloading_spedition }}
+                                        </div>
+                                    </div>
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Tonaż</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                {{ fourth_disposition_form.tonnage }}
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-static">
+                                                    kg
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="" class="label">Data zakończenia</label>
+                                        <div class="control">
+                                            {{ fourth_disposition_form.deadline }}
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                </form>
             </div>
             </div>
             <div class="box card">
-                <form action="/add-waybill" method="POST">
-                    {% csrf_token %}
                     <div class="basic-info">
                         <b><span class="colored">Trasa #5 </span></b>
-                        <div class="columns basic-info-cols is-gapless">
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label">Miasto załadunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Spedycja załadunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Ładunek</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field random-disposition">
-                                    <input id="disposition" type="checkbox" name="random-disposition-switch"
-                                        class="switch is-rounded" checked="checked">
-                                    <label for="disposition" class="label">Losowe dane zlecenia</label>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label">Miasto rozładunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Spedycja rozładunku</label>
-                                    <div class="control">
-                                        <input type="text" class="input">
-                                    </div>
-                                </div>
-                                <div class="static-field">
-                                    <label for="" class="label static-label">Tonaż</label>
-                                    <div class="field has-addons">
+                                                    <div class="columns basic-info-cols is-gapless">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto załadunku</label>
                                         <div class="control">
-                                            <input type="text" class="input">
-                                        </div>
-                                        <div class="control">
-                                            <a class="button is-static">
-                                                kg
-                                            </a>
+                                            {{ fifth_disposition_form.loading_city }}
                                         </div>
                                     </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja załadunku</label>
+                                        <div class="control">
+                                            {{ fifth_disposition_form.loading_spedition }}
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Ładunek</label>
+                                        <div class="control">
+                                            {{ fifth_disposition_form.cargo }}
+                                        </div>
+                                    </div>
+                                    <div class="field driver-field">
+                                        <label class="label">Kierowca</label>
+                                        <div class="control">
+                                            {{ fifth_disposition_form.driver }}
+                                        </div>
+                                    </div>
+                                    <div class="field random-disposition">
+                                        <input id="fifth-disposition" type="checkbox" name="fifth-random-disposition-switch"
+                                            class="switch is-rounded">
+                                        <label for="fifth-disposition" class="label">Losowe dane zlecenia</label>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label">Miasto rozładunku</label>
+                                        <div class="control">
+                                            {{ fifth_disposition_form.unloading_city }}
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Spedycja rozładunku</label>
+                                        <div class="control">
+                                            {{ fifth_disposition_form.unloading_spedition }}
+                                        </div>
+                                    </div>
+                                    <div class="static-field">
+                                        <label for="" class="label static-label">Tonaż</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                {{ fifth_disposition_form.tonnage }}
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-static">
+                                                    kg
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="" class="label">Data zakończenia</label>
+                                        <div class="control">
+                                            {{ fifth_disposition_form.deadline }}
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                </form>
                 <div class="field is-grouped">
                     <div class="control">
                         <button type="submit" class="button next">Przydziel dyspozycję</a>
                     </div>
                 </div>
+                </form>
             </div>
             </div>
             </main>
         </div>
     </div>
 </body>
+<script defer src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js">
+</script>
 
+<script defer src="{% static 'js/autocomplete.js' %}"></script>
+<script defer src="{% static 'js/bulma-calendar.js' %}"></script>
+<script defer src="{% static 'js/create-rozpiska.js' %}"></script>
 </html>
