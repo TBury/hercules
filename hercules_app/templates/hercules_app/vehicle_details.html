@@ -79,6 +79,21 @@
                     </p>
                     <ul class="menu-list">
                         <li>
+                            <a href="/panel">
+                                <p class="option main-site">Panel systemu</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="panel-option" href="/download">
+                                <p class="option download">Pobierz aplikację</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Kierowca
+                    </p>
+                    <ul class="menu-list">
+                        <li>
                             <a href='/drivers-card'>
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
@@ -94,7 +109,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Dispositions">
+                            <a class="is-active" href="/Dispositions">
                                 <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
@@ -133,8 +148,9 @@
                         </li>
                         {% endif %}
                         <li>
-                            <a class="is-active" href="/Vehicles">
-                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
+                            <a href="/Vehicles">
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %}
+                                    Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
@@ -149,12 +165,6 @@
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Statistics/">
-                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
-                                    firmowe {% endif %}</p>
                             </a>
                         </li>
                         {% endif %}

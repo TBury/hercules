@@ -199,6 +199,7 @@ def send_second_screenshot(request):
         'nick': driver_info.nick,
         'company': driver_info.company,
         'is_automatic': is_automatic,
+        'position': driver_info.position,
         'avatar': driver_info.avatar,
     }
     waybill_id = request.session.get('waybill_id')
@@ -220,6 +221,7 @@ def loading_page(request):
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
+        'position': driver_info.position,
         'avatar': driver_info.avatar,
     }
     return render(request, 'hercules_app/loading.html', args)
@@ -339,6 +341,7 @@ def OffersView(request):
         'nick': driver_info.nick,
         'company': driver_info.company,
         'avatar': driver_info.avatar,
+        'position': driver_info.position,
     }
     parameters = ['loading_city', 'loading_country',
                   'unloading_city', 'unloading_country']
