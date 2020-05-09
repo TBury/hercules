@@ -28,6 +28,8 @@ urlpatterns = [
     path('Waybill/AddWaybill/Manual/step-one', views.manual_step_one, name="manual-step-one"),
     path('Gielda/Offers/', views.OffersView, name="gielda"),
     path('Gielda/Offers/<int:offer_id>', views.OfferDetailsView, name="offer-details"),
+    path('Gielda/Offers/NewOffer',
+         views.CreateOfferView, name="create-offer"),
     path('Gielda/Offers/ChooseDriver',
          views.ChooseDriverView, name="dispose-offer"),
     path('Gielda/Offers/DisposeOffer/<int:driver_id>',

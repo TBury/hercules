@@ -102,12 +102,12 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active">
+                            <a>
                                 <p class="option add-delivery">Dodaj dostawę</p>
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <a class="is-active">
                                 <p class="option gielda">Giełda zleceń</p>
                             </a>
                         </li>
@@ -175,9 +175,9 @@
                 </nav>
             </aside>
             <main class="column main">
-                <h1 class="title">Nowa <span class="colored">dyspozycja</span> </h1>
+                <h1 class="title">Nowa <span class="colored">oferta</span> </h1>
                 <div class="box card">
-                    <form action="/Dispositions/AddNewDisposition/NewDisposition" method="POST" class="newDispositionForm">
+                    <form action="/Gielda/Offers/NewOffer" method="POST" class="newOfferForm">
                         {% csrf_token %}
                         <div class="basic-info">
                             <b><span class="colored">Podstawowe </span> informacje</b>
@@ -200,19 +200,6 @@
                                         <label class="label">Ładunek</label>
                                         <div class="control">
                                             {{ form.cargo }}
-                                        </div>
-                                    </div>
-                                    <div class="field driver-field">
-                                        <label class="label">Kierowca</label>
-                                        <div class="control">
-                                            {{ form.driver }}
-                                        </div>
-                                    </div>
-                                    <div class="field random-disposition">
-                                        <div class="control">
-                                            <input id="disposition" type="checkbox" name="random-disposition-switch"
-                                                class="switch is-rounded">
-                                            <label for="disposition" class="label">Losowe dane zlecenia</label>
                                         </div>
                                     </div>
                                 </div>
@@ -243,17 +230,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="field">
-                                        <label for="" class="label">Data zakończenia</label>
-                                            <div class="control">
-                                                {{ form.deadline }}
-                                            </div>
-                                    </div>
                                 </div>
                             </div>
                         <div class="field is-grouped">
                             <div class="control">
-                                <button type="submit" class="button next">Przydziel dyspozycję</a>
+                                <button type="submit" class="button next">Dodaj ofertę</a>
                             </div>
                         </div>
                     </form>
@@ -266,6 +247,4 @@
     </script>
 
 <script defer src="{% static 'js/autocomplete_spedition.js' %}"></script>
-<script defer src="{% static 'js/bulma-calendar.js' %}"></script>
-<script defer src="{% static 'js/create-disposition.js' %}"></script>
 </html>

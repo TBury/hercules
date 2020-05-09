@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from hercules_app.models import Driver, Waybill, DriverStatistics, Company, Vehicle, CompanySettings, Disposition, Rozpiska
+from hercules_app.models import Driver, Waybill, DriverStatistics, Company, Vehicle, CompanySettings, Disposition, Rozpiska, Gielda
 
 
 class SetNickForm(ModelForm):
@@ -48,6 +48,21 @@ class AddWaybillForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields:
+            if field == "loading_city":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteCities'})
+            if field == "unloading_city":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteUnloadingCities'})
+            if field == "loading_spedition":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteSpedition'})
+            if field == "unloading_spedition":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteUnloadingSpedition'})
+            if field == "cargo":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteCargo'})
             self.fields[field].widget.attrs.update({'class': 'input'})
 
 
@@ -204,6 +219,41 @@ class EditSettingsForm(ModelForm):
                 else:
                     self.fields[field].widget.attrs.update({'class': 'switch is-rounded', 'id': 'max-90-check',
                         'name': 'max-90', })
+            else:
+                self.fields[field].widget.attrs.update({'class': 'input'})
+
+class NewOfferForm(ModelForm):
+    class Meta:
+        model = Gielda
+        fields = (
+            'loading_city',
+            'loading_country',
+            'loading_spedition',
+            'unloading_city',
+            'unloading_country',
+            'unloading_spedition',
+            'cargo',
+            'tonnage',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            if field == "loading_city":
+                self.fields[field].widget.attrs.update({'id': 'autoCompleteCities'})
+            if field == "unloading_city":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteUnloadingCities'})
+            if field == "loading_spedition":
+                self.fields[field].widget.attrs.update({'id': 'autoCompleteSpedition'})
+            if field == "unloading_spedition":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteUnloadingSpedition'})
+            if field == "cargo":
+                self.fields[field].widget.attrs.update({'id': 'autoCompleteCargo'})
+            if field == "loading_country" or field == "unloading_country":
+                self.fields[field].widget.attrs.update({'class': 'hidden'})
+                self.fields[field].required = False
             else:
                 self.fields[field].widget.attrs.update({'class': 'input'})
 

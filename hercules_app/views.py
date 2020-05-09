@@ -16,7 +16,7 @@ from hercules_app.models import (
     Achievement,
     CompanySettings,
 )
-from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm
+from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm, NewOfferForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
@@ -379,6 +379,25 @@ def OfferDetailsView(request, offer_id):
         is_self_employed = True
     return render(request, 'hercules_app/offer_details.html', {'offer': offer, 'driver': driver, 'is_self_employed': is_self_employed})
 
+def CreateOfferView(request):
+    driver_info = Driver.get_driver_info(request)
+    driver = Driver.objects.get(nick=driver_info.nick)
+    if request.POST:
+        form = NewOfferForm(data=request.POST)
+        if form.is_valid():
+            offer = form.save(commit=False)
+            offer.loading_country = 'test'
+            offer.unloading_country = 'test'
+            #TODO: add adr and oversize check
+            offer.save()
+            request.session['created_offer'] = True
+            return redirect('/Gielda/Offers')
+        else:
+            form = NewOfferForm()
+            return render(request, 'hercules_app/create_offer.html', {'driver': driver, 'form': form})
+    else:
+        form = NewOfferForm()
+        return render(request, 'hercules_app/create_offer.html', {'driver': driver, 'form': form})
 
 @login_required
 def ChooseDriverView(request):

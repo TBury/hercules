@@ -173,14 +173,14 @@
             <main class="column main">
                 <header>
                     <h1 class="title">Giełda zleceń</h1>
-                    <a href="Offers/AddNewOffer" class="button add-new-offer">+ Dodaj ofertę</a>
+                    <a href="/Gielda/Offers/NewOffer" class="button add-new-offer">+ Dodaj ofertę</a>
                     <div class="box card filters">
                         <form action="/Gielda/Offers/" method="GET">
                             <div class="columns">
                                 <div class="column is-3">
                                     <div class="field">
                                         <p class="control">
-                                            <input class="input" type="text" name="loading_city"
+                                            <input class="input" type="text" name="loading_city" id="autoCompleteCities"
                                                 placeholder="Miasto załadunku">
                                         </p>
                                     </div>
@@ -189,6 +189,7 @@
                                     <div class="field">
                                         <p class="control">
                                             <input class="input" type="text" name="unloading_city"
+                                                id="autoCompleteUnloadingCities"
                                                 placeholder="Miasto rozładunku">
                                         </p>
                                     </div>
@@ -366,5 +367,7 @@
         </div>
     </div>
 </body>
-
+<script defer src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js">
+</script>
+<script defer src="{% static 'js/autocomplete_gielda.js' %}"></script>
 </html>
