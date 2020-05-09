@@ -184,7 +184,10 @@
                             <div class="column left">
                                 <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
                                 <span>
+                                    {% if vehicle.photo %}
                                     <img src="{{ vehicle.photo.url }}" class="_vehicle-image">
+                                    {% endif %}
+                                    <label for="" class="label">Zdjęcie pojazdu</label>
                                     {{ form.photo }}
                                 </span>
                         </div>

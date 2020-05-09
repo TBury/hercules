@@ -61,7 +61,8 @@
         background: url('/static/assets/icons/driver_card_active.png') no-repeat;
     }
 
-    a[class=is-active]>.add-delivery:before {
+    a[class=is-active]>.add-delivery:before,
+    a[class=is-active]>.waybills:before {
         background: url('/static/assets/icons/add_delivery_active.png') no-repeat;
     }
 
@@ -74,6 +75,10 @@
         height: 27px;
     }
 
+    a[class=is-active]>.company_profile:before {
+        background: url('/static/assets/icons/company-profile_active.png') no-repeat;
+    }
+
     a[class=is-active]>.search-company:before {
         background: url('/static/assets/icons/search_active.png') no-repeat;
     }
@@ -82,7 +87,8 @@
         background: url('/static/assets/icons/vehicles_active.png') no-repeat;
     }
 
-    a[class=is-active]>.deliveries:before {
+    a[class=is-active]>.deliveries:before,
+    a[class=is-active]>.waybills:before {
         background: url('/static/assets/icons/deliveries_active.png') no-repeat;
     }
 
@@ -123,7 +129,8 @@
         background: url('/static/assets/icons/vehicles.png') no-repeat;
     }
 
-    .deliveries:before {
+    .deliveries:before,
+    .waybills:before {
         background: url('/static/assets/icons/deliveries.png') no-repeat;
     }
 
@@ -133,6 +140,10 @@
 
     .drivers:before {
         background: url('/static/assets/icons/drivers.png') no-repeat;
+    }
+
+    .company-profile:before {
+        background: url('/static/assets/icons/company-profile.png') no-repeat;
     }
 }
 

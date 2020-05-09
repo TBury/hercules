@@ -58,8 +58,7 @@ class Company(models.Model):
                 last_waybill = last_waybill.finish_date
             except Waybill.DoesNotExist:
                 last_waybill = "Brak danych"
-            utc = pytz.UTC
-            today = datetime.today().replace(tzinfo=utc)
+            today = datetime.today().replace(tzinfo=None)
             length_of_service = abs(
                 (today - driver.length_of_service).days)
             periodic_norm_distance = CompanySettings.check_periodic_norm_distance(

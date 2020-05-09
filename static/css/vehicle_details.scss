@@ -105,3 +105,39 @@ select {
         font-weight: 700;
     }
 }
+
+.models-container,
+.chassis-container,
+.engine-container,
+.cabin-container,
+.gearbox-container {
+    margin-top: 5px;
+    padding: 10px 15px 10px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    transition: all .1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.autoComplete_highlighted {
+    color: #0282FC;
+    font-weight: 700 !important;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.models,
+.engine,
+.chassis,
+.cabin,
+.gearbox {
+    padding: 3px 1em 3px .4em;
+    text-align: left;
+    font-size: 1rem;
+    transition: all .1s ease-in-out;
+    border: .5px solid #efefee;
+    margin-bottom: 5px;
+    margin-left: 0 !important;
+    font-weight: 700;
+}

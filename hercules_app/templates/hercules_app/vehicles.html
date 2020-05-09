@@ -184,7 +184,9 @@
                     <a href="Vehicles/{{ vehicle.id }}">
                         <div class="columns">
                             <div class="column is-one-third">
+                                {% if vehicle.photo %}
                                 <img src="{{ vehicle.photo.url }}" class="_vehicle-image">
+                                {% endif %}
                             </div>
                             <div class="column">
                                 <span class="brand-info">

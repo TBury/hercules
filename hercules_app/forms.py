@@ -92,6 +92,27 @@ class AddVehicleForm(ModelForm):
         self.fields['driver'] = forms.ChoiceField(
             widget=forms.Select(), choices=drivers, required=True)
         for field in self.fields:
+            if field == "brand":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteBrand'})
+            if field == "model":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteModel'})
+            if field == "cabin":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteCabin'})
+            if field == "engine":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteEngine'})
+            if field == "gearbox":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteGearbox'})
+            if field == "wheelbase":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteWheelbase'})
+            if field == "wheels":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteWheels'})
             self.fields[field].widget.attrs.update({'class': 'input'})
 
 class EditCompanyInformationForm(ModelForm):

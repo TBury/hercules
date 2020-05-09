@@ -1,16 +1,18 @@
+* {
+    font-family: 'Montserrat',
+    sans-serif !important;
+}
+
 .input,
 .dropdown {
     border-top: 3px solid #0282FC !important;
 }
 
 .dropdown-content {
-    font-family: 'Montserrat', sans-serif !important;
     font-weight: 700;
 }
 
 option {
-    font-family: 'Montserrat',
-    sans-serif !important;
     font-weight: 500;
 }
 .place {
@@ -35,7 +37,6 @@ option {
 
 .sort_by {
     border-top: 3px solid #0282FC !important;
-    font-family: 'Montserrat', sans-serif !important;
     font-weight: 700;
 }
 
@@ -67,3 +68,16 @@ option {
     height: 48px;
 }
 
+.add-new-offer {
+    color: white !important;
+    margin-left: 84% !important;
+    font-size: 1.35rem !important;
+    background-color: #C70000 !important;
+
+    &:hover {
+        color: #dddddd;
+    }
+
+    font-weight: 700;
+    margin-bottom: 15px;
+}

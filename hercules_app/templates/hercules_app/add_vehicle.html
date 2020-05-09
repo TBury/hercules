@@ -163,12 +163,6 @@
                                 <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
-                        <li>
-                            <a href="/Statistics/">
-                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
-                                    firmowe {% endif %}</p>
-                            </a>
-                        </li>
                         {% endif %}
                     </ul>
                 </nav>
@@ -231,5 +225,7 @@
         </div>
     </div>
 </body>
-
+<script defer src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js">
+</script>
+<script defer src="{% static 'js/autocomplete_vehicle.js' %}"></script>
 </html>

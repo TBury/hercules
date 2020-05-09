@@ -173,6 +173,7 @@
             <main class="column main">
                 <header>
                     <h1 class="title">Giełda zleceń</h1>
+                    <a href="Offers/AddNewOffer" class="button add-new-offer">+ Dodaj ofertę</a>
                     <div class="box card filters">
                         <form action="/Gielda/Offers/" method="GET">
                             <div class="columns">
@@ -297,6 +298,7 @@
                             </div>
                         </div>
                     </form>
+                    
                     {% if offers %}
                     {% for offer in offers %}
                     <div class="box card offer-container">
