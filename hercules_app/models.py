@@ -154,7 +154,7 @@ class Driver(models.Model):
                 'brand': vehicle.brand,
                 'model': vehicle.model,
                 'cabin': vehicle.cabin,
-                'engine': vehicle.engine,
+                'engine_power': vehicle.engine_power,
                 'odometer': vehicle.odometer,
                 'photo': vehicle.photo.url,
             }
@@ -230,7 +230,6 @@ class Vehicle(models.Model):
     photo = models.ImageField(upload_to='vehicles', null=True, blank=True)
     model = models.CharField(max_length=80)
     cabin = models.CharField(max_length=64)
-    registration_number = models.CharField(max_length=8)
     engine = models.CharField(max_length=100)
     engine_power = models.PositiveSmallIntegerField(default=0)
     gearbox = models.CharField(max_length=100)

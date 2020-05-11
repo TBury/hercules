@@ -355,7 +355,7 @@
                             <div class="columns">
                                 <div class="column">
                                     <figure class="vehicle-image">
-                                        <img class="" src="{{ vehicle.photo }}" alt="">
+                                        <img src="{{ vehicle.photo }}" >
                                     </figure>
                                 </div>
                                 <div class="column">
@@ -363,15 +363,12 @@
                                         {% with '/assets/manufacturers/'|add:vehicle.brand|lower|add:'.png' as image_static %}
                                         <img src="{% static image_static %}" class="manufacturer" alt="Image">
                                         {% endwith %}
-                                        <h2 class="vehicle-name">{% if vehicle %} {{ vehicle.brand }}
-                                            {{ vehicle.model }} {{ vehicle.cabin }} {% endif %}</h2>
-                                        <img src="{% static '/assets/WLS23090.png' %}"
-                                            class="registration-number" alt="Numer rejestracyjny">
-                                        <p class="engine-power"><strong>Moc silnika: {% if vehicle %}
-                                                {{ vehicle.engine }} {% endif %} KM</strong>
+                                        <h2 class="vehicle-name">{{ vehicle.brand }}
+                                            {{ vehicle.model }} {{ vehicle.cabin }}</h2>
+                                        <p class="engine-power"><strong>Moc silnika:
+                                                {{ vehicle.engine_power }} KM</strong>
                                         </p>
-                                        <p class="odometer"><strong>Przebieg: {% if vehicle %} {{ vehicle.odometer }}
-                                                {% endif %} km</strong>
+                                        <p class="odometer"><strong>Przebieg: {{ vehicle.odometer }} km</strong>
                                         </p>
                                     </span>
                                 </div>
@@ -449,7 +446,7 @@
                                 </div>
                                 <div class="column">
                                     <div class="level-item price">
-                                        <b>{{ offer.price }}</b>
+                                        <b>{{ offer.price }} zł</b>
                                     </div>
                                 </div>
                                 <div class="column">

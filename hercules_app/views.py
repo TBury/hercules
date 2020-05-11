@@ -360,8 +360,11 @@ def OffersView(request):
         sort_by = request.GET.get('sort_by')
     offers = Gielda.objects.all().filter(**filters, price__gte=income_min,
                                          price__lte=income_max).order_by(sort_by)
-    return render(request, 'hercules_app/gielda.html', {'offers': offers, 'driver': driver, 'sort_by': sort_by})
+    response = render(request, 'hercules_app/gielda.html', {'offers': offers, 'driver': driver, 'sort_by': sort_by})
 
+    if request.session.get("offer_added") == True:
+        cookie = SetCookie(request, response, 'offer_added')
+    return response
 
 @login_required
 def OfferDetailsView(request, offer_id):
@@ -390,7 +393,7 @@ def CreateOfferView(request):
             offer.unloading_country = 'test'
             #TODO: add adr and oversize check
             offer.save()
-            request.session['created_offer'] = True
+            request.session['offer_added'] = True
             return redirect('/Gielda/Offers')
         else:
             form = NewOfferForm()

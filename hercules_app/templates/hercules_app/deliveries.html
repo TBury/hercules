@@ -223,7 +223,7 @@
                                 <span class="date">
                                     <b>Data wykonania:</b>
                                     <br>
-                                    {{ delivery.finish_date }}
+                                    {{ delivery.finish_date|date:"d b Y, H:m"  }}
                                 </span>
                             </div>
                         </div>
@@ -303,7 +303,7 @@
                             <span class="date">
                                 <b>Data wykonania:</b>
                                 <br>
-                                {{ delivery.finish_date }}
+                                {{ delivery.finish_date|date:"d b Y, H:m" }}
                             </span>
                         </div>
                     </div>

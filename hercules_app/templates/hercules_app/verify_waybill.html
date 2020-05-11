@@ -115,7 +115,7 @@
                             </a>
                         </li>
                         <li>
-                            <a {% if not is_speditor_view %} class="is-active" {% endif %} href="/Deliveries">
+                            <a href="/Deliveries">
                                 <p class="option deliveries">Twoje dostawy</p>
                             </a>
                         </li>
@@ -156,7 +156,7 @@
                         </li>
                         {% if driver.position == "Szef" or driver.position == "Spedytor" %}
                         <li>
-                            <a {% if is_speditor_view %} class="is-active" {% endif %} href="/Waybills">
+                            <a class="is-active" href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>

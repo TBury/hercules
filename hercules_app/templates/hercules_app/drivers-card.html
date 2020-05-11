@@ -382,10 +382,8 @@
                                                     {% endwith %}
                                                     <h2 class="vehicle-name">{{ vehicle.brand }}
                                                         {{ vehicle.model }} {{ vehicle.cabin }}</h2>
-                                                    <img src="{% static '/assets/WLS23090.png' %}"
-                                                        class="registration-number" alt="Numer rejestracyjny">
                                                     <p class="engine-power"><strong>Moc silnika: </strong>
-                                                        {{ vehicle.engine }}
+                                                        {{ vehicle.engine_power }}
                                                         KM</p>
                                                     <p class="odometer"><strong>Przebieg</strong>:
                                                         {{ vehicle.odometer }} km

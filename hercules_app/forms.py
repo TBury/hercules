@@ -63,7 +63,8 @@ class AddWaybillForm(ModelForm):
             if field == "cargo":
                 self.fields[field].widget.attrs.update(
                     {'id': 'autoCompleteCargo'})
-            self.fields[field].widget.attrs.update({'class': 'input'})
+            self.fields[field].widget.attrs.update(
+                {'class': 'input', 'autocomplete': 'off'})
 
 
 class EditVehicleForm(ModelForm):
@@ -129,7 +130,7 @@ class AddVehicleForm(ModelForm):
             if field == "wheels":
                 self.fields[field].widget.attrs.update(
                     {'id': 'autoCompleteWheels'})
-            self.fields[field].widget.attrs.update({'class': 'input'})
+            self.fields[field].widget.attrs.update({'class': 'input', 'autocomplete': 'off'})
 
 class EditCompanyInformationForm(ModelForm):
     is_recruiting = forms.BooleanField(required=False, initial=False)
@@ -256,7 +257,8 @@ class NewOfferForm(ModelForm):
                 self.fields[field].widget.attrs.update({'class': 'hidden'})
                 self.fields[field].required = False
             else:
-                self.fields[field].widget.attrs.update({'class': 'input'})
+                self.fields[field].widget.attrs.update(
+                    {'class': 'input', 'autocomplete': 'off'})
 
 class NewDispositionForm(ModelForm):
     deadline = forms.DateTimeField(
@@ -301,4 +303,5 @@ class NewDispositionForm(ModelForm):
                 self.fields[field].widget.attrs.update({'class': 'hidden'})
                 self.fields[field].required = False
             else:
-                self.fields[field].widget.attrs.update({'class': 'input'})
+                self.fields[field].widget.attrs.update(
+                    {'class': 'input', 'autocomplete': 'off'})

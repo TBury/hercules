@@ -81,4 +81,13 @@
 .hello-icon {
   font-size: 50px !important;
 }
+
+.card-header {
+  margin-bottom: 30px;
+}
+
+.spedition {
+  width: 96px;
+  height: 48px;
+}
 /*# sourceMappingURL=drivers-card.css.map */

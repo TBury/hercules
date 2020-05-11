@@ -81,3 +81,8 @@ if (showCookie("settings_changed") == 'True') {
     showToast('Pomyślnie zmieniono ustawienia firmy.', 'Zmieniono');
     deleteCookie("settings_changed");
 }
+
+if (showCookie("offer_added") == 'True') {
+    showToast('Dodano nową ofertę na giełdę zleceń.', 'Dodano ofertę');
+    deleteCookie("offer_added");
+}

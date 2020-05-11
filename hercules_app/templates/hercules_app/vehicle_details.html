@@ -109,7 +109,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active" href="/Dispositions">
+                            <a href="/Dispositions">
                                 <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
@@ -148,7 +148,7 @@
                         </li>
                         {% endif %}
                         <li>
-                            <a href="/Vehicles">
+                            <a class="is-active" href="/Vehicles">
                                 <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %}
                                     Pojazdy
                                     firmowe {% endif %}</p>
@@ -173,7 +173,7 @@
             </aside>
             <main class="column main">
                 <header>
-                    <h1 class="title">Pojazd {{ vehicle.registration_number }} </h1>
+                    <h1 class="title">Pojazd </h1>
                 </header>
                 <form action="/Vehicles/{{ vehicle.id }}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
