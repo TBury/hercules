@@ -96,6 +96,7 @@ class AddVehicleForm(ModelForm):
             'model',
             'cabin',
             'engine',
+            'engine_power',
             'gearbox',
             'wheelbase',
             'wheels',

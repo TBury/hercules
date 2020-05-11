@@ -202,6 +202,7 @@ function createAutoCompleteComponents() {
                     document.querySelector("#autoCompleteGearbox").setAttribute("value", selection);
                     document.querySelector("#autoCompleteGearbox").value = selection;
                     document.querySelector(".gearbox-container").classList.add("hidden");
+                    
                 },
             });
         },

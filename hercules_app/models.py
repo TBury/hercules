@@ -232,6 +232,7 @@ class Vehicle(models.Model):
     cabin = models.CharField(max_length=64)
     registration_number = models.CharField(max_length=8)
     engine = models.CharField(max_length=100)
+    engine_power = models.PositiveSmallIntegerField(default=0)
     gearbox = models.CharField(max_length=100)
     wheelbase = models.CharField(max_length=4)
     wheels = models.CharField(max_length=75)

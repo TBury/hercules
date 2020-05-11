@@ -161,4 +161,8 @@ select {
   margin-left: 0 !important;
   font-weight: 700;
 }
+
+.hidden {
+  display: none;
+}
 /*# sourceMappingURL=vehicle_details.css.map */
