@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="pl-pl">
@@ -40,40 +41,7 @@
 </head>
 
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-start">
-            <div class="navbar-brand">
-                <a class="navbar-item">
-                    <img src="{% static '/assets/logo.png' %}" width="194" height="55">
-                </a>
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-        </div>
-        <div class="navbar-end is-hidden-mobile">
-            <a class="navbar-item">
-                <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{{ args.avatar }}">
-                </figure>
-                <span class="user">
-                    <p class="username">{{ args.nick }}</p>
-                    {% if args.company != "" %}
-                    <p class="company">{{ args.company }}</p>
-                    {% endif %}
-                </span>
-            </a>
-            <a class="navbar-item">
-                <span class="icon is-medium logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                </span>
-                <p class="logout-text">Wyloguj się</p>
-            </a>
-        </div>
-    </nav>
-    <div class="wrapper">
+{% include "hercules_app/main_panel.html" %}
         <div class="columns">
             <aside class="column is-2 aside is-hidden-mobile is-placed-left">
                 <nav class="menu">
@@ -126,7 +94,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if args.position == "" %}
+                        {% if position == "" %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -134,7 +102,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif args.position != "" %}
+                        {% elif position != "" %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -152,18 +120,18 @@
                         {% endif %}
                         <li>
                             <a class="is-active" href="/Vehicles">
-                                <p class="option vehicles">{% if args.position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
-                        {% if args.position == "Szef" or args.position == "Spedytor" %}
+                        {% if position == "Szef" or position == "Spedytor" %}
                         <li>
                             <a href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         {% endif %}
-                        {% if args.position == "Szef" %}
+                        {% if position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
@@ -228,7 +196,7 @@
                         <span class="no-vehicle-text">
                             <h1 class="no-vehicle-title">Firma nie posiada żadnego pojazdu.</h1>
                             <p class="sub-text">
-                                {% if args.position == "Szef" or args.position == "Dyspozytor" %}
+                                {% if position == "Szef" or position == "Dyspozytor" %}
                                 Dodaj pojazd w zakładce Pojazdy.
                                 {% else %}
                                 Zgłoś tę informację właścicielowi lub dyspozytorowi firmy.

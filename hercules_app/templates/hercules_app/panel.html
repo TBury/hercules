@@ -1,4 +1,6 @@
+
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="pl-pl">
 
@@ -29,6 +31,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dispositions.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -40,40 +43,7 @@
 </head>
 
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-start">
-            <div class="navbar-brand">
-                <a class="navbar-item">
-                    <img src="{% static '/assets/logo.png' %}" width="194" height="55">
-                </a>
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-        </div>
-        <div class="navbar-end is-hidden-mobile">
-            <a class="navbar-item">
-                <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{{ avatar }}">
-                </figure>
-                <span class="user">
-                    <p class="username">{{ nick }}</p>
-                    {% if company != "" and company != None %}
-                    <p class="user-company">{{ company }}</p>
-                    {% endif %}
-                </span>
-            </a>
-            <a href="/logout" class="navbar-item">
-                <span class="icon is-medium logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                </span>
-                <p class="logout-text">Wyloguj się</p>
-            </a>
-        </div>
-    </nav>
-    <div class="wrapper">
+        {% include "hercules_app/main_panel.html" %}
         <div class="columns">
             <aside class="column is-2 aside is-hidden-mobile is-placed-left">
                 <nav class="menu">
@@ -259,53 +229,269 @@
                                     Twoje dyspozycje
                                 </p>
                             </header>
-                            {% if dispositions %}
+                            {% if rozpiski %}
+                            {% for rozpiska in rozpiski %}
+                                <div class="columns">
+                                    <div class="column">
+                                        <div
+                                            class="rozpiska-loading-info {% if rozpiska.first_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.first_disposition.loading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.first_disposition.loading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.first_disposition.loading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-loading-info {% if rozpiska.second_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.second_disposition.loading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.second_disposition.loading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.second_disposition.loading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-loading-info {% if rozpiska.third_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.third_disposition.loading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.third_disposition.loading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.third_disposition.loading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-loading-info {% if rozpiska.fourth_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.fourth_disposition.loading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.fourth_disposition.loading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.fourth_disposition.loading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-loading-info {% if rozpiska.fifth_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.fifth_disposition.loading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.fifth_disposition.loading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.fifth_disposition.loading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div
+                                            class="rozpiska-unloading-info {% if rozpiska.first_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.first_disposition.unloading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.first_disposition.unloading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.first_disposition.unloading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-unloading-info {% if rozpiska.second_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.second_disposition.unloading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.second_disposition.unloading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.second_disposition.unloading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-unloading-info {% if rozpiska.third_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.third_disposition.unloading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.third_disposition.unloading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.third_disposition.unloading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-unloading-info {% if rozpiska.fourth_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.fourth_disposition.unloading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.fourth_disposition.unloading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.fourth_disposition.unloading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-unloading-info {% if rozpiska.fifth_disposition.finished %} finished {% endif %}">
+                                            {% with '/assets/countries/'|add:rozpiska.fifth_disposition.unloading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
+                                            {% endwith %}
+                                            <span class="city-and-company">
+                                                <p class="city">{{ rozpiska.fifth_disposition.unloading_city }}</p>
+                                                {% with '/assets/companies/'|add:rozpiska.fifth_disposition.unloading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div
+                                            class="rozpiska-cargo {% if rozpiska.first_disposition.finished %} finished {% endif %}">
+                                            <span class="cargo">
+                                                <b>{{ rozpiska.first_disposition.cargo }}</b>
+                                                <br>
+                                                {{ rozpiska.first_disposition.tonnage }} kg
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-cargo {% if rozpiska.second_disposition.finished %} finished {% endif %}">
+                                            <span class="cargo">
+                                                <b>{{ rozpiska.second_disposition.cargo }}</b>
+                                                <br>
+                                                {{ rozpiska.second_disposition.tonnage }} kg
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-cargo {% if rozpiska.third_disposition.finished %} finished {% endif %}">
+                                            <span class="cargo">
+                                                <b>{{ rozpiska.third_disposition.cargo }}</b>
+                                                <br>
+                                                {{ rozpiska.third_disposition.tonnage }} kg
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-cargo {% if rozpiska.fourth_disposition.finished %} finished {% endif %}">
+                                            <span class="cargo">
+                                                <b>{{ rozpiska.fourth_disposition.cargo }}</b>
+                                                <br>
+                                                {{ rozpiska.fourth_disposition.tonnage }} kg
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-cargo {% if rozpiska.fifth_disposition.finished %} finished {% endif %}">
+                                            <span class="cargo">
+                                                <b>{{ rozpiska.fifth_disposition.cargo }}</b>
+                                                <br>
+                                                {{ rozpiska.fifth_disposition.tonnage }} kg
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div
+                                            class="rozpiska-deadline {% if rozpiska.first_disposition.finished %} finished {% endif %}">
+                                            <span class="date">
+                                                <b>Data wykonania:</b>
+                                                <br>
+                                                {{ rozpiska.first_disposition.deadline|date:"d b Y, H:m" }}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-deadline {% if rozpiska.second_disposition.finished %} finished {% endif %}">
+                                            <span class="date">
+                                                <b>Data wykonania:</b>
+                                                <br>
+                                                {{ rozpiska.second_disposition.deadline|date:"d b Y, H:m" }}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-deadline {% if rozpiska.third_disposition.finished %} finished {% endif %}">
+                                            <span class="date">
+                                                <b>Data wykonania:</b>
+                                                <br>
+                                                {{ rozpiska.third_disposition.deadline|date:"d b Y, H:m" }}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-deadline {% if rozpiska.fourth_disposition.finished %} finished {% endif %}">
+                                            <span class="date">
+                                                <b>Data wykonania:</b>
+                                                <br>
+                                                {{ rozpiska.fourth_disposition.deadline|date:"d b Y, H:m" }}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="rozpiska-deadline {% if rozpiska.fifth_disposition.finished %} finished {% endif %}">
+                                            <span class="date">
+                                                <b>Data wykonania:</b>
+                                                <br>
+                                                {{ rozpiska.fifth_disposition.deadline|date:"d b Y, H:m" }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% elif dispositions %}
                             {% for disposition in dispositions %}
-                            <div class="columns disposition">
-                                <div class="column">
-                                    <div class="level-item loading-city">
-                                        {% with '/assets/countries/'|add:disposition.loading_country|add:'.png' as image_static %}
-                                        <img src="{% static image_static %}" class="country-icon">
-                                        {% endwith %}
-                                        <span class="city-and-company">
-                                            <p class="city">{{ disposition.loading_city }}</p>
-                                            {% with '/assets/companies/'|add:disposition.loading_spedition|add:'.png' as image_static %}
-                                            <img src="{% static image_static %}" class="spedition">
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class="loading-info">
+                                            {% with '/assets/countries/'|add:disposition.loading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
                                             {% endwith %}
-                                        </span>
+                                            <span class="city-and-company">
+                                                <p class="city">{{ disposition.loading_city }}</p>
+                                                {% with '/assets/companies/'|add:disposition.loading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="column">
-                                    <div class="level-item unloading-city">
-                                        {% with '/assets/countries/'|add:disposition.unloading_country|add:'.png' as image_static %}
-                                        <img src="{% static image_static %}" class="country-icon">
-                                        {% endwith %}
-                                        <span class="city-and-company">
-                                            <p class="city">{{ disposition.unloading_city }}</p>
-                                            {% with '/assets/companies/'|add:disposition.unloading_spedition|add:'.png' as image_static %}
-                                            <img src="{% static image_static %}" class="spedition">
+                                    <div class="column">
+                                        <div class="unloading-info">
+                                            {% with '/assets/countries/'|add:disposition.unloading_country|add:'.png' as image_static %}
+                                            <img src="{% static image_static %}" class="country-icon">
                                             {% endwith %}
-                                        </span>
+                                            <span class="city-and-company">
+                                                <p class="city">{{ disposition.unloading_city }}</p>
+                                                {% with '/assets/companies/'|add:disposition.unloading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="cargo">
+                                            <span class="cargo">
+                                                <b>{{ disposition.cargo }}</b>
+                                                <br>
+                                                {{ disposition.tonnage }} kg
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="deadline">
+                                            <span class="date">
+                                                <b>Data wykonania:</b>
+                                                <br>
+                                                {{ disposition.deadline|date:"d b Y, H:m" }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="column">
-                                    <div class="level-item cargo">
-                                        <span class="cargo">
-                                            <b>{{ disposition.cargo }}</b>
-                                            <br>
-                                            {{ disposition.tonnage }} kg
-                                            </sp>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                    <div class="level-item ">
-                                        <a href="/Dispositions" class="button check-details is-rounded">Sprawdź szczegóły</a>
-                                    </div>
-                                </div>
-                            </div>
                             {% endfor %}
                             {% else %}
-                            <div class="no-disposition">
                                 <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
                                 <span class="no-disposition-text">
                                     <h1 class="no-disposition-title">Nie masz żadnych dyspozycji.</h1>
@@ -314,7 +500,6 @@
                                         które potwierdziłeś na giełdzie zleceń.
                                     </p>
                                 </span>
-                            </div>
                             {% endif %}
                         </div>
                     </div>

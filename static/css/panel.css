@@ -36,6 +36,7 @@
 .card-header {
   -webkit-box-shadow: 0 0 0 !important;
           box-shadow: 0 0 0 !important;
+  margin-bottom: 25px;
 }
 
 .card-header-icon {
@@ -92,6 +93,10 @@
 .disposition .spedition {
   width: 96px;
   height: 48px;
+}
+
+.city {
+  font-size: 16px !important;
 }
 
 .cargo {

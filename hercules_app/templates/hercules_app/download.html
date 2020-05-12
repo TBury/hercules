@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="pl-pl">
@@ -35,39 +36,7 @@
 </head>
 
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-start">
-            <div class="navbar-brand">
-                <a class="navbar-item">
-                    <img src="{% static '/assets/logo.png' %}" width="194" height="55">
-                </a>
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-        </div>
-        <div class="navbar-end is-hidden-mobile">
-            <a class="navbar-item">
-                <figure class="image is-48x48 avatar-fig">
-                    <img class="avatar" src="{{ avatar }}">
-                </figure>
-                <span class="user">
-                    <p class="username">{{ nick }}</p>
-                    {% if company != "" %}
-                    <p class="company">{{ company }}</p>
-                    {% endif %}
-                </span>
-            </a>
-            <a href="/logout" class="navbar-item">
-                <span class="icon is-medium logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                </span>
-                <p class="logout-text">Wyloguj się</p>
-            </a>
-        </div>
-    </nav>
+{% include "hercules_app/main_panel.html" %}
     <div class="wrapper">
         <div class="columns">
             <aside class="column is-2 aside is-hidden-mobile is-placed-left">
