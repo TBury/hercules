@@ -80,3 +80,32 @@
     width: 96px;
     height: 48px;
 }
+
+.tile.is-ancestor:not(:last-child) {
+        margin-bottom: 0 !important;
+}
+
+.vehicle-info {
+    display: flex;
+}
+
+.vehicle-parameters {
+    margin-top: 35px;
+    color: black;
+
+    b {
+        font-size: 1.35rem;
+    }
+
+    p {
+        margin-top: 5px;
+    }
+}
+
+.vehicle-model {
+    margin-left: 15px;
+    align-self: center;
+    color: black;
+    font-weight: 700;
+    font-size: 1.25rem;
+}

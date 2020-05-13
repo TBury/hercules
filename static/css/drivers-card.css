@@ -90,4 +90,37 @@
   width: 96px;
   height: 48px;
 }
+
+.tile.is-ancestor:not(:last-child) {
+  margin-bottom: 0 !important;
+}
+
+.vehicle-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.vehicle-parameters {
+  margin-top: 35px;
+  color: black;
+}
+
+.vehicle-parameters b {
+  font-size: 1.35rem;
+}
+
+.vehicle-parameters p {
+  margin-top: 5px;
+}
+
+.vehicle-model {
+  margin-left: 15px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  color: black;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
 /*# sourceMappingURL=drivers-card.css.map */

@@ -197,6 +197,19 @@
                             </div>
                         </div>
                         <div class="column">
+                            <div class="tags">
+                                {% if delivery.status == "accepted" %}
+                                <span class="tag status-tag is-medium accepted-tag">Trasa zaakceptowana</span>
+                                {% elif delivery.status == "to-edit" %}
+                                <span class="tag status-tag is-medium to-edit-tag">Trasa do poprawy</span>
+                                {% elif delivery.status == "rejected" %}
+                                <span class="tag status-tag is-medium declined-tag">Trasa odrzucona</span>
+                                {% elif delivery.status == "not-checked" %}
+                                <span class="tag status-tag is-medium not-checked-tag">Trasa niesprawdzona</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="column">
                             <a href="/Deliveries/{{ delivery.id }}" class="button check-details">Sprawdź szczegóły</a>
                         </div>
                     </div>

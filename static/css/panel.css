@@ -96,19 +96,19 @@
 }
 
 .city {
-  font-size: 16px !important;
+  font-size: 13px !important;
 }
 
 .cargo {
-  font-size: 15px;
+  font-size: 12px !important;
   text-align: right;
 }
 
 .check-details {
   background-color: #C70000 !important;
   color: white !important;
-  padding: 0 2em;
-  font-size: .9rem !important;
+  padding: 0 1.3em;
+  font-size: .75rem !important;
   font-weight: 700;
 }
 

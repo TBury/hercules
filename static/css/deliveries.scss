@@ -18,6 +18,28 @@
     border-left: 10px solid #ffdd57;
 }
 
+.accepted-tag {
+    background: #44C4A1 !important;
+}
+
+.declined-tag {
+    background: #C70000 !important;
+}
+
+.not-checked-tag {
+   background: #0282FC !important;
+}
+
+.to-edit-tag {
+    background: #ffdd57 !important;
+}
+
+.status-tag {
+    margin-top: 10px;
+    font-weight: 700;
+    color: white !important;
+}
+
 .check-details {
     margin-top: 5%;
 }

@@ -33,8 +33,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/drivers-card.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    
+    {% if is_chef %}
     <script defer src="{% static 'js/drivers_card.js' %}"></script>
+    {% endif %}
     <title> Karta kierowcy | Hercules</title>
 </head>
 
@@ -350,12 +351,15 @@
                                                     {% endwith %}
                                                     <h2 class="vehicle-model">{{ vehicle.brand }}
                                                         {{ vehicle.model }} {{ vehicle.cabin }}</h2>
+                                                </span>
+                                                <div class="vehicle-parameters">
                                                     <b>Przebieg: {{ vehicle.odometer }} km</b>
                                                     <p>Silnik: {{ vehicle.engine }}</p>
                                                     <p>Moc silnika: {{ vehicle.engine_power }} KM</p>
                                                     <p>Skrzynia biegów: {{ vehicle.gearbox }}</p>
                                                     <p>Kabina: {{ vehicle.cabin }}</p>
-                                                </span>
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                         {% else %}
