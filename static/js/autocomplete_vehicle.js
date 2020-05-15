@@ -60,9 +60,11 @@ function createAutoCompleteComponents() {
             document.querySelector("#autoCompleteModel").setAttribute("value", selection);
             document.querySelector("#autoCompleteModel").value = selection;
             document.querySelector(".models-containers").classList.add("hidden");
+            let engines_list = {};
             let engines = [];
             for (let j = 0; j < feedback.selection.value.engine.length; j++) {
                 engines.push(feedback.selection.value.engine[j]["name"]);
+                engines_list[feedback.selection.value.engine[j]["name"]] = feedback.selection.value.engine[j]["power"];
             }
             new autoComplete({
                 data: { // Data src [Array, Function, Async] | (REQUIRED)
@@ -97,6 +99,10 @@ function createAutoCompleteComponents() {
                     document.querySelector("#autoCompleteEngine").setAttribute("value", selection);
                     document.querySelector("#autoCompleteEngine").value = selection;
                     document.querySelector(".engine-container").classList.add("hidden");
+                    if (engines_list.hasOwnProperty(selection)) {
+                         document.querySelector("#id_engine_power").innerHTML = engines_list[selection];
+                         document.querySelector("#id_engine_power").setAttribute("value", engines_list[selection]);
+                    }
                 },
             });
             let chassis = feedback.selection.value.chassis;
@@ -202,7 +208,6 @@ function createAutoCompleteComponents() {
                     document.querySelector("#autoCompleteGearbox").setAttribute("value", selection);
                     document.querySelector("#autoCompleteGearbox").value = selection;
                     document.querySelector(".gearbox-container").classList.add("hidden");
-                    
                 },
             });
         },

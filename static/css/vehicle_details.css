@@ -165,4 +165,8 @@ select {
 .hidden {
   display: none;
 }
+
+.delete-vehicle {
+  margin-top: -50px !important;
+}
 /*# sourceMappingURL=vehicle_details.css.map */

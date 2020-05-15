@@ -2,6 +2,7 @@
 const today = new Date();
 const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDay()+3);
 const options = {
+    dateFormat: "DD/MM/YYYY",
     minDate: minDate,
     showFooter: false,
 }

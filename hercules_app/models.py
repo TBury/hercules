@@ -52,10 +52,10 @@ class Company(models.Model):
         company_drivers = []
         for driver in drivers:
             statistics = DriverStatistics.objects.get(driver=driver)
-
             try:
                 last_waybill = Waybill.objects.get(driver=driver)
                 last_waybill = last_waybill.finish_date
+                last_waybill = last_waybill.strftime('%d/%m/%Y, %H:%M')
             except Waybill.DoesNotExist:
                 last_waybill = "Brak danych"
             today = datetime.today().replace(tzinfo=None)

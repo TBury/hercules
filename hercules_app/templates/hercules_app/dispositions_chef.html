@@ -127,17 +127,16 @@
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
+                        <li>
+                            <a class="is-active" href="/CompanyDispositions">
+                                <p class="option dispositions">Dyspozycje firmowe</p>
+                            </a>
+                        </li>
                         {% endif %}
                         {% if position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Statistics/">
-                                <p class="option vehicles">{% if driver.position == "" %} Dyspozycje firmowe {% else %} Pojazdy
-                                    firmowe {% endif %}</p>
                             </a>
                         </li>
                         {% endif %}

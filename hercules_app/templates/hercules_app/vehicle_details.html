@@ -129,6 +129,11 @@
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="/CompanyDispositions">
+                                <p class="option dispositions">Dyspozycje firmowe</p>
+                            </a>
+                        </li>
                         {% endif %}
                         {% if position == "Szef" %}
                         <li>
@@ -147,8 +152,7 @@
                 <form action="/Vehicles/{{ vehicle.id }}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="box card">
-                        <a class="button delete-vehicle">
-                            <i class="fas fas fa-trash-alt delete-icon"> </i> Usuń pojazd</a>
+                        
                         <div class="columns">
                             <div class="column left">
                                 <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
@@ -161,6 +165,8 @@
                                 </span>
                         </div>
                         <div class="column basic-vehicle-info">
+                            <a class="button delete-vehicle">
+                                <i class="fas fas fa-trash-alt delete-icon"> </i> Usuń pojazd</a>
                             <label class="label">Marka pojazdu</label>
                             {{ form.brand }}
                             <label class="label">Model pojazdu</label>
@@ -183,16 +189,18 @@
                                 {{ form.wheelbase }}
                                 <label class="label">Kabina pojazdu</label>
                                 {{ form.cabin }}
+                                <label class="label">Opony</label>
+                                {{ form.wheels }}
                             </div>
                         </div>
                         <div class="column">
                             <div class="inputs-right">
+                                <label class="label">Moc silnika</label>
+                                {{ form.engine_power }}
                                 <label class="label">Przebieg</label>
                                 {{ form.odometer }}
                                 <label class="label">Skrzynia biegów</label>
                                 {{ form.gearbox }}
-                                <label class="label">Opony</label>
-                                {{ form.wheels }}
                             </div>
                         </div>
                     </div>
@@ -220,5 +228,7 @@
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
 </body>
-
+<script defer src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js">
+</script>
+<script defer src="{% static 'js/autocomplete_vehicle.js' %}"></script>
 </html>

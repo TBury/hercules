@@ -128,10 +128,15 @@
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
-                        {% if position == "Szef" or position == "Spedytor" %}
+                        {% if position == "Szef" or driver.position == "Spedytor" %}
                         <li>
                             <a href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/CompanyDispositions">
+                                <p class="option dispositions">Dyspozycje firmowe</p>
                             </a>
                         </li>
                         {% endif %}
@@ -210,7 +215,7 @@
                             <div class="stat-last-delivery">
                                 <span class="last-delivery">
                                     <label class="hint">Ostatnia trasa</label>
-                                    <p><b class="time">{{ company_driver.last_delivery|date:"d b Y, H:m"}}</b></p>
+                                    <p><b class="time">{{ company_driver.last_delivery|date:"d b Y, H:m" }}</b></p>
                                 </span>
                             </div>
                         </div>

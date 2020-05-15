@@ -125,6 +125,11 @@
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="/CompanyDispositions">
+                                <p class="option dispositions">Dyspozycje firmowe</p>
+                            </a>
+                        </li>
                         {% endif %}
                         {% if position == "Szef" %}
                         <li>
@@ -174,6 +179,8 @@
                                     {{ form.wheelbase }}
                                     <label class="label">Kabina pojazdu</label>
                                     {{ form.cabin }}
+                                    <label class="label">Opony</label>
+                                    {{ form.wheels }}
                                 </div>
                             </div>
                             <div class="column">
@@ -184,8 +191,6 @@
                                     {{ form.odometer }}
                                     <label class="label">Skrzynia biegów</label>
                                     {{ form.gearbox }}
-                                    <label class="label">Opony</label>
-                                    {{ form.wheels }}
                                 </div>
                             </div>
                         </div>

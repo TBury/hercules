@@ -37,7 +37,7 @@ def login(request):
     return render(request, 'hercules_app/sign-in.html')
 
 
-@login_required
+@login_required(login_url="/login")
 # TODO: create test for checking if the user
 # nick or not
 def hello(request):
@@ -53,7 +53,7 @@ def hello(request):
     return render(request, 'hercules_app/hello.html')
 
 
-@login_required
+@login_required(login_url="/login")
 def panel(request):
     driver = Driver.objects.get(user=request.user)
 
@@ -115,7 +115,7 @@ def SetCookie(request, response, parameter_name):
     return response
 
 
-@login_required
+@login_required(login_url="/login")
 def download_assistant(request):
     driver_info = Driver.get_driver_info(request)
     args = {
@@ -127,7 +127,7 @@ def download_assistant(request):
     return render(request, 'hercules_app/download.html', args)
 
 
-@login_required
+@login_required(login_url="/login")
 def download_file(request):
     response = HttpResponse(content_type='application/force-download')
     response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(
@@ -137,7 +137,7 @@ def download_file(request):
     return response
 
 
-@login_required
+@login_required(login_url="/login")
 def drivers_card(request):
     driver = Driver.objects.get(user=request.user)
 
@@ -160,7 +160,7 @@ def drivers_card(request):
     return render(request, 'hercules_app/drivers-card.html', args)
 
 
-@login_required
+@login_required(login_url="/login")
 def add_delivery(request):
     driver_info = Driver.get_driver_info(request)
     args = {
@@ -172,7 +172,7 @@ def add_delivery(request):
     return render(request, 'hercules_app/add_delivery.html', args)
 
 
-@login_required
+@login_required(login_url="/login")
 def send_first_screenshot(request):
     driver_info = Driver.get_driver_info(request)
     args = {
@@ -191,7 +191,7 @@ def send_first_screenshot(request):
     return render(request, 'hercules_app/automatic_1.html', args)
 
 
-@login_required
+@login_required(login_url="/login")
 def send_second_screenshot(request):
     is_automatic = request.session.get('waybill_automatic')
     if is_automatic is None:
@@ -220,7 +220,7 @@ def send_second_screenshot(request):
     return render(request, 'hercules_app/automatic_2.html', args)
 
 
-@login_required
+@login_required(login_url="/login")
 def loading_page(request):
     driver_info = Driver.get_driver_info(request)
     args = {
@@ -232,7 +232,7 @@ def loading_page(request):
     return render(request, 'hercules_app/loading.html', args)
 
 
-@login_required
+@login_required(login_url="/login")
 def manual_step_one(request):
     waybill = Waybill()
     waybill.save()
@@ -241,7 +241,7 @@ def manual_step_one(request):
     return send_second_screenshot(request)
 
 
-@login_required
+@login_required(login_url="/login")
 def process_waybill(request):
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
@@ -256,7 +256,7 @@ def process_waybill(request):
         return HttpResponse(status=500)
 
 
-@login_required
+@login_required(login_url="/login")
 def add_waybill(request):
     is_automatic = True
     args = ''
@@ -339,7 +339,7 @@ def add_waybill(request):
     return render(request, 'hercules_app/verify.html', args)
 
 
-@login_required
+@login_required(login_url="/login")
 def OffersView(request):
     if request.session.get('offer_id') is not None:
         del request.session['offer_id']
@@ -376,7 +376,7 @@ def OffersView(request):
         cookie = SetCookie(request, response, 'offer_added')
     return response
 
-@login_required
+@login_required(login_url="/login")
 def OfferDetailsView(request, offer_id):
     driver_info = Driver.get_driver_info(request)
     offer = Gielda.objects.get(id=offer_id)
@@ -420,7 +420,7 @@ def CreateOfferView(request):
                 'company': driver_info.company,
                 'avatar': driver_info.avatar,
                 'position': driver_info.position,
-                'form': form            
+                'form': form
             }
             return render(request, 'hercules_app/create_offer.html', args)
     else:
@@ -434,7 +434,7 @@ def CreateOfferView(request):
         }
         return render(request, 'hercules_app/create_offer.html', args)
 
-@login_required
+@login_required(login_url="/login")
 def ChooseDriverView(request):
     driver_info = Driver.get_driver_info(request)
     company_drivers_count = Company.objects.values_list(
@@ -458,7 +458,7 @@ def ChooseDriverView(request):
         return HttpResponse(status=500)
 
 
-@login_required
+@login_required(login_url="/login")
 def DisposeOffer(request, driver_id):
     disposition = Disposition()
     offer_id = request.session.get('offer_id')
@@ -476,7 +476,7 @@ def DisposeOffer(request, driver_id):
     return redirect('panel')
 
 
-@login_required
+@login_required(login_url="/login")
 def ShowDispositionsView(request):
     driver_info = Driver.get_driver_info(request)
     driver = Driver.objects.get(user=request.user)
@@ -493,7 +493,7 @@ def ShowDispositionsView(request):
     }
     return render(request, 'hercules_app/dispositions.html', args)
 
-
+@login_required(login_url="/login")
 def FindCompanyView(request):
     driver_info = Driver.get_driver_info(request)
     companies = Company.objects.all().order_by('is_recruiting')
@@ -506,7 +506,7 @@ def FindCompanyView(request):
     }
     return render(request, 'hercules_app/find_company.html', args)
 
-
+@login_required(login_url="/login")
 def CompanyDetailsView(request, company_id):
     driver_info = Driver.get_driver_info(request)
     company = Company.objects.get(id=company_id)
@@ -519,7 +519,7 @@ def CompanyDetailsView(request, company_id):
     }
     return render(request, 'hercules_app/company_profile.html', args)
 
-
+@login_required(login_url="/login")
 def CompanyVehiclesView(request):
     driver_info = Driver.get_driver_info(request)
     if driver_info.company != "":
@@ -552,6 +552,7 @@ def CompanyVehiclesView(request):
     return response
 
 
+@login_required(login_url="/login")
 def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
@@ -574,6 +575,7 @@ def VehicleDetailsView(request, vehicle_id):
         'model': vehicle.model,
         'cabin': vehicle.cabin,
         'engine': vehicle.engine,
+        'engine_power': vehicle.engine_power,
         'gearbox': vehicle.gearbox,
         'wheelbase': vehicle.wheelbase,
         'wheels': vehicle.wheels,
@@ -596,6 +598,7 @@ def VehicleDetailsView(request, vehicle_id):
                 'model': vehicle.model,
                 'cabin': vehicle.cabin,
                 'engine': vehicle.engine,
+                'engine_power': vehicle.engine_power,
                 'gearbox': vehicle.gearbox,
                 'wheelbase': vehicle.wheelbase,
                 'wheels': vehicle.wheels,
@@ -1076,7 +1079,7 @@ def DeleteCompany(request):
             return HttpResponse(status=403)
 
 
-@login_required
+@login_required(login_url="/login")
 def ShowCompanyDispositionsView(request):
     driver_info = Driver.get_driver_info(request)
     company = Company.objects.get(name=driver_info.company)
@@ -1149,7 +1152,7 @@ def CreateNewDispositionView(request):
             return render(request, 'hercules_app/create_disposition.html', args)
     else:
         form = NewDispositionForm(drivers)
-        driver = {
+        args = {
             'nick': driver_info.nick,
             'position': driver_info.position,
             'avatar': driver_info.avatar,

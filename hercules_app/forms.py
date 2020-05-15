@@ -76,6 +76,7 @@ class EditVehicleForm(ModelForm):
             'model',
             'cabin',
             'engine',
+            'engine_power',
             'gearbox',
             'wheelbase',
             'wheels',
@@ -86,6 +87,30 @@ class EditVehicleForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['driver'] = forms.ChoiceField(widget = forms.Select(), choices=drivers, required=True, initial=current_driver)
         for field in self.fields:
+            if field == "brand":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteBrand'})
+            if field == "model":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteModel'})
+            if field == "cabin":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteCabin'})
+            if field == "engine":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteEngine'})
+            if field == "gearbox":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteGearbox'})
+            if field == "wheelbase":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteWheelbase'})
+            if field == "wheels":
+                self.fields[field].widget.attrs.update(
+                    {'id': 'autoCompleteWheels'})
+            if field == "engine_power":
+                self.fields[field].widget.attrs.update(
+                    {'min': '0', 'required': 'required'})
             self.fields[field].widget.attrs.update({'class': 'input'})
 
 class AddVehicleForm(ModelForm):
@@ -130,6 +155,9 @@ class AddVehicleForm(ModelForm):
             if field == "wheels":
                 self.fields[field].widget.attrs.update(
                     {'id': 'autoCompleteWheels'})
+            if field == "engine_power":
+                self.fields[field].widget.attrs.update(
+                    {'min': '0', 'required': 'required'})
             self.fields[field].widget.attrs.update({'class': 'input', 'autocomplete': 'off'})
 
 class EditCompanyInformationForm(ModelForm):
@@ -236,6 +264,7 @@ class NewOfferForm(ModelForm):
             'unloading_spedition',
             'cargo',
             'tonnage',
+            'price'
         )
 
     def __init__(self, *args, **kwargs):

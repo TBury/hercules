@@ -37,7 +37,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel='stylesheet' href="{% static 'css/bulma-switch.min.css' %}">
     <link rel='stylesheet' href="{% static 'css/bulma-checkradio.min.css' %}">
-    <title> Nowa dyspozycja | Hercules</title>
+    <title> Nowa oferta | Hercules</title>
 </head>
 
 <body>
@@ -129,6 +129,12 @@
                         </li>
                         <li>
                             <a href="/CompanyDispositions">
+                                <p class="option dispositions">Dyspozycje firmowe</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="/CompanyDispositions">
                                 <p class="option vehicles">Dyspozycje firmowe</p>
                             </a>
                         </li>
@@ -169,6 +175,19 @@
                                         <label class="label">Ładunek</label>
                                         <div class="control">
                                             {{ form.cargo }}
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Cena oferty</label>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                {{ form.price }}
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-static">
+                                                    zł
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

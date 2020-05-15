@@ -128,8 +128,13 @@
                         </li>
                         {% if position == "Szef" or driver.position == "Spedytor" %}
                         <li>
-                            <a {% if is_speditor_view %} class="is-active" {% endif %} href="/Waybills">
+                            <a href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/CompanyDispositions">
+                                <p class="option dispositions">Dyspozycje firmowe</p>
                             </a>
                         </li>
                         {% endif %}
