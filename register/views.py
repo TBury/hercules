@@ -6,10 +6,10 @@ from hercules_app.models import Driver, DriverStatistics, Achievement
 from .forms import CreateUserForm
 
 
-def register(response):
+def register(request):
     form = CreateUserForm()
-    if response.method == "POST":
-        form = CreateUserForm(response.POST)
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
             driver = Driver(user=user)
@@ -18,12 +18,17 @@ def register(response):
             statistics.save()
             achievements = Achievement(driver=driver)
             achievements.save()
-            login(response, user)
+            new_user = authenticate(
+                username=form.cleaned_data['username'],
+                email=form.cleaned_data['email'],
+                password=form.cleaned_data['password1'],
+            )
+            login(request, new_user)
             return redirect('hello')
         else:
             form = CreateUserForm()
     context = {'form': form}
-    return render(response, 'register/register.html', context=context)
+    return render(request, 'register/register.html', context=context)
 
 
 def logout_user(response):

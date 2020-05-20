@@ -16,6 +16,7 @@ class Company(models.Model):
     drivers_count = models.SmallIntegerField(default=0)
     logo = models.ImageField(upload_to='logos', default='')
     distance = models.PositiveIntegerField(default=0)
+    fuel = models.PositiveIntegerField(default=0)
     average_fuel = models.FloatField(default=0.0)
     income = models.PositiveIntegerField(default=0)
     tonnage = models.PositiveIntegerField(default=0)

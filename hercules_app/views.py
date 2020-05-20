@@ -906,7 +906,7 @@ def AcceptWaybill(request, waybill_id):
         return HttpResponse(status=403)
     else:
         driver_info = Driver.get_driver_info(request)
-        if (driver_info.position != "Szef" or driver_info.position != "Spedytor"):
+        if (driver_info.position == "Szef" or driver_info.position == "Spedytor"):
             waybill = Waybill.objects.get(id=waybill_id)
             driver = waybill.driver
             if driver.company.name != driver_info.company:
@@ -925,6 +925,16 @@ def AcceptWaybill(request, waybill_id):
                         driver_statistics.distance + waybill.distance)*100, 2),
                     deliveries_count=driver_statistics.deliveries_count + 1,
                 )
+                company = Company.objects.filter(name=driver_info.company)
+                Company.objects.filter(name=driver_info.company).update(
+                    distance=company.distance + waybill.distance,
+                    tonnage=company.tonnage + waybill.tonnage,
+                    income=company.income + waybill.income,
+                    fuel=company.fuel + waybill.fuel,
+                    average_fuel=round(Decimal(company.fuel + waybill.fuel)/Decimal(
+                        company.distance + waybill.distance)*100, 2),
+                    waybill_count=company.deliveries_count + 1,
+                )
                 request.session['waybill_accepted'] = True
                 return redirect('/Waybills')
         else:
@@ -936,7 +946,7 @@ def ToEditWaybill(request, waybill_id):
         return HttpResponse(status=403)
     else:
         driver_info = Driver.get_driver_info(request)
-        if (driver_info.position != "Szef" or driver_info.position != "Spedytor"):
+        if (driver_info.position == "Szef" or driver_info.position == "Spedytor"):
             waybill = Waybill.objects.get(id=waybill_id)
             driver = waybill.driver
             if driver.company.name != driver_info.company:
