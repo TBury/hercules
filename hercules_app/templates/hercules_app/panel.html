@@ -96,7 +96,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if position == "" %}
+                        {% if position is None %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -104,7 +104,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif position != "" %}
+                        {% elif position is not None %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -122,12 +122,12 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %}
+                                <p class="option vehicles">{% if position is None %} Twoje pojazdy {% else %}
                                     Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
-                        {% if position == "Szef" or driver.position == "Spedytor" %}
+                        {% if position == "Szef" or position == "Spedytor" %}
                         <li>
                             <a href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
@@ -139,7 +139,7 @@
                             </a>
                         </li>
                         {% endif %}
-{% if position == "Szef" %}
+                    {% if position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
@@ -507,10 +507,17 @@
                                 <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
                                 <span class="no-disposition-text">
                                     <h1 class="no-disposition-title">Nie masz żadnych dyspozycji.</h1>
+                                    {% if position is None %}
+                                    <p class="sub-text">
+                                        Tutaj pojawią się zlecenia,
+                                        które potwierdziłeś na giełdzie zleceń.
+                                    </p>
+                                    {% else %}
                                     <p class="sub-text">
                                         Tutaj pojawią się zlecenia od spedycji lub zlecenia,
                                         które potwierdziłeś na giełdzie zleceń.
                                     </p>
+                                    {% endif %}
                                 </span>
                             {% endif %}
                         </div>
@@ -576,10 +583,13 @@
                                 <span class="no-vehicle-text">
                                     <h1 class="no-vehicle-title">Nie masz żadnego pojazdu.</h1>
                                     <p class="sub-text">
+                                        {% if position is None %}
+                                        Dodaj pojazd w zakładce Twoje pojazdy.
+                                        {% elif position == "Szef" or position == "Dyspozytor" %}
                                         Nie został Ci przydzielony żaden pojazd.
-                                        {% if position == "Szef" or position == "Dyspozytor" %}
                                         Dodaj pojazd w zakładce Pojazdy.
                                         {% else %}
+                                        Nie został Ci przydzielony żaden pojazd.
                                         Zgłoś tę informację Szefowi lub dyspozytorowi firmy.
                                         {% endif %}
                                     </p>

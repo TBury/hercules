@@ -53,7 +53,7 @@ class Company(models.Model):
         for driver in drivers:
             statistics = DriverStatistics.objects.get(driver=driver)
             try:
-                last_waybill = Waybill.objects.get(driver=driver)
+                last_waybill = Waybill.objects.filter(driver=driver).latest("-finish_date")
                 last_waybill = last_waybill.finish_date
                 last_waybill = last_waybill.strftime('%d/%m/%Y, %H:%M')
             except Waybill.DoesNotExist:
@@ -175,9 +175,9 @@ class Driver(models.Model):
 
         vehicle = Driver.get_vehicle_info(driver)
 
-        try:
+        if driver.avatar.name != '':
             avatar = driver.avatar.url
-        except:
+        else:
             avatar = ''
 
         driver_info = {
@@ -186,7 +186,7 @@ class Driver(models.Model):
             'company': company,
             'company_id': company_id,
             'vehicle': vehicle,
-            'avatar': driver.avatar.url,
+            'avatar': avatar,
             'is_employeed': driver.is_employeed,
         }
         return driver_info
@@ -417,7 +417,6 @@ class WorkApplications(models.Model):
     id = models.AutoField(primary_key=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     town = models.CharField(max_length=50, default='')
-    controller = models.CharField(max_length=36, default='', blank=True, null=True)
     dlc = models.CharField(max_length=256, default='', blank=True, null=True)
     age = models.PositiveSmallIntegerField(default=0)
     steam_profile = models.URLField(default='')

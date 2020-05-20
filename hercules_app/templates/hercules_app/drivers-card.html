@@ -94,7 +94,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if position == "" %}
+                        {% if position is None %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -102,7 +102,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif position != "" %}
+                        {% elif position is not None %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -120,12 +120,12 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %}
+                                <p class="option vehicles">{% if position is None %} Twoje pojazdy {% else %}
                                     Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
-                        {% if position == "Szef" or driver.position == "Spedytor" %}
+                        {% if position == "Szef" or position == "Spedytor" %}
                         <li>
                             <a href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
@@ -297,7 +297,7 @@
                                                     <div class="content">
                                                         <h6 class="card-title">Przewieziony tonaż</h6>
                                                         <h1 class="card-value distance">{{ statistics.tonnage }} <span
-                                                                class="colored">t</span>
+                                                                class="colored">kg</span>
                                                         </h1>
                                                     </div>
                                                 </div>

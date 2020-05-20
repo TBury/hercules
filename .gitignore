@@ -251,3 +251,8 @@ GitHub.sublime-settings
 
 # Celery local files
 celerybeat-schedule.*
+
+/static/assets/waybills
+/static/assets/vehicles
+/static/assets/avatars
+/static/assets/logos

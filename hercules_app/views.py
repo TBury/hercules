@@ -402,7 +402,7 @@ def OfferDetailsView(request, offer_id):
         'company': driver_info.company,
         'avatar': driver_info.avatar,
         'position': driver_info.position,
-        'offer': offers,
+        'offer': offer,
         'is_self_employed': is_self_employed
     }
     return render(request, 'hercules_app/offer_details.html', args)
@@ -917,13 +917,13 @@ def AcceptWaybill(request, waybill_id):
                 driver_statistics = DriverStatistics.objects.get(
                     driver_id=driver)
                 DriverStatistics.objects.filter(driver_id=driver).update(
-                    distance=statistics.distance + waybill.distance,
-                    tonnage=statistics.tonnage + waybill.tonnage,
-                    income=statistics.income + waybill.income,
-                    fuel=statistics.fuel + waybill.fuel,
-                    average_fuel=round(Decimal(statistics.fuel + waybill.fuel)/Decimal(
-                        statistics.distance + waybill.distance)*100, 2),
-                    deliveries_count=statistics.deliveries_count + 1,
+                    distance=driver_statistics.distance + waybill.distance,
+                    tonnage=driver_statistics.tonnage + waybill.tonnage,
+                    income=driver_statistics.income + waybill.income,
+                    fuel=driver_statistics.fuel + waybill.fuel,
+                    average_fuel=round(Decimal(driver_statistics.fuel + waybill.fuel)/Decimal(
+                        driver_statistics.distance + waybill.distance)*100, 2),
+                    deliveries_count=driver_statistics.deliveries_count + 1,
                 )
                 request.session['waybill_accepted'] = True
                 return redirect('/Waybills')

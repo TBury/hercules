@@ -77,7 +77,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active" href="/Dispositions">
+                            <a href="/Dispositions">
                                 <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
@@ -91,7 +91,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if driver.position == "" %}
+                        {% if position == "" %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -99,7 +99,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif driver.position != "" %}
+                        {% elif position != "" %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -117,11 +117,11 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
-                        {% if position == "Szef" or driver.position == "Spedytor" %}
+                        {% if position == "Szef" or position == "Spedytor" %}
                         <li>
                             <a href="/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
@@ -370,9 +370,7 @@
                 </div>
                 {% endfor %}
                 {% endfor %}
-                {% endif %}
-
-                {% if dispositions %}
+                {% elif dispositions %}
                 {% for disposition in dispositions %}
                 {% for company_disposition in disposition %}
                 <div class="box card">
@@ -433,8 +431,7 @@
                 </div>
                 {% endfor %}
                 {% endfor %}
-                {% endif %}
-                {% if dispositions is None and rozpiski is None %}
+                {% else %}
                 <div class="box card no-disposition">
                     <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
                     <span class="no-disposition-text">
