@@ -1,3 +1,7 @@
+* {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 .modal {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -37,7 +41,10 @@
 
 .modal-buttons .button {
   font-size: 1.2rem !important;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-weight: 700 !important;
+}
+
+.delete-company {
+  font-weight: 700 !important;
 }
 /*# sourceMappingURL=settings.css.map */

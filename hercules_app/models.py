@@ -416,8 +416,29 @@ class CompanySettings(models.Model):
 class WorkApplications(models.Model):
     id = models.AutoField(primary_key=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    town = models.CharField(max_length=50, default='')
+    controller = models.CharField(max_length=36, default='', blank=True, null=True)
+    dlc = models.CharField(max_length=256, default='', blank=True, null=True)
+    age = models.PositiveSmallIntegerField(default=0)
+    steam_profile = models.URLField(default='')
+    truckers_mp_profile = models.URLField(blank=True, null=True)
+    about_me = models.TextField(max_length=2500, default='')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, default='')
+    reject_reason = models.TextField(default='', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    description = models.TextField(default='')
+    class ApplicationStatus(models.TextChoices):
+        ACCEPTED = 'accepted', _('accepted')
+        DECLINED = 'declined', _('declined')
+        NOT_CHECKED = 'not-checked', _('not_checked')
+
+    status = models.CharField(
+        choices=ApplicationStatus.choices, default=ApplicationStatus.NOT_CHECKED, max_length=12)
+
+    def get_company_applications(company):
+        return WorkApplications.objects.filter(company=company).order_by("-created_at")
+
+    def get_application(id):
+        return WorkApplications.objects.get(id=id)
 
     def __str__(self):
         return str(self.id)

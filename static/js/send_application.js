@@ -1,5 +1,32 @@
+let rejectOpenButton = document.querySelector(".reject")
+let rejectModal = document.querySelector(".reject-modal")
+let rejectBackground = document.querySelector(".reject-background")
+
+let rejectCloseButton = document.querySelector(".reject-close")
+let rejectConfirmButton = document.querySelector("#rejectButton")
+
+rejectOpenButton.onclick = function () {
+    rejectModal.classList.add("is-active")
+}
+
+rejectCloseButton.onclick = function () {
+    rejectModal.classList.remove("is-active")
+    event.stopPropagation();
+}
+
+document.querySelector(".cancel-reject").onclick = function () {
+    rejectModal.classList.remove("is-active")
+    event.stopPropagation();
+}
+
+rejectBackground.onclick = function () {
+    rejectModal.classList.remove("is-active")
+    event.stopPropagation();
+}
+
+
 $('#select-controllers').selectize({
-    maxItems: 5,
+    maxItems: 2,
     valueField: 'id',
     searchField: 'title',
     options: [{

@@ -15,6 +15,7 @@ from hercules_app.models import (
     Rozpiska,
     Achievement,
     CompanySettings,
+    WorkApplications
 )
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm, NewOfferForm
 from django.utils.encoding import smart_str
@@ -102,6 +103,12 @@ def panel(request):
     dispose_offer_success = request.session.get('dispose_offer_success')
     if dispose_offer_success is True:
         cookie = SetCookie(request, response, 'dispose_offer_success')
+    job_application_accepted = request.session.get('job_application_accepted')
+    if job_application_accepted is True:
+        cookie = SetCookie(request, response, 'job_application_accepted')
+    job_application_rejected = request.session.get('job_application_rejected')
+    if job_application_rejected is True:
+        cookie = SetCookie(request, response, 'job_application_rejected')
     return response
 
 
@@ -1286,3 +1293,79 @@ def GetRandomDispositionInfo(request):
         'tonnage': tonnage,
     }
     return JsonResponse(disposition)
+
+def ShowJobApplicationsCompanyView(request):
+    driver_info = Driver.get_driver_info(request)
+    if driver_info.position == "Szef":
+        company = Company.objects.get(name=driver_info.company)
+        if company.name != driver_info.company:
+            return HttpResponse(status=403)
+        else:
+            work_applications = WorkApplications.get_company_applications(company)
+            args = {
+                'nick': driver_info.nick,
+                'position': driver_info.position,
+                'avatar': driver_info.avatar,
+                'company': driver_info.company,
+                'applications': work_applications
+            }
+            return render(request, 'hercules_app/job_applications_chef.html', args)
+
+def ShowJobApplicationDetailsView(request, application_id):
+    driver_info = Driver.get_driver_info(request)
+    if driver_info.position == "Szef":
+        company = Company.objects.get(name=driver_info.company)
+        if company.name != driver_info.company:
+            return HttpResponse(status=403)
+        else:
+            work_application = WorkApplications.get_application(application_id)
+            args = {
+                'nick': driver_info.nick,
+                'position': driver_info.position,
+                'avatar': driver_info.avatar,
+                'company': driver_info.company,
+                'application': work_application
+            }
+            return render(request, 'hercules_app/verify_application.html', args)
+    else:
+        return HttpResponse(status=403)
+
+def AcceptJobApplication(request, application_id):
+    if request.POST:
+        driver_info = Driver.get_driver_info(request)
+        if driver_info.position == "Szef":
+            company = Company.objects.get(name=driver_info.company)
+            if company.name != driver_info.company:
+                return HttpResponse(status=403)
+            else:
+                work_application = WorkApplications.get_application(application_id)
+                new_driver = Driver.objects.get(id=work_application.driver.id)
+                new_driver.company = company
+                new_driver.save()
+                work_application.status = "ACCEPTED"
+                work_application.save()
+                request.session['job_application_accepted'] = True
+                return redirect('/panel')
+
+        else:
+            return HttpResponse(status=403)
+    else:
+            return HttpResponse(status=403)
+
+def RejectJobApplication(request, application_id):
+    if request.POST:
+        driver_info = Driver.get_driver_info(request)
+        if driver_info.position == "Szef":
+            company = Company.objects.get(name=driver_info.company)
+            if company.name != driver_info.company:
+                return HttpResponse(status=403)
+            else:
+                work_application = WorkApplications.get_application(application_id)
+                work_application.status = "REJECTED"
+                work_application.save()
+                request.session['job_application_rejected'] = True
+                return redirect('/JobApplications')
+        else:
+            return HttpResponse(status=403)
+    else:
+        return HttpResponse(status=403)

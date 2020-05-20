@@ -1,3 +1,8 @@
+* {
+    font-family: 'Montserrat',
+    sans-serif !important;
+}
+
 .modal {
     justify-content: center;
 }
@@ -31,7 +36,10 @@
 
     .button {
         font-size: 1.2rem !important;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
+        font-weight: 700 !important;
     }
+}
+
+.delete-company {
+    font-weight: 700 !important;
 }

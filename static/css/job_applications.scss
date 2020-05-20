@@ -34,5 +34,21 @@
     border-radius: 20px !important;
     padding: 15px 35px 15px 35px !important;
     margin-top: 10px;
-    margin-left: 50%;
+    margin-left: 135px;
+}
+
+.creation-date-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.creation-date {
+    align-self: center;
+    margin-top: 18px;
+    font-weight: 700;
+}
+
+.user-avatar {
+    border-radius: 30px;
 }

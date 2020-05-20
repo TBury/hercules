@@ -29,10 +29,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'css/job_applications.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/companies.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/company_profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/send_application.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/verify_waybill.css' %}">
+    <link rel='stylesheet prefetch'
+        href='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.min.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title>Podania o pracę | Hercules</title>
+    <title> Panel użytkownika | Hercules</title>
 </head>
 
 <body>
@@ -45,7 +50,7 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a class="panel-option" href="/panel">
+                            <a href="/panel">
                                 <p class="option main-site">Panel systemu</p>
                             </a>
                         </li>
@@ -60,22 +65,22 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a href="/drivers-card">
+                            <a href='/drivers-card'>
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
                         <li>
-                            <a class="is-active">
+                            <a href="/add-delivery">
                                 <p class="option add-delivery">Dodaj dostawę</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/Gielda/Offers/">
+                            <a href="/Gielda/Offers">
                                 <p class="option gielda">Giełda zleceń</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/Dispositions">
+                            <a class="is-active" href="/Dispositions">
                                 <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
@@ -89,7 +94,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if position == "" %}
+                        {% if driver.position == "" %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -97,7 +102,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif position != "" %}
+                        {% elif driver.position != "" %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -115,8 +120,7 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %}
-                                    Pojazdy
+                                <p class="option vehicles">{% if driver.position == "" %} Twoje pojazdy {% else %} Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
@@ -132,68 +136,104 @@
                             </a>
                         </li>
                         {% endif %}
-{% if position == "Szef" %}
+                    {% if position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
-                        {% endif %}
-                        {% if position == "Szef" %}
                         <li>
                             <a href="/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
-                        {% endif %}
-                        {% if position == "Szef" %}
-                        <li>
-                            <a href="/JobApplications">
-                                <p class="option settings">Podania o pracę</p>
-                            </a>
-                        </li>
-                        {% endif %}
+                    {% endif %}
                     </ul>
                 </nav>
             </aside>
             <main class="column main">
                 <header>
-                    <h1 class="title">Podania o pracę</h1>
+                    <h1 class="title">Szczegóły podania #{{application.id}}</h1>
                 </header>
-                <div class="box card job-application">
+                <div class="box basic-info">
                     <div class="columns">
                         <div class="column">
-                            <div class="application-company">
-                                <img src="img/france.png" class="company-logo">
-                                <p class="company-name">Nordic Transport System</p>
-                            </div>
+                            <label class="label">Nick</label>
+                            <input type="text" class="input" readonly value={{ application.driver.nick }}>
+                            <label class="label">Miasto</label>
+                            <input type="text" class="input" readonly value={{ application.town }}>
+                            <label class="label">Kontroler</label>
+                            <select id="select-controllers" multiple readonly value={{ application.controllers }}></select>
                         </div>
                         <div class="column">
-                            <div class="tags">
-                                <span class="tag application-not-checked is-medium">Podanie niesprawdzone</span>
-                            </div>
+                            <label class="label">Wiek</label>
+                            <input type="number" class="input age" min="1" max="99" readonly
+                                value={{ application.age }}>
+                            <label class="label">Posiadane DLC</label>
+                            <select id="select-dlc" multiple readonly value={{ application.dlc }}></select>
                         </div>
                     </div>
                 </div>
-                <div class="box card job-application">
+                <div class="box basic-info">
                     <div class="columns">
                         <div class="column">
-                            <div class="application-company">
-                                <img src="img/france.png" class="company-logo">
-                                <p class="company-name">Nordic Transport System</p>
-                            </div>
+                            <label class="label">Link do profilu Steam</label>
+                            <input type="url" class="input" readonly value={{ application.steam_profile }}>
                         </div>
                         <div class="column">
-                            <div class="tags">
-                                <span class="tag is-danger application-rejected is-medium">Podanie
-                                    odrzucone</span>
-                            </div>
+                            <label class="label">Link do profilu TruckersMP (opcjonalne)</label>
+                            <input type="url" class="input" readonly value={{ application.truckers_mp_profile }}>
                         </div>
                     </div>
+                    <label for="" class="label">O mnie</label>
+                    <textarea class="textarea" readonly value={{ application.about_me }}></textarea>
                 </div>
-            </main>
+                {% if application.status == 'not-checked' %}
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button reject">Odrzuć</a>
+                    </div>
+                    <form action="/JobApplications/Accept/{{ application.id }}" method="POST">
+                        {% csrf_token %}
+                        <div class="control">
+                            <button type="submit" href="" class="button accept">Zaakceptuj</a>
+                        </div>
+                    </form>
+                </div>
+                </main>
+                <div class="modal reject-modal" id="page-modal">
+                    <div class="modal-background reject-background"></div>
+                    <div class="modal-content">
+                        <div class="box">
+                            <form action="/JobApplications/Reject/{{ application.id }}" method="post">
+                                {% csrf_token %}
+                                <span>
+                                    <h1 class="title">Potwierdź odrzucenie trasy #{{ application.id }}
+                                    </h1>
+                                    <p class="subtitle is-5">Wpisz poniżej powód odrzucenia trasy.</p>
+                                </span>
+                                <div class="reject-reason">
+                                    <label for="" class="label">Powód odrzucenia</label>
+                                    <input type="text" class="input reject-reason-input" name="reject-reason" required>
+                                </div>
+                                <div class="modal-buttons">
+                                    <a class="button cancel-reject" data-dismiss="modal">Wróć</a>
+                                    <button type="submit" class="button" id="rejectButton" href="#">Odrzuć
+                                        podanie</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="modal-close is-large reject-close" aria-label="close"></button>
+                </div>
+                {% else %}
+                </main>
+                {% endif %}
         </div>
     </div>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js'></script>
+<script src="{% static 'js/send_application.js' %}"></script>
 </html>

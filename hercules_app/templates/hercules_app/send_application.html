@@ -134,10 +134,17 @@
                             </a>
                         </li>
                         {% endif %}
-                        {% if position == "Szef" %}
+                    {% if position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if position == "Szef" %}
+                        <li>
+                            <a href="/JobApplications">
+                                <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
                         {% endif %}
@@ -153,7 +160,7 @@
                         <div class="column">
                             <label class="label">Nick</label>
                             <input type="text" class="input">
-                            <label class="label">Miejsce zamieszkania</label>
+                            <label class="label">Miasto</label>
                             <input type="text" class="input">
                             <label class="label">Kontroler</label>
                             <select id="select-controllers" multiple></select>

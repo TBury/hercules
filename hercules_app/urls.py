@@ -79,6 +79,12 @@ urlpatterns = [
      path("Dispositions/AddNewDisposition/NewRozpiska",
          views.CreateNewRozpiskaView, name="create-rozpiska"),
      path("Dispositions/RandomDisposition", views.GetRandomDispositionInfo, name="random-disposition"),
+     path("JobApplications", views.ShowJobApplicationsCompanyView, name="company-job-applications"),
+     path("JobApplications/<int:application_id>", views.ShowJobApplicationDetailsView, name="job-application-details"),
+     path("JobApplications/Accept/<int:application_id>",
+         views.AcceptJobApplication, name="job-application-accept"),
+     path("JobApplications/Reject/<int:application_id>",
+         views.RejectJobApplication, name="job-application-reject"),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -138,10 +138,17 @@
                             </a>
                         </li>
                         {% endif %}
-                        {% if position == "Szef" %}
+{% if position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if position == "Szef" %}
+                        <li>
+                            <a href="/JobApplications">
+                                <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
                         {% endif %}

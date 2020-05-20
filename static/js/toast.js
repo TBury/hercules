@@ -86,3 +86,13 @@ if (showCookie("offer_added") == 'True') {
     showToast('Dodano nową ofertę na giełdę zleceń.', 'Dodano ofertę');
     deleteCookie("offer_added");
 }
+
+if (showCookie("job_application_accepted") == 'True') {
+    showToast('Przyjęto kierowcę do firmy.', 'Przyjęto aplikację');
+    deleteCookie("job_applicaton_accepted");
+}
+
+if (showCookie("job_application_rejected") == 'True') {
+    showToast('Odrzucono aplikację.', 'Przyjęto aplikację');
+    deleteCookie("job_applicaton_rejected");
+}

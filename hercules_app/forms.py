@@ -178,7 +178,7 @@ class EditCompanyInformationForm(ModelForm):
     def __init__(self, is_recruiting, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields:
-            if field != 'is_recruiting':
+            if field != 'is_recruiting' and field != 'description':
                 self.fields[field].widget.attrs.update({'class': 'input'})
             else:
                 if is_recruiting:
@@ -189,6 +189,8 @@ class EditCompanyInformationForm(ModelForm):
                         'name': 'switchRoundedDefault'})
             if field == 'dlc':
                 self.fields[field].widget.attrs.update({'class': 'hidden', 'id': 'dlc'})
+            if field == 'description':
+                self.fields[field].widget.attrs.update({'class': 'textarea', 'rows': '20'})
             elif field == 'games':
                 self.fields[field].widget.attrs.update(
                     {'class': 'hidden', 'id': 'games'})

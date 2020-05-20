@@ -38,6 +38,30 @@
   border-radius: 20px !important;
   padding: 15px 35px 15px 35px !important;
   margin-top: 10px;
-  margin-left: 50%;
+  margin-left: 135px;
+}
+
+.creation-date-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.creation-date {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-top: 18px;
+  font-weight: 700;
+}
+
+.user-avatar {
+  border-radius: 30px;
 }
 /*# sourceMappingURL=job_applications.css.map */
