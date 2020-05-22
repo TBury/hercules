@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from typing import NamedTuple
 from django.utils import timezone
 import pytz
-
+import requests
 
 
 
@@ -449,3 +449,28 @@ class Achievement(models.Model):
     eco_driver = models.BooleanField(default=False)
     long_distance_driver = models.BooleanField(default=False)
     heavy_driver = models.BooleanField(default=False)
+
+class TruckersMPStatus(models.Model):
+    simulation_1_players = models.PositiveIntegerField(default=0)
+    simulation_2_players = models.PositiveIntegerField(default=0)
+    promods_players = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @classmethod
+    def save_status_to_database(self):
+        response = requests.get('https://api.truckersmp.com/v2/servers')
+        servers = response.json()
+        status = TruckersMPStatus(
+            simulation_1_players=servers["response"][0]["players"],
+            simulation_2_players=servers["response"][1]["players"],
+            promods_players=servers["response"][4]["players"]
+        )
+        status.save()
+
+    def get_status_from_database():
+        status = TruckersMPStatus.objects.order_by("-created_at")[0]
+        return {
+            'simulation_1': status.simulation_1_players,
+            'simulation_2': status.simulation_2_players,
+            'promods': status.promods_players
+        }

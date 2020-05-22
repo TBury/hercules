@@ -2,10 +2,13 @@ import requests
 
 from django.conf import settings
 from celery import task
-from . import recognition
-from django_celery_results.models import TaskResult
+from celery.utils.log import get_task_logger
+from celery.decorators import periodic_task
+from hercules_app import recognition
+from hercules_app.models import TruckersMPStatus
 import uuid
 
+logger = get_task_logger(__name__)
 
 @task
 def get_loading_city(ocr, bind=True):
@@ -154,3 +157,11 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
         'screen_id': waybill_screens_id,
     }
     return waybill
+
+
+@task (
+    name="get-status",
+    ignore_result=True
+)
+def get_tmp_server_status():
+    TruckersMPStatus.save_status_to_database()

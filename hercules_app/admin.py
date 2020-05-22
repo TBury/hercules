@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import *
+from hercules_app.models import *
 
 admin.site.register(Company)
 admin.site.register(Driver)
@@ -13,3 +13,4 @@ admin.site.register(Rozpiska)
 admin.site.register(Gielda)
 admin.site.register(CompanySettings)
 admin.site.register(WorkApplications)
+admin.site.register(TruckersMPStatus)

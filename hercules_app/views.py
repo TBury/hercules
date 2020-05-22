@@ -15,9 +15,11 @@ from hercules_app.models import (
     Rozpiska,
     Achievement,
     CompanySettings,
-    WorkApplications
+    WorkApplications,
+    TruckersMPStatus
 )
-from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm, NewOfferForm
+from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, \
+    AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm, NewOfferForm
 from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
 from django_celery_results.models import TaskResult
@@ -27,7 +29,6 @@ import glob
 from collections import OrderedDict
 import json
 from random import randint
-
 
 
 def index(request):
@@ -80,6 +81,8 @@ def panel(request):
 
     offers = Gielda.objects.all()[:5]
 
+    status = TruckersMPStatus.get_status_from_database()
+
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
@@ -93,6 +96,9 @@ def panel(request):
         'periodic_norm_distance': periodic_norm_distance,
         'periodic_norm': periodic_norm,
         'realised': realised,
+        'simulation1_players': status["simulation_1"],
+        'simulation2_players': status["simulation_2"],
+        'promods_players': status["promods"]
     }
     response = render(request, 'hercules_app/panel.html', args)
 
@@ -270,7 +276,6 @@ def add_waybill(request):
     driver = Driver.objects.get(user=request.user)
     driver_info = Driver.get_driver_info(request)
 
-
     waybill_id = request.session.get('waybill_id')
     # TODO: check if the waybill_id is passed correctly
     waybill = Waybill.objects.get(id=waybill_id)
@@ -305,8 +310,8 @@ def add_waybill(request):
                     tonnage=statistics.tonnage + int(form.data['tonnage']),
                     income=statistics.income + int(form.data['income']),
                     fuel=statistics.income + int(form.data['fuel']),
-                    average_fuel=round(Decimal(statistics.fuel + int(form.data['fuel']))/Decimal(
-                        statistics.distance + int(form.data['distance']))*100, 2),
+                    average_fuel=round(Decimal(statistics.fuel + int(form.data['fuel'])) / Decimal(
+                        statistics.distance + int(form.data['distance'])) * 100, 2),
                     deliveries_count=statistics.deliveries_count + 1,
                 )
                 Waybill.objects.filter(id=waybill_id).update(
@@ -351,7 +356,7 @@ def OffersView(request):
     if request.session.get('offer_id') is not None:
         del request.session['offer_id']
     driver_info = Driver.get_driver_info(request)
-    
+
     parameters = ['loading_city', 'loading_country',
                   'unloading_city', 'unloading_country']
     filters = {}
@@ -383,6 +388,7 @@ def OffersView(request):
         cookie = SetCookie(request, response, 'offer_added')
     return response
 
+
 @login_required(login_url="/login")
 def OfferDetailsView(request, offer_id):
     driver_info = Driver.get_driver_info(request)
@@ -407,6 +413,7 @@ def OfferDetailsView(request, offer_id):
     }
     return render(request, 'hercules_app/offer_details.html', args)
 
+
 def CreateOfferView(request):
     driver_info = Driver.get_driver_info(request)
     driver = Driver.objects.get(nick=driver_info.nick)
@@ -416,7 +423,7 @@ def CreateOfferView(request):
             offer = form.save(commit=False)
             offer.loading_country = 'test'
             offer.unloading_country = 'test'
-            #TODO: add adr and oversize check
+            # TODO: add adr and oversize check
             offer.save()
             request.session['offer_added'] = True
             return redirect('/Gielda/Offers')
@@ -440,6 +447,7 @@ def CreateOfferView(request):
             'form': form
         }
         return render(request, 'hercules_app/create_offer.html', args)
+
 
 @login_required(login_url="/login")
 def ChooseDriverView(request):
@@ -500,6 +508,7 @@ def ShowDispositionsView(request):
     }
     return render(request, 'hercules_app/dispositions.html', args)
 
+
 @login_required(login_url="/login")
 def FindCompanyView(request):
     driver_info = Driver.get_driver_info(request)
@@ -513,6 +522,7 @@ def FindCompanyView(request):
     }
     return render(request, 'hercules_app/find_company.html', args)
 
+
 @login_required(login_url="/login")
 def CompanyDetailsView(request, company_id):
     driver_info = Driver.get_driver_info(request)
@@ -525,6 +535,7 @@ def CompanyDetailsView(request, company_id):
         'company': company
     }
     return render(request, 'hercules_app/company_profile.html', args)
+
 
 @login_required(login_url="/login")
 def CompanyVehiclesView(request):
@@ -611,7 +622,7 @@ def VehicleDetailsView(request, vehicle_id):
                 'wheels': vehicle.wheels,
                 'odometer': vehicle.odometer,
             }
-            )
+                                   )
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
@@ -774,23 +785,23 @@ def ShowCompanyDriversView(request):
             for company_driver in company_drivers:
                 if company_driver['nick'] == driver_nick:
                     args = {
-                            'nick': driver_info.nick,
-                            'position': driver_info.position,
-                            'avatar': driver_info.avatar,
-                            'company': driver_info.company,
-                            'company_driver': company_driver
-                        }
+                        'nick': driver_info.nick,
+                        'position': driver_info.position,
+                        'avatar': driver_info.avatar,
+                        'company': driver_info.company,
+                        'company_driver': company_driver
+                    }
                     response = render(request, 'hercules_app/drivers.html', args)
                     break
                 else:
                     args = {
-                            'nick': driver_info.nick,
-                            'position': driver_info.position,
-                            'avatar': driver_info.avatar,
-                            'company': driver_info.company,
-                            'not_found': True,
-                            'sort_by': sort_type
-                        }
+                        'nick': driver_info.nick,
+                        'position': driver_info.position,
+                        'avatar': driver_info.avatar,
+                        'company': driver_info.company,
+                        'not_found': True,
+                        'sort_by': sort_type
+                    }
                     response = render(request, 'hercules_app/drivers.html',
                                       args)
         else:
@@ -921,8 +932,8 @@ def AcceptWaybill(request, waybill_id):
                     tonnage=driver_statistics.tonnage + waybill.tonnage,
                     income=driver_statistics.income + waybill.income,
                     fuel=driver_statistics.fuel + waybill.fuel,
-                    average_fuel=round(Decimal(driver_statistics.fuel + waybill.fuel)/Decimal(
-                        driver_statistics.distance + waybill.distance)*100, 2),
+                    average_fuel=round(Decimal(driver_statistics.fuel + waybill.fuel) / Decimal(
+                        driver_statistics.distance + waybill.distance) * 100, 2),
                     deliveries_count=driver_statistics.deliveries_count + 1,
                 )
                 company = Company.objects.filter(name=driver_info.company)
@@ -931,8 +942,8 @@ def AcceptWaybill(request, waybill_id):
                     tonnage=company.tonnage + waybill.tonnage,
                     income=company.income + waybill.income,
                     fuel=company.fuel + waybill.fuel,
-                    average_fuel=round(Decimal(company.fuel + waybill.fuel)/Decimal(
-                        company.distance + waybill.distance)*100, 2),
+                    average_fuel=round(Decimal(company.fuel + waybill.fuel) / Decimal(
+                        company.distance + waybill.distance) * 100, 2),
                     waybill_count=company.deliveries_count + 1,
                 )
                 request.session['waybill_accepted'] = True
@@ -988,7 +999,8 @@ def CompanySettingsView(request):
         settings = CompanySettings.objects.get(company=company)
         edit_company_form = EditCompanyInformationForm(
             company.is_recruiting, instance=company)
-        edit_company_settings_form = EditSettingsForm(settings.random_vehicle, settings.auto_synchronization, settings.only_assistant, settings.max_90, instance=settings)
+        edit_company_settings_form = EditSettingsForm(settings.random_vehicle, settings.auto_synchronization,
+                                                      settings.only_assistant, settings.max_90, instance=settings)
         args = {
             'nick': driver_info.nick,
             'position': driver_info.position,
@@ -997,7 +1009,7 @@ def CompanySettingsView(request):
             'edit_company_form': edit_company_form, 'edit_company_settings_form': edit_company_settings_form,
         }
         response = render(request, 'hercules_app/settings.html',
-                      args)
+                          args)
         information_changed = request.session.get('information_changed')
         if information_changed is True:
             cookie = SetCookie(request, response, 'information_changed')
@@ -1020,6 +1032,7 @@ def CompanySettingsView(request):
         return response
     else:
         return HttpResponse(status=403)
+
 
 def EditCompanyInformation(request):
     if request.GET:
@@ -1064,7 +1077,8 @@ def EditCompanySettings(request):
         if driver_info.position == "Szef":
             company = Company.objects.get(name=driver_info.company)
             settings = CompanySettings.objects.get(company=company)
-            form = EditSettingsForm(settings.random_vehicle, settings.  auto_synchronization, settings.only_assistant, settings.max_90, request.POST, instance=settings)
+            form = EditSettingsForm(settings.random_vehicle, settings.auto_synchronization, settings.only_assistant,
+                                    settings.max_90, request.POST, instance=settings)
             if form.is_valid():
                 form.save()
                 request.session['settings_changed'] = True
@@ -1073,6 +1087,7 @@ def EditCompanySettings(request):
                 return redirect('/Settings')
         else:
             return HttpResponse(status=403)
+
 
 def DeleteCompany(request):
     if request.GET:
@@ -1086,10 +1101,10 @@ def DeleteCompany(request):
             else:
                 drivers = Driver.objects.filter(company=company)
                 for driver in drivers:
-                    Driver.objects.filter(nick=driver.nick).update(is_employeed = False, company = None, position = None)
+                    Driver.objects.filter(nick=driver.nick).update(is_employeed=False, company=None, position=None)
                 Vehicle.objects.filter(company=company).delete()
                 CompanySettings.objects.filter(company=company).delete()
-                #WorkApplications
+                # WorkApplications
                 Company.objects.filter(name=driver_info.company).delete()
                 return redirect('/panel')
         else:
@@ -1108,7 +1123,7 @@ def ShowCompanyDispositionsView(request):
         company_drivers = Driver.objects.all().filter(company=company)
         for company_driver in company_drivers:
             dispositions = Disposition.objects.filter(
-            driver=company_driver).exclude(is_rozpiska=True)
+                driver=company_driver).exclude(is_rozpiska=True)
             if dispositions:
                 company_dispositions.append(dispositions)
             rozpiski = Rozpiska.objects.filter(driver=company_driver)
@@ -1124,6 +1139,7 @@ def ShowCompanyDispositionsView(request):
     }
     return render(request, 'hercules_app/dispositions_chef.html', args)
 
+
 def ChooseDispositionView(request):
     driver_info = Driver.get_driver_info(request)
     args = {
@@ -1133,6 +1149,7 @@ def ChooseDispositionView(request):
         'company': driver_info.company,
     }
     return render(request, 'hercules_app/choose_disposition_type.html', args)
+
 
 def CreateNewDispositionView(request):
     driver_info = Driver.get_driver_info(request)
@@ -1146,7 +1163,7 @@ def CreateNewDispositionView(request):
             drivers_dict[company_driver.id] = company_driver.nick
             drivers = tuple(drivers_dict.items())
     else:
-        return HttpResponse(status = 500)
+        return HttpResponse(status=500)
     if request.POST:
         form = NewDispositionForm(drivers, data=request.POST)
         if form.is_valid():
@@ -1232,12 +1249,13 @@ def CreateNewRozpiskaView(request):
                 third_disposition_form = NewDispositionForm(
                     drivers, prefix="third_disposition_form")
                 fourth_disposition_form = NewDispositionForm(
-                drivers, prefix="fourth_disposition_form")
+                    drivers, prefix="fourth_disposition_form")
                 fifth_disposition_form = NewDispositionForm(
-                drivers, prefix="fifth_disposition_form")
+                    drivers, prefix="fifth_disposition_form")
                 return render(request, 'hercules_app/create_rozpiska.html', {
                     'driver': driver,
-                    'first_disposition_form': first_disposition_form, 'second_disposition_form': second_disposition_form,
+                    'first_disposition_form': first_disposition_form,
+                    'second_disposition_form': second_disposition_form,
                     'third_disposition_form': third_disposition_form,
                     'fourth_disposition_form': fourth_disposition_form,
                     'fifth_disposition_form': fifth_disposition_form
@@ -1252,7 +1270,7 @@ def CreateNewRozpiskaView(request):
         return redirect('/CompanyDispositions')
     else:
         first_disposition_form = NewDispositionForm(
-                drivers, prefix="first_disposition_form")
+            drivers, prefix="first_disposition_form")
         second_disposition_form = NewDispositionForm(
             drivers, prefix="second_disposition_form")
         third_disposition_form = NewDispositionForm(
@@ -1266,7 +1284,7 @@ def CreateNewRozpiskaView(request):
             'position': driver_info.position,
             'avatar': driver_info.avatar,
             'company': driver_info.company,
-            'first_disposition_form': first_disposition_form,'second_disposition_form': second_disposition_form,
+            'first_disposition_form': first_disposition_form, 'second_disposition_form': second_disposition_form,
             'third_disposition_form': third_disposition_form,
             'fourth_disposition_form': fourth_disposition_form,
             'fifth_disposition_form': fifth_disposition_form
@@ -1288,7 +1306,7 @@ def GetRandomDispositionInfo(request):
     for city in cities:
         if city["city_name"] == unloading_city:
             companies = city["companies"]
-    unloading_company = companies[randint(0, len(companies) -1 )]
+    unloading_company = companies[randint(0, len(companies) - 1)]
     with open('static/assets/files/cargo.json', 'r', encoding="utf-8") as cargo_json:
         cargos = json.load(cargo_json)
     cargo = cargos[randint(0, len(cargos) - 1)]
@@ -1303,6 +1321,7 @@ def GetRandomDispositionInfo(request):
         'tonnage': tonnage,
     }
     return JsonResponse(disposition)
+
 
 def ShowJobApplicationsCompanyView(request):
     driver_info = Driver.get_driver_info(request)
@@ -1320,6 +1339,7 @@ def ShowJobApplicationsCompanyView(request):
                 'applications': work_applications
             }
             return render(request, 'hercules_app/job_applications_chef.html', args)
+
 
 def ShowJobApplicationDetailsView(request, application_id):
     driver_info = Driver.get_driver_info(request)
@@ -1339,6 +1359,7 @@ def ShowJobApplicationDetailsView(request, application_id):
             return render(request, 'hercules_app/verify_application.html', args)
     else:
         return HttpResponse(status=403)
+
 
 def AcceptJobApplication(request, application_id):
     if request.POST:
@@ -1360,7 +1381,8 @@ def AcceptJobApplication(request, application_id):
         else:
             return HttpResponse(status=403)
     else:
-            return HttpResponse(status=403)
+        return HttpResponse(status=403)
+
 
 def RejectJobApplication(request, application_id):
     if request.POST:
