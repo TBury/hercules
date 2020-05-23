@@ -1,12 +1,10 @@
-import requests
+import uuid
 
-from django.conf import settings
 from celery import task
 from celery.utils.log import get_task_logger
-from celery.decorators import periodic_task
+
 from hercules_app import recognition
 from hercules_app.models import TruckersMPStatus
-import uuid
 
 logger = get_task_logger(__name__)
 

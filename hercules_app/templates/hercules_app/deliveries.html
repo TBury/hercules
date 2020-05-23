@@ -128,12 +128,12 @@
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
-                            <a href="/Waybills">
+                            <a href="/Company/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/CompanyDispositions">
+                            <a href="/Company/Dispositions">
                                 <p class="option dispositions">Dyspozycje firmowe</p>
                             </a>
                         </li>
@@ -147,7 +147,7 @@
                         {% endif %}
                         {% if position == "Szef" %}
                         <li>
-                            <a href="/JobApplications">
+                            <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
@@ -302,7 +302,7 @@
                         </div>
                     </div>
                     <div class="column">
-                        <a href="/Waybills/{{ delivery.id }}" class="button check-details">Sprawdź szczegóły</a>
+                        <a href="/Company/Waybills/{{ delivery.id }}" class="button check-details">Sprawdź szczegóły</a>
                     </div>
                 </div>
             </div>

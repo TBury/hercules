@@ -37,7 +37,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel='stylesheet' href="{% static 'css/bulma-switch.min.css' %}">
     <link rel='stylesheet' href="{% static 'css/bulma-checkradio.min.css' %}">
-    <title> Dodaj nową dostawę | Hercules</title>
+    <title> Tworzenie rozpiski | Hercules</title>
 </head>
 
 <body>
@@ -123,12 +123,12 @@
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
-                            <a href="/Waybills">
-                                <p class="option waybills">Listy przewozowe</p>
+                            <a href="/Company/Waybills">
+                                <p class="option Company/Waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
-                            <a class="is-active" href="/CompanyDispositions">
+                            <a class="is-active" href="/Company/Dispositions">
                                 <p class="option dispositions">Dyspozycje firmowe</p>
                             </a>
                         </li>
@@ -142,7 +142,7 @@
                         {% endif %}
                         {% if position == "Szef" %}
                         <li>
-                            <a href="/JobApplications">
+                            <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
@@ -151,7 +151,7 @@
                 </nav>
             </aside>
             <main class="column main">
-                <form action="/Dispositions/AddNewDisposition/NewRozpiska" method="POST">
+                <form action="/Company/Dispositions/AddNewDisposition/NewRozpiska" method="POST">
                     {% csrf_token %}
                 <h1 class="title">Nowa <span class="colored">rozpiska</span> </h1>
                 <div class="box card">

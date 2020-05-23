@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pl-pl">
 
@@ -15,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="120x120" href="{% static 'hercules_app/assets//apple-icon-120x120.png' %}">
     <link rel="apple-touch-icon" sizes="144x144" href="{% static 'hercules_app/assets//apple-icon-144x144.png' %}">
     <link rel="apple-touch-icon" sizes="152x152" href="{% static 'hercules_app/assets//apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'hercules_app/assets//apple-icon-180x180.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'hercules_app/assets/apple-icon-180x180.png' %}">
     <link rel="icon" type="image/png" sizes="192x192"
         href="{% static 'hercules_app/assets//android-icon-192x192.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'hercules_app/assets//favicon-32x32.png' %}">
@@ -28,14 +29,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="companies.css">
-    <link rel="stylesheet" type="text/css" href="company_profile.css">
-    <link rel="stylesheet" type="text/css" href="send_application.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/companies.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/company_profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/send_application.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/verify_waybill.css' %}">
     <link rel='stylesheet prefetch'
         href='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.min.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title> Panel użytkownika | Hercules</title>
+    <title> Złóż podanie o pracę | Hercules</title>
 </head>
 
 <body>
@@ -46,7 +48,7 @@
                     <p class="menu-label">
                         Menu główne
                     </p>
-<ul class="menu-list">
+                    <ul class="menu-list">
                         <li>
                             <a href="/panel">
                                 <p class="option main-site">Panel systemu</p>
@@ -78,7 +80,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active" href="/Dispositions">
+                            <a href="/Dispositions">
                                 <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
@@ -124,12 +126,12 @@
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
-                            <a href="/Waybills">
-                                <p class="option waybills">Listy przewozowe</p>
+                            <a href="/Company/Waybills">
+                                <p class="option Company/Waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/CompanyDispositions">
+                            <a href="/Company/Dispositions">
                                 <p class="option dispositions">Dyspozycje firmowe</p>
                             </a>
                         </li>
@@ -140,10 +142,8 @@
                                 <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
-                        {% endif %}
-                        {% if position == "Szef" %}
                         <li>
-                            <a href="/JobApplications">
+                            <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
@@ -155,21 +155,23 @@
                 <header>
                     <h1 class="title">Złóż podanie</h1>
                 </header>
+                <form action="" method="POST">
+                    {% csrf_token %}
+
                 <div class="box basic-info">
                     <div class="columns">
                         <div class="column">
                             <label class="label">Nick</label>
-                            <input type="text" class="input">
+                            {{ form.driver }}
                             <label class="label">Miasto</label>
-                            <input type="text" class="input">
-                            <label class="label">Kontroler</label>
-                            <select id="select-controllers" multiple></select>
+                            {{ form.town }}
                         </div>
                         <div class="column">
                             <label class="label">Wiek</label>
-                            <input type="number" class="input age" min="1" max="99">
+                            {{ form.age }}
                             <label class="label">Posiadane DLC</label>
                             <select id="select-dlc" multiple></select>
+                            {{ form.dlc }}
                         </div>
                     </div>
                 </div>
@@ -177,21 +179,22 @@
                     <div class="columns">
                         <div class="column">
                             <label class="label">Link do profilu Steam</label>
-                            <input type="url" class="input">
+                            {{ form.steam_profile }}
                         </div>
                         <div class="column">
                             <label class="label">Link do profilu TruckersMP (opcjonalne)</label>
-                            <input type="url" class="input">
+                            {{ form.truckers_mp_profile }}
                         </div>
                     </div>
                     <label for="" class="label">O mnie</label>
-                    <textarea class="textarea"></textarea>
+                    {{ form.about_me }}
                 </div>
                 <div class="field is-grouped">
                     <div class="control">
                         <button type="submit" class="button send-cv">Wyślij podanie</a>
                     </div>
                 </div>
+                </form>
             </main>
         </div>
     </div>
@@ -199,5 +202,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js'></script>
-<script src='send_application.js'></script>
+<script src="{% static 'js/send_application.js' %}"></script>
+<script src="{% static 'js/selectize_dlc.js' %}"></script>
 </html>

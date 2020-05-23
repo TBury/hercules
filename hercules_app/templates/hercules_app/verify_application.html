@@ -37,7 +37,7 @@
         href='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.min.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title> Panel użytkownika | Hercules</title>
+    <title> Podanie o pracę nr {{ application.id  }} | Hercules</title>
 </head>
 
 <body>
@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active" href="/Dispositions">
+                            <a href="/Dispositions">
                                 <p class="option dispositions">Dyspozycje</p>
                             </a>
                         </li>
@@ -126,24 +126,24 @@
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
-                            <a href="/Waybills">
-                                <p class="option waybills">Listy przewozowe</p>
+                            <a href="/Company/Waybills">
+                                <p class="option Company/Waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/CompanyDispositions">
+                            <a href="/Company/Dispositions">
                                 <p class="option dispositions">Dyspozycje firmowe</p>
                             </a>
                         </li>
                         {% endif %}
                     {% if position == "Szef" %}
                         <li>
-                            <a href="/Settings">
+                            <a href="/Company/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/JobApplications">
+                            <a class="is-active" href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
@@ -191,7 +191,7 @@
                     <div class="control">
                         <button class="button reject">Odrzuć</a>
                     </div>
-                    <form action="/JobApplications/Accept/{{ application.id }}" method="POST">
+                    <form action="/Company/JobApplications/Accept/{{ application.id }}" method="POST">
                         {% csrf_token %}
                         <div class="control">
                             <button type="submit" href="" class="button accept">Zaakceptuj</a>
@@ -203,7 +203,7 @@
                     <div class="modal-background reject-background"></div>
                     <div class="modal-content">
                         <div class="box">
-                            <form action="/JobApplications/Reject/{{ application.id }}" method="post">
+                            <form action="/Company/JobApplications/Reject/{{ application.id }}" method="post">
                                 {% csrf_token %}
                                 <span>
                                     <h1 class="title">Potwierdź odrzucenie trasy #{{ application.id }}

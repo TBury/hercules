@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from django import forms
-from hercules_app.models import Driver, Waybill, DriverStatistics, Company, Vehicle, CompanySettings, Disposition, Rozpiska, Gielda
+from hercules_app.models import Driver, Waybill, Company, Vehicle, CompanySettings, Disposition, \
+    Gielda, WorkApplications
 
 
 class SetNickForm(ModelForm):
@@ -336,3 +337,28 @@ class NewDispositionForm(ModelForm):
             else:
                 self.fields[field].widget.attrs.update(
                     {'class': 'input', 'autocomplete': 'off'})
+
+class SendApplicationForm(ModelForm):
+    class Meta:
+        model = WorkApplications
+        fields = (
+            'driver',
+            'town',
+            'dlc',
+            'age',
+            'steam_profile',
+            'truckers_mp_profile',
+            'about_me',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['driver'] = forms.CharField(widget=forms.TextInput, required=True)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'input'})
+            if field == "driver":
+                self.fields[field].widget.attrs.update({'class': 'input', 'readonly': 'readonly'})
+            if field == 'about_me':
+                self.fields[field].widget.attrs.update({'class': 'textarea', 'rows': '20'})
+            if field == 'dlc':
+                self.fields[field].widget.attrs.update({'class': 'hidden', 'id': 'dlc'})

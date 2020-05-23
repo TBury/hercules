@@ -141,12 +141,12 @@
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
-                            <a href="/Waybills">
-                                <p class="option waybills">Listy przewozowe</p>
+                            <a href="/Company/Waybills">
+                                <p class="option Company/Waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/CompanyDispositions">
+                            <a href="/Company/Dispositions">
                                 <p class="option dispositions">Dyspozycje firmowe</p>
                             </a>
                         </li>
@@ -160,7 +160,7 @@
                         {% endif %}
                         {% if position == "Szef" %}
                         <li>
-                            <a href="/JobApplications">
+                            <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
@@ -179,7 +179,7 @@
                             <button class="toggle" aria-label="toggle"></button>
                         </div>
                         <div class="accordion-body">
-                            <form action="/Settings/EditCompanyInformation" method="post" enctype="multipart/form-data">
+                            <form action="/Company/Settings/EditCompanyInformation" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="box basic-info">
                                     <div class="columns">
@@ -231,7 +231,7 @@
                             <a class="toggle" aria-label="toggle"></a>
                         </div>
                         <div class="accordion-body">
-                            <form action="/Settings/EditCompanySettings" method="POST">
+                            <form action="/Company/Settings/EditCompanyCompany/Settings" method="POST">
                                 {% csrf_token %}
                             <div class="box description">
                                 <div class="columns">

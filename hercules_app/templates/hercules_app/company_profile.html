@@ -123,12 +123,12 @@
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
-                            <a href="/Waybills">
-                                <p class="option waybills">Listy przewozowe</p>
+                            <a href="/Company/Waybills">
+                                <p class="option Company/Waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/CompanyDispositions">
+                            <a href="/Company/Dispositions">
                                 <p class="option dispositions">Dyspozycje firmowe</p>
                             </a>
                         </li>
@@ -142,7 +142,7 @@
                         {% endif %}
                         {% if position == "Szef" %}
                         <li>
-                            <a href="/JobApplications">
+                            <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
@@ -186,8 +186,8 @@
                                 <span class="tag is-danger is-large">Rekrutacja zamknięta</span>
                                 {% endif %}
                             </div>
-                            {% if company.is_recruiting and is_employeed == False %}
-                            <a class="button is-danger send-application">Złóż podanie</a>
+                            {% if company.is_recruiting is True and position is None %}
+                            <a class="button is-danger send-application" href="/JobApplications/SendApplication/{{ company.id }}">Złóż podanie</a>
                             {% endif %}
                         </div>
                     </div>

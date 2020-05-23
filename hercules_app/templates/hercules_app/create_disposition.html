@@ -123,12 +123,12 @@
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
-                            <a href="/Waybills">
-                                <p class="option waybills">Listy przewozowe</p>
+                            <a href="/Company/Waybills">
+                                <p class="option Company/Waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
-                            <a class="is-active" href="/CompanyDispositions">
+                            <a class="is-active" href="/Company/Dispositions">
                                 <p class="option vehicles">Dyspozycje firmowe</p>
                             </a>
                         </li>
@@ -142,7 +142,7 @@
                         {% endif %}
                         {% if position == "Szef" %}
                         <li>
-                            <a href="/JobApplications">
+                            <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
@@ -153,7 +153,7 @@
             <main class="column main">
                 <h1 class="title">Nowa <span class="colored">dyspozycja</span> </h1>
                 <div class="box card">
-                    <form action="/Dispositions/AddNewDisposition/NewDisposition" method="POST" class="newDispositionForm">
+                    <form action="/Company/Dispositions/AddNewDisposition/NewDisposition" method="POST" class="newDispositionForm">
                         {% csrf_token %}
                         <div class="basic-info">
                             <b><span class="colored">Podstawowe </span> informacje</b>

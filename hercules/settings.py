@@ -147,6 +147,6 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BEAT_SCHEDULE = {
     'check-tmp-status': {
         'task': 'get-status',
-        'schedule': 10.0,
+        'schedule': 5.0,
     },
 }

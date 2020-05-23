@@ -1,13 +1,11 @@
+from datetime import datetime
+from typing import NamedTuple
+
+import requests
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import User
-from datetime import datetime, timedelta
-from typing import NamedTuple
-from django.utils import timezone
-import pytz
-import requests
-
 
 
 class Company(models.Model):
@@ -45,7 +43,7 @@ class Company(models.Model):
         }
         return statistics
 
-    def get_company_drivers_info(company_id, sort_by):
+    def get_company_drivers_info(sort_by, company_id):
         if sort_by == "-position":
             drivers = Driver.objects.all().filter(company=company_id).order_by(sort_by)
         else:
@@ -210,7 +208,7 @@ class Driver(models.Model):
         try:
             driver_info = request.session.get('driver_info')
         except driver_info is None:
-            SetDriverInfo(request)
+            request.set_driver_info(request)
         finally:
             info = DriverInfo(
                 driver_info['nick'],
@@ -416,7 +414,7 @@ class CompanySettings(models.Model):
 
 class WorkApplications(models.Model):
     id = models.AutoField(primary_key=True)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    driver = models.CharField(max_length=128, default='')
     town = models.CharField(max_length=50, default='')
     dlc = models.CharField(max_length=256, default='', blank=True, null=True)
     age = models.PositiveSmallIntegerField(default=0)
@@ -436,6 +434,9 @@ class WorkApplications(models.Model):
 
     def get_company_applications(company):
         return WorkApplications.objects.filter(company=company).order_by("-created_at")
+
+    def get_driver_applications(driver):
+        return WorkApplications.objects.filter(driver=driver).order_by("-created_at")
 
     def get_application(id):
         return WorkApplications.objects.get(id=id)

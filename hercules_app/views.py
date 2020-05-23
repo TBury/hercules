@@ -1,9 +1,17 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.http import HttpResponse, JsonResponse
-from django.contrib.auth.decorators import login_required
-from django.views.generic import CreateView
+import glob
+import json
+import os
 from datetime import datetime
-from django.contrib.auth.decorators import user_passes_test
+from decimal import Decimal
+from random import randint
+
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils.encoding import smart_str
+
+from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, \
+    AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm, NewOfferForm, SendApplicationForm
 from hercules_app.models import (
     Driver,
     Company,
@@ -18,17 +26,7 @@ from hercules_app.models import (
     WorkApplications,
     TruckersMPStatus
 )
-from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, \
-    AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm, NewOfferForm
-from django.utils.encoding import smart_str
 from .tasks import get_waybill_info
-from django_celery_results.models import TaskResult
-from decimal import Decimal
-import os
-import glob
-from collections import OrderedDict
-import json
-from random import randint
 
 
 def index(request):
@@ -40,18 +38,22 @@ def login(request):
 
 
 @login_required(login_url="/login")
-# TODO: create test for checking if the user
-# nick or not
+# TODO: create test for checking if the user nick exists or not
 def hello(request):
     current_user = request.user
     form = SetNickForm()
     if request.method == "POST":
         form = SetNickForm(request.POST)
         if form.is_valid():
-            Driver.objects.filter(user=current_user).update(
-                nick=form.data['nick'])
-            return redirect('panel')
+            nick_exists = Driver.objects.filter(nick=form.cleaned_data['nick']).exists()
+            if nick_exists is False:
+                Driver.objects.filter(user=current_user).update(
+                    nick=form.data['nick'])
+                return redirect('panel')
+            else:
+                form = SetNickForm()
         form = SetNickForm()
+
     return render(request, 'hercules_app/hello.html')
 
 
@@ -530,7 +532,6 @@ def CompanyDetailsView(request, company_id):
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
-        'company': driver_info.company,
         'position': driver_info.position,
         'company': company
     }
@@ -779,7 +780,7 @@ def ShowCompanyDriversView(request):
                 company.id, sort_type)
         else:
             company_drivers = Company.get_company_drivers_info(
-                company.id, '-position')
+                '-position', company.id)
         driver_nick = request.GET.get('driver_nick')
         if driver_nick is not None:
             for company_driver in company_drivers:
@@ -1082,9 +1083,9 @@ def EditCompanySettings(request):
             if form.is_valid():
                 form.save()
                 request.session['settings_changed'] = True
-                return redirect('/Settings')
+                return redirect('/Company/Settings')
             else:
-                return redirect('/Settings')
+                return redirect('/Company/Settings')
         else:
             return HttpResponse(status=403)
 
@@ -1173,7 +1174,7 @@ def CreateNewDispositionView(request):
             disposition.driver = disposed_driver
             disposition.save()
             request.session['created_disposition'] = True
-            return redirect('/CompanyDispositions')
+            return redirect('/Company/Dispositions')
         else:
             form = NewDispositionForm(drivers)
             args = {
@@ -1267,7 +1268,7 @@ def CreateNewRozpiskaView(request):
         rozpiska.fifth_disposition = dispositions[4]
         rozpiska.save()
         request.session['created_disposition'] = True
-        return redirect('/CompanyDispositions')
+        return redirect('/Company/Dispositions')
     else:
         first_disposition_form = NewDispositionForm(
             drivers, prefix="first_disposition_form")
@@ -1292,7 +1293,7 @@ def CreateNewRozpiskaView(request):
         return render(request, 'hercules_app/create_rozpiska.html', args)
 
 
-def GetRandomDispositionInfo(request):
+def GetRandomDispositionInfo():
     cities = {}
     cargos = {}
     with open('static/assets/files/companies.json', 'r') as cities_json:
@@ -1340,6 +1341,21 @@ def ShowJobApplicationsCompanyView(request):
             }
             return render(request, 'hercules_app/job_applications_chef.html', args)
 
+def ShowJobApplicationsDriversView(request):
+    driver_info = Driver.get_driver_info(request)
+    if driver_info.position is None:
+        work_applications = WorkApplications.get_driver_applications(driver_info.nick)
+        args = {
+                'nick': driver_info.nick,
+                'position': None,
+                'avatar': driver_info.avatar,
+                'company': None,
+                'applications': work_applications
+        }
+        return render(request, 'hercules_app/job_applications_driver.html', args)
+    else:
+        return HttpResponse(status=403)
+
 
 def ShowJobApplicationDetailsView(request, application_id):
     driver_info = Driver.get_driver_info(request)
@@ -1373,6 +1389,7 @@ def AcceptJobApplication(request, application_id):
                 new_driver = Driver.objects.get(id=work_application.driver.id)
                 new_driver.company = company
                 new_driver.save()
+                Company.objects.filter(name=driver_info.company).update(drivers_count=company.drivers_count + 1)
                 work_application.status = "ACCEPTED"
                 work_application.save()
                 request.session['job_application_accepted'] = True
@@ -1396,8 +1413,31 @@ def RejectJobApplication(request, application_id):
                 work_application.status = "REJECTED"
                 work_application.save()
                 request.session['job_application_rejected'] = True
-                return redirect('/JobApplications')
+                return redirect('/Company/JobApplications')
         else:
             return HttpResponse(status=403)
     else:
         return HttpResponse(status=403)
+
+def SendJobApplicationView(request, company_id):
+    driver_info = Driver.get_driver_info(request)
+    company = Company.objects.get(id=company_id)
+    if request.POST:
+        form = SendApplicationForm(request.POST)
+        if form.is_valid():
+            application = form.save(commit=False)
+            application.company = company
+            application.save()
+            return redirect("/JobApplications")
+        else:
+            form = SendApplicationForm(initial={'driver': driver_info.nick})
+    else:
+        form = SendApplicationForm(initial={'driver': driver_info.nick})
+        args = {
+            'nick': driver_info.nick,
+            'position': None,
+            'avatar': driver_info.avatar,
+            'company': None,
+            'form': form,
+        }
+        return render(request, "hercules_app/send_application.html", args)
