@@ -11,7 +11,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.encoding import smart_str
 
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, \
-    AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm, NewOfferForm, SendApplicationForm
+    AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm, NewOfferForm, SendApplicationForm, \
+    AddNewCompanyForm
 from hercules_app.models import (
     Driver,
     Company,
@@ -161,7 +162,10 @@ def drivers_card(request):
     statistics = DriverStatistics.get_driver_statistics(driver)
     achievements = Achievement.objects.get(driver=driver)
     waybills = Waybill.objects.filter(driver=driver)[:5]
-    vehicle = Vehicle.objects.get(driver=driver)
+    try:
+        vehicle = Vehicle.objects.get(driver=driver)
+    except Vehicle.DoesNotExist:
+        vehicle = None
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
@@ -541,7 +545,7 @@ def CompanyDetailsView(request, company_id):
 @login_required(login_url="/login")
 def CompanyVehiclesView(request):
     driver_info = Driver.get_driver_info(request)
-    if driver_info.company != "":
+    if driver_info.company is not None:
         company_id = Company.objects.only(
             'id').filter(name=driver_info.company)
         vehicles = Vehicle.objects.all().filter(
@@ -575,7 +579,7 @@ def CompanyVehiclesView(request):
 def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
-    if driver_info.company != "":
+    if driver_info.company is not None:
         company_id = Company.objects.only(
             'id').filter(name=driver_info.company)
         company_drivers = Driver.objects.only(
@@ -637,7 +641,7 @@ def VehicleDetailsView(request, vehicle_id):
 
 def AddNewVehicleView(request):
     driver_info = Driver.get_driver_info(request)
-    if driver_info.company != "":
+    if driver_info.company is not None:
         company_id = Company.objects.only(
             'id').filter(name=driver_info.company)
         company_drivers = Driver.objects.only(
@@ -656,7 +660,7 @@ def AddNewVehicleView(request):
         form = AddVehicleForm(drivers, request.POST, request.FILES)
         if form.is_valid():
             vehicle = form.save(commit=False)
-            if driver_info.company != "":
+            if driver_info.company is not None:
                 company = Company.objects.get(name=driver_info.company)
                 vehicle.company = company
             vehicle.driver = Driver.objects.get(id=form.data['driver'])
@@ -860,7 +864,7 @@ def ChangePosition(request, driver_id):
         company_driver.position = new_position
         company_driver.save()
         request.session['changed-position'] = True
-        return redirect('/Drivers')
+        return redirect('/Company/Drivers')
     else:
         return HttpResponse(status=500)
 
@@ -992,6 +996,61 @@ def RejectWaybill(request, waybill_id):
         else:
             return HttpResponse(status=403)
 
+def AddNewCompanyView(request):
+    driver_info = Driver.get_driver_info(request)
+    if (driver_info.position is None):
+        add_company_form = AddNewCompanyForm()
+        args = {
+            'nick': driver_info.nick,
+            'position': driver_info.position,
+            'avatar': driver_info.avatar,
+            'form': add_company_form
+        }
+        response = render(request, 'hercules_app/add_company.html',
+                          args)
+        return response
+    else:
+        return HttpResponse(status=403)
+
+def AddCompany(request):
+    if request.GET:
+        return HttpResponse(status=403)
+    else:
+        driver_info = Driver.get_driver_info(request)
+        if driver_info.position is None:
+            form = AddNewCompanyForm(request.POST, request.FILES)
+            if form.is_valid():
+                company = form.save(commit=False)
+                dlc = form.data.get("dlc")
+                games = Company.convert_select_from_company_form(form.data.get("games"), False, True)
+                if games is not None:
+                    for game in games:
+                        if game == "ETS2":
+                            company.is_ets2 = True
+                        elif game == "ATS":
+                            company.is_ats = True
+                        elif game == "Singleplayer":
+                            company.is_singleplayer = True
+                        elif game == "Multiplayer":
+                            company.is_multiplayer = True
+                        elif game == "Promods":
+                            company.is_ats = True
+                company.dlc = dlc
+                company.is_recruiting = form.cleaned_data.get("is_recruiting")
+                company.save()
+                driver = Driver.objects.get(nick=driver_info.nick)
+                driver.company = Company.objects.get(name=form.cleaned_data.get("name"))
+                driver.position = "Szef"
+                driver.is_employeed = True
+                driver.save()
+                settings = CompanySettings()
+                settings.company = Company.objects.get(name=form.cleaned_data.get("name"))
+                settings.save()
+                return redirect('/panel')
+            else:
+                return redirect('/Companies')
+        else:
+            return HttpResponse(status=403)
 
 def CompanySettingsView(request):
     driver_info = Driver.get_driver_info(request)
@@ -1154,7 +1213,7 @@ def ChooseDispositionView(request):
 
 def CreateNewDispositionView(request):
     driver_info = Driver.get_driver_info(request)
-    if driver_info.company != "":
+    if driver_info.company is not None:
         company_id = Company.objects.only(
             'id').filter(name=driver_info.company)
         company_drivers = Driver.objects.only(
@@ -1199,7 +1258,7 @@ def CreateNewDispositionView(request):
 
 def CreateNewRozpiskaView(request):
     driver_info = Driver.get_driver_info(request)
-    if driver_info.company != "":
+    if driver_info.company is not None:
         company_id = Company.objects.only(
             'id').filter(name=driver_info.company)
         company_drivers = Driver.objects.only(
@@ -1373,6 +1432,16 @@ def ShowJobApplicationDetailsView(request, application_id):
                 'application': work_application
             }
             return render(request, 'hercules_app/verify_application.html', args)
+    elif driver_info.position is None:
+        work_application = WorkApplications.get_application(application_id)
+        args = {
+            'nick': driver_info.nick,
+            'position': driver_info.position,
+            'avatar': driver_info.avatar,
+            'company': driver_info.company,
+            'application': work_application
+        }
+        return render(request, 'hercules_app/application_details.html', args)
     else:
         return HttpResponse(status=403)
 

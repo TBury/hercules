@@ -161,6 +161,38 @@ class AddVehicleForm(ModelForm):
                     {'min': '0', 'required': 'required'})
             self.fields[field].widget.attrs.update({'class': 'input', 'autocomplete': 'off'})
 
+class AddNewCompanyForm(ModelForm):
+    is_recruiting = forms.BooleanField(required=False, initial=False)
+    games = forms.CharField(required=False)
+
+    class Meta:
+        model = Company
+        fields = (
+            'name',
+            'logo',
+            'website',
+            'dlc',
+            'communicator_url',
+            'is_recruiting',
+            'description',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'input'})
+            if field == 'is_recruiting':
+                self.fields[field].widget.attrs.update({'class': 'switch is-rounded', 'id': 'switchRoundedDefault',
+                                                        'name': 'switchRoundedDefault'})
+            if field == 'dlc':
+                self.fields[field].widget.attrs.update({'class': 'hidden', 'id': 'dlc'})
+            if field == 'description':
+                self.fields[field].widget.attrs.update({'class': 'textarea', 'rows': '20'})
+            elif field == 'games':
+                self.fields[field].widget.attrs.update(
+                    {'class': 'hidden', 'id': 'games'})
+
+
 class EditCompanyInformationForm(ModelForm):
     is_recruiting = forms.BooleanField(required=False, initial=False)
     games = forms.CharField(required=False)

@@ -55,6 +55,8 @@ urlpatterns = [
     path('JobApplications', views.ShowJobApplicationsDriversView, name="job-applications"),
     path('Company/EditWaybill/<int:waybill_id>',
          views.EditWaybill, name="edit-delivery"),
+    path('Companies/AddNewCompany', views.AddNewCompanyView, name="add-company"),
+    path('Companies/AddCompany', views.AddCompany, name="add-company-api"),
      path('Company/CompanyProfile',
          views.ShowCompanyProfileView, name="show-company-profile"),
      path('Company/Drivers/', views.ShowCompanyDriversView, name="show-company-drivers"),
@@ -87,7 +89,7 @@ urlpatterns = [
      path("Company/JobApplications/Reject/<int:application_id>",
          views.RejectJobApplication, name="job-application-reject"),
     path ("JobApplications/SendApplication/<int:company_id>", views.SendJobApplicationView, name="send-job-application"),
-
+    path ("JobApplications/<int:application_id>", views.ShowJobApplicationDetailsView, name="job-application-details-driver"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

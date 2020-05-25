@@ -88,11 +88,11 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="menu-label">
+                                        <p class="menu-label">
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if position == "" %}
+                        {% if position is None %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -100,7 +100,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif position != "" %}
+                        {% elif position is not None %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -109,7 +109,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Drivers">
+                            <a href="/Company/Drivers">
                                 <p class="option drivers">
                                     Kierowcy
                                 </p>
@@ -118,7 +118,7 @@
                         {% endif %}
                         <li>
                             <a class="is-active" href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %}
+                                <p class="option vehicles">{% if position is None %} Twoje pojazdy {% else %}
                                     Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
@@ -135,20 +135,25 @@
                             </a>
                         </li>
                         {% endif %}
-{% if position == "Szef" %}
+                    {% if position == "Szef" %}
                         <li>
-                            <a href="/Settings">
+                            <a href="/Company/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
-                        {% endif %}
-                        {% if position == "Szef" %}
                         <li>
                             <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
-                        {% endif %}
+                    {% endif %}
+                    {% if position is None %}
+                    <li>
+                        <a href="/JobApplications">
+                            <p class="option settings">Podania o pracę</p>
+                        </a>
+                    </li>
+                    {% endif %}
                     </ul>
                 </nav>
             </aside>
@@ -164,9 +169,8 @@
                             <div class="column left">
                                 <h2 class="basic-info-title"><span class="colored">Podstawowe</span> informacje</h2>
                                 <span>
-                                    {% if vehicle.photo %}
-                                    <img src="{{ vehicle.photo.url }}" class="_vehicle-image">
-                                    {% endif %}
+
+                                    <img {% if vehicle.photo %} src="{{ vehicle.photo.url }} {% endif %}" class="_vehicle-image">
                                     <label for="" class="label">Zdjęcie pojazdu</label>
                                     {{ form.photo }}
                                 </span>
@@ -238,4 +242,5 @@
 <script defer src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js">
 </script>
 <script defer src="{% static 'js/autocomplete_vehicle.js' %}"></script>
+<script defer src="{% static 'js/edit_vehicle.js' %}"></script>
 </html>

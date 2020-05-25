@@ -94,7 +94,7 @@
                         Spedycja
                     </p>
                     <ul class="menu-list">
-                        {% if position == "" %}
+                        {% if position is None %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -102,7 +102,7 @@
                                 </p>
                             </a>
                         </li>
-                        {% elif position != "" %}
+                        {% elif position is not None %}
                         <li>
                             <a href="/CompanyProfile">
                                 <p class="option company-profile">
@@ -111,7 +111,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Drivers">
+                            <a href="/Company/Drivers">
                                 <p class="option drivers">
                                     Kierowcy
                                 </p>
@@ -120,14 +120,15 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if position is None %} Twoje pojazdy {% else %}
+                                    Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
                             <a href="/Company/Waybills">
-                                <p class="option Company/Waybills">Listy przewozowe</p>
+                                <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
@@ -143,10 +144,17 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active" href="/Company/JobApplications">
+                            <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
+                    {% endif %}
+                    {% if position is None %}
+                    <li>
+                        <a class="is-active" href="/JobApplications">
+                            <p class="option settings">Podania o pracę</p>
+                        </a>
+                    </li>
                     {% endif %}
                     </ul>
                 </nav>
@@ -167,7 +175,7 @@
                     <div class="columns">
                         <div class="column">
                             <label class="label">Nick</label>
-                            <input type="text" class="input" readonly value={{ application.driver.nick }}>
+                            <input type="text" class="input" readonly value={{ application.driver }}>
                             <label class="label">Miasto</label>
                             <input type="text" class="input" readonly value={{ application.town }}>
                         </div>
@@ -176,7 +184,7 @@
                             <input type="number" class="input age" min="1" max="99" readonly
                                 value={{ application.age }}>
                             <label class="label">Posiadane DLC</label>
-                            <select id="select-dlc" multiple readonly value={{ application.dlc }}></select>
+                            <select id="select-dlc" multiple value={{ application.dlc }}></select>
                         </div>
                     </div>
                 </div>

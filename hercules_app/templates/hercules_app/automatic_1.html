@@ -111,7 +111,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Drivers">
+                            <a href="/Company/Drivers">
                                 <p class="option drivers">
                                     Kierowcy
                                 </p>
@@ -128,7 +128,7 @@
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
                             <a href="/Company/Waybills">
-                                <p class="option Company/Waybills">Listy przewozowe</p>
+                                <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
@@ -137,20 +137,25 @@
                             </a>
                         </li>
                         {% endif %}
-{% if position == "Szef" %}
+                    {% if position == "Szef" %}
                         <li>
                             <a href="/Company/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
-                        {% endif %}
-                        {% if position == "Szef" %}
                         <li>
                             <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
-                        {% endif %}
+                    {% endif %}
+                    {% if position is None %}
+                    <li>
+                        <a href="/JobApplications">
+                            <p class="option settings">Podania o pracę</p>
+                        </a>
+                    </li>
+                    {% endif %}
                     </ul>
                 </nav>
             </aside>
@@ -173,7 +178,7 @@
                         </div>
                         <div class="field is-grouped">
                             <div class="control">
-                                <button class="button is-light go-back">Wróć</button>
+                                <a href="/add-delivery" class="button is-light go-back">Wróć</a>
                             </div>
                             <div class="control">
                                 <input type="submit" class="button next upload-files" value="Przejdź dalej">

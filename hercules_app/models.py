@@ -135,11 +135,11 @@ class Company(models.Model):
 class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     nick = models.CharField(max_length=64, null=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
-    avatar = models.ImageField(upload_to='avatars', null=True)
+    company = models.ForeignKey(Company, on_delete=models.SET_NULL, blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars', null=True, default='avatars/avatar-placeholder.jpg')
     last_delivery = models.DateTimeField(auto_now_add=True)
     length_of_service = models.DateTimeField(auto_now_add=True)
-    position = models.CharField(max_length=20, null=True)
+    position = models.CharField(max_length=20, null=True, blank=True)
     is_employeed = models.BooleanField(default=False)
 
     def __str__(self):
@@ -226,7 +226,7 @@ class Vehicle(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True)
     company = models.ForeignKey(
         Company, on_delete=models.CASCADE, null=True, blank=True)
-    photo = models.ImageField(upload_to='vehicles', null=True, blank=True)
+    photo = models.ImageField(upload_to='vehicles', null=True, blank=True, default='vehicles/truck-placeholder.jpg')
     model = models.CharField(max_length=80)
     cabin = models.CharField(max_length=64)
     engine = models.CharField(max_length=100)
@@ -263,8 +263,7 @@ class DriverStatistics(models.Model):
         try:
             statistics = DriverStatistics.objects.get(driver_id=driver)
         except:
-            # TODO: implement exception
-            statistics = ''
+            raise ValueError("Brak statystyk kierowcy!")
         finally:
             return statistics
 

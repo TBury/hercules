@@ -98,7 +98,7 @@
                         Spedycja
                     </p>
                         <ul class="menu-list">
-                        {% if position == "" %}
+                        {% if position is None %}
                         <li>
                             <a href="/Companies">
                                 <p class="option search-company">
@@ -115,7 +115,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="is-active" href="/Drivers">
+                            <a class="is-active" href="/Company/Drivers">
                                 <p class="option drivers">
                                     Kierowcy
                                 </p>
@@ -124,14 +124,14 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if position == "" %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if position is None %} Twoje pojazdy {% else %} Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
                             <a href="/Company/Waybills">
-                                <p class="option Company/Waybills">Listy przewozowe</p>
+                                <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>
                         <li>
@@ -162,7 +162,7 @@
                     <h1 class="title">Kierowcy firmy {{ company }}</h1>
                 </header>
                 <div class="box card filters">
-                    <form action="/Drivers" method="get">
+                    <form action="/Company/Drivers" method="get">
                         <div class="columns">
                             <div class="column">
                                 <div class="field">

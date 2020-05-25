@@ -89,66 +89,70 @@
             <p class="menu-label">
                 Spedycja
             </p>
-            <ul class="menu-list">
-                {% if position is None %}
-                <li>
-                    <a href="/Companies">
-                        <p class="option search-company">
-                            Znajdź firmę
-                        </p>
-                    </a>
-                </li>
-                {% elif position is not None %}
-                <li>
-                    <a href="/CompanyProfile">
-                        <p class="option company-profile">
-                            Profil firmy
-                        </p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/Drivers">
-                        <p class="option drivers">
-                            Kierowcy
-                        </p>
-                    </a>
-                </li>
-                {% endif %}
-                <li>
-                    <a href="/Vehicles">
-                        <p class="option vehicles">{% if position is None %} Twoje pojazdy {% else %}
-                            Pojazdy
-                            firmowe {% endif %}</p>
-                    </a>
-                </li>
-                {% if position == "Szef" or position == "Spedytor" %}
-                <li>
-                    <a href="/Company/Waybills">
-                        <p class="option Company/Waybills">Listy przewozowe</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/Company/Dispositions">
-                        <p class="option dispositions">Dyspozycje firmowe</p>
-                    </a>
-                </li>
-                {% endif %}
-                {% if position == "Szef" %}
-                <li>
-                    <a href="/Settings">
-                        <p class="option settings">Ustawienia firmy</p>
-                    </a>
-                </li>
-                {% endif %}
-                {% if position == "Szef" %}
-                <li>
-                    <a class="is-active" href="/Company/JobApplications">
-                        <p class="option settings">Podania o pracę</p>
-                    </a>
-                </li>
-                {% endif %}
-
-            </ul>
+<ul class="menu-list">
+                        {% if position is None %}
+                        <li>
+                            <a href="/Companies">
+                                <p class="option search-company">
+                                    Znajdź firmę
+                                </p>
+                            </a>
+                        </li>
+                        {% elif position is not None %}
+                        <li>
+                            <a href="/CompanyProfile">
+                                <p class="option company-profile">
+                                    Profil firmy
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Company/Drivers">
+                                <p class="option drivers">
+                                    Kierowcy
+                                </p>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="/Vehicles">
+                                <p class="option vehicles">{% if position is None %} Twoje pojazdy {% else %}
+                                    Pojazdy
+                                    firmowe {% endif %}</p>
+                            </a>
+                        </li>
+                        {% if position == "Szef" or position == "Spedytor" %}
+                        <li>
+                            <a href="/Company/Waybills">
+                                <p class="option waybills">Listy przewozowe</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Company/Dispositions">
+                                <p class="option dispositions">Dyspozycje firmowe</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% if position == "Szef" %}
+                        <li>
+                            <a href="/Company/Settings">
+                                <p class="option settings">Ustawienia firmy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Company/JobApplications">
+                                <p class="option settings">Podania o pracę</p>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if position is None %}
+                    <li>
+                        <a class="is-active" href="/JobApplications">
+                            <p class="option settings">Podania o pracę</p>
+                        </a>
+                    </li>
+                    {% endif %}
+                    </ul>
         </nav>
     </aside>
             <main class="column main">
