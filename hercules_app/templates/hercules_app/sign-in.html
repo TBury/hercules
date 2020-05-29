@@ -41,8 +41,8 @@
                         <h1 class="title">Zaloguj się</h1>
                         <form action="" method="post">
                             {% csrf_token %}
-                            {% for error in field.errors %}
-                            <p class="help is-danger">{{error}}</p>
+                            {% for error in form.errors %}
+                            <p class="help">Błędna nazwa użytkownika lub hasło.</p>
                             {% endfor %}
                             <label for="username" class="label">Nazwa użytkownika</label>
                             <input type="username" class="input" placeholder="Nazwa użytkownika" name="username">

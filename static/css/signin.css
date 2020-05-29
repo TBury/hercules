@@ -66,4 +66,10 @@ br {
 .steam {
   margin-top: 3rem;
 }
+
+.help {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: red;
+}
 /*# sourceMappingURL=signin.css.map */

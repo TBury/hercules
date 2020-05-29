@@ -11,6 +11,7 @@ def register(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
+            form.clean_username()
             user = form.save()
             driver = Driver(user=user)
             driver.save()
@@ -20,13 +21,10 @@ def register(request):
             achievements.save()
             new_user = authenticate(
                 username=form.cleaned_data['username'],
-                email=form.cleaned_data['email'],
                 password=form.cleaned_data['password1'],
             )
             login(request, new_user)
             return redirect('hello')
-        else:
-            form = CreateUserForm()
     context = {'form': form}
     return render(request, 'register/register.html', context=context)
 

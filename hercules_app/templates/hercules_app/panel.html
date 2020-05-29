@@ -117,7 +117,7 @@
                                 <p class="option drivers">
                                     Kierowcy
                                 </p>
-                            </a>h
+                            </a>
                         </li>
                         {% endif %}
                         <li>
@@ -509,6 +509,7 @@
                                 </div>
                             {% endfor %}
                             {% else %}
+                                <div class="no-disposition">
                                 <img src="{% static 'assets/icons/no_disposition.png' %}" class="no-disposition-icon">
                                 <span class="no-disposition-text">
                                     <h1 class="no-disposition-title">Nie masz żadnych dyspozycji.</h1>
@@ -524,6 +525,8 @@
                                     </p>
                                     {% endif %}
                                 </span>
+                                </div>
+
                             {% endif %}
                         </div>
                     </div>

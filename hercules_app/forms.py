@@ -5,14 +5,21 @@ from hercules_app.models import Driver, Waybill, Company, Vehicle, CompanySettin
 
 
 class SetNickForm(ModelForm):
-    nick = forms.CharField()
-
     class Meta:
         model = Driver
         fields = [
             'nick',
         ]
 
+    def clean_nick(self):
+        if Driver.objects.filter(nick=self.cleaned_data.get("nick")).exists():
+            if (self.cleaned_data.get("nick") == "JanuszTransportu"):
+                raise forms.ValidationError("Kurła, Pjoter, zajęli mi tego nicka. Musimy coś innego wymyśleć.")
+            raise forms.ValidationError("Ten nick został już zajęty. Wybierz inny nick.")
+        return self.cleaned_data.get("nick")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 class FirstScreenshotForm(ModelForm):
     class Meta:
@@ -299,7 +306,8 @@ class NewOfferForm(ModelForm):
             'unloading_spedition',
             'cargo',
             'tonnage',
-            'price'
+            'price',
+            'adr',
         )
 
     def __init__(self, *args, **kwargs):
@@ -317,7 +325,7 @@ class NewOfferForm(ModelForm):
                     {'id': 'autoCompleteUnloadingSpedition'})
             if field == "cargo":
                 self.fields[field].widget.attrs.update({'id': 'autoCompleteCargo'})
-            if field == "loading_country" or field == "unloading_country":
+            if field == "loading_country" or field == "unloading_country" or field == "adr":
                 self.fields[field].widget.attrs.update({'class': 'hidden'})
                 self.fields[field].required = False
             else:

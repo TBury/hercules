@@ -147,6 +147,14 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BEAT_SCHEDULE = {
     'check-tmp-status': {
         'task': 'get-status',
-        'schedule': 5.0,
+        'schedule': 15.0,
+    },
+    'weekly-random-vehicle': {
+        'task': 'random-vehicle-weekly',
+        'schedule': 15.0,
+    },
+    'monthly-random-vehicle': {
+        'task': 'random-vehicle-monthly',
+        'schedule': 2419200.0,
     },
 }

@@ -1,4 +1,5 @@
 from datetime import datetime
+from random import shuffle
 from typing import NamedTuple
 
 import requests
@@ -84,15 +85,15 @@ class Company(models.Model):
             else:
                 company_drivers.append(company_driver)
         if sort_by == "service-length":
-            company_drivers = sorted(company_drivers, key = lambda i: i['length_of_service'])
+            company_drivers = sorted(company_drivers, key=lambda i: i['length_of_service'])
         elif sort_by == "-service-length":
-            company_drivers = sorted(company_drivers, key = lambda i: i['length_of_service'], reverse = True)
+            company_drivers = sorted(company_drivers, key=lambda i: i['length_of_service'], reverse=True)
         elif sort_by == 'last-delivery':
             company_drivers = sorted(
                 company_drivers, key=lambda i: i['last_delivery'])
         elif sort_by == '-last-delivery':
             company_drivers = sorted(
-                company_drivers, key=lambda i: i['last_delivery'], reverse = True)
+                company_drivers, key=lambda i: i['last_delivery'], reverse=True)
         else:
             pass
         return company_drivers
@@ -128,6 +129,15 @@ class Company(models.Model):
         else:
             return None
 
+    @classmethod
+    def get_company_drivers(self, company_id):
+        drivers = Driver.objects.all().filter(company=company_id)
+        return drivers
+
+    @classmethod
+    def get_company_vehicles(self, company_id):
+        return Vehicle.objects.filter(company=company_id)
+
     def __str__(self):
         return self.name
 
@@ -144,7 +154,6 @@ class Driver(models.Model):
 
     def __str__(self):
         return self.user.username
-
 
     def get_vehicle_info(driver):
         try:
@@ -190,7 +199,6 @@ class Driver(models.Model):
         }
         return driver_info
 
-
     def set_driver_info(request):
         driver_info = Driver.get_driver_info_from_database(request.user)
         request.session['driver_info'] = driver_info
@@ -205,6 +213,7 @@ class Driver(models.Model):
             vehicle: Vehicle
             avatar: str
             is_employeed: bool
+
         try:
             driver_info = request.session.get('driver_info')
         except driver_info is None:
@@ -223,7 +232,8 @@ class Driver(models.Model):
 
 class Vehicle(models.Model):
     id = models.AutoField(primary_key=True)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True, related_name="driver")
+    last_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True, related_name="driver_name")
     company = models.ForeignKey(
         Company, on_delete=models.CASCADE, null=True, blank=True)
     photo = models.ImageField(upload_to='vehicles', null=True, blank=True, default='vehicles/truck-placeholder.jpg')
@@ -243,6 +253,7 @@ class Vehicle(models.Model):
         RENAULT = 'Renault', _('Renault')
         SCANIA = 'Scania', _('Scania')
         IVECO = 'Iveco', _('Iveco')
+
     brand = models.CharField(choices=Brand.choices,
                              default=Brand.MAN, max_length=20)
 
@@ -324,6 +335,7 @@ class Gielda(models.Model):
         LOWDECK = 'Niskopodłogowa', _('low_deck')
         CISTERN = 'Cysterna', _('cistern')
         TARP = 'Plandeka', _('tarp')  # plandeka
+
     trailer = models.CharField(choices=Trailer.choices, max_length=14)
     price = models.PositiveIntegerField(default=0)
     creator = models.CharField(default='SYSTEM', max_length=128)
@@ -337,11 +349,13 @@ class Gielda(models.Model):
         SOLIDS = 'ADR-4: materiały stałe zapalne', _('solids')
         TOXIC = 'ADR-6: toksyczne i zakaźne substancje', _('toxic')
         CORROSIVE = 'ADR-8: toksyczne substancje', _('corrosive')
+
     adr = models.CharField(choices=Adr.choices, max_length=64)
     oversized = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.id)
+
 
 class Rozpiska(models.Model):
     id = models.AutoField(primary_key=True)
@@ -356,6 +370,7 @@ class Rozpiska(models.Model):
         'Disposition', on_delete=models.CASCADE, related_name='fourth_disposition', default=None, null=True)
     fifth_disposition = models.ForeignKey(
         'Disposition', on_delete=models.CASCADE, related_name='fifth_disposition', default=None, null=True)
+
 
 class Disposition(models.Model):
     id = models.AutoField(primary_key=True)
@@ -378,11 +393,14 @@ class Disposition(models.Model):
     def __str__(self):
         return str(self.id)
 
+
 class CompanySettings(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
+
     class PeriodicNormType(models.TextChoices):
         WEEK = 'wk', _('Tydzień')
         MONTH = 'mth', _('Miesiąc')
+
     periodic_norm_type = models.CharField(
         choices=PeriodicNormType.choices, default=PeriodicNormType.WEEK, max_length=5)
     periodic_norm_distance = models.PositiveIntegerField(default=0)
@@ -392,7 +410,8 @@ class CompanySettings(models.Model):
     disposition_norm_type = models.CharField(
         choices=PeriodicNormType.choices, default=PeriodicNormType.WEEK, max_length=5)
     random_vehicle = models.BooleanField(default=False)
-    random_vehicle_type = models.CharField(choices=PeriodicNormType.choices, default=PeriodicNormType.WEEK, max_length=5)
+    random_vehicle_type = models.CharField(choices=PeriodicNormType.choices, default=PeriodicNormType.WEEK,
+                                           max_length=5, blank=True, null=True)
     random_vehicle_timestamp = models.DateTimeField(auto_now_add=True)
     only_assistant = models.BooleanField(default=False)
     auto_synchronization = models.BooleanField(default=False)
@@ -403,12 +422,34 @@ class CompanySettings(models.Model):
 
     def check_periodic_norm_distance(driver):
         settings = CompanySettings.objects.get(company=driver.company)
-        distance_count = Waybill.objects.filter(driver=driver, finish_date__gte=settings.periodic_norm_start_date, finish_date__lte=settings.periodic_norm_end_date).aggregate(Sum('distance'))
+        distance_count = Waybill.objects.filter(driver=driver, finish_date__gte=settings.periodic_norm_start_date,
+                                                finish_date__lte=settings.periodic_norm_end_date).aggregate(
+            Sum('distance'))
         distance_count = distance_count.get('distance__sum')
         if distance_count is None:
             distance_count = 0
         return distance_count
 
+    @classmethod
+    def weekly_random_vehicles(self):
+        companies = CompanySettings.objects.filter(random_vehicle_type="wk")
+        self.random_company_vehicles(companies)
+
+    @classmethod
+    def monthly_random_vehicles(self):
+        companies = CompanySettings.objects.filter(random_vehicle_type="mth")
+        self.random_company_vehicles(companies)
+
+    @classmethod
+    def random_company_vehicles(self, companies):
+        for company in companies:
+            drivers = list(Company.get_company_drivers(company.id))
+            vehicles = Company.get_company_vehicles(company.id)
+            for driver in drivers:
+                try:
+                    pass
+                except IndexError:
+                    break
 
 
 class WorkApplications(models.Model):
@@ -423,6 +464,7 @@ class WorkApplications(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, default='')
     reject_reason = models.TextField(default='', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
     class ApplicationStatus(models.TextChoices):
         ACCEPTED = 'accepted', _('accepted')
         DECLINED = 'declined', _('declined')
@@ -443,12 +485,14 @@ class WorkApplications(models.Model):
     def __str__(self):
         return str(self.id)
 
+
 class Achievement(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     first_timer = models.BooleanField(default=True)
     eco_driver = models.BooleanField(default=False)
     long_distance_driver = models.BooleanField(default=False)
     heavy_driver = models.BooleanField(default=False)
+
 
 class TruckersMPStatus(models.Model):
     simulation_1_players = models.PositiveIntegerField(default=0)

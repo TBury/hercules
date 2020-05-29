@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="{% static '/css/register.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/hello.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/signin.css' %}">
     <title>Witamy w systemie Hercules!</title>
 </head>
 
@@ -43,9 +44,14 @@
                 <p class="hello-text">Cieszymy się, że wybrałeś nasz system rozliczeń. Jesteśmy przekonani, że nie zawiedziemy Twoich wygórówanych oczekiwań.<br>
                 Aby utworzyć konto, wpisz poniżej Twoją nazwę użytkownika.</p>
 
+
                 <form action="" method="post">
                     {% csrf_token %}
-                    <div class="field">
+
+                    <div class="field hello-field">
+                        {% for error in form.nick.errors %}
+                            <p class="help is-danger">{{error}}</p>
+                        {% endfor %}
                         <p class="control name-field">
                             <input type="text" class="input name-input" placeholder="np. JanuszTransportu" name="nick">
                         </p>

@@ -230,5 +230,27 @@ new autoComplete({
         document.querySelector("#autoCompleteCargo").value = selection;
         document.querySelector("#id_tonnage").value = feedback.selection.value.mass;
         document.querySelector(".cargo-container").classList.add("hidden");
+        if (feedback.selection.value.adr_class != null) {
+            switch (feedback.selection.value.adr_class) {
+                case "1":
+                    document.querySelector("#id_adr").value = "ADR-1: materiały wybuchowe";
+                    break;
+                    case "2":
+                        document.querySelector("#id_adr").value = "ADR-2: gazy";
+                        break;
+                case "3":
+                   document.querySelector("#id_adr").value = "ADR-3: płyny łatwopalne";
+                   break;
+                   case "4":
+                   document.querySelector("#id_adr").value = "ADR-4: materiały stałe zapalne";
+                   break;
+                   case "6":
+                   document.querySelector("#id_adr").value = "ADR-6: toksyczne i zakaźne substancje";
+                   break;
+                   case "8":
+                   document.querySelector("#id_adr").value = "ADR-8: toksyczne substancje";
+                   break;
+            }
+        }
     },
 });

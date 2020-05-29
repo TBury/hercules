@@ -4,7 +4,7 @@ from celery import task
 from celery.utils.log import get_task_logger
 
 from hercules_app import recognition
-from hercules_app.models import TruckersMPStatus
+from hercules_app.models import TruckersMPStatus, CompanySettings
 
 logger = get_task_logger(__name__)
 
@@ -163,3 +163,19 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
 )
 def get_tmp_server_status():
     TruckersMPStatus.save_status_to_database()
+
+
+
+@task (
+    name="random-vehicle-weekly",
+    ignore_result=True
+)
+def random_vehicle_weekly():
+    CompanySettings.weekly_random_vehicles()
+
+@task (
+    name="random-vehicle-monthly",
+    ignore_result=True
+)
+def random_vehicle_weekly():
+    CompanySettings.monthly_random_vehicles()

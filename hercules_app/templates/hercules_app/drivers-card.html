@@ -65,7 +65,7 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a class="is-active">
+                            <a {% if not is_chef %} class="is-active" {% endif %}>
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
@@ -111,7 +111,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Company/Drivers">
+                            <a {% if is_chef %} class="is-active" {% endif %} href="/Company/Drivers">
                                 <p class="option drivers">
                                     Kierowcy
                                 </p>
