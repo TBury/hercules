@@ -6,3 +6,4 @@ Pillow>=7.0.0
 redis
 gunicorn
 whitenoise
+django-celery-results
