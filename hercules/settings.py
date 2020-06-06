@@ -33,7 +33,6 @@ ALLOWED_HOSTS = ['hercules-project.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
