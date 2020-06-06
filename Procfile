@@ -1,1 +1,1 @@
-web: gunicorn hercules_app.wsgi
+web: gunicorn hercules.wsgi
