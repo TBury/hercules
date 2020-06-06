@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['hercules-project.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'register.apps.RegisterConfig',
     'hercules_app.apps.HerculesAppConfig',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -176,3 +178,10 @@ LOGGING = {
         },
     },
 }
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hvhnzny72',
+    'API_KEY': '336345332745689',
+    'API_SECRET': 'rCEyE5cLxPFEsT4q3SB4iFwPOMQ',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
