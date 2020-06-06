@@ -1,0 +1,50 @@
+* {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.modal {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-content {
+  padding-bottom: 5rem;
+}
+
+.modal-content h1 {
+  text-align: center;
+}
+
+.modal-content .content {
+  padding-bottom: 5rem;
+}
+
+.modal-text {
+  text-align: center;
+  color: #a3a3a3;
+}
+
+.modal-buttons {
+  margin-top: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-buttons .button:first-of-type {
+  margin-right: 15px;
+}
+
+.modal-buttons .button {
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+}
+
+.delete-company {
+  font-weight: 700 !important;
+}
+/*# sourceMappingURL=settings.css.map */

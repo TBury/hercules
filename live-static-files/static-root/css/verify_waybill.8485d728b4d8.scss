@@ -1,0 +1,82 @@
+.reject,
+.to-edit,
+.accept {
+    margin-right: 15%;
+    color: white !important;
+    font-size: 1.7rem !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.reject {
+    background-color: #c70000 !important;
+}
+
+.to-edit {
+    background-color: #E67E22 !important;
+}
+
+.accept {
+    background-color: #33D5A9 !important;
+}
+
+.field.is-grouped {
+    justify-content: center !important;
+}
+
+.is-grouped {
+    float: none !important;
+}
+
+.control {
+    button {
+        margin-right: 50px;
+    }
+}
+
+.reject-reason-input,
+.toEdit-reason-input {
+    max-width: 100% !important;
+}
+
+.reject-reason,
+.toEdit-reason,
+.subtitle {
+    margin-left: 1.5%;
+}
+
+.reject-reason,
+.toEdit-reason {
+    margin-top: 30px;
+    margin-bottom: 35px;
+}
+
+.cancel-reject,
+#rejectButton,
+.cancel-toEdit,
+#toEditButton {
+    font-size: 1.2rem !important;
+    font-family: 'Montserrat',
+    sans-serif;
+    font-weight: 700;
+    margin: 0 auto;
+}
+
+.cancel-reject {
+    color: #c70000 !important;
+    background-color: white;
+}
+#rejectButton {
+    color: white !important;
+    background-color: #c70000 !important;
+}
+
+.cancel-toEdit {
+    color: #E67E22 !important;
+    background-color: white !important;
+}
+
+#toEditButton {
+    color: white !important;
+    background-color: #E67E22 !important;
+}

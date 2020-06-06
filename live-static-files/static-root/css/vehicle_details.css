@@ -1,0 +1,172 @@
+.basic-info-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+input,
+select {
+  margin-bottom: 35px !important;
+  max-width: 350px !important;
+}
+
+.basic-vehicle-info {
+  margin-top: 50px;
+}
+
+.company-drivers {
+  margin-top: 25px;
+}
+
+.left {
+  margin-left: 10%;
+}
+
+._vehicle-image {
+  margin-top: 25px !important;
+}
+
+.vehicle-photo {
+  margin-top: 50px;
+}
+
+.inputs {
+  margin-top: 25px;
+}
+
+.inputs-right {
+  margin-top: 50px;
+}
+
+.card {
+  margin-top: 25px;
+}
+
+.image-label {
+  color: #a3a3a3 !important;
+}
+
+.edit-details,
+.delete-vehicle {
+  background-color: #C70000 !important;
+  color: white !important;
+  font-family: 'Montserrat', font-family;
+  padding: 0 2em;
+  font-weight: 700;
+}
+
+.edit-details:hover,
+.delete-vehicle:hover {
+  color: #dddddd;
+}
+
+.edit-details {
+  font-size: 1.4rem !important;
+  float: right;
+  margin-right: 5%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.delete-vehicle {
+  font-size: 1.2rem !important;
+  float: right;
+}
+
+.delete-vehicle svg {
+  margin-right: 15px !important;
+}
+
+.modal {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-content {
+  padding-bottom: 5rem;
+}
+
+.modal-content h1 {
+  text-align: center;
+}
+
+.modal-content .content {
+  padding-bottom: 5rem;
+}
+
+.modal-text {
+  text-align: center;
+  color: #a3a3a3;
+}
+
+.modal-buttons {
+  margin-top: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-buttons .button:first-of-type {
+  margin-right: 15px;
+}
+
+.modal-buttons .button {
+  font-size: 1.2rem !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.models-container,
+.chassis-container,
+.engine-container,
+.cabin-container,
+.gearbox-container {
+  margin-top: 5px;
+  padding: 10px 15px 10px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.autoComplete_highlighted {
+  color: #0282FC;
+  font-weight: 700 !important;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.models,
+.engine,
+.chassis,
+.cabin,
+.gearbox {
+  padding: 3px 1em 3px .4em;
+  text-align: left;
+  font-size: 1rem;
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+  border: .5px solid #efefee;
+  margin-bottom: 5px;
+  margin-left: 0 !important;
+  font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
+
+.delete-vehicle {
+  margin-top: -50px !important;
+}
+/*# sourceMappingURL=vehicle_details.css.map */

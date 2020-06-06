@@ -1,0 +1,1161 @@
+[
+    {
+        "cargo_name": "Acetylen",
+        "adr_class": "2",
+        "mass": 10440
+    },
+    {
+        "cargo_name": "Kwas",
+        "adr_class": "8",
+        "mass": 17400
+    },
+    {
+        "cargo_name": "Opony samolotu",
+        "mass": 18117
+    },
+    {
+        "cargo_name": "Poczta lotnicza",
+        "mass": 10897
+    },
+    {
+        "cargo_name": "Migdały",
+        "mass": 17460
+    },
+    {
+        "cargo_name": "Amunicja",
+        "adr_class": "1",
+        "mass": 18810
+    },
+    {
+        "cargo_name": "Jabłka",
+        "mass": 20170
+    },
+    {
+        "cargo_name": "Jabłka w kontenerze",
+        "mass": 20170
+    },
+    {
+        "cargo_name": "Arszenik",
+        "adr_class": "6",
+        "mass": 20010
+    },
+    {
+        "cargo_name": "Filet z dorsza Atlantyckiego",
+        "mass": 16450
+    },
+    {
+        "cargo_name": "Zawory antyskażeniowe",
+        "mass": 24773
+    },
+    {
+        "cargo_name": "Jęczmień",
+        "mass": 14990
+    },
+    {
+        "cargo_name": "Bazylia",
+        "mass": 24935
+    },
+    {
+        "cargo_name": "Fasola",
+        "mass": 12358
+    },
+    {
+        "cargo_name": "Wołowina",
+        "mass": 21622
+    },
+    {
+        "cargo_name": "Napoje",
+        "mass": 23526
+    },
+    {
+        "cargo_name": "Napoje w kontenerze",
+        "mass": 23526
+    },
+    {
+        "cargo_name": "Big-bagi z nasionami",
+        "mass": 19288
+    },
+    {
+        "cargo_name": "Kwas borowy",
+        "mass": 16880
+    },
+    {
+        "cargo_name": "Woda butelkowana",
+        "mass": 24978
+    },
+    {
+        "cargo_name": "Płyn hamulcowy",
+        "mass": 5848
+    },
+    {
+        "cargo_name": "Klocki hamulcowe",
+        "mass": 20810
+    },
+    {
+        "cargo_name": "Cegły",
+        "mass": 20257
+    },
+    {
+        "cargo_name": "Puszkowane sardynki",
+        "mass": 16256
+    },
+    {
+        "cargo_name": "Puszkowana fasola",
+        "mass": 22110
+    },
+    {
+        "cargo_name": "Puszkowana wołowina",
+        "mass": 22460
+    },
+    {
+        "cargo_name": "Puszkowana wieprzowina",
+        "mass": 18919
+    },
+    {
+        "cargo_name": "Puszkowany tuńczyk",
+        "mass": 18130
+    },
+    {
+        "cargo_name": "Pył węglowy (kontener)",
+        "mass": 8323
+    },
+    {
+        "cargo_name": "Woda gazowana",
+        "mass": 24961
+    },
+    {
+        "cargo_name": "Marchewki",
+        "mass": 16916
+    },
+    {
+        "cargo_name": "Marchewki w kontenerze",
+        "mass": 16916
+    },
+    {
+        "cargo_name": "Luksusowe SUVy",
+        "mass": 7839
+    },
+    {
+        "cargo_name": "Samochody (DLC Baltic, opcja 1)",
+        "mass": 7499
+    },
+    {
+        "cargo_name": "Samochody (DLC Baltic, opcja 2)",
+        "mass": 5994
+    },
+    {
+        "cargo_name": "Samochody (DLC Italia)",
+        "mass": 7447
+    },
+    {
+        "cargo_name": "Kalafiory",
+        "mass": 9580
+    },
+    {
+        "cargo_name": "Kawior",
+        "mass": 14629
+    },
+    {
+        "cargo_name": "Cement",
+        "mass": 19584
+    },
+    {
+        "cargo_name": "Ser",
+        "mass": 18229
+    },
+    {
+        "cargo_name": "Chemikalia",
+        "adr_class": "2",
+        "mass": 16530
+    },
+    {
+        "cargo_name": "Sorbet chemiczny",
+        "mass": 11883
+    },
+    {
+        "cargo_name": "Sorbet chemiczny w kontenerze",
+        "mass": 9627
+    },
+    {
+        "cargo_name": "Guma do żucia",
+        "mass": 23773
+    },
+    {
+        "cargo_name": "Mięso z kurczaka",
+        "mass": 17094
+    },
+    {
+        "cargo_name": "Systemy kominowe",
+        "mass": 18450
+    },
+    {
+        "cargo_name": "Chlor",
+        "adr_class": "2",
+        "mass": 18270
+    },
+    {
+        "cargo_name": "Czekolada",
+        "mass": 24172
+    },
+    {
+        "cargo_name": "Ubrania",
+        "mass": 15302
+    },
+    {
+        "cargo_name": "Ubrania w kontenerze",
+        "mass": 20592
+    },
+    {
+        "cargo_name": "Węgiel",
+        "mass": 12685
+    },
+    {
+        "cargo_name": "Mleko kokosowe",
+        "mass": 24780
+    },
+    {
+        "cargo_name": "Olej kokosowy",
+        "mass": 23631
+    },
+    {
+        "cargo_name": "Procesory komputerowe",
+        "mass": 3854
+    },
+    {
+        "cargo_name": "Soki zagęszczone",
+        "mass": 24958
+    },
+    {
+        "cargo_name": "Cement",
+        "mass": 7621
+    },
+    {
+        "cargo_name": "Betonowe belki",
+        "mass": 17500
+    },
+    {
+        "cargo_name": "Betonowe krążyny",
+        "mass": 18400
+    },
+    {
+        "cargo_name": "Betonowe schody",
+        "mass": 19680
+    },
+    {
+        "cargo_name": "Skażone materiały",
+        "adr_class": "6",
+        "mass": 13920
+    },
+    {
+        "cargo_name": "Drzewa w kontenerach",
+        "mass": 4620
+    },
+    {
+        "cargo_name": "Rynny dachowe z miedzi",
+        "mass": 8250
+    },
+    {
+        "cargo_name": "Korki",
+        "mass": 5132
+    },
+    {
+        "cargo_name": "Serek wiejski",
+        "mass": 18751
+    },
+    {
+        "cargo_name": "Kwiaty cięte",
+        "mass": 1759
+    },
+    {
+        "cargo_name": "Cyjanek",
+        "adr_class": "6",
+        "mass": 15660
+    },
+    {
+        "cargo_name": "Środki czystości",
+        "mass": 16820
+    },
+    {
+        "cargo_name": "Olej napędowy",
+        "adr_class": "3",
+        "mass": 21750
+    },
+    {
+        "cargo_name": "Generatory wysokoprężne",
+        "mass": 21516
+    },
+    {
+        "cargo_name": "Kopacz 1000",
+        "mass": 13398
+    },
+    {
+        "cargo_name": "Kopacz 500",
+        "mass": 7291
+    },
+    {
+        "cargo_name": "Koparki",
+        "mass": 20689
+    },
+    {
+        "cargo_name": "Suszarki",
+        "mass": 13256
+    },
+    {
+        "cargo_name": "Mleko w proszku",
+        "mass": 18602
+    },
+    {
+        "cargo_name": "Dynamit",
+        "adr_class": "1",
+        "mass": 17160
+    },
+    {
+        "cargo_name": "Elektronika",
+        "mass": 8194
+    },
+    {
+        "cargo_name": "Kable elektryczne",
+        "mass": 15358
+    },
+    {
+        "cargo_name": "Zbiorniki",
+        "mass": 11230
+    },
+    {
+        "cargo_name": "Puste beczki",
+        "mass": 9227
+    },
+    {
+        "cargo_name": "Puste palety",
+        "mass": 22074
+    },
+    {
+        "cargo_name": "Puste beczki po winie",
+        "mass": 8204
+    },
+    {
+        "cargo_name": "Puste butelki po winie",
+        "mass": 13942
+    },
+    {
+        "cargo_name": "Koparka",
+        "mass": 21506
+    },
+    {
+        "cargo_name": "Ziemia wydobyta",
+        "mass": 20480
+    },
+    {
+        "cargo_name": "System wydechowy [Kontener]",
+        "mass": 8257
+    },
+    {
+        "cargo_name": "Materiały wybuchowe",
+        "adr_class": "1",
+        "mass": 12045
+    },
+    {
+        "cargo_name": "Nawóz",
+        "mass": 20282
+    },
+    {
+        "cargo_name": "Fajerwerki",
+        "adr_class": "1",
+        "mass": 9900
+    },
+    {
+        "cargo_name": "Paluszki rybne",
+        "mass": 17160
+    },
+    {
+        "cargo_name": "Prefabrykaty podłogowe",
+        "mass": 20358
+    },
+    {
+        "cargo_name": "Mąka",
+        "mass": 20219
+    },
+    {
+        "cargo_name": "Fluor",
+        "adr_class": "2",
+        "mass": 14790
+    },
+    {
+        "cargo_name": "Wózki widłowe",
+        "mass": 9770
+    },
+    {
+        "cargo_name": "Świeże ryby",
+        "mass": 18520
+    },
+    {
+        "cargo_name": "Mrożony morszczuk",
+        "mass": 17411
+    },
+    {
+        "cargo_name": "Mrożone ośmiornice",
+        "mass": 14401
+    },
+    {
+        "cargo_name": "Świeże zioła",
+        "mass": 5650
+    },
+    {
+        "cargo_name": "Zbiornik z paliwem",
+        "adr_class": "3",
+        "mass": 10440
+    },
+    {
+        "cargo_name": "Olej paliwowy",
+        "adr_class": "3",
+        "mass": 16756
+    },
+    {
+        "cargo_name": "Zbiorniki paliwa",
+        "mass": 10233
+    },
+    {
+        "cargo_name": "Meble",
+        "mass": 16381
+    },
+    {
+        "cargo_name": "Czosnek",
+        "mass": 12385
+    },
+    {
+        "cargo_name": "Szklane panele",
+        "mass": 18461
+    },
+    {
+        "cargo_name": "Szkło pakowane",
+        "mass": 19401
+    },
+    {
+        "cargo_name": "Gnocchi",
+        "mass": 18440
+    },
+    {
+        "cargo_name": "Kozi ser",
+        "mass": 15751
+    },
+    {
+        "cargo_name": "Blok granitu",
+        "mass": 20610
+    },
+    {
+        "cargo_name": "Winogrona",
+        "mass": 14619
+    },
+    {
+        "cargo_name": "Smar grafitowy",
+        "mass": 16909
+    },
+    {
+        "cargo_name": "Rolki trawy",
+        "mass": 15299
+    },
+    {
+        "cargo_name": "Żwir",
+        "mass": 14729
+    },
+    {
+        "cargo_name": "Relingi",
+        "mass": 22427
+    },
+    {
+        "cargo_name": "Żelki Misie",
+        "mass": 21288
+    },
+    {
+        "cargo_name": "Pojemniki do zbierania",
+        "mass": 2825
+    },
+    {
+        "cargo_name": "Gorące chemikalia",
+        "adr_class": "2",
+        "mass": 17400
+    },
+    {
+        "cargo_name": "Zbiornik ciśnieniowy",
+        "mass": 12380
+    },
+    {
+        "cargo_name": "Kable wysokiego napięcia",
+        "mass": 21480
+    },
+    {
+        "cargo_name": "Metale ciężkie",
+        "adr_class": "6",
+        "mass": 21750
+    },
+    {
+        "cargo_name": "Miód",
+        "mass": 20242
+    },
+    {
+        "cargo_name": "Odpady szpitalne",
+        "adr_class": "6",
+        "mass": 14790
+    },
+    {
+        "cargo_name": "Kwas chlorowodorowy",
+        "adr_class": "8",
+        "mass": 19140
+    },
+    {
+        "cargo_name": "Wodór",
+        "adr_class": "2",
+        "mass": 3480
+    },
+    {
+        "cargo_name": "Kontener IBC",
+        "mass": 11138
+    },
+    {
+        "cargo_name": "Lody",
+        "mass": 14101
+    },
+    {
+        "cargo_name": "Puszkowana kawa mrożona",
+        "mass": 21259
+    },
+    {
+        "cargo_name": "Żelazne rury",
+        "mass": 18760
+    },
+    {
+        "cargo_name": "Furgonetki Braco",
+        "mass": 5350
+    },
+    {
+        "cargo_name": "Nafta",
+        "adr_class": "3",
+        "mass": 15660
+    },
+    {
+        "cargo_name": "Ketchup",
+        "mass": 15352
+    },
+    {
+        "cargo_name": "Jagnięce żołądki",
+        "mass": 13210
+    },
+    {
+        "cargo_name": "Duże rury",
+        "mass": 22840
+    },
+    {
+        "cargo_name": "Lawenda",
+        "mass": 8801
+    },
+    {
+        "cargo_name": "Ołów",
+        "adr_class": "6",
+        "mass": 20010
+    },
+    {
+        "cargo_name": "Lemoniady",
+        "mass": 23998
+    },
+    {
+        "cargo_name": "Pasztet",
+        "mass": 17411
+    },
+    {
+        "cargo_name": "Żywe bydło",
+        "mass": 12380
+    },
+    {
+        "cargo_name": "Żywe bydło (DLC Viva la France)",
+        "mass": 12380
+    },
+    {
+        "cargo_name": "Kłody",
+        "mass": 22740
+    },
+    {
+        "cargo_name": "LPG",
+        "adr_class": "3",
+        "mass": 18270
+    },
+    {
+        "cargo_name": "Drewno",
+        "mass": 17520
+    },
+    {
+        "cargo_name": "Magnez",
+        "adr_class": "4",
+        "mass": 19140
+    },
+    {
+        "cargo_name": "Syrop klonowy",
+        "mass": 17213
+    },
+    {
+        "cargo_name": "Bloki marmuru",
+        "mass": 22500
+    },
+    {
+        "cargo_name": "Marmurowe płyty",
+        "mass": 23500
+    },
+    {
+        "cargo_name": "Słoiki",
+        "mass": 7342
+    },
+    {
+        "cargo_name": "Sprzęt medyczny",
+        "mass": 5214
+    },
+    {
+        "cargo_name": "Szczepionki medyczne",
+        "adr_class": "6",
+        "mass": 5428
+    },
+    {
+        "cargo_name": "Chlorek rtęci",
+        "adr_class": "6",
+        "mass": 15660
+    },
+    {
+        "cargo_name": "Belki metalowe",
+        "mass": 26818
+    },
+    {
+        "cargo_name": "Metalowe puszki",
+        "mass": 4874
+    },
+    {
+        "cargo_name": "Żelazne rury",
+        "mass": 24380
+    },
+    {
+        "cargo_name": "Mleko",
+        "mass": 13076
+    },
+    {
+        "cargo_name": "Samochody",
+        "mass": 6316
+    },
+    {
+        "cargo_name": "Motocykle",
+        "mass": 15048
+    },
+    {
+        "cargo_name": "Olej silnikowy",
+        "mass": 18754
+    },
+    {
+        "cargo_name": "Olej silnikowy w kontenerze",
+        "mass": 15581
+    },
+    {
+        "cargo_name": "Opony motocyklowe",
+        "mass": 22090
+    },
+    {
+        "cargo_name": "Mozzarella",
+        "mass": 20080
+    },
+    {
+        "cargo_name": "Rolki blachy",
+        "mass": 24250
+    },
+    {
+        "cargo_name": "Guma naturalna",
+        "mass": 21730
+    },
+    {
+        "cargo_name": "Neony",
+        "adr_class": "2",
+        "mass": 10440
+    },
+    {
+        "cargo_name": "Nitroceluloza",
+        "adr_class": "4",
+        "mass": 14790
+    },
+    {
+        "cargo_name": "Azot",
+        "adr_class": "2",
+        "mass": 7830
+    },
+    {
+        "cargo_name": "Piwo bezalkoholowe",
+        "mass": 22156
+    },
+    {
+        "cargo_name": "Orzechy",
+        "mass": 18048
+    },
+    {
+        "cargo_name": "Liny nylonowe",
+        "mass": 23958
+    },
+    {
+        "cargo_name": "Olej",
+        "adr_class": "3",
+        "mass": 16530
+    },
+    {
+        "cargo_name": "Filtry oleju",
+        "mass": 12408
+    },
+    {
+        "cargo_name": "Filtry oleju w kontenerze",
+        "mass": 10509
+    },
+    {
+        "cargo_name": "Oliwki",
+        "mass": 18312
+    },
+    {
+        "cargo_name": "Oliwa",
+        "mass": 17645
+    },
+    {
+        "cargo_name": "Cebule",
+        "mass": 17493
+    },
+    {
+        "cargo_name": "Pomarańcze",
+        "mass": 20312
+    },
+    {
+        "cargo_name": "Ruda",
+        "mass": 16165
+    },
+    {
+        "cargo_name": "Zewnętrzne płytki podłogowe",
+        "mass": 20579
+    },
+    {
+        "cargo_name": "Naczepy",
+        "mass": 11720
+    },
+    {
+        "cargo_name": "Jedzenie w paczkach",
+        "mass": 17365
+    },
+    {
+        "cargo_name": "Papier biurowy",
+        "mass": 18229
+    },
+    {
+        "cargo_name": "Makaron",
+        "mass": 20407
+    },
+    {
+        "cargo_name": "Gruszki",
+        "mass": 15408
+    },
+    {
+        "cargo_name": "Groszek",
+        "mass": 18239
+    },
+    {
+        "cargo_name": "Widełki motocylkowe",
+        "mass": 16959
+    },
+    {
+        "cargo_name": "Pestycydy",
+        "adr_class": "6",
+        "mass": 15660
+    },
+    {
+        "cargo_name": "Pesto",
+        "mass": 15626
+    },
+    {
+        "cargo_name": "Benzyna",
+        "adr_class": "3",
+        "mass": 18270
+    },
+    {
+        "cargo_name": "Jedzenie dla zwierząt",
+        "mass": 20569
+    },
+    {
+        "cargo_name": "Jedzenie dla zwierząt w kontenerze",
+        "mass": 12870
+    },
+    {
+        "cargo_name": "Biały fosfor",
+        "adr_class": "4",
+        "mass": 11310
+    },
+    {
+        "cargo_name": "Podłoże do roślin",
+        "mass": 18279
+    },
+    {
+        "cargo_name": "Plastikowe granulki",
+        "mass": 16826
+    },
+    {
+        "cargo_name": "Plastikowe rolki filmowe",
+        "mass": 18018
+    },
+    {
+        "cargo_name": "Plastikowe rolki filmowe w kontenerze",
+        "mass": 12492
+    },
+    {
+        "cargo_name": "Części hydrauliczne",
+        "mass": 18315
+    },
+    {
+        "cargo_name": "Śliwki",
+        "mass": 16919
+    },
+    {
+        "cargo_name": "Masło orzechowe",
+        "mass": 19539
+    },
+    {
+        "cargo_name": "Pudła polistyrenowe",
+        "mass": 3122
+    },
+    {
+        "cargo_name": "Wieprzowina",
+        "mass": 18734
+    },
+    {
+        "cargo_name": "Paczki pocztowe",
+        "mass": 11474
+    },
+    {
+        "cargo_name": "Wodorotlenek potasu",
+        "adr_class": "8",
+        "mass": 17400
+    },
+    {
+        "cargo_name": "Potas",
+        "adr_class": "4",
+        "mass": 17400
+    },
+    {
+        "cargo_name": "Ziemniaki",
+        "mass": 22160
+    },
+    {
+        "cargo_name": "Doniczki",
+        "mass": 3620
+    },
+    {
+        "cargo_name": "Prefabrykowane schody",
+        "mass": 22239
+    },
+    {
+        "cargo_name": "Zasuwy wysokociśnieniowe",
+        "mass": 19077
+    },
+    {
+        "cargo_name": "Jacht-Królowa V39",
+        "mass": 8613
+    },
+    {
+        "cargo_name": "Szynka parmeńska",
+        "mass": 16101
+    },
+    {
+        "cargo_name": "Ubrania ochronne",
+        "mass": 20536
+    },
+    {
+        "cargo_name": "Pompy",
+        "mass": 14467
+    },
+    {
+        "cargo_name": "Radiatory",
+        "mass": 9877
+    },
+    {
+        "cargo_name": "Słupki hektrometryczne",
+        "mass": 12326
+    },
+    {
+        "cargo_name": "Pręty zbrojeniowe",
+        "mass": 26818
+    },
+    {
+        "cargo_name": "Ryż",
+        "mass": 22117
+    },
+    {
+        "cargo_name": "Ryż w kontenerze",
+        "mass": 18747
+    },
+    {
+        "cargo_name": "Papy dachowe",
+        "mass": 19219
+    },
+    {
+        "cargo_name": "Świetliki dachowe",
+        "mass": 5273
+    },
+    {
+        "cargo_name": "Dachówki",
+        "mass": 20364
+    },
+    {
+        "cargo_name": "Żyto",
+        "mass": 15234
+    },
+    {
+        "cargo_name": "Filety z łososia",
+        "mass": 14919
+    },
+    {
+        "cargo_name": "Sól i przyprawy",
+        "mass": 16229
+    },
+    {
+        "cargo_name": "Sól i przyprawy w kontenerze",
+        "mass": 13908
+    },
+    {
+        "cargo_name": "Piasek",
+        "mass": 14660
+    },
+    {
+        "cargo_name": "Płyty warstwowe",
+        "mass": 12319
+    },
+    {
+        "cargo_name": "Kiełbasy",
+        "mass": 17450
+    },
+    {
+        "cargo_name": "Trociny",
+        "mass": 21559
+    },
+    {
+        "cargo_name": "Rusztowania",
+        "mass": 22126
+    },
+    {
+        "cargo_name": "Ciężarówki Scanii",
+        "mass": 12693
+    },
+    {
+        "cargo_name": "Skutery",
+        "mass": 9979
+    },
+    {
+        "cargo_name": "Złom",
+        "mass": 13685
+    },
+    {
+        "cargo_name": "Uszczelnione łożyska",
+        "mass": 24400
+    },
+    {
+        "cargo_name": "Wełna owcza",
+        "mass": 13213
+    },
+    {
+        "cargo_name": "Amortyzatory",
+        "mass": 16490
+    },
+    {
+        "cargo_name": "Krzemionka",
+        "mass": 19114
+    },
+    {
+        "cargo_name": "Wędzone węgorze",
+        "mass": 11481
+    },
+    {
+        "cargo_name": "Wędzone szprotki",
+        "mass": 17572
+    },
+    {
+        "cargo_name": "Podchloryn sodu",
+        "adr_class": "8",
+        "mass": 16530
+    },
+    {
+        "cargo_name": "Wodorotlenek sodu",
+        "adr_class": "8",
+        "mass": 20010
+    },
+    {
+        "cargo_name": "Sód",
+        "adr_class": "4",
+        "mass": 16530
+    },
+    {
+        "cargo_name": "Mleko sojowe",
+        "mass": 21519
+    },
+    {
+        "cargo_name": "Zawory sferyczne",
+        "mass": 22173
+    },
+    {
+        "cargo_name": "Stalowe profile",
+        "mass": 24390
+    },
+    {
+        "cargo_name": "Liny stalowe",
+        "mass": 14880
+    },
+    {
+        "cargo_name": "Kamienie",
+        "mass": 17444
+    },
+    {
+        "cargo_name": "Pył kamienny",
+        "mass": 15008
+    },
+    {
+        "cargo_name": "Kamienna wełna",
+        "mass": 5280
+    },
+    {
+        "cargo_name": "Bele słomy",
+        "mass": 15352
+    },
+    {
+        "cargo_name": "Cukier",
+        "mass": 22371
+    },
+    {
+        "cargo_name": "Kwas siarkowy",
+        "adr_class": "8",
+        "mass": 15660
+    },
+    {
+        "cargo_name": "Zastawy stołowe",
+        "mass": 16424
+    },
+    {
+        "cargo_name": "Pomidory",
+        "mass": 18239
+    },
+    {
+        "cargo_name": "Zabawki",
+        "mass": 9441
+    },
+    {
+        "cargo_name": "Ciągniki",
+        "mass": 9909
+    },
+    {
+        "cargo_name": "Osie lokomotywy",
+        "mass": 20740
+    },
+    {
+        "cargo_name": "Podwozie pociągu",
+        "mass": 20740
+    },
+    {
+        "cargo_name": "Skrzynie biegów",
+        "mass": 14240
+    },
+    {
+        "cargo_name": "Baterie ciężarówek",
+        "mass": 18741
+    },
+    {
+        "cargo_name": "Baterie ciężarówek w kontenerze",
+        "mass": 15976
+    },
+    {
+        "cargo_name": "Felgi ciężarówek",
+        "mass": 12246
+    },
+    {
+        "cargo_name": "Felgi ciężarówek w kontenerze",
+        "mass": 10989
+    },
+    {
+        "cargo_name": "Opony ciężarówek",
+        "mass": 13576
+    },
+    {
+        "cargo_name": "Opony",
+        "mass": 16286
+    },
+    {
+        "cargo_name": "Zużyte akumulatory",
+        "mass": 17229
+    },
+    {
+        "cargo_name": "Użyte opakowania",
+        "mass": 20252
+    },
+    {
+        "cargo_name": "Użyte plastiki",
+        "mass": 9672
+    },
+    {
+        "cargo_name": "Użyte plastiki w kontenerze",
+        "mass": 7868
+    },
+    {
+        "cargo_name": "Szyb wentylacyjny",
+        "mass": 4830
+    },
+    {
+        "cargo_name": "Ocet",
+        "mass": 15299
+    },
+    {
+        "cargo_name": "Ocet w kontenerach",
+        "mass": 10794
+    },
+    {
+        "cargo_name": "Samochody Volvo",
+        "mass": 9396
+    },
+    {
+        "cargo_name": "Ciężarówki Volvo",
+        "mass": 12772
+    },
+    {
+        "cargo_name": "Prefabrykaty ścienne",
+        "mass": 19645
+    },
+    {
+        "cargo_name": "Arbuzy",
+        "mass": 20170
+    },
+    {
+        "cargo_name": "Pszenica",
+        "mass": 14912
+    },
+    {
+        "cargo_name": "Silnik wiatraka",
+        "mass": 18531
+    },
+    {
+        "cargo_name": "Maszt wiatraka",
+        "mass": 17069
+    },
+    {
+        "cargo_name": "Drewniane podpory",
+        "mass": 22361
+    },
+    {
+        "cargo_name": "Kora drzewna",
+        "mass": 13790
+    },
+    {
+        "cargo_name": "Ubrania robocze",
+        "mass": 16454
+    },
+    {
+        "cargo_name": "Trociny",
+        "mass": 12406
+    },
+    {
+        "cargo_name": "Jogurty",
+        "mass": 17229
+    },
+    {
+        "cargo_name": "Młode sadzonki",
+        "mass": 3637
+    }
+]

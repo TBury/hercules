@@ -1,0 +1,39 @@
+.company-name {
+  font-weight: 700;
+  font-size: 2rem;
+  color: black;
+}
+
+.tag {
+  font-weight: 700;
+}
+
+.company-logo {
+  max-width: 256px;
+  max-height: 256px;
+}
+
+.company-offer {
+  margin-top: 20px;
+}
+
+.send-application {
+  font-weight: 700;
+}
+
+.create-company {
+  background-color: #C70000 !important;
+  color: white !important;
+  margin-right: 15px;
+  padding: 0 2em;
+  font-size: 1.1rem !important;
+  font-weight: 700;
+  float: right;
+  margin-bottom: 30px;
+  z-index: 100;
+}
+
+.create-company:hover {
+  color: #dddddd;
+}
+/*# sourceMappingURL=find_company.css.map */

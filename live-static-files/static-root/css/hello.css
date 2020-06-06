@@ -1,0 +1,60 @@
+html,
+body {
+  overflow: hidden;
+  margin: 0 auto;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.decoration-left {
+  height: 25vh;
+}
+
+.logo {
+  width: 15%;
+}
+
+.hello-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.hello-text {
+  margin-left: 360px;
+  margin-top: 1em;
+  width: 700px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.field > .control {
+  text-align: center !important;
+}
+
+.name-input,
+.name-input:focus,
+.name-input:hover {
+  width: 630px;
+  border-color: transparent transparent red transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-weight: 700 !important;
+}
+
+.set-nick {
+  margin-top: 2vh;
+  width: 630px;
+  background-color: #C70000;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.hello-field {
+  margin-top: 4em;
+}
+
+.help.is-danger {
+  margin-bottom: 15px;
+}
+/*# sourceMappingURL=hello.css.map */

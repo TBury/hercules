@@ -1,0 +1,72 @@
+.loading-info,
+.unloading-info,
+.rozpiska-loading-info,
+.rozpiska-unloading-info {
+    display: flex;
+}
+
+.city {
+    font-size: 1.2rem;
+}
+
+.rozpiska-loading-info:not(:last-child),
+.rozpiska-unloading-info:not(:last-child) {
+    margin-bottom: 60px;
+}
+
+.rozpiska-cargo:not(:last-child),
+.rozpiska-deadline:not(:last-child) {
+    margin-bottom: 100px;
+}
+
+.rozpiska-details {
+    margin-top: 25vh;
+}
+
+.country-icon {
+    width: 32px !important;
+    height: 32px !important;
+}
+
+.cargo {
+    text-align: left;
+    font-size: 1rem;
+}
+
+.box:first-of-type {
+    margin-top: 40px !important;
+}
+
+.company {
+    width: 96px;
+    height: 48px;
+}
+
+.city-and-company {
+    align-self: center;
+}
+
+.finished {
+    * {
+        opacity: .5;
+    }
+}
+
+.loading-city {
+    align-items: center;
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: center;
+}
+
+.add-disposition {
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    background-color: #C70000 !important;
+    color: white !important;
+    border-radius: 30px !important;
+    margin-left: 81%;
+}

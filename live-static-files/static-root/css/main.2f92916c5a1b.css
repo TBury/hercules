@@ -1,0 +1,158 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-item img {
+  max-height: 4rem !important;
+  margin-left: 5%;
+  margin-bottom: 5%;
+}
+
+.main {
+  background-color: #EEEEEE;
+  min-height: 94vh;
+  height: 100%;
+}
+
+.avatar-fig {
+  margin-right: 15px;
+}
+
+.avatar {
+  border-radius: 25px;
+}
+
+.username,
+.logout-text {
+  font-weight: 700;
+}
+
+.menu {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.menu .menu-list > li > a {
+  font-weight: 700;
+  padding: 1em;
+}
+
+.menu .menu-label {
+  margin-left: 15px;
+  font-size: .65em;
+}
+
+.menu .option:before {
+  content: '';
+  vertical-align: middle;
+  display: inline-block;
+  width: 24px;
+  margin: 0 15px 0 0;
+  height: 24px;
+}
+
+.menu a[class=is-active] > .main-site:before {
+  background: url("/static/assets/icons/main-panel-active.ebacca2c663e.png") no-repeat;
+}
+
+.menu a[class=is-active] > .download:before {
+  background: url("/static/assets/icons/download_active.0b55c6b14b8b.png") no-repeat;
+}
+
+.menu a[class=is-active] > .driver-card:before {
+  background: url("/static/assets/icons/driver_card_active.593d08c7e559.png") no-repeat;
+}
+
+.menu a[class=is-active] > .add-delivery:before,
+.menu a[class=is-active] > .waybills:before {
+  background: url("/static/assets/icons/add_delivery_active.3f87dc4262e8.png") no-repeat;
+}
+
+.menu a[class=is-active] > .gielda:before {
+  background: url("/static/assets/icons/gielda_active.d05cb3e8e661.png") no-repeat;
+}
+
+.menu a[class=is-active] > .dispositions:before {
+  background: url("/static/assets/icons/map_active.e0af24d11022.png") no-repeat;
+  height: 27px;
+}
+
+.menu a[class=is-active] > .company_profile:before {
+  background: url("/static/assets/icons/company-profile_active.9f4ad9bda16e.png") no-repeat;
+}
+
+.menu a[class=is-active] > .search-company:before {
+  background: url("/static/assets/icons/search_active.e6acce9597a8.png") no-repeat;
+}
+
+.menu a[class=is-active] > .vehicles:before {
+  background: url("/static/assets/icons/vehicles_active.8962c0e3f4d8.png") no-repeat;
+}
+
+.menu a[class=is-active] > .deliveries:before,
+.menu a[class=is-active] > .waybills:before {
+  background: url("/static/assets/icons/deliveries_active.d589f48bd4e4.png") no-repeat;
+}
+
+.menu a[class=is-active] > .settings:before {
+  background: url("/static/assets/icons/settings_active.3aa13773e3f8.png") no-repeat;
+}
+
+.menu .main-site:before {
+  background: url("/static/assets/icons/main-panel.4a20b3f5b243.png") no-repeat;
+}
+
+.menu .download:before {
+  background: url("/static/assets/icons/download.ae726441ece7.png") no-repeat;
+}
+
+.menu .driver-card:before {
+  background: url("/static/assets/icons/driver_card.bd3132a7502f.png") no-repeat;
+}
+
+.menu .add-delivery:before {
+  background: url("/static/assets/icons/add_delivery.ad286f98ed54.png") no-repeat;
+}
+
+.menu .gielda:before {
+  background: url("/static/assets/icons/gielda.5e6298f06c8a.png") no-repeat;
+}
+
+.menu .dispositions:before {
+  background: url("/static/assets/icons/map.d1c3a334d980.png") no-repeat;
+  height: 27px;
+}
+
+.menu .search-company:before {
+  background: url("/static/assets/icons/search.a786bde867e4.png") no-repeat;
+}
+
+.menu .vehicles:before {
+  background: url("/static/assets/icons/vehicles.db5c6a7ea686.png") no-repeat;
+}
+
+.menu .deliveries:before,
+.menu .waybills:before {
+  background: url("/static/assets/icons/deliveries.8f35d6cd65de.png") no-repeat;
+}
+
+.menu .settings:before {
+  background: url("/static/assets/icons/settings.883f98fe79ab.png") no-repeat;
+}
+
+.menu .drivers:before {
+  background: url("/static/assets/icons/drivers.017b0dc1c533.png") no-repeat;
+}
+
+.menu .company-profile:before {
+  background: url("/static/assets/icons/company-profile.29ce1eeeb301.png") no-repeat;
+}
+
+.title {
+  margin-left: 1.5%;
+  margin-top: 2%;
+}
+
+.colored {
+  color: #0282FC;
+}
+/*# sourceMappingURL=main.css.map */

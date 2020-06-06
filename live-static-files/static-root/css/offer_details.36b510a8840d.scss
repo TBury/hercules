@@ -1,0 +1,67 @@
+.offer-basic-info,
+.offer-details {
+    margin-top: 25px;
+    border-top: 5px solid #0282FC;
+    margin-right: 10px;
+}
+
+.basic-info-title,
+.left {
+    margin-left: 10vw;
+}
+
+.basic-info-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.country-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.info-label {
+    font-weight: 700;
+    color: #9F9F9F;
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+.loading-info,
+.unloading-info {
+    display: flex;
+    margin-top: 15px;
+}
+
+.city {
+    font-size: 1.625em;
+}
+
+.company-logo {
+    width: 128px;
+}
+
+.cargo-name,
+.tonnage,
+.trailer,
+.seller,
+.adr-class,
+.oversize,
+.date,
+.income {
+    font-weight: 700;
+    font-size: 1.625em;
+}
+
+.buttons {
+    margin-top: 50px !important;
+    margin-left: 65vw;
+}
+
+.accept {
+    background-color: #33D5A9 !important;
+    color: white !important;
+    font-weight: 700;
+    font-size: 1.5rem !important;
+    padding: 20px 30px 20px 30px !important;
+}

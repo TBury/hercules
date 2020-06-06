@@ -1,0 +1,133 @@
+.basic-info {
+  margin-left: 15%;
+}
+
+.basic-info-cols {
+  margin-top: 1.5% !important;
+}
+
+.input {
+  max-width: 300px !important;
+}
+
+.screenshot {
+  margin-top: 1rem;
+}
+
+.field:not(:first-child)
+.static-field {
+  margin-top: 3rem;
+}
+
+.static-field {
+  margin-bottom: .75rem;
+}
+
+.static-label {
+  margin-top: 25px !important;
+}
+
+.static-screenshot {
+  margin-top: 3px;
+}
+
+.is-static {
+  background-color: #0282FC !important;
+  color: white !important;
+  font-weight: 700;
+}
+
+.go-back,
+.next {
+  font-weight: 700;
+  font-size: 1.55em !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.go-back {
+  color: #C70000 !important;
+  background-color: #EEEEEE !important;
+}
+
+.next {
+  margin-right: 15%;
+  background-color: #0282FC !important;
+  color: white !important;
+  font-size: 1.5rem !important;
+}
+
+.is-grouped {
+  margin-top: 3rem;
+  float: right;
+}
+
+.notification-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.notification.is-warning {
+  background-color: #E67E22 !important;
+  color: white !important;
+}
+
+.cities-container,
+.unloading-cities-container,
+.speditions-container,
+.unloading-speditions-container,
+.cargo-container,
+.company-container,
+.unloading-company-container {
+  margin-top: 5px;
+  padding: 10px 15px 10px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.autoComplete_highlighted {
+  color: #0282FC;
+  font-weight: 700 !important;
+}
+
+.city {
+  padding: 3px 1em 3px .4em;
+  text-align: left;
+  font-size: 1rem;
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+  border: .5px solid #efefee;
+  margin-bottom: 5px;
+  margin-left: 0 !important;
+}
+
+.driver-field {
+  margin-bottom: 35px !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.datetimepicker-dummy-wrapper {
+  max-width: 300px !important;
+}
+
+.datetimepicker-dummy,
+.datetimepicker-dummy-input {
+  max-width: 100% !important;
+}
+
+.field {
+  margin-bottom: 35px !important;
+}
+/*# sourceMappingURL=verify.css.map */
