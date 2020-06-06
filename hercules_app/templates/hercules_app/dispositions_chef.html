@@ -9,23 +9,23 @@
     <meta name="description"
         content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static '/assets/icons/apple-icon-57x57.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static '/assets/icons/apple-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static '/assets/icons/apple-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static '/assets/icons/apple-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static '/assets/icons/apple-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static '/assets/icons/apple-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static '/assets/icons/apple-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static '/assets/icons/apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/assets/icons/apple-icon-180x180.png' %}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/icons/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/icons/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/icons/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/icons/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/icons/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/icons/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/icons/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/icons/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/icons/apple-icon-180x180.png' %}">
     <link rel="icon" type="image/png" sizes="192x192"
-        href="{% static '/assets/icons/android-icon-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/assets/icons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static '/assets/icons/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/assets/icons/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static '/assets/icons/manifest.json' %} ">
+        href="{% static 'assets/icons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/icons/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/icons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/icons/manifest.json' %} ">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{% static '/assets/icons/ms-icon-144x144.png' %}">
+    <meta name="msapplication-TileImage" content="{% static 'assets/icons/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
@@ -177,60 +177,60 @@
                         <div class="column">
                             <div
                                 class="rozpiska-loading-info {% if company_rozpiska.first_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.first_disposition.loading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.first_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.first_disposition.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.first_disposition.loading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.first_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
                                 class="rozpiska-loading-info {% if company_rozpiska.second_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.second_disposition.loading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.second_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.second_disposition.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.second_disposition.loading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.second_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
                                 class="rozpiska-loading-info {% if company_rozpiska.third_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.third_disposition.loading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.third_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.third_disposition.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.third_disposition.loading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.third_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
                                 class="rozpiska-loading-info {% if company_rozpiska.fourth_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.fourth_disposition.loading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.fourth_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.fourth_disposition.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.fourth_disposition.loading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.fourth_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
                                 class="rozpiska-loading-info {% if company_rozpiska.fifth_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.fifth_disposition.loading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.fifth_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.fifth_disposition.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.fifth_disposition.loading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.fifth_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -239,60 +239,60 @@
                         <div class="column">
                             <div
                                 class="rozpiska-unloading-info {% if company_rozpiska.first_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.first_disposition.unloading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.first_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.first_disposition.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.first_disposition.unloading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.first_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
                                 class="rozpiska-unloading-info {% if company_rozpiska.second_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.second_disposition.unloading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.second_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.second_disposition.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.second_disposition.unloading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.second_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
                                 class="rozpiska-unloading-info {% if company_rozpiska.third_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.third_disposition.unloading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.third_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.third_disposition.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.third_disposition.unloading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.third_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
                                 class="rozpiska-unloading-info {% if company_rozpiska.fourth_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.fourth_disposition.unloading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.fourth_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.fourth_disposition.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.fourth_disposition.unloading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.fourth_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
                             </div>
                             <div
                                 class="rozpiska-unloading-info {% if company_rozpiska.fifth_disposition.finished %} finished {% endif %}">
-                                {% with '/assets/countries/'|add:company_rozpiska.fifth_disposition.unloading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_rozpiska.fifth_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_rozpiska.fifth_disposition.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_rozpiska.fifth_disposition.unloading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_rozpiska.fifth_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -391,12 +391,12 @@
                         </div>
                         <div class="column">
                             <div class="loading-info">
-                                {% with '/assets/countries/'|add:company_disposition.loading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_disposition.loading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_disposition.loading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_disposition.loading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -404,12 +404,12 @@
                         </div>
                         <div class="column">
                             <div class="unloading-info">
-                                {% with '/assets/countries/'|add:company_disposition.unloading_country|add:'.png' as image_static %}
+                                {% with 'assets/countries/'|add:company_disposition.unloading_country|add:'.png' as image_static %}
                                 <img src="{% static image_static %}" class="country-icon">
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ company_disposition.unloading_city }}</p>
-                                    {% with '/assets/companies/'|add:company_disposition.unloading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:company_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
