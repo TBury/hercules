@@ -3,5 +3,6 @@ celery>=4.4.2
 requests>=2.23.0
 pytesseract>=0.3.3
 Pillow>=7.0.0
+redis
 gunicorn
 whitenoise
