@@ -5,6 +5,11 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+handler404 = views.handler404
+handler500 = views.handler500
+handler403 = views.handler403
+
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('login', auth_views.LoginView.as_view(
@@ -61,6 +66,7 @@ urlpatterns = [
          views.ShowCompanyProfileView, name="show-company-profile"),
      path('Company/Drivers/', views.ShowCompanyDriversView, name="show-company-drivers"),
     path('Company/Drivers/<int:driver_id>', views.ShowCompanyDriverView, name="show-company-driver"),
+    path('Company/Drivers/DismissDriver/<int:driver_id>', views.DismissDriver, name="dismiss-driver"),
     path('Company/ChangePosition/<int:driver_id>', views.ChangePosition, name="change-position"),
     path('Company/Waybills', views.CompanyWaybillsView, name="show-company-waybills"),
     path('Company/Waybills/<int:waybill_id>', views.VerifyWaybillView, name="verify-waybill"),

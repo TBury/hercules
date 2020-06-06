@@ -1,0 +1,85 @@
+.loading-info,
+.unloading-info,
+.rozpiska-loading-info,
+.rozpiska-unloading-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.city {
+  font-size: 1.2rem;
+}
+
+.rozpiska-loading-info:not(:last-child),
+.rozpiska-unloading-info:not(:last-child) {
+  margin-bottom: 60px;
+}
+
+.rozpiska-cargo:not(:last-child),
+.rozpiska-deadline:not(:last-child) {
+  margin-bottom: 100px;
+}
+
+.rozpiska-details {
+  margin-top: 25vh;
+}
+
+.country-icon {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.cargo {
+  text-align: left;
+  font-size: 1rem;
+}
+
+.box:first-of-type {
+  margin-top: 40px !important;
+}
+
+.company {
+  width: 96px;
+  height: 48px;
+}
+
+.city-and-company {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.finished * {
+  opacity: .5;
+}
+
+.loading-city {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.add-disposition {
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  background-color: #C70000 !important;
+  color: white !important;
+  border-radius: 30px !important;
+  margin-left: 81%;
+}
+/*# sourceMappingURL=dispositions.css.map */

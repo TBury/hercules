@@ -100,7 +100,7 @@
                         </li>
                         {% elif position is not None %}
                         <li>
-                            <a href="/CompanyProfile">
+                            <a href="/Company/CompanyProfile">
                                 <p class="option company-profile">
                                     Profil firmy
                                 </p>
@@ -250,8 +250,8 @@
 
                 <div class="field buttons">
                     <div class="control">
-                        <a {% if is_self_employed %} href="DisposeOffer/{{ driver.id }}" {% endif %}
-                            {% if is_self_employed == False %} href="DisposeOffer/{{ driver.id }}" {% endif %}
+                        <a {% if is_self_employeed %} href="DisposeOffer/{{ id }}"
+                            {% else %} href="/Gielda/Offers/ChooseDriver" {% endif %}
                             class="button accept">Przyjmij zlecenie</a>
                     </div>
                 </div>

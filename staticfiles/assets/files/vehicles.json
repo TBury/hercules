@@ -1,0 +1,1061 @@
+[{
+        "brand": "DAF",
+        "models": [{
+                "model": "XF 105",
+                "cabin": [
+                    "Space",
+                    "Space Cab Plus",
+                    "Super Space"
+                ],
+                "chassis": [
+                    "4x2",
+                    "4x2 Extra Tank",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [{
+                        "name": "PACCAR MX265",
+                        "power": "360"
+                    },
+                    {
+                        "name": "PACCAR MX300",
+                        "power": "410"
+                    },
+                    {
+                        "name": "PACCAR MX340",
+                        "power": "460"
+                    },
+                    {
+                        "name": "PACCAR MX375",
+                        "power": "510"
+                    }
+                ],
+                "transmission": [
+                    "ZF 12AS2330TD",
+                    "ZF 12AS2530TO",
+                    "Allison 4500",
+                    "ZF 16AS2630TO",
+                    "ZF 12AS2331TD R",
+                    "ZF 12AS2531TO R",
+                    "Allison 4500 R",
+                    "ZF 16AS2631TO R"
+                ]
+            },
+            {
+                "model": "XF Euro 6",
+                "cabin": [
+                    "Space",
+                    "Space Aero",
+                    "Super Space"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [{
+                        "name": "MX-11 270 Euro 6, 2017",
+                        "power": "370"
+                    },
+                    {
+                        "name": "MX-13 303 Euro 6",
+                        "power": "410"
+                    },
+                    {
+                        "name": "MX-11 320 Euro 6",
+                        "power": "435"
+                    },
+                    {
+                        "name": "MX-11 230 Euro 6, 2017",
+                        "power": "450"
+                    },
+                    {
+                        "name": "MX-13 340 Euro 6",
+                        "power": "460"
+                    },
+                    {
+                        "name": "MX-13 355 Euro 6, 2017",
+                        "power": "480"
+                    },
+                    {
+                        "name": "MX-13 375 Euro 6",
+                        "power": "510"
+                    },
+                    {
+                        "name": "MX-13 390 Euro 6, 2017",
+                        "power": "530"
+                    }
+                ],
+                "transmission": [
+                    "ZF 12AS2330TD",
+                    "ZF 12TX2420TD",
+                    "ZF 12AS2530TO",
+                    "ZF 12TX2610TO",
+                    "Allison 4500",
+                    "ZF 16AS2630TO",
+                    "ZF 16TX2640TO",
+                    "ZF 12AS2331TD R",
+                    "ZF 12TX2421TD R",
+                    "ZF 12AS2531TO R",
+                    "ZF 12TX2611TO R",
+                    "Allison 4500 R",
+                    "ZF 16AS2631TO R",
+                    "ZF 16TX2641TO R"
+                ]
+            }
+        ]
+    },
+    {
+        "brand": "IVECO",
+        "models": [{
+                "model": "Stralis",
+                "cabin": [
+                    "Active Space",
+                    "Active Super",
+                    "Active Space Super"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [{
+                        "name": "Cursor 8 310",
+                        "power": "310"
+                    },
+                    {
+                        "name": "Cursor 8 330",
+                        "power": "330"
+                    },
+                    {
+                        "name": "Cursor 8 360",
+                        "power": "360"
+                    },
+                    {
+                        "name": "Cursor 10 420",
+                        "power": "420"
+                    },
+                    {
+                        "name": "Cursor 10 450",
+                        "power": "450"
+                    },
+                    {
+                        "name": "Cursor 13 500",
+                        "power": "500"
+                    },
+                    {
+                        "name": "Cursor 13 560",
+                        "power": "560"
+                    }
+                ],
+                "transmission": [
+                    "ZF 12AS2330TD",
+                    "ZF 12AS2530TO",
+                    "Allison 4500",
+                    "ZF 16AS2630TO",
+                    "ZF 12AS2331TD R",
+                    "ZF 12AS2531TO R",
+                    "Allison 4500 R",
+                    "ZF 16AS2631TO R"
+                ]
+            },
+            {
+                "model": "Hi-Way",
+                "cabin": [
+                    "Hi-Way"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [{
+                        "name": "Cursor 8 310",
+                        "power": "310"
+                    },
+                    {
+                        "name": "Cursor 8 330",
+                        "power": "330"
+                    },
+                    {
+                        "name": "Cursor 8 360",
+                        "power": "360"
+                    },
+                    {
+                        "name": "Cursor 9 400",
+                        "power": "400"
+                    },
+                    {
+                        "name": "Cursor 11 420",
+                        "power": "420"
+                    },
+                    {
+                        "name": "Cursor 11 460",
+                        "power": "450"
+                    },
+                    {
+                        "name": "Cursor 13 500",
+                        "power": "500"
+                    },
+                    {
+                        "name": "Cursor 13 560",
+                        "power": "560"
+                    }
+                ],
+                "transmission": [
+                    "ZF 12AS2330TD",
+                    "ZF 12AS2530TO",
+                    "Allison 4500",
+                    "ZF 16AS2630TO",
+                    "ZF 12AS2331TD R",
+                    "ZF 12AS2531TO R",
+                    "Allison 4500 R",
+                    "ZF 16AS2631TO R"
+                ]
+            }
+        ]
+    },
+    {
+        "brand": "MAN",
+        "models": [{
+                "model": "TGX Euro 5",
+                "cabin": [
+                    "XL",
+                    "XLX",
+                    "XXL"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [
+                    {
+                        "name": "D2066 235",
+                        "power": "320"
+                    },
+                    {
+                        "name": "D2066 265",
+                        "power": "360"
+                    },
+                    {
+                        "name": "D2066 294",
+                        "power": "400"
+                    },
+                    {
+                        "name": "D2676 324",
+                        "power": "440"
+                    },
+                    {
+                        "name": "D2676 353",
+                        "power": "480"
+                    },
+                    {
+                        "name": "D2676 397",
+                        "power": "540"
+                    },
+                    {
+                        "name": "D2868 500",
+                        "power": "680"
+                    }
+                ],
+                "transmission": [
+                    "ZF 12AS2330TD",
+                    "ZF 12AS2530TO",
+                    "Allison 4500",
+                    "ZF 16AS2630TO",
+                    "ZF 12AS2331TD R",
+                    "ZF 12AS2531TO R",
+                    "Allison 4500 R",
+                    "ZF 16AS2631TO R"
+                ]
+            },
+            {
+                "model": "TGX Euro 6",
+                "cabin": [
+                    "XL",
+                    "XLX",
+                    "XXL"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2-2 Taglift",
+                    "6x2/2 Midlift",
+                    "6x2/4 Midlift",
+                    "6x4",
+                    "8x4"
+                ],
+                "engine": [{
+                        "name": "D2066 LF67 265 Euro 6",
+                        "power": "360"
+                    },
+                    {
+                        "name": "D2066 LF61 294 Euro 6",
+                        "power": "400"
+                    },
+                    {
+                        "name": "D2676 LF26 324 Euro 6",
+                        "power": "440"
+                    },
+                    {
+                        "name": "D2676 LF25 353 Euro 6",
+                        "power": "480"
+                    },
+                    {
+                        "name": "D3876 LF02 382 Euro 6",
+                        "power": "520"
+                    },
+                    {
+                        "name": "D3876 LF01 412 Euro 6",
+                        "power": "560"
+                    },
+                    {
+                        "name": "D3876 LF03 471 Euro 6",
+                        "power": "640"
+                    }
+                ],
+                "transmission": [
+                    "TipMatic 12AS2330 DD",
+                    "TipMatic 12AS3140 OD",
+                    "Allison 4500",
+                    "ZF 16AS2630TO",
+                    "TipMatic 12AS2331 DD R ",
+                    "TipMatic 12AS3141 OD R",
+                    "Allison 4500 R",
+                    "ZF 16AS2631TO R"
+                ]
+            }
+        ]
+    },
+    {
+        "brand": "Mercedes-Benz",
+        "models": [{
+                "model": "Actros MP3",
+                "cabin": [
+                    "Low Roof Sleeper",
+                    "High Roof Sleeper",
+                    "MegaSpace"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [{
+                        "name": "1832 V6 BlueTec 5",
+                        "power": "320"
+                    },
+                    {
+                        "name": "1836 V6 BlueTec 5",
+                        "power": "360"
+                    },
+                    {
+                        "name": "1841 V6 BlueTec 5",
+                        "power": "408"
+                    },
+                    {
+                        "name": "1844 V6 BlueTec 5",
+                        "power": "435"
+                    },
+                    {
+                        "name": "1846 V6 BlueTec 5",
+                        "power": "456"
+                    },
+                    {
+                        "name": "1848 V6 BlueTec 5",
+                        "power": "476"
+                    },
+                    {
+                        "name": "1851 V8 BlueTec 5",
+                        "power": "510"
+                    },
+                    {
+                        "name": "1855 V8 BlueTec 5",
+                        "power": "551"
+                    },
+                    {
+                        "name": "1855 V8 BlueTec 5",
+                        "power": "598"
+                    }
+                ],
+                "transmission": [
+                    "PowerShift G281",
+                    "PowerShift G281R"
+                ]
+            },
+            {
+                "model": "New Actros MP4",
+                "cabin": [
+                    "StreamSpace",
+                    "BigSpace",
+                    "GigaSpace"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4",
+                    "8x4"
+                ],
+                "engine": [{
+                        "name": "1842 OM 471 Euro VI",
+                        "power": "421"
+                    },
+                    {
+                        "name": "1845 OM 471 Euro VI",
+                        "power": "400"
+                    },
+                    {
+                        "name": "1848 OM 471 Euro VI",
+                        "power": "440"
+                    },
+                    {
+                        "name": "1851 OM 471 Euro VI",
+                        "power": "510"
+                    },
+                    {
+                        "name": "1852 OM 473 Euro VI",
+                        "power": "517"
+                    },
+                    {
+                        "name": "1858 OM 473 Euro VI",
+                        "power": "578"
+                    },
+                    {
+                        "name": "1863 OM 473 Euro VI",
+                        "power": "625"
+                    }
+                ],
+                "transmission": [
+                    "PowerShift G281-12",
+                    "PowerShift G281-12R"
+                ]
+            }
+        ]
+    },
+    {
+        "brand": "Renault",
+        "models": [{
+                "model": "Magnum",
+                "cabin": [
+                    "Excellence"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [{
+                        "name": "440DXi Euro5",
+                        "power": "440"
+                    },
+                    {
+                        "name": "480DXi Euro5",
+                        "power": "480"
+                    },
+                    {
+                        "name": "520DXi Euro5",
+                        "power": "520"
+                    }
+                ],
+                "transmission": [
+                    "Optidriver AT2412D",
+                    "Optidriver ATO2612D",
+                    "Allison 4500",
+                    "ZF 16AS2630TO",
+                    "Optidriver AT2412D R",
+                    "Optidriver ATO2612D R",
+                    "Allison 4500 R",
+                    "ZF 16AS2631TO R"
+                ]
+            },
+            {
+                "model": "Premium",
+                "cabin": [
+                    "Normal Roof",
+                    "High Roof"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [{
+                        "name": "380DXi Euro 5",
+                        "power": "380"
+                    },
+                    {
+                        "name": "430DXi Euro5",
+                        "power": "430"
+                    },
+                    {
+                        "name": "460DXi Euro5",
+                        "power": "460"
+                    }
+                ],
+                "transmission": [
+                    "Optidriver AT2412D",
+                    "Optidriver ATO2612D",
+                    "Allison 4500",
+                    "ZF 16AS2630TO",
+                    "Optidriver AT2412D R",
+                    "Optidriver ATO2612D R",
+                    "Allison 4500 R",
+                    "ZF 16AS2631TO R"
+                ]
+            },
+            {
+                "model": "Range T",
+                "cabin": [
+                    "Sleeper",
+                    "High Sleeper"
+                ],
+                "chassis": [
+                    "4x2",
+                    "4x2 Extra Tank",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [{
+                        "name": "DTI 11 380 Euro 6",
+                        "power": "380"
+                    },
+                    {
+                        "name": "DTI 11 430 Euro 6",
+                        "power": "430"
+                    },
+                    {
+                        "name": "DTI 13 440 Euro 6",
+                        "power": "440"
+                    },
+                    {
+                        "name": "DTI 11 460 Euro 6",
+                        "power": "440"
+                    },
+                    {
+                        "name": "DTI 13 480 Euro 6",
+                        "power": "440"
+                    },
+                    {
+                        "name": "DTI 13 520 Euro 6",
+                        "power": "520"
+                    }
+
+                ],
+                "transmission": [
+                    "Optidriver AT2612F",
+                    "Optidriver ATO2612F",
+                    "Allison 4500",
+                    "Optidriver Extended ATO2614F",
+                    "Optidriver AT2612F R",
+                    "Optidriver ATO2612F R",
+                    "Allison 4500 R",
+                    "Optidriver Extended ATO2614F R"
+                ]
+            }
+        ]
+    },
+    {
+        "brand": "Scania",
+        "models": [{
+                "model": "R",
+                "cabin": [
+                    "Normal Roof",
+                    "High Roof"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2 Long",
+                    "6x2/4",
+                    "6x2 Long Taglift",
+                    "6x2/4 Midlift",
+                    "6x4 Long",
+                    "8x4"
+                ],
+                "engine": [{
+                        "name": "DC13 149 370 Euro 6",
+                        "power": "370"
+                    },
+                    {
+                        "name": "DC13 141 410 Euro 6",
+                        "power": "410"
+                    },
+                    {
+                        "name": "DC13 148 450 Euro 6",
+                        "power": "450"
+                    },
+                    {
+                        "name": "DC13 155 500 Euro 6",
+                        "power": "500"
+                    },
+                    {
+                        "name": "DC16 116 520 Euro 6 V8",
+                        "power": "520"
+                    },
+                    {
+                        "name": "DC16 117 580 Euro 6 V8",
+                        "power": "580"
+                    },
+                    {
+                        "name": "DC16 118 650 Euro 6 V8",
+                        "power": "650"
+                    },
+                    {
+                        "name": "DC16 107 730 Euro 6 V8 ",
+                        "power": "730"
+                    }
+                ],
+                "transmission": [
+                    "Opticruise GRS 905",
+                    "Opticruise GRSO 905",
+                    "Scania GA867",
+                    "Opticruise GRSO 925",
+                    "Opticruise GRS 905 R",
+                    "Opticruise GRSO 905 R",
+                    "Scania GA867 R",
+                    "Opticruise GRSO 925 R"
+                ]
+            },
+            {
+                "model": "R 2009",
+                "cabin": [
+                    "Normal",
+                    "Highline",
+                    "Topline"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2 Midlift",
+                    "6x4",
+                    "8x4"
+                ],
+                "engine": [{
+                        "name": "DC13 114 360 Euro V",
+                        "power": "360"
+                    },
+                    {
+                        "name": "DC12 18 380 Euro V",
+                        "power": "380"
+                    },
+                    {
+                        "name": "DC13 05 400 Euro V",
+                        "power": "400"
+                    },
+                    {
+                        "name": "DC15 15 420 Euro V",
+                        "power": "420"
+                    },
+                    {
+                        "name": "DC13 10 440 Euro V",
+                        "power": "440"
+                    },
+                    {
+                        "name": "DC13 109 440 Euro VI",
+                        "power": "440"
+                    },
+                    {
+                        "name": "DC13 07 480 Euro V",
+                        "power": "480"
+                    },
+                    {
+                        "name": "DC16 19 500 Euro V V8",
+                        "power": "500"
+                    },
+                    {
+                        "name": "DC13 110 480 Euro VI",
+                        "power": "480"
+                    },
+                    {
+                        "name": "DC16 18 560 Euro 5 V8 ",
+                        "power": "560"
+                    },
+                    {
+                        "name": "DC16 17 620 Euro 5 V8",
+                        "power": "620"
+                    },
+                    {
+                        "name": "DC16 21 730 Euro 5 V8",
+                        "power": "730"
+                    }
+                ],
+                "transmission": [
+                    "Opticruise GRS 895",
+                    "Opticruise GRSO 925",
+                    "Allison 4500",
+                    "Opticruise GRSO 925 +",
+                    "Opticruise GRS 895 R",
+                    "Opticruise GRSO 925 R",
+                    "Opticruise GRSO 925 R +",
+                    "Allison 4500 R"
+                ]
+            },
+            {
+                "model": "S",
+                "cabin": [
+                    "Normal Roof",
+                    "High Roof"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2 Long",
+                    "6x2/4",
+                    "6x2 Long Taglift",
+                    "6x2/4 Midlift",
+                    "6x4 Long",
+                    "8x4"
+                ],
+                "engine": [{
+                        "name": "DC13 149 370 Euro 6",
+                        "power": "370"
+                    },
+                    {
+                        "name": "DC13 141 410 Euro 6 ",
+                        "power": "410"
+                    },
+                    {
+                        "name": "DC13 148 450 Euro 6",
+                        "power": "450"
+                    },
+                    {
+                        "name": "DC13 155 500 Euro 6",
+                        "power": "500"
+                    },
+                    {
+                        "name": "DC16 116 520 Euro 6 V8",
+                        "power": "520"
+                    },
+                    {
+                        "name": "DC16 117 580 Euro 6 V8",
+                        "power": "580"
+                    },
+                    {
+                        "name": "DC16 118 650 Euro 6 V8",
+                        "power": "650"
+                    },
+                    {
+                        "name": "DC16 107 730 Euro 6 V8",
+                        "power": "730"
+                    }
+
+                ],
+                "transmission": [
+                    "Opticruise GRS 905",
+                    "Opticruise GRSO 905",
+                    "Scania GA867",
+                    "Opticruise GRSO 925",
+                    "Opticruise GRS 905 R",
+                    "Opticruise GRSO 905 R",
+                    "Scania GA867 R",
+                    "Opticruise GRSO 925 R"
+                ]
+            },
+            {
+                "model": "Streamline",
+                "cabin": [
+                    "Normal",
+                    "Highline",
+                    "Topline"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2 Midlift",
+                    "6x4",
+                    "8x4"
+                ],
+                "engine": [{
+                        "name": "DC13 114 360 Euro V",
+                        "power": "360"
+                    },
+                    {
+                        "name": "DC12 18 380 Euro V",
+                        "power": "380"
+                    },
+                    {
+                        "name": "DC13 113 400 Euro V",
+                        "power": "450"
+                    },
+                    {
+                        "name": "DC13 116 370 Euro VI",
+                        "power": "370"
+                    },
+                    {
+                        "name": "DC12 15 420 Euro V",
+                        "power": "420"
+                    },
+                    {
+                        "name": "DC13 112 440 Euro V",
+                        "power": "440"
+                    },
+                    {
+                        "name": "DC13 115 410 Euro VI",
+                        "power": "410"
+                    },
+                    {
+                        "name": "DC13 109 440 Euro VI",
+                        "power": "440"
+                    },
+                    {
+                        "name": "DC13 124 450 Euro VI",
+                        "power": "450"
+                    },
+                    {
+                        "name": "DC13 111 480 Euro V",
+                        "power": "480"
+                    },
+                    {
+                        "name": "DC13 110 480 Euro VI",
+                        "power": "480"
+                    },
+                    {
+                        "name": "DC13 125 490 Euro VI",
+                        "power": "490"
+                    },
+                    {
+                        "name": "DC16 19 500 Euro V V8",
+                        "power": "500"
+                    },
+                    {
+                        "name": "DC16 18 560 Euro V V8",
+                        "power": "560"
+                    },
+                    {
+                        "name": "DC16 16 620 Euro V V8",
+                        "power": "620"
+                    },
+                    {
+                        "name": "DC16 101 520 Euro VI V8",
+                        "power": "520"
+                    },
+                    {
+                        "name": "DC16 102 580 Euro VI V8",
+                        "power": "580"
+                    },
+                    {
+                        "name": "DC16 21 730 Euro V EEV V8",
+                        "power": "730"
+                    },
+                    {
+                        "name": "DC16 103 730 Euro VI V8",
+                        "power": "730"
+                    }
+
+                ],
+                "transmission": [
+                    "Opticruise GRS 895",
+                    "Opticruise GRSO 925",
+                    "Allison 4500",
+                    "Opticruise 925 +",
+                    "Opticruise GRS 895 R",
+                    "Opticruise GRSO 925 R",
+                    "Opticruise GRSO 925 R +",
+                    "Allison 4500 R"
+                ]
+            }
+        ]
+    },
+    {
+        "brand": "Volvo",
+        "models": [{
+                "model": "FH16 2009",
+                "cabin": [
+                    "Sleeper",
+                    "Globetrotter",
+                    "Globetrotter XL"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4"
+                ],
+                "engine": [{
+                        "name": "D16G540 Euro 5",
+                        "power": "540"
+                    },
+                    {
+                        "name": "D16G600 Euro 5",
+                        "power": "600"
+                    },
+                    {
+                        "name": "D16G700 Euro 5",
+                        "power": "700"
+                    },
+                    {
+                        "name": "D16G750 Euro 5",
+                        "power": "500"
+                    }
+                ],
+                "transmission": [
+                    "I-Shift AT2812D",
+                    "I-Shift ATO3512D",
+                    "Allison 4500",
+                    "I-Shift AT2812D R",
+                    "I-Shift ATO3512D R",
+                    "Allison 4500 R"
+                ]
+            },
+            {
+                "model": "FH16 2012",
+                "cabin": [
+                    "Sleeper",
+                    "Globetrotter",
+                    "Globetrotter XL"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2/4",
+                    "6x2 Taglift",
+                    "6x2/4 Midlift",
+                    "6x4",
+                    "8x4"
+                ],
+                "engine": [{
+                        "name": "D13C420 Euro 5 / EEV",
+                        "power": "420"
+                    },
+                    {
+                        "name": "D13C460 Euro 5 / EEV",
+                        "power": "460"
+                    },
+                    {
+                        "name": "D13K460 Euro 6",
+                        "power": "460"
+                    },
+                    {
+                        "name": "D13C500 Euro 5 / EEV",
+                        "power": "500"
+                    },
+                    {
+                        "name": "D16G540 Euro 5",
+                        "power": "540"
+                    },
+                    {
+                        "name": "D16G600 Euro 5",
+                        "power": "600"
+                    },
+                    {
+                        "name": "D13C540 Euro 5",
+                        "power": "540"
+                    },
+                    {
+                        "name": "D16G700 Euro 5",
+                        "power": "700"
+                    },
+                    {
+                        "name": "D16G750 Euro 5 / EEV",
+                        "power": "750"
+                    }
+                ],
+                "transmission": [
+                    "I - Shift AT2812D",
+                    "I - Shift ATO3512D",
+                    "Allison 4500",
+                    "I - Shift AT2812D R",
+                    "I - Shift ATO3512D R",
+                    "Allison 4500 R"
+                ]
+            },
+            {
+                "model": "S",
+                "cabin": [
+                    "Normal Roof",
+                    "High Roof"
+                ],
+                "chassis": [
+                    "4x2",
+                    "6x2",
+                    "6x2 Long",
+                    "6x2/4",
+                    "6x2 Long Taglift",
+                    "6x2/4 Midlift",
+                    "6x4 Long",
+                    "8x4"
+                ],
+                "engine": [{
+                        "name": "DC13 149 370 Euro 6",
+                        "power": "370"
+                    },
+                    {
+                        "name": "DC13 141 410 Euro 6 ",
+                        "power": "410"
+                    },
+                    {
+                        "name": "DC13 148 450 Euro 6",
+                        "power": "450"
+                    },
+                    {
+                        "name": "DC13 155 500 Euro 6",
+                        "power": "500"
+                    },
+                    {
+                        "name": "DC16 116 520 Euro 6 V8",
+                        "power": "520"
+                    },
+                    {
+                        "name": "DC16 117 580 Euro 6 V8",
+                        "power": "580"
+                    },
+                    {
+                        "name": "DC16 118 650 Euro 6 V8",
+                        "power": "650"
+                    },
+                    {
+                        "name": "DC16 107 730 Euro 6 V8",
+                        "power": "730"
+                    }
+
+                ],
+                "transmission": [
+                    "Opticruise GRS 905",
+                    "Opticruise GRSO 905",
+                    "Scania GA867",
+                    "Opticruise GRSO 925",
+                    "Opticruise GRS 905 R",
+                    "Opticruise GRSO 905 R",
+                    "Scania GA867 R",
+                    "Opticruise GRSO 925 R"
+                ]
+            }
+        ]
+    }
+]

@@ -1,5 +1,4 @@
 from datetime import datetime
-from random import shuffle
 from typing import NamedTuple
 
 import requests
@@ -383,7 +382,7 @@ class Disposition(models.Model):
     unloading_spedition = models.CharField(max_length=100)
     cargo = models.CharField(max_length=64)
     tonnage = models.IntegerField(default=0)
-    deadline = models.DateTimeField(blank=True)
+    deadline = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_rozpiska = models.BooleanField(default=False)
     # field for dispositions from rozpiska only

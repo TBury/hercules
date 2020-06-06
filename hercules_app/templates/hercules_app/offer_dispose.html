@@ -99,7 +99,7 @@
                         </li>
                         {% elif position is not None %}
                         <li>
-                            <a href="/CompanyProfile">
+                            <a href="/Company/CompanyProfile">
                                 <p class="option company-profile">
                                     Profil firmy
                                 </p>
@@ -163,7 +163,7 @@
                     <div class="columns">
                         <div class="column">
                             <div class="driver-basic-info">
-                                <img src="{% static '/assets/avatar_krawczyk.jpg' %}" class="driver-avatar">
+                                <img src="{{ driver.avatar.url }}" class="driver-avatar">
                                 <p class="username">{{ driver.nick }}</p>
                             </div>
                         </div>
@@ -173,13 +173,11 @@
                                     class="vehicle-brand">
                                 <span class="vehicle">
                                     <p class="vehicle-model">MAN TGX XXL Euro 5</p>
-                                    <img src="{% static '/assets/WLS23090.png' %}"
-                                        class="registration-number">
                                 </span>
                             </div>
                         </div>
                         <div class="column">
-                                <a href="{{ driver.id }}" class="button dispose is-rounded">Przydziel</a>
+                                <a href="/Gielda/Offers/DisposeOffer/{{ driver.id }}" class="button dispose is-rounded">Przydziel</a>
                         </div>
                     </div>
                 </div>

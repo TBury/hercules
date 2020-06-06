@@ -1,0 +1,12 @@
+.hero {
+  background-image: url("/static/assets/register-hero.png") !important;
+}
+
+.login-form {
+  width: 400px !important;
+}
+
+.content {
+  margin-right: 1.75rem;
+}
+/*# sourceMappingURL=register.css.map */

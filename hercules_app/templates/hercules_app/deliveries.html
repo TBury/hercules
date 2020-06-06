@@ -106,7 +106,7 @@
                         </li>
                         {% elif position is not None %}
                         <li>
-                            <a href="/CompanyProfile">
+                            <a href="/Company/CompanyProfile">
                                 <p class="option company-profile">
                                     Profil firmy
                                 </p>
@@ -129,7 +129,7 @@
                         </li>
                         {% if position == "Szef" or position == "Spedytor" %}
                         <li>
-                            <a href="/Company/Waybills">
+                            <a {% if is_speditor_view %} class="is-active" {% endif %} href="/Company/Waybills">
                                 <p class="option waybills">Listy przewozowe</p>
                             </a>
                         </li>

@@ -1,0 +1,62 @@
+.delivery {
+    margin-right: 50px;
+}
+
+.accepted {
+    border-left: 10px solid #44C4A1;
+}
+
+.declined {
+    border-left: 10px solid #C70000;
+}
+
+.not-checked {
+    border-left: 10px solid #0282FC;
+}
+
+.to-edit {
+    border-left: 10px solid #ffdd57;
+}
+
+.accepted-tag {
+    background: #44C4A1 !important;
+}
+
+.declined-tag {
+    background: #C70000 !important;
+}
+
+.not-checked-tag {
+   background: #0282FC !important;
+}
+
+.to-edit-tag {
+    background: #ffdd57 !important;
+}
+
+.status-tag {
+    margin-top: 10px;
+    font-weight: 700;
+    color: white !important;
+}
+
+.check-details {
+    margin-top: 5%;
+}
+
+.driver-basic-info {
+    display: flex;
+}
+
+.driver-username {
+    align-self: center;
+    margin-left: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.driver-avatar {
+    border-radius: 25px;
+    width: 48px;
+    height: 48px;
+}

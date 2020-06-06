@@ -9,28 +9,29 @@
     <meta name="description"
         content="Hercules to najlepszy polski system rozliczeń dla wirtualnych spedycji w ETS2. Dołącz do nas już teraz i zostań herosem transportu!">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'hercules_app/assets/apple-icon-57x57.png}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'hercules_app/assets//apple-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'hercules_app/assets//apple-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'hercules_app/assets//apple-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'hercules_app/assets//apple-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'hercules_app/assets//apple-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'hercules_app/assets//apple-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'hercules_app/assets//apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'hercules_app/assets//apple-icon-180x180.png' %}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static '/assets/icons/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static '/assets/icons/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static '/assets/icons/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static '/assets/icons/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static '/assets/icons/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static '/assets/icons/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static '/assets/icons/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static '/assets/icons/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/assets/icons/apple-icon-180x180.png' %}">
     <link rel="icon" type="image/png" sizes="192x192"
-        href="{% static 'hercules_app/assets//android-icon-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'hercules_app/assets//favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'hercules_app/assets//favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'hercules_app/assets//favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'hercules_app/assets//manifest.json' %} ">
+        href="{% static '/assets/icons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/assets/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static '/assets/icons/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/assets/icons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static '/assets/icons/manifest.json' %} ">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png' %}">
+    <meta name="msapplication-TileImage" content="{% static '/assets/icons/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/dispose.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/verify_waybill.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/drivers.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -40,6 +41,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script defer src="{% static 'js/drivers.js' %}"></script>
     <script defer src="{% static 'js/toast.js' %}"></script>
+
     <title> Kierowcy firmy {{ company }} | Hercules</title>
 </head>
 
@@ -108,7 +110,7 @@
                         </li>
                         {% elif position is not None %}
                         <li>
-                            <a href="/CompanyProfile">
+                            <a href="/Company/CompanyProfile">
                                 <p class="option company-profile">
                                     Profil firmy
                                 </p>
@@ -173,7 +175,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="button search-offers">Szukaj kierowcy</button>
+                        <a type="submit" class="button search-offers">Szukaj kierowcy</a>
                     </form>
                 </div>
                 <form class="sort-form" action="">
@@ -234,7 +236,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="column is-2">
+                        <div class="column">
                             <div class="tags">
                                 {% if company_driver.realised %}
                                 <span class="tag periodic-norm-tag is-medium is-success">Norma zaliczona</span>
@@ -242,19 +244,22 @@
                                 <span class="tag periodic-norm-tag is-medium is-danger">Norma niezaliczona</span>
                                 {% endif %}
                             </div>
+
+                        <div class="column">
+                             <a class="button dispose dismiss is-rounded" id="{{ company_driver.id }}">Zwolnij kierowcę</button>
                         </div>
                         <div class="column">
                             <div class="check-profile">
                                 <a href="/Company/Drivers/{{ company_driver.id }}" class="button dispose is-rounded">Sprawdź profil</a>
                             </div>
                         </div>
-                    </div>
+
                 </div>
                 {% else %}
                 {% for company_driver in company_drivers %}
                 <div class="box card driver">
                     <div class="columns">
-                        <div class="column is-3">
+                        <div class="column is-2">
                             <div class="driver-basic-info">
                                 <img src="{{ company_driver.avatar }}" class="driver-avatar">
                                 <span class="user">
@@ -287,7 +292,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="column is-2">
+                        <div class="column">
                             <div class="tags">
                                 {% if company_driver.realised %}
                                 <span class="tag periodic-norm-tag is-medium is-success">Norma zaliczona</span>
@@ -296,9 +301,12 @@
                                 {% endif %}
                             </div>
                         </div>
+                         <div class="column">
+                             <a class="button dispose dismiss is-rounded" id="{{ company_driver.id }}">Zwolnij kierowcę</a>
+                        </div>
                         <div class="column">
                             <div class="check-profile">
-                                <a href="/Company/Drivers/{{ company_driver.id }}" class="button dispose is-rounded">Sprawdź profil</a>
+                                <a href="/Company/Drivers/{{ company_driver.id }}" class="button dispose check-profile-button is-rounded">Sprawdź profil</a>
                             </div>
                         </div>
                     </div>
@@ -317,7 +325,27 @@
                         </span>
                     </div>
                 </div>
+
                 {% endif %}
+            <div class="modal reject-modal" id="page-modal">
+                <div class="modal-background reject-background"></div>
+                <div class="modal-content">
+                    <div class="box">
+                        <form action="" method="post" class="rejectForm">
+                            {% csrf_token %}
+                            <span>
+                                <h1 class="title">Potwierdź zwolnienie kierowcy</h1>
+                                <p class="subtitle is-5">Nie można wycofać tej decyzji!</p>
+                            </span>
+                            <div class="modal-buttons">
+                                <a class="button cancel-reject" data-dismiss="modal">Wróć</a>
+                                <button type="submit" class="button" id="rejectButton" href="#">Zwolnij kierowcę</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button class="modal-close is-large reject-close" aria-label="close"></button>
+            </div>
             </main>
         </div>
     </div>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,CAAC;EACD,KAAK,EAAE,cAAc;CACxB;;AAED,AAAA,QAAQ,CAAC;EACL,WAAW,EAAE,GAAG;EAChB,UAAU,EAAE,IAAI;EAChB,WAAW,EAAE,IAAI;EACjB,SAAS,EAAE,iBAAiB;EAC5B,WAAW,EAAE,mCAAmC;EAChD,KAAK,EAAE,gBAAgB;EACvB,gBAAgB,EAAE,kBAAkB;CACvC",
+    "sources": [
+        "send_application.scss"
+    ],
+    "names": [],
+    "file": "send_application.css"
+}

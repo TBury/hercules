@@ -1,0 +1,111 @@
+.user-info {
+    width: 82vw;
+    height: 15%;
+    background-color: white;
+    margin-top: 1%;
+    border-top: 7px solid #0282FC;
+}
+
+.level-left,
+.level-right {
+    width: 50%;
+}
+.user-info-basic {
+    margin-top: 25px !important;
+    width: 100%;
+    padding-bottom: 25px;
+}
+
+.user-info-avatar {
+    border-radius: 45px;
+}
+.user-info-username {
+    word-break: keep-all !important;
+}
+.title {
+    margin-left: 0 !important;
+}
+
+.user-info-details {
+    margin-left: 3.5%;
+}
+
+.card {
+    margin-top: 5%;
+}
+.achievement {
+    width: 75%;
+}
+
+.achievement-title {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.vehicle {
+    width: 100%;
+}
+
+.second-level {
+    margin-top: -40px !important;
+}
+
+.is-parent {
+    padding-bottom: 0 !important;
+}
+
+.last-deliveries {
+    width: 85vw;
+}
+
+.range-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    .range {
+        margin-top: 8px;
+        margin-left: 20px;
+    }
+}
+
+.hello-icon {
+    font-size: 50px !important;
+}
+
+.card-header {
+    margin-bottom: 30px;
+}
+
+.spedition {
+    width: 96px;
+    height: 48px;
+}
+
+.tile.is-ancestor:not(:last-child) {
+        margin-bottom: 0 !important;
+}
+
+.vehicle-info {
+    display: flex;
+}
+
+.vehicle-parameters {
+    margin-top: 35px;
+    color: black;
+
+    b {
+        font-size: 1.35rem;
+    }
+
+    p {
+        margin-top: 5px;
+    }
+}
+
+.vehicle-model {
+    margin-left: 15px;
+    align-self: center;
+    color: black;
+    font-weight: 700;
+    font-size: 1.25rem;
+}

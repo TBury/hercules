@@ -28,7 +28,7 @@ from hercules_app.models import (
     TruckersMPStatus
 )
 from .tasks import get_waybill_info
-
+from common.utils.utils import get_country
 
 def index(request):
     return render(request, 'hercules_app/index.html')
@@ -36,6 +36,15 @@ def index(request):
 
 def login(request):
     return render(request, 'hercules_app/sign-in.html')
+
+def handler404(request, exception):
+    return render(request, 'hercules_app/404.html', status=404)
+
+def handler500(request):
+    return render(request, 'hercules_app/500.html', status=500)
+
+def handler403(request, exception):
+    return render(request, 'hercules_app/403.html', status=403)
 
 
 @login_required(login_url="/login")
@@ -401,17 +410,18 @@ def OfferDetailsView(request, offer_id):
             'drivers_count', flat=True).get(name=driver_info.company)
     except:
         company_drivers_count = 1
-    is_self_employed = False
+    is_self_employeed = False
     request.session['offer_id'] = offer_id
     if company_drivers_count == 1:
-        is_self_employed = True
+        is_self_employeed = True
     args = {
         'nick': driver_info.nick,
+        'id': driver.id,
         'company': driver_info.company,
         'avatar': driver_info.avatar,
         'position': driver_info.position,
         'offer': offer,
-        'is_self_employed': is_self_employed
+        'is_self_employeed': is_self_employeed
     }
     return render(request, 'hercules_app/offer_details.html', args)
 
@@ -422,8 +432,8 @@ def CreateOfferView(request):
         form = NewOfferForm(data=request.POST)
         if form.is_valid():
             offer = form.save(commit=False)
-            offer.loading_country = 'test'
-            offer.unloading_country = 'test'
+            offer.loading_country = get_country(offer.loading_city)
+            offer.unloading_country = get_country(offer.unloading_city)
             offer.save()
             request.session['offer_added'] = True
             return redirect('/Gielda/Offers')
@@ -455,11 +465,17 @@ def ChooseDriverView(request):
     company_drivers_count = Company.objects.values_list(
         'drivers_count', flat=True).get(name=driver_info.company)
     if company_drivers_count > 1:
-        company_drivers = Driver.objects.all().filter(company=driver_info.company)
+        company = Company.objects.get(name=driver_info.company)
+        company_drivers = Driver.objects.all().filter(id=company.id)
         company_drivers_vehicles = []
         for company_driver in company_drivers:
-            company_drivers_vehicles.append(
-                Vehicle.objects.get(driver=company_driver))
+            try:
+                company_drivers_vehicles.append(
+                    Vehicle.objects.get(driver=company_driver)
+                )
+            except Vehicle.DoesNotExist:
+                pass
+
         args = {
             'nick': driver_info.nick,
             'company': driver_info.company,
@@ -475,17 +491,20 @@ def ChooseDriverView(request):
 
 @login_required(login_url="/login")
 def DisposeOffer(request, driver_id):
-    disposition = Disposition()
     offer_id = request.session.get('offer_id')
     offer = Gielda.objects.get(id=offer_id)
     del request.session['offer_id']
-    disposition.loading_city = offer.loading_city
-    disposition.loading_spedition = offer.loading_spedition
-    disposition.unloading_city = offer.unloading_city
-    disposition.unloading_spedition = offer.unloading_spedition
-    disposition.cargo = offer.cargo
-    disposition.tonnage = offer.tonnage
-    disposition.driver = Driver.objects.get(id=driver_id)
+    Disposition.objects.create(
+        loading_city=offer.loading_city,
+        loading_country=offer.unloading_country,
+        loading_spedition=offer.loading_spedition,
+        unloading_city=offer.unloading_city,
+        unloading_country=offer.unloading_country,
+        unloading_spedition=offer.unloading_spedition,
+        cargo=offer.cargo,
+        tonnage=offer.tonnage,
+        driver=Driver.objects.get(id=driver_id)
+    )
     request.session['dispose_offer_success'] = True
     Gielda.objects.get(id=offer_id).delete()
     return redirect('panel')
@@ -869,7 +888,23 @@ def ChangePosition(request, driver_id):
         request.session['changed-position'] = True
         return redirect('/Company/Drivers')
     else:
-        return HttpResponse(status=500)
+        return HttpResponse(status=403)
+
+@login_required(login_url="/login")
+def DismissDriver(request, driver_id):
+    if request.POST:
+        company_driver = Driver.objects.get(id=driver_id)
+        company = company_driver.company
+        company_driver.company = None
+        company_driver.is_employeed = False
+        company_driver.position = None
+        company_driver.save()
+        company.drivers_count -= 1
+        company.save()
+        request.session['dismissed-driver'] = True
+        return redirect('/Company/Drivers')
+    else:
+        return HttpResponse(status=403)
 
 @login_required(login_url="/login")
 def CompanyWaybillsView(request):
@@ -1232,7 +1267,7 @@ def CreateNewDispositionView(request):
         if form.is_valid():
             disposed_driver = Driver.objects.get(id=request.POST['driver'])
             disposition = form.save(commit=False)
-            disposition.loading_country = 'test'
+            disposition.loading_country = get_country(disposition.loading_city)
             disposition.driver = disposed_driver
             disposition.save()
             request.session['created_disposition'] = True
@@ -1298,7 +1333,8 @@ def CreateNewRozpiskaView(request):
         for form in forms:
             if form.is_valid():
                 disposition = form.save(commit=False)
-                disposition.loading_country = 'test'
+                disposition.loading_country = get_country(disposition.loading_city)
+                disposition.unloading_country = get_country(disposition.unloading_city)
                 disposition.driver = disposed_driver
                 disposition.is_rozpiska = True
                 disposition.rozpiska = rozpiska
@@ -1356,19 +1392,19 @@ def CreateNewRozpiskaView(request):
 
 @login_required(login_url="/login")
 def GetRandomDispositionInfo():
-    cities = {}
-    cargos = {}
     with open('static/assets/files/companies.json', 'r') as cities_json:
         cities = json.load(cities_json)
     first_city = cities[randint(0, len(cities) - 1)].get("city_name")
     for city in cities:
         if city["city_name"] == first_city:
             companies = city["companies"]
+            loading_country = city.get("country")
     loading_company = companies[randint(0, len(companies) - 1)]
     unloading_city = cities[randint(0, len(cities) - 1)].get("city_name")
     for city in cities:
         if city["city_name"] == unloading_city:
             companies = city["companies"]
+            unloading_country = city.get("country")
     unloading_company = companies[randint(0, len(companies) - 1)]
     with open('static/assets/files/cargo.json', 'r', encoding="utf-8") as cargo_json:
         cargos = json.load(cargo_json)
@@ -1377,9 +1413,11 @@ def GetRandomDispositionInfo():
     tonnage = cargo["mass"]
     disposition = {
         'loading_city': first_city,
+        'loading_country': loading_country,
         'loading_spedition': loading_company,
         'unloading_city': unloading_city,
         'unloading_spedition': unloading_company,
+        'unloading_country': unloading_country,
         'cargo': cargo_name,
         'tonnage': tonnage,
     }
