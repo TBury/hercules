@@ -8,4 +8,3 @@ gunicorn
 whitenoise
 future
 cloudinary
-django-cloudinary-storage
