@@ -7,4 +7,5 @@ redis
 gunicorn
 whitenoise
 future
-cloudinary
+boto3
+django-storages
