@@ -2,10 +2,7 @@ import re
 
 from PIL import Image, ImageFilter
 from pytesseract import image_to_string, pytesseract
-
-TESSERACT_CMD = 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe'
-
-pytesseract.tesseract_cmd = TESSERACT_CMD
+from django.core.files.storage import default_storage as storage
 
 
 class WaybillInfo:
@@ -20,14 +17,14 @@ class WaybillInfo:
 
     def get_first_screen(self):
         try:
-            first_screen = Image.open(self.first_screen_path)
+            first_screen = storage.open(self.first_screen_path, "r")
         except KeyError:
             return "Błąd otwarcia pliku"
         return first_screen
 
     def get_end_screen(self):
         try:
-            end_screen = Image.open(self.end_screen_path)
+            end_screen = storage.open(self.end_screen_path, "r")
         except KeyError:
             return "Błąd otwarcia pliku"
         return end_screen
