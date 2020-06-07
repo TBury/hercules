@@ -17,14 +17,16 @@ class WaybillInfo:
 
     def get_first_screen(self):
         try:
-            first_screen = storage.open(self.first_screen_path, "r")
+            fs = storage.open(self.first_screen_path, "r")
+            first_screen = Image.open(fs)
         except KeyError:
             return "Błąd otwarcia pliku"
         return first_screen
 
     def get_end_screen(self):
         try:
-            end_screen = storage.open(self.end_screen_path, "r")
+            f = storage.open(self.end_screen_path, "r")
+            end_screen = Image.open(f)
         except KeyError:
             return "Błąd otwarcia pliku"
         return end_screen
