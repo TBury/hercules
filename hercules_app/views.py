@@ -268,15 +268,15 @@ def manual_step_one(request):
 @login_required(login_url="/login")
 def process_waybill(request):
     waybill_id = request.session.get('waybill_id')
-    # TODO: check if the waybill_id is passed correctly
-    waybill = Waybill.objects.get(id=waybill_id)
-    info = get_waybill_info.delay(waybill.first_screen.path,
-                                  waybill.end_screen.path)
-    args = info.get()
-    if args is not None:
-        request.session['screen_information'] = args
-        return HttpResponse(status=200)
-    else:
+    try:
+        waybill = Waybill.objects.get(id=waybill_id)
+        info = get_waybill_info.delay(waybill.first_screen.name,
+                                  waybill.end_screen.name)
+        args = info.get()
+        if args is not None:
+            request.session['screen_information'] = args
+            return HttpResponse(status=200)
+    except Waybill.DoesNotExist:
         return HttpResponse(status=500)
 
 
