@@ -5,6 +5,7 @@ from datetime import datetime
 from decimal import Decimal
 from random import randint
 
+import boto3
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -29,6 +30,7 @@ from hercules_app.models import (
 )
 from .tasks import get_waybill_info
 from common.utils.utils import get_country
+from .recognition import WaybillInfo
 
 def index(request):
     return render(request, 'hercules_app/index.html')
@@ -270,8 +272,8 @@ def process_waybill(request):
     waybill_id = request.session.get('waybill_id')
     try:
         waybill = Waybill.objects.get(id=waybill_id)
-        info = get_waybill_info.delay(waybill.first_screen.name,
-                                  waybill.end_screen.name)
+        info = get_waybill_info.delay(waybill.first_screen.file.name,
+                                  waybill.end_screen.file.name)
         args = info.get()
         if args is not None:
             request.session['screen_information'] = args

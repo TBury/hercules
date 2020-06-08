@@ -27,7 +27,7 @@ SECRET_KEY = 'm^%^y3_8e&$l)q&mfuihrm_gihvl#g7@k&gpfg4bwx8v9kpu#8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hercules-project.herokuapp.com']
+ALLOWED_HOSTS = ['hercules-project.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -139,8 +139,8 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "live-static-files", 'media-root')
 
-CELERY_BROKER_URL = os.environ['REDIS_URL']
-CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+CELERY_BROKER_URL = "redis://h:p00cec0487864ec3e0afa314440c8ca5e9b5d62c55719be3e155c993f7545b47f@ec2-3-214-226-152.compute-1.amazonaws.com:21069"
+CELERY_RESULT_BACKEND = "redis://h:p00cec0487864ec3e0afa314440c8ca5e9b5d62c55719be3e155c993f7545b47f@ec2-3-214-226-152.compute-1.amazonaws.com:21069"
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -173,14 +173,14 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         },
     },
 }
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None

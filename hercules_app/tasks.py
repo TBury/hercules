@@ -63,61 +63,12 @@ def get_income(ocr, bind=True):
 
 
 @task
-def save_loading_info_screen(ocr, id, bind=True):
-    loading_info_screen = ocr.get_loading_info_image()
-    loading_info_screen.save('waybills\%s' % str(
-        id) + 'loading-info.png', 'JPEG')
-
-
-@task
-def save_unloading_info_screen(ocr, id, bind=True):
-    unloading_info_screen = ocr.get_unloading_info_image()
-    unloading_info_screen.save('waybills\%s' %
-                               str(id) + 'unloading-info.png', 'JPEG')
-
-
-@task
-def save_cargo_screen(ocr, id, bind=True):
-    cargo = ocr.get_cargo_image()
-    cargo.save('waybills\%s' %
-               str(id) + 'cargo.png', 'JPEG')
-
-
-@task
-def save_tonnage_screen(ocr, id, bind=True):
-    tonnage = ocr.get_tonnage_image()
-    tonnage.save('waybills\%s' %
-                 str(id) + 'tonnage.png', 'JPEG')
-
-
-@task
-def save_distance_screen(ocr, id, bind=True):
-    distance = ocr.get_distance_image()
-    distance.save('waybills\%s' %
-                  str(id) + 'distance.png', 'JPEG')
-
-
-@task
-def save_fuel_screen(ocr, id, bind=True):
-    fuel = ocr.get_fuel_image()
-    fuel.save('waybills\%s' %
-              str(id) + 'fuel.png', 'JPEG')
-
-
-@task
-def save_income_screen(ocr, id, bind=True):
-    income = ocr.get_income_image()
-    income.save('waybills\%s' %
-                str(id) + 'income.png', 'JPEG')
-
-
-@task
 def get_waybill_info(first_screen_path, end_screen_path, bind=True):
     ocr = recognition.WaybillInfo(
         first_screen_path,
         end_screen_path)
     waybill_screens_id = uuid.uuid4()
-    media_url = '\waybills\%s' % waybill_screens_id
+    media_url = 'waybills/%s-' % waybill_screens_id
     loading_city = get_loading_city(ocr)
     loading_spedition = get_loading_spedition(ocr)
     unloading_city = get_unloading_city(ocr)
@@ -127,13 +78,13 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
     distance = get_distance(ocr)
     fuel = get_fuel(ocr)
     income = get_income(ocr)
-    save_cargo_screen(ocr, waybill_screens_id)
-    save_distance_screen(ocr, waybill_screens_id)
-    save_fuel_screen(ocr, waybill_screens_id)
-    save_income_screen(ocr, waybill_screens_id)
-    save_loading_info_screen(ocr, waybill_screens_id)
-    save_tonnage_screen(ocr, waybill_screens_id)
-    save_unloading_info_screen(ocr, waybill_screens_id)
+    ocr.save_cargo_screen(waybill_screens_id)
+    ocr.save_distance_screen(waybill_screens_id)
+    ocr.save_fuel_screen(waybill_screens_id)
+    ocr.save_income_screen(waybill_screens_id)
+    ocr.save_loading_info_screen(waybill_screens_id)
+    ocr.save_tonnage_screen(waybill_screens_id)
+    ocr.save_unloading_info_screen(waybill_screens_id)
 
     waybill = {
         'loading_city': loading_city,

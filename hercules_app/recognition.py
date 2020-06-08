@@ -1,8 +1,9 @@
 import re
 
 from PIL import Image, ImageFilter
-from pytesseract import image_to_string, pytesseract
+from io import BytesIO
 from django.core.files.storage import default_storage as storage
+from pytesseract import image_to_string
 
 
 class WaybillInfo:
@@ -17,7 +18,7 @@ class WaybillInfo:
 
     def get_first_screen(self):
         try:
-            fs = storage.open(self.first_screen_path, "r")
+            fs = storage.open(self.first_screen_path, mode="rb")
             first_screen = Image.open(fs)
         except KeyError:
             return "Błąd otwarcia pliku"
@@ -25,7 +26,7 @@ class WaybillInfo:
 
     def get_end_screen(self):
         try:
-            f = storage.open(self.end_screen_path, "r")
+            f = storage.open(self.end_screen_path, "rb")
             end_screen = Image.open(f)
         except KeyError:
             return "Błąd otwarcia pliku"
@@ -159,3 +160,50 @@ class WaybillInfo:
         income = income.replace(" ", "")
         income = self.regex_process(income, r'(\d+)')
         return income
+
+    def save_to_s3(self, image, image_name):
+        output = BytesIO()
+        image.save(output, format="JPEG")
+        with storage.open(image_name, 'w+') as f:
+            f.write(output.getvalue())
+        output.close()
+
+    def save_loading_info_screen(self, id):
+        loading_info_screen = self.get_loading_info_image()
+        file_name = 'waybills/%s' % str(id) + 'loading-info.png'
+        self.save_to_s3(loading_info_screen, file_name)
+
+    def save_unloading_info_screen(self, id):
+        unloading_info_screen = self.get_unloading_info_image()
+        file_name = 'waybills/%s-unloading-info.png' % str(
+            id)
+        self.save_to_s3(unloading_info_screen, file_name)
+
+    def save_cargo_screen(self, id):
+        cargo = self.get_cargo_image()
+        file_name = 'waybills/%s-cargo.png' % str(
+            id)
+        self.save_to_s3(cargo, file_name)
+
+    def save_tonnage_screen(self, id):
+        tonnage = self.get_tonnage_image()
+        file_name = 'waybills/%s-tonnage.png' % str(
+            id)
+        self.save_to_s3(tonnage, file_name)
+
+    def save_distance_screen(self, id):
+        distance = self.get_distance_image()
+        file_name = 'waybills/%s-distance.png' % str(
+            id)
+        self.save_to_s3(distance, file_name)
+
+    def save_fuel_screen(self, id):
+        fuel = self.get_fuel_image()
+        file_name = 'waybills/%s-fuel.png' % str(
+            id)
+        self.save_to_s3(fuel, file_name)
+
+    def save_income_screen(self, id,):
+        income = self.get_income_image()
+        file_name = 'waybills/%s-income.png' % str(id)
+        self.save_to_s3(income, file_name)
