@@ -245,9 +245,11 @@
                                 {% endif %}
                             </div>
 
-                        <div class="column">
-                             <a class="button dispose dismiss is-rounded" id="{{ company_driver.id }}">Zwolnij kierowcę</button>
+                        {% if company_driver.nick != nick %}
+                         <div class="column">
+                             <a class="button dispose dismiss is-rounded" id="{{ company_driver.id }}">Zwolnij kierowcę</a>
                         </div>
+                        {% endif %}
                         <div class="column">
                             <div class="check-profile">
                                 <a href="/Company/Drivers/{{ company_driver.id }}" class="button dispose is-rounded">Sprawdź profil</a>
@@ -301,9 +303,11 @@
                                 {% endif %}
                             </div>
                         </div>
+                    {% if company_driver.nick != nick %}
                          <div class="column">
                              <a class="button dispose dismiss is-rounded" id="{{ company_driver.id }}">Zwolnij kierowcę</a>
                         </div>
+                    {% endif %}
                         <div class="column">
                             <div class="check-profile">
                                 <a href="/Company/Drivers/{{ company_driver.id }}" class="button dispose check-profile-button is-rounded">Sprawdź profil</a>

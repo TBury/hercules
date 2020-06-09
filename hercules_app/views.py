@@ -843,7 +843,7 @@ def ShowCompanyDriversView(request):
             }
             response = render(request, 'hercules_app/drivers.html', args)
         if changed_position is True:
-            cookie = SetCookie(request, response, 'changed-position')
+            SetCookie(request, response, 'changed-position')
         return response
 
 @login_required(login_url="/login")
