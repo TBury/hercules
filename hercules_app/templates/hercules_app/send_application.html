@@ -50,7 +50,7 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a href="/panel">
+                            <a class="panel-option" href="/panel">
                                 <p class="option main-site">Panel systemu</p>
                             </a>
                         </li>
@@ -65,7 +65,7 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a href='/drivers-card'>
+                            <a href="/drivers-card">
                                 <p class="option driver-card">Karta kierowcy</p>
                             </a>
                         </li>
@@ -75,7 +75,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Gielda/Offers">
+                            <a href="/Gielda/Offers/">
                                 <p class="option gielda">Giełda zleceń</p>
                             </a>
                         </li>
@@ -120,7 +120,8 @@
                         {% endif %}
                         <li>
                             <a href="/Vehicles">
-                                <p class="option vehicles">{% if position is None %} Twoje pojazdy {% else %} Pojazdy
+                                <p class="option vehicles">{% if position is None %} Twoje pojazdy {% else %}
+                                    Pojazdy
                                     firmowe {% endif %}</p>
                             </a>
                         </li>
@@ -136,14 +137,16 @@
                             </a>
                         </li>
                         {% endif %}
-                    {% if position == "Szef" %}
+                        {% if position == "Szef" %}
                         <li>
                             <a href="/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
+                        {% endif %}
+                        {% if position == "Szef" or position is None %}
                         <li>
-                            <a href="/Company/JobApplications">
+                            <a class="is-active" href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
                             </a>
                         </li>
