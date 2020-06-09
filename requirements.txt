@@ -9,4 +9,4 @@ whitenoise
 future
 boto3
 django-storages
-django-heroku
+dj-database-url
