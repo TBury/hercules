@@ -297,7 +297,7 @@ def add_waybill(request):
     else:
         args = request.session['screen_information']
         for value in args:
-            args.get(value)
+            print(args.get(value))
             #if "image" in args.get(value):
                # args[value] = storage.open(args.get(value))
     if request.method == "POST":
