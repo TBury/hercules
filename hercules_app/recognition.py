@@ -3,9 +3,9 @@ import re
 from PIL import Image, ImageFilter
 from io import BytesIO
 from django.core.files.storage import default_storage as storage
-from pytesseract import image_to_string, tesseract_cmd
+import pytesseract
 
-tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
 
 class WaybillInfo:
     def __init__(self, first_screen_path, end_screen_path):
@@ -64,7 +64,7 @@ class WaybillInfo:
 
     def get_loading_info(self):
         first_screen = self.get_loading_info_image()
-        loading_info = image_to_string(first_screen, lang='pol')
+        loading_info = pytesseract.image_to_string(first_screen, lang='pol')
         return loading_info
 
     def get_loading_city(self):
@@ -82,7 +82,7 @@ class WaybillInfo:
 
     def get_unloading_info(self):
         first_screen = self.get_unloading_info_image()
-        unloading_info = image_to_string(first_screen, lang='pol')
+        unloading_info = pytesseract.image_to_string(first_screen, lang='pol')
         return unloading_info
 
     def get_unloading_city(self):
@@ -110,7 +110,7 @@ class WaybillInfo:
 
     def get_cargo(self):
         first_screen = self.get_cargo_image()
-        cargo = image_to_string(first_screen, lang='pol')
+        cargo = pytesseract.image_to_string(first_screen, lang='pol')
         return cargo
 
     def get_tonnage_image(self):
@@ -120,7 +120,7 @@ class WaybillInfo:
 
     def get_tonnage(self):
         first_screen = self.get_tonnage_image()
-        tonnage = image_to_string(first_screen, lang='pol')
+        tonnage = pytesseract.image_to_string(first_screen, lang='pol')
         tonnage = tonnage[:-3]
         tonnage = tonnage.replace(" ", "")
         return tonnage
@@ -132,7 +132,7 @@ class WaybillInfo:
     def get_distance(self):
         end_screen = self.get_distance_image()
         end_screen = self.resize_screen(end_screen, 225)
-        distance = image_to_string(end_screen)
+        distance = pytesseract.image_to_string(end_screen)
         distance = self.regex_process(distance, r'(\d+)')
         return distance
 
@@ -143,7 +143,7 @@ class WaybillInfo:
     def get_fuel(self):
         end_screen = self.get_fuel_image()
         end_screen = self.resize_screen(end_screen, 300)
-        fuel = image_to_string(end_screen, lang='pol')
+        fuel = pytesseract.image_to_string(end_screen, lang='pol')
         fuel = self.regex_process(fuel, r'(\d+,\d)')
         if fuel != 'error':
             fuel = fuel.replace(',', '.')
@@ -157,7 +157,7 @@ class WaybillInfo:
     def get_income(self):
         end_screen = self.get_income_image()
         end_screen = self.resize_screen(end_screen, 275)
-        income = image_to_string(end_screen, lang='pol')
+        income = pytesseract.image_to_string(end_screen, lang='pol')
         income = income.replace(" ", "")
         income = self.regex_process(income, r'(\d+)')
         return income
