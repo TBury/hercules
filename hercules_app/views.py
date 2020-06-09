@@ -579,13 +579,13 @@ def CompanyVehiclesView(request):
 
     is_edited = request.session.get('vehicle_edited')
     if is_edited:
-        cookie = SetCookie(request, response, 'vehicle_edited')
+        SetCookie(request, response, 'vehicle_edited')
     is_added = request.session.get('vehicle_added')
     if is_added:
-        cookie = SetCookie(request, response, 'vehicle_added')
+        SetCookie(request, response, 'vehicle_added')
     is_removed = request.session.get('vehicle_deleted')
     if is_removed:
-        cookie = SetCookie(request, response, 'vehicle_deleted')
+        SetCookie(request, response, 'vehicle_deleted')
 
     return response
 
@@ -631,7 +631,7 @@ def VehicleDetailsView(request, vehicle_id):
             old_vehicle.last_driver = new_driver
             old_vehicle.save()
             form.driver = new_driver
-            form.last_driver = current_driver
+            form.last_driver = Driver.objects.get(id=current_driver)
 
             form.save()
             request.session['vehicle_edited'] = True
