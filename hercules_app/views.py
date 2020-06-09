@@ -5,9 +5,9 @@ from datetime import datetime
 from decimal import Decimal
 from random import randint
 
-import boto3
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
+from django.core.files.storage import default_storage as storage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.encoding import smart_str
 
@@ -295,7 +295,9 @@ def add_waybill(request):
     if waybill.first_screen.name == "":
         is_automatic = False
     else:
-        args = request.session['screen_information']
+        images = request.session['screen_information']
+        for image in images:
+            args[image] = storage.open(image)
     if request.method == "POST":
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
@@ -353,6 +355,7 @@ def add_waybill(request):
             })
         else:
             form = AddWaybillForm()
+
     args = {
         'nick': driver_info.nick,
         'position': driver_info.position,
