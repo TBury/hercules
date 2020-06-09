@@ -295,10 +295,10 @@ def add_waybill(request):
     if waybill.first_screen.name == "":
         is_automatic = False
     else:
-        images = request.session['screen_information']
-        for image in images:
-            if "image" in image:
-                print(image)
+        args = request.session['screen_information']
+        for value in args:
+            if "image" in args.get(value):
+                args[value] = storage.open(args.get(value))
     if request.method == "POST":
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
