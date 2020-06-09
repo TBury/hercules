@@ -30,9 +30,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['hercules-project.herokuapp.com', '127.0.0.1']
 
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-# Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -90,6 +88,9 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+# Application definition
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
