@@ -3,9 +3,9 @@ import re
 from PIL import Image, ImageFilter
 from io import BytesIO
 from django.core.files.storage import default_storage as storage
-from pytesseract import image_to_string
+from pytesseract import image_to_string, tesseract_cmd
 
-pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+tesseract_cmd = '/app/.apt/usr/bin/tesseract'
 
 class WaybillInfo:
     def __init__(self, first_screen_path, end_screen_path):
