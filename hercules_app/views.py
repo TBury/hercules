@@ -305,7 +305,7 @@ def add_waybill(request):
                 waybill.screens_id = args['screen_id']
             waybill.save()
             try:
-                disposition = Disposition.objects.filter(
+                Disposition.objects.filter(
                     driver=driver,
                     loading_city=waybill.loading_city,
                     loading_spedition=waybill.loading_spedition,
