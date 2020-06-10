@@ -89,16 +89,17 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
         'distance': distance,
         'fuel': fuel,
         'income': income,
-        'loading_info_image': ocr.get_loading_info_image(),
-        'unloading_info_image': ocr.get_unloading_info_image(),
-        'cargo_image': ocr.get_cargo_image(),
-        'tonnage_image': ocr.get_tonnage_image(),
-        'distance_image': ocr.get_distance_image(),
-        'fuel_image': ocr.get_fuel_image(),
-        'income_image': ocr.get_income_image(),
-
     }
-    return waybill
+    images = []
+    images.append(ocr.get_loading_info_image())
+    images.append(ocr.get_unloading_info_image())
+    images.append(ocr.get_cargo_image())
+    images.append(ocr.get_tonnage_image())
+    images.append(ocr.get_distance_image())
+    images.append(ocr.get_fuel_image())
+    images.append(ocr.get_income_image())
+
+    return waybill, images
 
 
 @task (
