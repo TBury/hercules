@@ -1,5 +1,4 @@
 import glob
-import io
 import json
 import os
 from datetime import datetime
@@ -27,11 +26,11 @@ from hercules_app.models import (
     Achievement,
     CompanySettings,
     WorkApplications,
-    TruckersMPStatus
+    TruckersMPStatus, WaybillImages
 )
 from .tasks import get_waybill_info
 from common.utils.utils import get_country
-from PIL import Image
+from .recognition import WaybillInfo
 
 def index(request):
     return render(request, 'hercules_app/index.html')
@@ -277,7 +276,16 @@ def process_waybill(request):
                                   waybill.end_screen.file.name)
         args = info.get()
         if args is not None:
-            request.session['screen_information'] = args
+            WaybillImages.objects.create(
+                waybill=waybill,
+                loading_info=args.get("loading_info_image"),
+                unloading_info= args.get("unloading_info_image"),
+                cargo_image=args.get("cargo_image"),
+                tonnage_image=args.get("tonnage_image"),
+                distance_image=args.get("distance_image"),
+                fuel_image=args.get("fuel_image"),
+                income_image=args.get("income_image")
+            )
             return HttpResponse(status=200)
     except Waybill.DoesNotExist:
         return HttpResponse(status=500)
@@ -296,22 +304,13 @@ def add_waybill(request):
         is_automatic = False
     else:
         args = request.session['screen_information']
-        images = {}
-        for value in args:
-            if "image" in value:
-                i = storage.open(args.get(value), 'rb')
-                content = i.read()
-                i.close()
-                image = Image.open(io.BytesIO(content))
-                images[value] = image
+        images = WaybillImages.objects.get(waybill=waybill)
 
     if request.method == "POST":
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
             waybill = form.save(commit=False)
             waybill.driver = driver
-            if is_automatic:
-                waybill.screens_id = args['screen_id']
             waybill.save()
             try:
                 Disposition.objects.filter(
@@ -338,14 +337,9 @@ def add_waybill(request):
                 )
                 Waybill.objects.filter(id=waybill_id).update(
                     status="accepted")
-                if is_automatic:
-                    for screen in glob.glob('static/assets/waybills/' + args['screen_id'] + "*.png"):
-                        os.remove(screen)
             request.session.modified = True
             request.session['waybill_success'] = True
             del request.session['waybill_id']
-            if is_automatic:
-                del request.session['screen_information']
             return redirect('panel')
     else:
         if is_automatic:

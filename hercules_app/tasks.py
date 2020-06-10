@@ -4,7 +4,7 @@ from celery import task
 from celery.utils.log import get_task_logger
 
 from hercules_app import recognition
-from hercules_app.models import TruckersMPStatus, CompanySettings
+from hercules_app.models import TruckersMPStatus, CompanySettings, WaybillImages
 
 logger = get_task_logger(__name__)
 
@@ -67,8 +67,6 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
     ocr = recognition.WaybillInfo(
         first_screen_path,
         end_screen_path)
-    waybill_screens_id = uuid.uuid4()
-    media_url = 'waybills/%s' % waybill_screens_id
     loading_city = get_loading_city(ocr)
     loading_spedition = get_loading_spedition(ocr)
     unloading_city = get_unloading_city(ocr)
@@ -78,13 +76,7 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
     distance = get_distance(ocr)
     fuel = get_fuel(ocr)
     income = get_income(ocr)
-    ocr.save_cargo_screen(waybill_screens_id)
-    ocr.save_distance_screen(waybill_screens_id)
-    ocr.save_fuel_screen(waybill_screens_id)
-    ocr.save_income_screen(waybill_screens_id)
-    ocr.save_loading_info_screen(waybill_screens_id)
-    ocr.save_tonnage_screen(waybill_screens_id)
-    ocr.save_unloading_info_screen(waybill_screens_id)
+
 
 
     waybill = {
@@ -97,14 +89,14 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
         'distance': distance,
         'fuel': fuel,
         'income': income,
-        'loading_info_image': media_url + '-loading-info.png',
-        'unloading_info_image': media_url + '-unloading-info.png',
-        'cargo_image': media_url + '-cargo.png',
-        'tonnage_image': media_url + '-tonnage.png',
-        'distance_image': media_url + '-distance.png',
-        'fuel_image': media_url + '-fuel.png',
-        'income_image': media_url + '-income.png',
-        'screen_id': waybill_screens_id,
+        'loading_info_image': ocr.get_loading_info_image(),
+        'unloading_info_image': ocr.get_unloading_info_image(),
+        'cargo_image': ocr.get_cargo_image(),
+        'tonnage_image': ocr.get_tonnage_image(),
+        'distance_image': ocr.get_distance_image(),
+        'fuel_image': ocr.get_fuel_image(),
+        'income_image': ocr.get_income_image(),
+
     }
     return waybill
 

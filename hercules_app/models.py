@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import NamedTuple
 
 import requests
+from hercules_app import recognition
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
@@ -316,6 +317,18 @@ class Waybill(models.Model):
     def __str__(self):
         return str(self.id)
 
+    def get_waybill_images(self):
+        return WaybillImages.objects.get(waybill=self)
+
+class WaybillImages(models.Model):
+    waybill = models.ForeignKey(Waybill, on_delete=models.CASCADE, null=True)
+    loading_info = models.ImageField(upload_to='waybills', default="")
+    unloading_info = models.ImageField(upload_to='waybills', default="")
+    cargo_image = models.ImageField(upload_to='waybills', default="")
+    tonnage_image = models.ImageField(upload_to='waybills', default="")
+    distance_image = models.ImageField(upload_to='waybills', default="")
+    fuel_image = models.ImageField(upload_to='waybills', default="")
+    income_image = models.ImageField(upload_to='waybills', default="")
 
 class Gielda(models.Model):
     id = models.AutoField(primary_key=True)
