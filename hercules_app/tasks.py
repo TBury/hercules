@@ -63,10 +63,11 @@ def get_income(ocr, bind=True):
 
 
 @task
-def get_waybill_info(first_screen_path, end_screen_path, bind=True):
+def get_waybill_info(first_screen_path, end_screen_path, waybill, bind=True):
     ocr = recognition.WaybillInfo(
         first_screen_path,
-        end_screen_path)
+        end_screen_path
+    )
     loading_city = get_loading_city(ocr)
     loading_spedition = get_loading_spedition(ocr)
     unloading_city = get_unloading_city(ocr)
@@ -76,8 +77,6 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
     distance = get_distance(ocr)
     fuel = get_fuel(ocr)
     income = get_income(ocr)
-
-
 
     waybill = {
         'loading_city': loading_city,
@@ -90,16 +89,19 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
         'fuel': fuel,
         'income': income,
     }
-    images = []
-    images.append(ocr.get_loading_info_image())
-    images.append(ocr.get_unloading_info_image())
-    images.append(ocr.get_cargo_image())
-    images.append(ocr.get_tonnage_image())
-    images.append(ocr.get_distance_image())
-    images.append(ocr.get_fuel_image())
-    images.append(ocr.get_income_image())
 
-    return waybill, images
+    WaybillImages.objects.create(
+        waybill=waybill,
+        loading_info=ocr.get_loading_info_image(),
+        unloading_info=ocr.get_unloading_info_image(),
+        cargo_image=ocr.get_cargo_image(),
+        tonnage_image=ocr.get_tonnage_image(),
+        distance_image=ocr.get_distance_image(),
+        fuel_image=ocr.get_fuel_image(),
+        income_image=ocr.get_income_image()
+    )
+
+    return waybill
 
 
 @task (

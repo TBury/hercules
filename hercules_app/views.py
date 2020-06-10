@@ -274,18 +274,8 @@ def process_waybill(request):
         waybill = Waybill.objects.get(id=waybill_id)
         info = get_waybill_info.delay(waybill.first_screen.file.name,
                                   waybill.end_screen.file.name)
-        args, images = info.get()
+        args = info.get()
         if args is not None:
-            WaybillImages.objects.create(
-                waybill=waybill,
-                loading_info=images[0],
-                unloading_info=images[1],
-                cargo_image=images[2],
-                tonnage_image=images[3],
-                distance_image=images[4],
-                fuel_image=images[5],
-                income_image=images[6]
-            )
             return HttpResponse(status=200)
     except Waybill.DoesNotExist:
         return HttpResponse(status=500)
