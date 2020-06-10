@@ -69,7 +69,7 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
         first_screen_path,
         end_screen_path)
     waybill_screens_id = uuid.uuid4()
-    media_url = 'waybills/%s-' % waybill_screens_id
+    media_url = 'waybills/%s' % waybill_screens_id
     loading_city = get_loading_city(ocr)
     loading_spedition = get_loading_spedition(ocr)
     unloading_city = get_unloading_city(ocr)
@@ -98,13 +98,13 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
         'distance': distance,
         'fuel': fuel,
         'income': income,
-        'loading_info_image': media_url + 'loading-info.png',
-        'unloading_info_image': media_url + 'unloading-info.png',
-        'cargo_image': media_url + 'cargo.png',
-        'tonnage_image': media_url + 'tonnage.png',
-        'distance_image': media_url + 'distance.png',
-        'fuel_image': media_url + 'fuel.png',
-        'income_image': media_url + 'income.png',
+        'loading_info_image': media_url + '-loading-info.png',
+        'unloading_info_image': media_url + '-unloading-info.png',
+        'cargo_image': media_url + '-cargo.png',
+        'tonnage_image': media_url + '-tonnage.png',
+        'distance_image': media_url + '-distance.png',
+        'fuel_image': media_url + '-fuel.png',
+        'income_image': media_url + '-income.png',
         'screen_id': waybill_screens_id,
     }
     return waybill
