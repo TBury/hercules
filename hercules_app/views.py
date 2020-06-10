@@ -285,7 +285,6 @@ def process_waybill(request):
 @login_required(login_url="/login")
 def add_waybill(request):
     is_automatic = True
-    args = ''
     driver = Driver.objects.get(user=request.user)
     driver_info = Driver.get_driver_info(request)
 
@@ -364,7 +363,8 @@ def add_waybill(request):
         'company': driver_info.company,
         'avatar': driver_info.avatar,
         'form': form,
-        'is_automatic': is_automatic
+        'is_automatic': is_automatic,
+        'images': images
     }
     return render(request, 'hercules_app/verify.html', args)
 
