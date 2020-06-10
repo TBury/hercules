@@ -1,4 +1,5 @@
 import glob
+import io
 import json
 import os
 from datetime import datetime
@@ -30,7 +31,7 @@ from hercules_app.models import (
 )
 from .tasks import get_waybill_info
 from common.utils.utils import get_country
-from .recognition import WaybillInfo
+from PIL import Image
 
 def index(request):
     return render(request, 'hercules_app/index.html')
@@ -298,9 +299,11 @@ def add_waybill(request):
         images = {}
         for value in args:
             if "image" in value:
-                image = storage.open(args.get(value), 'rb')
-                images[value] = image.read()
-                image.close()
+                i = storage.open(args.get(value), 'rb')
+                content = i.read()
+                i.close()
+                image = Image.open(io.BytesIO(content))
+                images[value] = image
 
     if request.method == "POST":
         form = AddWaybillForm(request.POST, instance=waybill)
