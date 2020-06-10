@@ -273,7 +273,7 @@ def process_waybill(request):
     try:
         waybill = Waybill.objects.get(id=waybill_id)
         info = get_waybill_info.delay(waybill.first_screen.file.name,
-                                  waybill.end_screen.file.name)
+                                  waybill.end_screen.file.name, waybill)
         args = info.get()
         if args is not None:
             return HttpResponse(status=200)
