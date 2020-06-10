@@ -5,9 +5,9 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-handler404 = views.handler404
-handler500 = views.handler500
-handler403 = views.handler403
+handler404 = 'hercules_app.views.handler404'
+handler500 = 'hercules_app.views.handler500'
+handler403 = 'hercules_app.views.handler403'
 
 
 urlpatterns = [

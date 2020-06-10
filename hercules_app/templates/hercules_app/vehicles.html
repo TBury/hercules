@@ -185,11 +185,18 @@
                                 <div class="columns">
                                     <div class="column">
                                         <div class="current-driver">
+                                            {% if vehicle.driver %}
                                             <img src="{{ vehicle.driver.avatar.url }}" class="driver-avatar">
                                             <span class="current-driver-span">
                                                 <label class="hint">Obecny kierowca</label>
                                                 <h2 class="driver-username">{{ vehicle.driver.nick }}</h2>
                                             </span>
+                                            {% else %}
+                                            <span class="current-driver-span">
+                                                <label class="hint">Obecny kierowca</label>
+                                                <h2 class="driver-username">Brak kierowcy na pojeździe</h2>
+                                            </span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="column">
