@@ -102,20 +102,21 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
 
     WaybillImages.objects.create(
         waybill=w,
-        loading_info=ContentFile(loading_info, loading_city),
-        unloading_info=ContentFile(unloading_info, loading_city),
-        cargo_image=ContentFile(cargo_image, loading_city),
-        tonnage_image=ContentFile(tonnage_image, loading_city),
-        distance_image=ContentFile(distance_image, loading_city),
-        fuel_image=ContentFile(fuel_image, loading_city),
-        income_image=ContentFile(income_image, loading_city),
+        loading_info=ContentFile(loading_info, "linfo.png"),
+        unloading_info=ContentFile(unloading_info, "uinfo.png"),
+        cargo_image=ContentFile(cargo_image, "cinfo.png"),
+        tonnage_image=ContentFile(tonnage_image, "tinfo.png"),
+        distance_image=ContentFile(distance_image, "dinfo.png"),
+        fuel_image=ContentFile(fuel_image, "finfo.png"),
+        income_image=ContentFile(income_image, "iinfo.png"),
     )
 
     return waybill
 
 
 def create_temp_image(image):
-    temp_image = Image.open(BytesIO(image))
+    temp_image = BytesIO()
+    image.save(temp_image, image.format)
     return temp_image.getvalue()
 
 
