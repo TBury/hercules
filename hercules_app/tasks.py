@@ -87,7 +87,6 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
     ocr.save_tonnage_screen(waybill_screens_id)
     ocr.save_unloading_info_screen(waybill_screens_id)
 
-    loading_info_image = storage.open(media_url + 'loading-info.png')
 
     waybill = {
         'loading_city': loading_city,
@@ -99,7 +98,7 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
         'distance': distance,
         'fuel': fuel,
         'income': income,
-        'loading_info_image': loading_info_image,
+        'loading_info_image': media_url + 'loading-info.png',
         'unloading_info_image': media_url + 'unloading-info.png',
         'cargo_image': media_url + 'cargo.png',
         'tonnage_image': media_url + 'tonnage.png',
