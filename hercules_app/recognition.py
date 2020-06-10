@@ -172,7 +172,7 @@ class WaybillInfo:
 
     def save_loading_info_screen(self, id):
         loading_info_screen = self.get_loading_info_image()
-        file_name = 'waybills/%s' % str(id) + 'loading-info.png'
+        file_name = 'waybills/%s' % str(id) + '-loading-info.png'
         self.save_to_s3(loading_info_screen, file_name)
 
     def save_unloading_info_screen(self, id):
