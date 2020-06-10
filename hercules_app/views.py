@@ -296,9 +296,10 @@ def add_waybill(request):
         is_automatic = False
     else:
         args = request.session['screen_information']
+        images = {}
         for value in args:
             if "image" in value:
-                print(args.get(value))
+                images[value] = storage.open(args.get(value))
     if request.method == "POST":
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
