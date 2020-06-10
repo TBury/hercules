@@ -4,7 +4,7 @@ from celery import task
 from celery.utils.log import get_task_logger
 
 from hercules_app import recognition
-from hercules_app.models import TruckersMPStatus, CompanySettings, WaybillImages
+from hercules_app.models import TruckersMPStatus, CompanySettings, WaybillImages, Waybill
 
 logger = get_task_logger(__name__)
 
@@ -63,7 +63,8 @@ def get_income(ocr, bind=True):
 
 
 @task
-def get_waybill_info(first_screen_path, end_screen_path, waybill, bind=True):
+def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
+    w = Waybill.objects.get(id=waybill_id)
     ocr = recognition.WaybillInfo(
         first_screen_path,
         end_screen_path
@@ -91,7 +92,7 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill, bind=True):
     }
 
     WaybillImages.objects.create(
-        waybill=waybill,
+        waybill=w,
         loading_info=ocr.get_loading_info_image(),
         unloading_info=ocr.get_unloading_info_image(),
         cargo_image=ocr.get_cargo_image(),
