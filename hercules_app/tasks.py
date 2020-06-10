@@ -119,7 +119,7 @@ def create_temp_image(image):
     temp_image = BytesIO()
     image.save(temp_image, format="png")
     temp_image.flush()
-    return temp_image
+    return temp_image.getvalue()
 
 
 @task (
