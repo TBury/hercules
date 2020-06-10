@@ -93,8 +93,3 @@ urlpatterns = [
     path ("JobApplications/<int:application_id>", views.ShowJobApplicationDetailsView, name="job-application-details-driver"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-handler404 = 'hercules_app.views.handler404'
-handler500 = 'hercules_app.views.handler500'
-handler403 = 'hercules_app.views.handler403'

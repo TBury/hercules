@@ -21,3 +21,7 @@ urlpatterns = [
     path('', include('hercules_app.urls')),
     path('admin/', admin.site.urls),
 ]
+
+handler404 = 'hercules_app.views.handler404'
+handler500 = 'hercules_app.views.handler500'
+handler403 = 'hercules_app.views.handler403'
