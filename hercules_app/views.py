@@ -298,9 +298,10 @@ def add_waybill(request):
         images = {}
         for value in args:
             if "image" in value:
-                images[value] = storage.open(args.get(value))
-                print(images[value].path)
-                print(driver.avatar)
+                image = storage.open(args.get(value), 'rb')
+                images[value] = image.read()
+                image.close()
+
     if request.method == "POST":
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
