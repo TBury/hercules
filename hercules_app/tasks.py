@@ -95,13 +95,13 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
 
     WaybillImages.objects.create(
         waybill=w,
-        loading_info=File(create_temp_image(ocr.get_loading_info_image())),
-        unloading_info=File(create_temp_image(ocr.get_unloading_info_image())),
-        cargo_image=File(create_temp_image(ocr.get_cargo_image())),
-        tonnage_image=File(create_temp_image(ocr.get_tonnage_image())),
-        distance_image=File(create_temp_image(ocr.get_distance_image())),
-        fuel_image=File(create_temp_image(ocr.get_fuel_image())),
-        income_image=File(create_temp_image(ocr.get_income_image()))
+        loading_info=ContentFile(ocr.get_loading_info_image(), loading_city),
+        unloading_info=ContentFile(ocr.get_unloading_info_image(), loading_city),
+        cargo_image=ContentFile(ocr.get_cargo_image(), loading_city),
+        tonnage_image=ContentFile(ocr.get_tonnage_image(), loading_city),
+        distance_image=ContentFile(ocr.get_distance_image(), loading_city),
+        fuel_image=ContentFile(ocr.get_fuel_image(), loading_city),
+        income_image=ContentFile(ocr.get_income_image(), loading_city),
     )
 
     return waybill
