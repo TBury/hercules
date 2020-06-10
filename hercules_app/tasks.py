@@ -93,13 +93,6 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
         'income': income,
     }
 
-
-    cargo_image=open(ocr.get_cargo_image(), "rb")
-    tonnage_image = open(ocr.get_tonnage_image(), "rb")
-    distance_image = open(ocr.get_distance_image(), "rb")
-    fuel_image = open(ocr.get_fuel_image(), "rb")
-    income_image = open(ocr.get_income_image(), "rb")
-
     WaybillImages.objects.create(
         waybill=w,
         loading_info=File(create_temp_image(ocr.get_loading_info_image())),
