@@ -115,8 +115,7 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
 
 
 def create_temp_image(image):
-    temp_image = BytesIO()
-    image.save(temp_image, format="JPEG")
+    temp_image = Image.open(BytesIO(image))
     return temp_image.getvalue()
 
 
