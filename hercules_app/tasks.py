@@ -68,7 +68,7 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
         first_screen_path,
         end_screen_path)
     waybill_screens_id = uuid.uuid4()
-    media_url = '/waybills/%s' % waybill_screens_id
+    media_url = 'waybills/%s' % waybill_screens_id
     loading_city = get_loading_city(ocr)
     loading_spedition = get_loading_spedition(ocr)
     unloading_city = get_unloading_city(ocr)
