@@ -5,11 +5,6 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-handler404 = 'hercules_app.views.handler404'
-handler500 = 'hercules_app.views.handler500'
-handler403 = 'hercules_app.views.handler403'
-
-
 urlpatterns = [
     path('', views.index, name='index'),
     path('login', auth_views.LoginView.as_view(
@@ -99,3 +94,7 @@ urlpatterns = [
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+
+handler404 = 'hercules_app.views.handler404'
+handler500 = 'hercules_app.views.handler500'
+handler403 = 'hercules_app.views.handler403'
