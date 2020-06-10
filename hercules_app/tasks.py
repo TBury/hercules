@@ -93,22 +93,30 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
         'income': income,
     }
 
+    loading_info = create_temp_image(ocr.get_loading_info_image())
+    unloading_info = create_temp_image(ocr.get_unloading_info_image())
+    cargo_image = create_temp_image(ocr.get_cargo_image())
+    tonnage_image = create_temp_image(ocr.get_tonnage_image())
+    distance_image = create_temp_image(ocr.get_distance_image())
+    fuel_image = create_temp_image(ocr.get_fuel_image())
+    income_image = create_temp_image(ocr.get_income_image())
+
     WaybillImages.objects.create(
         waybill=w,
-        loading_info=ContentFile(ocr.get_loading_info_image(), loading_city),
-        unloading_info=ContentFile(ocr.get_unloading_info_image(), loading_city),
-        cargo_image=ContentFile(ocr.get_cargo_image(), loading_city),
-        tonnage_image=ContentFile(ocr.get_tonnage_image(), loading_city),
-        distance_image=ContentFile(ocr.get_distance_image(), loading_city),
-        fuel_image=ContentFile(ocr.get_fuel_image(), loading_city),
-        income_image=ContentFile(ocr.get_income_image(), loading_city),
+        loading_info=ContentFile(loading_info, loading_city),
+        unloading_info=ContentFile(unloading_info, loading_city),
+        cargo_image=ContentFile(cargo_image, loading_city),
+        tonnage_image=ContentFile(tonnage_image, loading_city),
+        distance_image=ContentFile(distance_image, loading_city),
+        fuel_image=ContentFile(fuel_image, loading_city),
+        income_image=ContentFile(income_image, loading_city),
     )
 
     return waybill
 
 
 def create_temp_image(image):
-    temp_image = NamedTemporaryFile(delete=True)
+    temp_image = BytesIO()
     temp_image.write(image.read())
     temp_image.flush()
     return temp_image
