@@ -3,6 +3,7 @@ import uuid
 from celery import task
 from celery.utils.log import get_task_logger
 
+from django.core.files.storage import default_storage as storage
 from hercules_app import recognition
 from hercules_app.models import TruckersMPStatus, CompanySettings
 
@@ -86,6 +87,8 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
     ocr.save_tonnage_screen(waybill_screens_id)
     ocr.save_unloading_info_screen(waybill_screens_id)
 
+    loading_info_image = storage.open(media_url + 'loading-info.png')
+
     waybill = {
         'loading_city': loading_city,
         'loading_spedition': loading_spedition,
@@ -96,7 +99,7 @@ def get_waybill_info(first_screen_path, end_screen_path, bind=True):
         'distance': distance,
         'fuel': fuel,
         'income': income,
-        'loading_info_image': media_url + 'loading-info.png',
+        'loading_info_image': loading_info_image,
         'unloading_info_image': media_url + 'unloading-info.png',
         'cargo_image': media_url + 'cargo.png',
         'tonnage_image': media_url + 'tonnage.png',
