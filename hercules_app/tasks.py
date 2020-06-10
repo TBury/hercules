@@ -2,7 +2,7 @@ import uuid
 
 from celery import task
 from celery.utils.log import get_task_logger
-from django.core.files.images import ImageFile
+from django.core.files.images import File
 
 from hercules_app import recognition
 from hercules_app.models import TruckersMPStatus, CompanySettings, WaybillImages, Waybill
@@ -94,13 +94,13 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
 
     WaybillImages.objects.create(
         waybill=w,
-        loading_info=ImageFile(open(ocr.get_loading_info_image(), "rb")),
-        unloading_info=ImageFile(open(ocr.get_unloading_info_image(), "rb")),
-        cargo_image=ImageFile(open(ocr.get_cargo_image(), "rb")),
-        tonnage_image=ImageFile(open(ocr.get_tonnage_image(), "rb")),
-        distance_image=ImageFile(open(ocr.get_distance_image(), "rb")),
-        fuel_image=ImageFile(open(ocr.get_fuel_image(), "rb")),
-        income_image=ImageFile(open(ocr.get_income_image(), "rb")),
+        loading_info=File(open(ocr.get_loading_info_image(), "rb")),
+        unloading_info=File(open(ocr.get_unloading_info_image(), "rb")),
+        cargo_image=File(open(ocr.get_cargo_image(), "rb")),
+        tonnage_image=File(open(ocr.get_tonnage_image(), "rb")),
+        distance_image=File(open(ocr.get_distance_image(), "rb")),
+        fuel_image=File(open(ocr.get_fuel_image(), "rb")),
+        income_image=File(open(ocr.get_income_image(), "rb")),
     )
 
     return waybill
