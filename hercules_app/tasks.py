@@ -1,12 +1,13 @@
 import uuid
+from io import BytesIO
+from tempfile import NamedTemporaryFile
 
 from celery import task
 from celery.utils.log import get_task_logger
 from django.core.files.images import File
-
 from hercules_app import recognition
 from hercules_app.models import TruckersMPStatus, CompanySettings, WaybillImages, Waybill
-
+from django.core.files.base import ContentFile
 logger = get_task_logger(__name__)
 
 @task
@@ -92,8 +93,7 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
         'income': income,
     }
 
-    loading_info = open(ocr.get_loading_info_image(), "rb")
-    unloading_info = open(ocr.get_unloading_info_image(), "rb")
+
     cargo_image=open(ocr.get_cargo_image(), "rb")
     tonnage_image = open(ocr.get_tonnage_image(), "rb")
     distance_image = open(ocr.get_distance_image(), "rb")
@@ -102,16 +102,23 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
 
     WaybillImages.objects.create(
         waybill=w,
-        loading_info=File(loading_info),
-        unloading_info=File(unloading_info),
-        cargo_image=File(cargo_image),
-        tonnage_image=File(tonnage_image),
-        distance_image=File(distance_image),
-        fuel_image=File(fuel_image),
-        income_image=File(income_image)
+        loading_info=File(create_temp_image(ocr.get_loading_info_image())),
+        unloading_info=File(create_temp_image(ocr.get_unloading_info_image())),
+        cargo_image=File(create_temp_image(ocr.get_cargo_image())),
+        tonnage_image=File(create_temp_image(ocr.get_tonnage_image())),
+        distance_image=File(create_temp_image(ocr.get_distance_image())),
+        fuel_image=File(create_temp_image(ocr.get_fuel_image())),
+        income_image=File(create_temp_image(ocr.get_income_image()))
     )
 
     return waybill
+
+
+def create_temp_image(image):
+    temp_image = NamedTemporaryFile(delete=True)
+    temp_image.write(image.read())
+    temp_image.flush()
+    return temp_image
 
 
 @task (
