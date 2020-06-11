@@ -1115,10 +1115,10 @@ def CompanySettingsView(request):
                           args)
         information_changed = request.session.get('information_changed')
         if information_changed is True:
-            cookie = SetCookie(request, response, 'information_changed')
+            SetCookie(request, response, 'information_changed')
         settings_changed = request.session.get('settings_changed')
         if settings_changed is True:
-            cookie = SetCookie(request, response, 'settings_changed')
+            SetCookie(request, response, 'settings_changed')
         games = ""
         if company.is_ats:
             games += "1"
@@ -1207,7 +1207,7 @@ def DeleteCompany(request):
                     Driver.objects.filter(nick=driver.nick).update(is_employeed=False, company=None, position=None)
                 Vehicle.objects.filter(company=company).delete()
                 CompanySettings.objects.filter(company=company).delete()
-                # WorkApplications
+                WorkApplications.objects.filter(company=company).delete()
                 Company.objects.filter(name=driver_info.company).delete()
                 return redirect('/panel')
         else:

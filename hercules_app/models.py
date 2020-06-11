@@ -2,7 +2,9 @@ from datetime import datetime
 from typing import NamedTuple
 
 import requests
-from hercules_app import recognition
+from django.contrib.staticfiles import finders
+from django.contrib.staticfiles.storage import staticfiles_storage
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
@@ -319,6 +321,9 @@ class Waybill(models.Model):
 
     def get_waybill_images(self):
         return WaybillImages.objects.get(waybill=self)
+
+    def check_spedition_image(self, spedition_name):
+
 
 class WaybillImages(models.Model):
     waybill = models.ForeignKey(Waybill, on_delete=models.CASCADE, null=True)
