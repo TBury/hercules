@@ -103,7 +103,7 @@
             "sanbuilders",
             "bcp"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Milano",
@@ -169,7 +169,7 @@
             "kaarfor",
             "lidl"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Bruxelles/Brussel",
@@ -202,7 +202,7 @@
             "trameri",
             "posped"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Salzburg",
@@ -223,7 +223,7 @@
             "sellplan",
             "lidl"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Newcastle-upon-Tyne",
@@ -233,7 +233,7 @@
             "sellplan",
             "alds"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Poznań",
@@ -302,7 +302,7 @@
             "tradeaux",
             "wgcc"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Dortmund",
@@ -368,7 +368,7 @@
             "tree_et",
             "wgcc"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "London",
@@ -389,7 +389,7 @@
             "tesco",
             "alds"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Stuttgart",
@@ -438,7 +438,7 @@
             "quarry",
             "eurogoodies"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Kiel",
@@ -518,7 +518,7 @@
             "stokes",
             "tree_et"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Cambridge",
@@ -528,7 +528,7 @@
             "kaarfor",
             "alds"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Plymouth",
@@ -538,7 +538,7 @@
             "trameri",
             "euroacres"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Glasgow",
@@ -550,7 +550,7 @@
             "ms_stein",
             "daf_dlr"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Liverpool",
@@ -560,7 +560,7 @@
             "trameri",
             "nbfc"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Linz",
@@ -580,7 +580,7 @@
             "cont_port",
             "posped"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Innsbruck",
@@ -600,7 +600,7 @@
             "transinet",
             "alds"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Bern",
@@ -688,7 +688,7 @@
             "kaarfor",
             "lidl"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Köln",
@@ -779,7 +779,7 @@
             "norr_food",
             "wilnet_trans"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Dijon",
@@ -1576,7 +1576,7 @@
             "tradeaux",
             "metro"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Travemünde",
@@ -1624,7 +1624,7 @@
             "radus",
             "nch",
             "egres",
-            "lintukainen",
+            "lintunited-kingdomainen",
             "sal_fi",
             "viljo_paper"
         ],
@@ -1694,7 +1694,7 @@
             "radus",
             "onnelik_a",
             "suprema",
-            "lintukainen",
+            "lintunited-kingdomainen",
             "kivi",
             "blt",
             "renat"
@@ -1751,7 +1751,7 @@
             "ateria",
             "polarislines",
             "scania_dlr",
-            "lintukainen"
+            "lintunited-kingdomainen"
         ],
         "country": "estonia"
     },
@@ -1829,7 +1829,7 @@
         "companies": [
             "ns_chem",
             "cont_port",
-            "lintukainen",
+            "lintunited-kingdomainen",
             "sal_fi",
             "bltmetal",
             "aria_nordic"
@@ -1852,7 +1852,7 @@
     {
         "city_name": "Loviisa",
         "companies": [
-            "ukko"
+            "united-kingdomko"
         ],
         "country": "finland"
     },
@@ -2160,7 +2160,7 @@
     {
         "city_name": "Olkiluoto",
         "companies": [
-            "ukko"
+            "united-kingdomko"
         ],
         "country": "finland"
     },
@@ -2171,7 +2171,7 @@
             "kivi",
             "cont_port",
             "ns_oil",
-            "lintukainen"
+            "lintunited-kingdomainen"
         ],
         "country": "finland"
     },
@@ -2494,7 +2494,7 @@
         "companies": [
             "gnt"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Aurach",
@@ -2767,7 +2767,7 @@
             "posped",
             "stokes"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Reykjavík",
@@ -2843,7 +2843,7 @@
     {
         "city_name": "Нови Сад",
         "companies": [
-            "lukoil",
+            "lunited-kingdomoil",
             "eurogoodies",
             "heineken",
             "lidl",
@@ -2860,7 +2860,7 @@
         "companies": [
             "euroacres"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Πάφος",
@@ -3062,7 +3062,7 @@
             "tradeaux",
             "lidl"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Olomouc",
@@ -3143,7 +3143,7 @@
         "companies": [
             "polarislines"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Гусев",
@@ -3196,7 +3196,7 @@
             "tesco",
             "lafarge_t"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Suwałki",
@@ -3283,7 +3283,7 @@
     {
         "city_name": "Kristiinankaupunki",
         "companies": [
-            "lintukainen",
+            "lintunited-kingdomainen",
             "aria_nordic",
             "gnt"
         ],
@@ -3405,7 +3405,7 @@
         "companies": [
             "norr_food"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Jaca",
@@ -3482,7 +3482,7 @@
             "hawesmarket",
             "creamery"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Viitasaari",
@@ -3546,7 +3546,7 @@
             "dhl",
             "tesco"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Битола",
@@ -3587,7 +3587,7 @@
             "jewson",
             "euroacres"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Lillehammer",
@@ -3631,7 +3631,7 @@
             "ikea",
             "trameri"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Inverness",
@@ -3643,7 +3643,7 @@
             "daf_dlr",
             "tree_et"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Huesca",
@@ -3670,7 +3670,7 @@
             "metro",
             "posped"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Fraserburgh",
@@ -3678,7 +3678,7 @@
             "captiglo",
             "polar_fish"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Longyearbyen",
@@ -3698,7 +3698,7 @@
             "stokes",
             "posped"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Andorra la Vella",
@@ -3760,7 +3760,7 @@
             "tree_et",
             "trameri"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Kolding",
@@ -3850,7 +3850,7 @@
             "nbfc",
             "lidl"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Folkestone",
@@ -3860,7 +3860,7 @@
             "globeur",
             "lisette_log"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Krafla",
@@ -4134,7 +4134,7 @@
             "tesco",
             "bcp"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Åre",
@@ -4150,7 +4150,7 @@
             "norr_food",
             "tesco"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Мукачево",
@@ -4159,7 +4159,7 @@
             "flex",
             "renault"
         ],
-        "country": "ukraine"
+        "country": "united-kingdomraine"
     },
     {
         "city_name": "Fürth",
@@ -4175,7 +4175,7 @@
             "tradeaux",
             "tesco"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Kemijärvi",
@@ -4193,7 +4193,7 @@
         "country": "russia"
     },
     {
-        "city_name": "Ukmergė",
+        "city_name": "united-kingdommergė",
         "companies": [
             "likmerge",
             "lidl"
@@ -4214,7 +4214,7 @@
         "companies": [
             "posped"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "A7 Roadworks",
@@ -4261,7 +4261,7 @@
         "companies": [
             "euroacres"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Mikkeli",
@@ -4329,7 +4329,7 @@
         "companies": [
             "agronord"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Лесковац",
@@ -4403,7 +4403,7 @@
             "quarry",
             "posped"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Wiesbaden",
@@ -4454,7 +4454,7 @@
         "companies": [
             "posped"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Grumantbyen",
@@ -4506,7 +4506,7 @@
             "tesco",
             "ns_oil"
         ],
-        "country": "uk"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Győr",
@@ -4568,7 +4568,7 @@
         "companies": [
             "blt"
         ],
-        "country": "ukraine"
+        "country": "united-kingdomraine"
     },
     {
         "city_name": "lebork",
