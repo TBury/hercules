@@ -276,6 +276,7 @@ def process_waybill(request):
                                   waybill.end_screen.file.name, waybill.id)
         args = info.get()
         if args is not None:
+            request.session['screen_information'] = args
             return HttpResponse(status=200)
     except Waybill.DoesNotExist:
         return HttpResponse(status=500)
@@ -293,7 +294,7 @@ def add_waybill(request):
     if waybill.first_screen.name == "":
         is_automatic = False
     else:
-        args = request.session['screen_information']
+        args = request.session.get('screen_information')
         images = WaybillImages.objects.get(waybill=waybill)
 
     if request.method == "POST":
