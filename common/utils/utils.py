@@ -13,7 +13,8 @@ def get_country(city_name):
 
 def file_exists(spedition):
     try:
-        abs_path = finders.find(f"hercules_app/{spedition}")
+        spedition = str(spedition).lower()
+        abs_path = finders.find(f"/livestatic_files/static-root/assets/companies/{ spedition }.png")
         if staticfiles_storage.exists(abs_path):
             return abs_path
         return "assets/companies/no_company.png"
