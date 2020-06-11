@@ -916,6 +916,7 @@ def CompanyWaybillsView(request):
             company_deliveries.append(delivery)
     company_deliveries = sorted(
         company_deliveries, key=lambda x: x.finish_date)
+    company_deliveries = reversed(company_deliveries)
     args = {
         'nick': driver_info.nick,
         'position': driver_info.position,
@@ -926,28 +927,29 @@ def CompanyWaybillsView(request):
     }
     response = render(request, 'hercules_app/deliveries.html',
                       args)
-    company_deliveries = reversed(company_deliveries)
     waybill_accepted = request.session.get('waybill_accepted')
     if waybill_accepted is True:
-        cookie = SetCookie(request, response, 'waybill_accepted')
+        SetCookie(request, response, 'waybill_accepted')
     waybill_to_edit = request.session.get('waybill_to_edit')
     if waybill_to_edit is True:
-        cookie = SetCookie(request, response, 'waybill_to_edit')
+        SetCookie(request, response, 'waybill_to_edit')
     waybill_rejected = request.session.get('waybill_rejected')
     if waybill_rejected is True:
-        cookie = SetCookie(request, response, 'waybill_rejected')
+        SetCookie(request, response, 'waybill_rejected')
     return response
 
 @login_required(login_url="/login")
 def VerifyWaybillView(request, waybill_id):
     driver_info = Driver.get_driver_info(request)
     waybill = Waybill.objects.get(id=waybill_id)
+    images = WaybillImages.objects.get(waybill=waybill)
     args = {
         'nick': driver_info.nick,
         'position': driver_info.position,
         'avatar': driver_info.avatar,
         'company': driver_info.company,
-        'waybill': waybill
+        'waybill': waybill,
+        'images': images,
     }
     return render(request, 'hercules_app/verify_waybill.html', args)
 

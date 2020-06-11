@@ -134,14 +134,12 @@
                             </a>
                         </li>
                         {% endif %}
-{% if position == "Szef" %}
+                        {% if position == "Szef" %}
                         <li>
                             <a href="/Company/Settings">
                                 <p class="option settings">Ustawienia firmy</p>
                             </a>
                         </li>
-                        {% endif %}
-                        {% if position == "Szef" %}
                         <li>
                             <a href="/Company/JobApplications">
                                 <p class="option settings">Podania o pracę</p>
@@ -152,8 +150,7 @@
                 </nav>
             </aside>
             <main class="column main">
-                <h1 class="title">Dostawa #{{ waybill.id }}</span> </h1>
-
+                <h1 class="title">Dostawa #{{ waybill.id }}</h1>
                 <div class="box card">
                         <div class="basic-info">
                             <b><span class="colored">Podstawowe </span> informacje</b>
@@ -164,9 +161,7 @@
                                         <div class="control">
                                             <input type="text" class="input" readonly value="{{ waybill.loading_city }}">
                                         </div>
-                                        {% with 'assets/waybills/'|add:waybill.screens_id|add:'loading-info.png' as image_static %}
-                                        <img src="{% static image_static %}" class="static-screenshot">
-                                        {% endwith %}
+                                        <img src="{% static images.loading_info %}" class="static-screenshot">
                                     </div>
                                     <div class="field">
                                         <label class="label">Spedycja załadunku</label>
@@ -174,9 +169,7 @@
                                             <input type="text" class="input" readonly
                                                 value="{{ waybill.loading_spedition }}">
                                         </div>
-                                        {% with 'assets/waybills/'|add:waybill.screens_id|add:'loading-info.png' as image_static %}
-                                        <img src="{% static image_static %}" class="static-screenshot">
-                                        {% endwith %}
+                                        <img src="{% static images.loading_info %}" class="static-screenshot">
                                     </div>
                                     <div class="field">
                                         <label class="label">Ładunek</label>
@@ -184,9 +177,7 @@
                                             <input type="text" class="input" readonly
                                                 value="{{ waybill.cargo }}">
                                         </div>
-                                        {% with 'assets/waybills/'|add:waybill.screens_id|add:'cargo.png' as image_static %}
-                                        <img src="{% static image_static %}" class="static-screenshot">
-                                        {% endwith %}
+                                        <img src="{% static images.cargo_image %}" class="static-screenshot">
                                     </div>
 
                                     <hr>
@@ -199,9 +190,7 @@
                                         <div class="control">
                                             <input type="text" class="input" readonly value="{{ waybill.unloading_city }}">
                                         </div>
-                                        {% with 'assets/waybills/'|add:waybill.screens_id|add:'unloading-info.png' as image_static %}
-                                        <img src="{% static image_static %}" class="static-screenshot">
-                                        {% endwith %}
+                                        <img src="{% static images.unloading_info %}" class="static-screenshot">
                                     </div>
                                     <div class="field">
                                         <label class="label">Spedycja rozładunku</label>
@@ -209,9 +198,7 @@
                                             <input type="text" class="input" readonly
                                                 value="{{ waybill.unloading_spedition }}">
                                         </div>
-                                        {% with 'assets/waybills/'|add:waybill.screens_id|add:'unloading-info.png' as image_static %}
-                                        <img src="{% static image_static %}" class="static-screenshot">
-                                        {% endwith %}
+                                        <img src="{% static images.unloading_info %}" class="static-screenshot">
                                     </div>
                                     <div class="static-field">
                                         <label for="" class="label static-label">Tonaż</label>
@@ -226,9 +213,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        {% with 'assets/waybills/'|add:waybill.screens_id|add:'tonnage.png' as image_static %}
-                                        <img src="{% static image_static %}" class="static-screenshot">
-                                        {% endwith %}
+                                       <img src="{% static images.tonnage_image %}" class="static-screenshot">
                                     </div>
                                     <hr>
                                 </div>
@@ -249,9 +234,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            {% with 'assets/waybills/'|add:waybill.screens_id|add:'distance.png' as image_static %}
-                                            <img src="{% static image_static %}" class="static-screenshot">
-                                            {% endwith %}
+                                            <img src="{% static images.distance_image %}" class="static-screenshot">
                                         </div>
                                         <div class="static-field">
                                             <label for="" class="label static-label">Uszkodzenia towaru</label>
@@ -284,9 +267,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            {% with 'assets/waybills/'|add:waybill.screens_id|add:'fuel.png' as image_static %}
-                                            <img src="{% static image_static %}" class="static-screenshot">
-                                            {% endwith %}
+                                            <img src="{% static images.fuel_image %}" class="static-screenshot">
                                         </div>
                                         <div class="static-field">
                                             <label for="" class="label static-label">Notatka kierowcy</label>
@@ -311,15 +292,22 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            {% with 'assets/waybills/'|add:waybill.screens_id|add:'income.png' as image_static %}
-                                            <img src="{% static image_static %}" class="static-screenshot">
-                                            {% endwith %}
+                                            <img src="{% static images.income_image %}" class="static-screenshot">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                 </div>
+            <div class="box card">
+                <span class="colored">Screenshot kierowcy</span>
+                <div class="static-field">
+                    <label for="" class="label static-label">Pierwszy screenshot</label>
+                    <div class="field">
+                        <img src="{% static waybill.first_screen %}" class="static-screenshot">
+                    </div>
+                </div>
+            </div>
             {% if waybill.status == 'to-edit' or waybill.status == 'not-checked' %}
                 <div class="field is-grouped">
                     <div class="control">

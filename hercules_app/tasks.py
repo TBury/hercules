@@ -1,9 +1,7 @@
 import uuid
 from io import BytesIO
-from PIL import Image
 from celery import task
 from celery.utils.log import get_task_logger
-from django.core.files.images import File
 from hercules_app import recognition
 from hercules_app.models import TruckersMPStatus, CompanySettings, WaybillImages, Waybill
 from django.core.files.base import ContentFile
@@ -70,6 +68,7 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
         first_screen_path,
         end_screen_path
     )
+    screen_id = uuid.uuid4()
     loading_city = get_loading_city(ocr)
     loading_spedition = get_loading_spedition(ocr)
     unloading_city = get_unloading_city(ocr)
@@ -102,13 +101,13 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
 
     WaybillImages.objects.create(
         waybill=w,
-        loading_info=ContentFile(loading_info, "linfo.png"),
-        unloading_info=ContentFile(unloading_info, "uinfo.png"),
-        cargo_image=ContentFile(cargo_image, "cinfo.png"),
-        tonnage_image=ContentFile(tonnage_image, "tinfo.png"),
-        distance_image=ContentFile(distance_image, "dinfo.png"),
-        fuel_image=ContentFile(fuel_image, "finfo.png"),
-        income_image=ContentFile(income_image, "iinfo.png"),
+        loading_info=ContentFile(loading_info, f"{ screen_id }-linfo.png"),
+        unloading_info=ContentFile(unloading_info, f"{screen_id}-uinfo.png"),
+        cargo_image=ContentFile(cargo_image, f"{screen_id}-cinfo.png"),
+        tonnage_image=ContentFile(tonnage_image, f"{screen_id}-tinfo.png"),
+        distance_image=ContentFile(distance_image, f"{screen_id}-dinfo.png"),
+        fuel_image=ContentFile(fuel_image, f"{screen_id}-finfo.png"),
+        income_image=ContentFile(income_image, f"{screen_id}-iinfo.png"),
     )
 
     return waybill
