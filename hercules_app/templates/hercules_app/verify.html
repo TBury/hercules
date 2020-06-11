@@ -198,6 +198,9 @@
                             <div class="columns basic-info-cols is-gapless">
                                 <div class="column">
                                     <div class="field">
+                                        {% for error in loading_city.errors %}
+                                            <p class="help is-danger">{{error}}</p>
+                                        {% endfor %}
                                         <label class="label">Miasto załadunku</label>
                                         <div class="control">
                                             {{ form.loading_city }}
@@ -209,6 +212,9 @@
 
                                     </div>
                                     <div class="field">
+                                        {% for error in loading_spedition.errors %}
+                                            <p class="help is-danger">{{error}}</p>
+                                        {% endfor %}
                                         <label class="label">Spedycja załadunku</label>
                                         <div class="control">
                                             {{ form.loading_spedition }}
@@ -219,6 +225,9 @@
                                         {% endif %}
                                     </div>
                                     <div class="field">
+                                        {% for error in cargo.errors %}
+                                            <p class="help is-danger">{{error}}</p>
+                                        {% endfor %}
                                         <label class="label">Ładunek</label>
                                         <div class="control">
                                             {{ form.cargo }}
@@ -235,6 +244,9 @@
                                 </div>
                                 <div class="column">
                                     <div class="field">
+                                        {% for error in unloading_city.errors %}
+                                            <p class="help is-danger">{{error}}</p>
+                                        {% endfor %}
                                         <label class="label">Miasto rozładunku</label>
                                         <div class="control">
                                             {{ form.unloading_city }}
@@ -245,6 +257,9 @@
                                         {% endif %}
                                     </div>
                                     <div class="field">
+                                        {% for error in unloading_spedition.errors %}
+                                            <p class="help is-danger">{{error}}</p>
+                                        {% endfor %}
                                         <label class="label">Spedycja rozładunku</label>
                                         <div class="control">
                                             {{ form.unloading_spedition }}
@@ -255,6 +270,9 @@
                                         {% endif %}
                                     </div>
                                     <div class="static-field">
+                                        {% for error in tonnage.errors %}
+                                            <p class="help is-danger">{{error}}</p>
+                                        {% endfor %}
                                         <label for="" class="label static-label">Tonaż</label>
                                         <div class="field has-addons">
                                             <div class="control">

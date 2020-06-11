@@ -301,13 +301,28 @@
                         </div>
                 </div>
             <div class="box card">
-                <span class="colored">Screenshot kierowcy</span>
+                <span class="colored"><b>Screenshot kierowcy</b></span>
+                {% if waybill.first_screen %}
                 <div class="static-field">
                     <label for="" class="label static-label">Pierwszy screenshot</label>
                     <div class="field">
                         <img src="{{ waybill.first_screen.url }}" class="static-screenshot">
                     </div>
                 </div>
+                <div class="static-field">
+                    <label for="" class="label static-label">Drugi screenshot</label>
+                    <div class="field">
+                        <img src="{{ waybill.second_screen.url }}" class="static-screenshot">
+                    </div>
+                </div>
+                {% else %}
+                <div class="static-field">
+                    <label for="" class="label static-label">Drugi screenshot</label>
+                    <div class="field">
+                        <img src="{{ waybill.second_screen.url }}" class="static-screenshot">
+                    </div>
+                </div>
+                {% endif %}
             </div>
             {% if waybill.status == 'to-edit' or waybill.status == 'not-checked' %}
                 <div class="field is-grouped">
