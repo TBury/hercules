@@ -7,7 +7,8 @@ register = template.Library()
 def file_exists(path):
     try:
         abs_path = finders.find(path)
-        exists = staticfiles_storage.exists(abs_path)
-        return exists
+        if staticfiles_storage.exists(abs_path):
+            return abs_path
+        return "assets/companies/no_company.png"
     except IOError:
-        return False
+        return "assets/companies/no_company.png"
