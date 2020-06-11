@@ -1396,7 +1396,7 @@ def CreateNewRozpiskaView(request):
         return render(request, 'hercules_app/create_rozpiska.html', args)
 
 @login_required(login_url="/login")
-def GetRandomDispositionInfo():
+def GetRandomDispositionInfo(request):
     with open('static/assets/files/companies.json', 'r') as cities_json:
         cities = json.load(cities_json)
     first_city = cities[randint(0, len(cities) - 1)].get("city_name")
