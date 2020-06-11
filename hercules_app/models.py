@@ -322,8 +322,6 @@ class Waybill(models.Model):
     def get_waybill_images(self):
         return WaybillImages.objects.get(waybill=self)
 
-    def check_spedition_image(self, spedition_name):
-
 
 class WaybillImages(models.Model):
     waybill = models.ForeignKey(Waybill, on_delete=models.CASCADE, null=True)
