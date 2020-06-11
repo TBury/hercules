@@ -277,6 +277,7 @@ def process_waybill(request):
         args = info.get()
         if args is not None:
             request.session['screen_information'] = args
+            
             return HttpResponse(status=200)
     except Waybill.DoesNotExist:
         return HttpResponse(status=500)
@@ -289,7 +290,6 @@ def add_waybill(request):
     driver_info = Driver.get_driver_info(request)
 
     waybill_id = request.session.get('waybill_id')
-    # TODO: check if the waybill_id is passed correctly
     waybill = Waybill.objects.get(id=waybill_id)
     if waybill.first_screen.name == "":
         is_automatic = False
