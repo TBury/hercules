@@ -161,7 +161,7 @@
                                         <div class="control">
                                             <input type="text" class="input" readonly value="{{ waybill.loading_city }}">
                                         </div>
-                                        <img src="{% static images.loading_info.url %}" class="static-screenshot">
+                                        <img src="{{loading_info.url }}" class="static-screenshot">
                                     </div>
                                     <div class="field">
                                         <label class="label">Spedycja załadunku</label>
@@ -169,7 +169,7 @@
                                             <input type="text" class="input" readonly
                                                 value="{{ waybill.loading_spedition }}">
                                         </div>
-                                        <img src="{% static images.loading_info.url %}" class="static-screenshot">
+                                        <img src="{{loading_info.url }}" class="static-screenshot">
                                     </div>
                                     <div class="field">
                                         <label class="label">Ładunek</label>
@@ -177,7 +177,7 @@
                                             <input type="text" class="input" readonly
                                                 value="{{ waybill.cargo }}">
                                         </div>
-                                        <img src="{% static images.cargo_image.url %}" class="static-screenshot">
+                                        <img src="{{cargo_image.url }}" class="static-screenshot">
                                     </div>
 
                                     <hr>
@@ -190,7 +190,7 @@
                                         <div class="control">
                                             <input type="text" class="input" readonly value="{{ waybill.unloading_city }}">
                                         </div>
-                                        <img src="{% static images.unloading_info.url %}" class="static-screenshot">
+                                        <img src="{{unloading_info.url }}" class="static-screenshot">
                                     </div>
                                     <div class="field">
                                         <label class="label">Spedycja rozładunku</label>
@@ -198,7 +198,7 @@
                                             <input type="text" class="input" readonly
                                                 value="{{ waybill.unloading_spedition }}">
                                         </div>
-                                        <img src="{% static images.unloading_info.url %}" class="static-screenshot">
+                                        <img src="{{ unloading_info.url }}" class="static-screenshot">
                                     </div>
                                     <div class="static-field">
                                         <label for="" class="label static-label">Tonaż</label>
@@ -213,7 +213,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                       <img src="{% static images.tonnage_image.url %}" class="static-screenshot">
+                                       <img src="{{tonnage_image.url }}" class="static-screenshot">
                                     </div>
                                     <hr>
                                 </div>
@@ -234,7 +234,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <img src="{% static images.distance_image.url %}" class="static-screenshot">
+                                            <img src="{{distance_image.url }}" class="static-screenshot">
                                         </div>
                                         <div class="static-field">
                                             <label for="" class="label static-label">Uszkodzenia towaru</label>
@@ -267,7 +267,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <img src="{% static images.fuel_image.url %}" class="static-screenshot">
+                                            <img src="{{fuel_image.url }}" class="static-screenshot">
                                         </div>
                                         <div class="static-field">
                                             <label for="" class="label static-label">Notatka kierowcy</label>
@@ -292,7 +292,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <img src="{% static images.income_image.url %}" class="static-screenshot">
+                                            <img src="{{income_image.url }}" class="static-screenshot">
                                         </div>
                                     </div>
                                 </div>
