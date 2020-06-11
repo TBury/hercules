@@ -84,13 +84,13 @@ def panel(request):
 
     offers = Gielda.objects.all()[:5]
     for offer in offers:
-        offer.loading_spedition = file_exists(offer.loading_spedition)
-        offer.unloading_spedition = file_exists(offer.unloading_spedition)
+        offer.loading_spedition = file_exists(str(offer.loading_spedition))
+        offer.unloading_spedition = file_exists(str(offer.unloading_spedition))
 
     if dispositions is not None:
         for disposition in dispositions:
-            disposition.loading_spedition = file_exists(disposition.loading_spedition)
-            disposition.unloading_spedition = file_exists(disposition.unloading_spedition)
+            disposition.loading_spedition = file_exists(str(disposition.loading_spedition))
+            disposition.unloading_spedition = file_exists(str(disposition.unloading_spedition))
 
 
     status = TruckersMPStatus.get_status_from_database()
