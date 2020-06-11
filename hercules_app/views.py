@@ -277,7 +277,7 @@ def process_waybill(request):
         args = info.get()
         if args is not None:
             request.session['screen_information'] = args
-            
+
             return HttpResponse(status=200)
     except Waybill.DoesNotExist:
         return HttpResponse(status=500)
@@ -302,6 +302,8 @@ def add_waybill(request):
         if form.is_valid():
             waybill = form.save(commit=False)
             waybill.driver = driver
+            waybill.loading_country = get_country(waybill.loading_city)
+            waybill.unloading_country = get_country(waybill.unloading_city)
             waybill.save()
             try:
                 Disposition.objects.filter(
@@ -331,6 +333,7 @@ def add_waybill(request):
             request.session.modified = True
             request.session['waybill_success'] = True
             del request.session['waybill_id']
+            del request.session['waybill_information']
             return redirect('panel')
     else:
         if is_automatic:
