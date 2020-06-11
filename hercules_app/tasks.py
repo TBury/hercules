@@ -99,15 +99,25 @@ def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
     fuel_image = create_temp_image(ocr.get_fuel_image())
     income_image = create_temp_image(ocr.get_income_image())
 
+
+    loading_info_name = f"{screen_id}-linfo.png"
+    unloading_info_name = f"{screen_id}-uinfo.png"
+    cargo_image_name = f"{screen_id}-cinfo.png"
+    tonnage_image_name = f"{screen_id}-tinfo.png"
+    distance_image_name = f"{screen_id}-dinfo.png"
+    fuel_image_name = f"{screen_id}-finfo.png"
+    income_image_name = f"{screen_id}-iinfo.png"
+
+
     WaybillImages.objects.create(
         waybill=w,
-        loading_info=ContentFile(loading_info, f"{ screen_id }-linfo.png"),
-        unloading_info=ContentFile(unloading_info, f"{screen_id}-uinfo.png"),
-        cargo_image=ContentFile(cargo_image, f"{screen_id}-cinfo.png"),
-        tonnage_image=ContentFile(tonnage_image, f"{screen_id}-tinfo.png"),
-        distance_image=ContentFile(distance_image, f"{screen_id}-dinfo.png"),
-        fuel_image=ContentFile(fuel_image, f"{screen_id}-finfo.png"),
-        income_image=ContentFile(income_image, f"{screen_id}-iinfo.png"),
+        loading_info=ContentFile(loading_info, loading_info_name),
+        unloading_info=ContentFile(unloading_info, unloading_info_name),
+        cargo_image=ContentFile(cargo_image, cargo_image_name),
+        tonnage_image=ContentFile(tonnage_image, tonnage_image_name),
+        distance_image=ContentFile(distance_image, distance_image_name),
+        fuel_image=ContentFile(fuel_image, fuel_image_name),
+        income_image=ContentFile(income_image, income_image_name),
     )
 
     return waybill
