@@ -302,6 +302,8 @@ def add_waybill(request):
         if form.is_valid():
             waybill = form.save(commit=False)
             waybill.driver = driver
+            waybill.loading_spedition = str(waybill.loading_spedition).lower()
+            waybill.unloading_spedition = str(waybill.unloading_spedition).lower()
             waybill.loading_country = get_country(waybill.loading_city)
             waybill.unloading_country = get_country(waybill.unloading_city)
             waybill.save()
