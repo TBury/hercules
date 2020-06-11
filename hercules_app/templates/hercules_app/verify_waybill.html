@@ -190,6 +190,7 @@
                                         <div class="control">
                                             <input type="text" class="input" readonly value="{{ waybill.unloading_city }}">
                                         </div>
+
                                         <img src="{{ images.unloading_info.url }}" class="static-screenshot">
                                     </div>
                                     <div class="field">
@@ -304,7 +305,7 @@
                 <div class="static-field">
                     <label for="" class="label static-label">Pierwszy screenshot</label>
                     <div class="field">
-                        <img src="{% static waybill.first_screen %}" class="static-screenshot">
+                        <img src="{{ waybill.first_screen.url }}" class="static-screenshot">
                     </div>
                 </div>
             </div>
