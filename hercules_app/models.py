@@ -2,8 +2,6 @@ from datetime import datetime
 from typing import NamedTuple
 
 import requests
-from django.contrib.staticfiles import finders
-from django.contrib.staticfiles.storage import staticfiles_storage
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -321,6 +319,8 @@ class Waybill(models.Model):
 
     def get_waybill_images(self):
         return WaybillImages.objects.get(waybill=self)
+
+
 
 class WaybillImages(models.Model):
     waybill = models.ForeignKey(Waybill, on_delete=models.CASCADE, null=True)

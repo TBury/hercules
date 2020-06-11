@@ -172,7 +172,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.first_disposition.loading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.first_disposition.loading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.first_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -184,7 +184,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.second_disposition.loading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.second_disposition.loading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.second_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -196,7 +196,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.third_disposition.loading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.third_disposition.loading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.third_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -208,7 +208,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.fourth_disposition.loading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.fourth_disposition.loading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.fourth_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -220,7 +220,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.fifth_disposition.loading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.fifth_disposition.loading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.fifth_disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -234,7 +234,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.first_disposition.unloading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.first_disposition.unloading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.first_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -246,7 +246,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.second_disposition.unloading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.second_disposition.unloading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.second_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -258,7 +258,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.third_disposition.unloading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.third_disposition.unloading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.third_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -270,7 +270,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.fourth_disposition.unloading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.fourth_disposition.unloading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.fourth_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -282,7 +282,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ rozpiska.fifth_disposition.unloading_city }}</p>
-                                    {% with 'assets/companies/'|add:rozpiska.fifth_disposition.unloading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:rozpiska.fifth_disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -376,7 +376,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ disposition.loading_city }}</p>
-                                    {% with 'assets/companies/'|add:disposition.loading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:disposition.loading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
@@ -389,7 +389,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ disposition.unloading_city }}</p>
-                                    {% with 'assets/companies/'|add:disposition.unloading_spedition|add:'.png'|file_exists as image_static %}
+                                    {% with 'assets/companies/'|add:disposition.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>

@@ -1,13 +1,10 @@
-import glob
 import json
-import os
 from datetime import datetime
 from decimal import Decimal
 from random import randint
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
-from django.core.files.storage import default_storage as storage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.encoding import smart_str
 
@@ -29,8 +26,7 @@ from hercules_app.models import (
     TruckersMPStatus, WaybillImages
 )
 from .tasks import get_waybill_info
-from common.utils.utils import get_country
-from .recognition import WaybillInfo
+from common.utils.utils import get_country, file_exists
 
 def index(request):
     return render(request, 'hercules_app/index.html')
@@ -82,12 +78,20 @@ def panel(request):
         periodic_norm = periodic_norm.periodic_norm_distance
         realised = periodic_norm_distance >= periodic_norm
     else:
-        company = None
         periodic_norm_distance = None
         periodic_norm = None
         realised = None
 
     offers = Gielda.objects.all()[:5]
+    for offer in offers:
+        offer.loading_spedition = file_exists(offer.loading_spedition)
+        offer.unloading_spedition = file_exists(offer.unloading_spedition)
+
+    if dispositions is not None:
+        for disposition in dispositions:
+            disposition.loading_spedition = file_exists(disposition.loading_spedition)
+            disposition.unloading_spedition = file_exists(disposition.unloading_spedition)
+
 
     status = TruckersMPStatus.get_status_from_database()
     CompanySettings.weekly_random_vehicles()
@@ -113,17 +117,17 @@ def panel(request):
 
     waybill_success = request.session.get('waybill_success')
     if waybill_success is True:
-        cookie = SetCookie(request, response, 'waybill_success')
+        SetCookie(request, response, 'waybill_success')
 
     dispose_offer_success = request.session.get('dispose_offer_success')
     if dispose_offer_success is True:
-        cookie = SetCookie(request, response, 'dispose_offer_success')
+        SetCookie(request, response, 'dispose_offer_success')
     job_application_accepted = request.session.get('job_application_accepted')
     if job_application_accepted is True:
-        cookie = SetCookie(request, response, 'job_application_accepted')
+        SetCookie(request, response, 'job_application_accepted')
     job_application_rejected = request.session.get('job_application_rejected')
     if job_application_rejected is True:
-        cookie = SetCookie(request, response, 'job_application_rejected')
+        SetCookie(request, response, 'job_application_rejected')
     return response
 
 
@@ -399,7 +403,7 @@ def OffersView(request):
     response = render(request, 'hercules_app/gielda.html', args)
 
     if request.session.get("offer_added") == True:
-        cookie = SetCookie(request, response, 'offer_added')
+        SetCookie(request, response, 'offer_added')
     return response
 
 
