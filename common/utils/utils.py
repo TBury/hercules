@@ -14,7 +14,7 @@ def get_country(city_name):
 def file_exists(spedition):
     try:
         spedition = str(spedition).lower()
-        abs_path = finders.find(f"/livestatic_files/static-root/assets/companies/{ spedition }.png")
+        abs_path = finders.find(f"/static/assets/companies/{ spedition }.png")
         if staticfiles_storage.exists(abs_path):
             return abs_path
         return "assets/companies/no_company.png"
