@@ -84,9 +84,9 @@ def panel(request):
 
     offers = Gielda.objects.all()[:5]
     for offer in offers:
-        if offer.loading_spedition not in PROMODS_COMPANIES:
+        if offer.loading_spedition in PROMODS_COMPANIES:
             offer.loading_spedition = 'promods_company'
-        if offer.unloading_spedition not in PROMODS_COMPANIES:
+        if offer.unloading_spedition in PROMODS_COMPANIES:
             offer.unloading_spedition = 'promods_company'
 
     if dispositions is not None:
