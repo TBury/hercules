@@ -1252,6 +1252,11 @@ def ShowCompanyDispositionsView(request):
                 driver=company_driver).exclude(is_rozpiska=True)
             if dispositions:
                 company_dispositions.append(dispositions)
+                for disposition in dispositions:
+                    if disposition.loading_spedition not in PROMODS_COMPANIES:
+                        disposition.loading_spedition = 'promods_company'
+                    if disposition.unloading_spedition not in PROMODS_COMPANIES:
+                        disposition.unloading_spedition = 'promods_company'
             rozpiski = Rozpiska.objects.filter(driver=company_driver)
             if rozpiski:
                 company_rozpiski.append(rozpiski)
