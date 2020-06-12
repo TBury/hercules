@@ -469,9 +469,9 @@
                                             {% endwith %}
                                             <span class="city-and-company">
                                                 <p class="city">{{ disposition.loading_city }}</p>
-
-                                                <img src="{% static disposition.loading_spedition %}" class="company">
-
+                                            {% with 'assets/countries/'|add:disposition.loading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                            {% endwith %}
                                             </span>
                                         </div>
                                     </div>
@@ -482,7 +482,9 @@
                                             {% endwith %}
                                             <span class="city-and-company">
                                                 <p class="city">{{ disposition.unloading_city }}</p>
-                                                <img src="{% static disposition.unloading_spedition %}" class="company">
+                                                {% with 'assets/countries/'|add:disposition.unloading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                            {% endwith %}
                                             </span>
                                         </div>
                                     </div>
@@ -629,7 +631,9 @@
                                         {% endwith %}
                                         <span class="city-and-company">
                                             <p class="city">{{ offer.loading_city }}</p>
-                                            <img src="{{ offer.loading_spedition }}" class="company">
+                                            {% with 'assets/countries/'|add:offer.loading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                            {% endwith %}
                                         </span>
                                     </div>
                                 </div>
@@ -640,7 +644,9 @@
                                         {% endwith %}
                                         <span class="city-and-company">
                                             <p class="city">{{ offer.unloading_city }}</p>
-                                            <img src="{{ offer.unloading_spedition %}" class="company">
+                                            {% with 'assets/countries/'|add:offer.unloading_spedition|add:'.png' as image_static %}
+                                                <img src="{% static image_static %}" class="company">
+                                            {% endwith %}
                                         </span>
                                     </div>
                                 </div>
