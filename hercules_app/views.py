@@ -91,9 +91,9 @@ def panel(request):
 
     if dispositions is not None:
         for disposition in dispositions:
-            if disposition.loading_spedition not in PROMODS_COMPANIES:
+            if disposition.loading_spedition in PROMODS_COMPANIES:
                 disposition.loading_spedition = 'promods_company'
-            if disposition.unloading_spedition not in PROMODS_COMPANIES:
+            if disposition.unloading_spedition in PROMODS_COMPANIES:
                 disposition.unloading_spedition = 'promods_company'
 
 
@@ -538,9 +538,9 @@ def ShowDispositionsView(request):
     dispositions = Disposition.objects.all().filter(
         driver=driver).exclude(is_rozpiska=True)
     for disposition in dispositions:
-        if disposition.loading_spedition not in PROMODS_COMPANIES:
+        if disposition.loading_spedition in PROMODS_COMPANIES:
             disposition.loading_spedition = 'promods_company'
-        if disposition.unloading_spedition not in PROMODS_COMPANIES:
+        if disposition.unloading_spedition in PROMODS_COMPANIES:
             disposition.unloading_spedition = 'promods_company'
     rozpiski = Rozpiska.objects.all().filter(driver=driver)
     args = {
@@ -1253,9 +1253,9 @@ def ShowCompanyDispositionsView(request):
             if dispositions:
                 company_dispositions.append(dispositions)
                 for disposition in dispositions:
-                    if disposition.loading_spedition not in PROMODS_COMPANIES:
+                    if disposition.loading_spedition in PROMODS_COMPANIES:
                         disposition.loading_spedition = 'promods_company'
-                    if disposition.unloading_spedition not in PROMODS_COMPANIES:
+                    if disposition.unloading_spedition in PROMODS_COMPANIES:
                         disposition.unloading_spedition = 'promods_company'
             rozpiski = Rozpiska.objects.filter(driver=company_driver)
             if rozpiski:
