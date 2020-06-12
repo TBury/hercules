@@ -396,6 +396,12 @@ def OffersView(request):
         sort_by = request.GET.get('sort_by')
     offers = Gielda.objects.all().filter(**filters, price__gte=income_min,
                                          price__lte=income_max).order_by(sort_by)
+    for offer in offers:
+        if offer.loading_spedition in PROMODS_COMPANIES:
+            offer.loading_spedition = 'promods_company'
+        if offer.unloading_spedition in PROMODS_COMPANIES:
+            offer.unloading_spedition = 'promods_company'
+
     args = {
         'nick': driver_info.nick,
         'company': driver_info.company,
@@ -415,6 +421,10 @@ def OffersView(request):
 def OfferDetailsView(request, offer_id):
     driver_info = Driver.get_driver_info(request)
     offer = Gielda.objects.get(id=offer_id)
+    if offer.loading_spedition in PROMODS_COMPANIES:
+        offer.loading_spedition = 'promods_company'
+    if offer.unloading_spedition in PROMODS_COMPANIES:
+        offer.unloading_spedition = 'promods_company'
     driver = Driver.objects.get(nick=driver_info.nick)
     try:
         company_drivers_count = Company.objects.values_list(
@@ -527,6 +537,11 @@ def ShowDispositionsView(request):
     driver = Driver.objects.get(user=request.user)
     dispositions = Disposition.objects.all().filter(
         driver=driver).exclude(is_rozpiska=True)
+    for disposition in dispositions:
+        if disposition.loading_spedition not in PROMODS_COMPANIES:
+            disposition.loading_spedition = 'promods_company'
+        if disposition.unloading_spedition not in PROMODS_COMPANIES:
+            disposition.unloading_spedition = 'promods_company'
     rozpiski = Rozpiska.objects.all().filter(driver=driver)
     args = {
         'nick': driver_info.nick,
