@@ -618,48 +618,53 @@ def CompanyVehiclesView(request):
 def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
-    if driver_info.company is not None:
-        company_id = Company.objects.only(
-            'id').filter(name=driver_info.company)
-        company_drivers = Driver.objects.only(
-            'nick').filter(company=company_id[0])
-        drivers_dict = {}
-        for company_driver in company_drivers:
-            drivers_dict[company_driver.id] = company_driver.nick
-            drivers = tuple(drivers_dict.items())
+    driver = Driver.objects.get(nick=driver_info.nick)
+    if driver_info.company != vehicle.company:
+        return HttpResponse(status=403)
+    elif driver_info.company is None and vehicle.last_driver != driver or vehicle.driver != driver:
+        return HttpResponse(status=403)
     else:
-        driver = Driver.objects.get(nick=driver_info.nick)
-        driver_dict = {driver.id: driver.nick}
-        drivers = tuple(driver_dict.items())
-    current_driver = vehicle.driver.id
-    form = EditVehicleForm(drivers, current_driver, initial={
-        'brand': vehicle.brand,
-        'model': vehicle.model,
-        'cabin': vehicle.cabin,
-        'engine': vehicle.engine,
-        'engine_power': vehicle.engine_power,
-        'gearbox': vehicle.gearbox,
-        'wheelbase': vehicle.wheelbase,
-        'wheels': vehicle.wheels,
-        'odometer': vehicle.odometer,
-        'driver': current_driver,
-    })
-    if request.method == "POST":
-        form = EditVehicleForm(drivers, current_driver,
-                               request.POST, request.FILES, instance=vehicle)
-        if form.is_valid():
-            new_driver = Driver.objects.get(id=form.cleaned_data.get("driver"))
-            form = form.save(commit=False)
-            old_vehicle = Vehicle.objects.get(driver=new_driver)
-            old_vehicle.driver = None
-            old_vehicle.last_driver = new_driver
-            old_vehicle.save()
-            form.driver = new_driver
-            form.last_driver = Driver.objects.get(id=current_driver)
+        if driver_info.company is not None:
+            company_id = Company.objects.only(
+                'id').filter(name=driver_info.company)
+            company_drivers = Driver.objects.only(
+                'nick').filter(company=company_id[0])
+            drivers_dict = {}
+            for company_driver in company_drivers:
+                drivers_dict[company_driver.id] = company_driver.nick
+                drivers = tuple(drivers_dict.items())
+        else:
+            driver_dict = {driver.id: driver.nick}
+            drivers = tuple(driver_dict.items())
+        current_driver = vehicle.driver.id
+        form = EditVehicleForm(drivers, current_driver, initial={
+            'brand': vehicle.brand,
+            'model': vehicle.model,
+            'cabin': vehicle.cabin,
+            'engine': vehicle.engine,
+            'engine_power': vehicle.engine_power,
+            'gearbox': vehicle.gearbox,
+            'wheelbase': vehicle.wheelbase,
+            'wheels': vehicle.wheels,
+            'odometer': vehicle.odometer,
+            'driver': current_driver,
+        })
+        if request.method == "POST":
+            form = EditVehicleForm(drivers, current_driver,
+                                   request.POST, request.FILES, instance=vehicle)
+            if form.is_valid():
+                new_driver = Driver.objects.get(id=form.cleaned_data.get("driver"))
+                form = form.save(commit=False)
+                old_vehicle = Vehicle.objects.get(driver=new_driver)
+                old_vehicle.driver = None
+                old_vehicle.last_driver = new_driver
+                old_vehicle.save()
+                form.driver = new_driver
+                form.last_driver = Driver.objects.get(id=current_driver)
 
-            form.save()
-            request.session['vehicle_edited'] = True
-            return redirect('/Vehicles')
+                form.save()
+                request.session['vehicle_edited'] = True
+                return redirect('/Vehicles')
         else:
             form = EditVehicleForm(drivers, current_driver, initial={
                 'brand': vehicle.brand,
@@ -671,8 +676,7 @@ def VehicleDetailsView(request, vehicle_id):
                 'wheelbase': vehicle.wheelbase,
                 'wheels': vehicle.wheels,
                 'odometer': vehicle.odometer,
-            }
-        )
+            })
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
@@ -919,16 +923,20 @@ def ChangePosition(request, driver_id):
 @login_required(login_url="/login")
 def DismissDriver(request, driver_id):
     if request.POST:
-        company_driver = Driver.objects.get(id=driver_id)
-        company = company_driver.company
-        company_driver.company = None
-        company_driver.is_employeed = False
-        company_driver.position = None
-        company_driver.save()
-        company.drivers_count -= 1
-        company.save()
-        request.session['dismissed-driver'] = True
-        return redirect('/Company/Drivers')
+        driver = Driver.objects.get(user=request.user)
+        if driver.position != "Szef":
+            return HttpResponse(status=403)
+        else:
+            company_driver = Driver.objects.get(id=driver_id)
+            company = company_driver.company
+            company_driver.company = None
+            company_driver.is_employeed = False
+            company_driver.position = None
+            company_driver.save()
+            company.drivers_count -= 1
+            company.save()
+            request.session['dismissed-driver'] = True
+            return redirect('/Company/Drivers')
     else:
         return HttpResponse(status=403)
 
@@ -1530,7 +1538,7 @@ def AcceptJobApplication(request, application_id):
                 return HttpResponse(status=403)
             else:
                 work_application = WorkApplications.get_application(application_id)
-                new_driver = Driver.objects.get(id=work_application.driver.id)
+                new_driver = Driver.objects.get(nick=work_application.driver)
                 new_driver.company = company
                 new_driver.save()
                 Company.objects.filter(name=driver_info.company).update(drivers_count=company.drivers_count + 1)

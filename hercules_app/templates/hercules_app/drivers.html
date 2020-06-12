@@ -245,7 +245,7 @@
                                 {% endif %}
                             </div>
 
-                        {% if company_driver.nick != nick %}
+                        {% if company_driver.nick != nick and position == "Szef" %}
                          <div class="column">
                              <a class="button dispose dismiss is-rounded" id="{{ company_driver.id }}">Zwolnij kierowcę</a>
                         </div>
@@ -303,7 +303,7 @@
                                 {% endif %}
                             </div>
                         </div>
-                    {% if company_driver.nick != nick %}
+                    {% if company_driver.nick != nick and position == "Szef" %}
                          <div class="column">
                              <a class="button dispose dismiss is-rounded" id="{{ company_driver.id }}">Zwolnij kierowcę</a>
                         </div>
