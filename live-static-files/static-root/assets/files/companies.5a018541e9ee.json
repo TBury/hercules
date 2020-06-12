@@ -1758,18 +1758,18 @@
     {
         "city_name": "Санкт-Петербург",
         "companies": [
-            "aerobalt_ru",
-            "blt_ru",
-            "nch_ru",
-            "baltomors_ru",
-            "blt_yacht_ru",
-            "ladoga_ru",
-            "ika_ru",
+            "aerobalt",
+            "blt",
+            "nch",
+            "baltomors",
+            "blt_yacht",
+            "ladoga",
+            "ika",
             "zelenye",
-            "fintyre_ru",
-            "radus_ru",
-            "pk_medved_ru",
-            "cont_port_ru"
+            "fintyre",
+            "radus",
+            "pk_medved",
+            "cont_port"
         ],
         "country": "russia"
     },
@@ -1817,10 +1817,10 @@
     {
         "city_name": "Выборг",
         "companies": [
-            "rosmark_ru",
-            "baltomors_ru",
-            "domdepo_ru",
-            "kamen_ru"
+            "rosmark",
+            "baltomors",
+            "domdepo",
+            "kamen"
         ],
         "country": "russia"
     },
@@ -1839,13 +1839,13 @@
     {
         "city_name": "Калининград",
         "companies": [
-            "ladoga_ru",
-            "pk_medved_ru",
-            "suprema_ru",
-            "rosmark_ru",
+            "ladoga",
+            "pk_medved",
+            "suprema",
+            "rosmark",
             "zelenye_a",
-            "ns_oil_ru",
-            "cemelt_fl_ru"
+            "ns_oil",
+            "cemelt_fl"
         ],
         "country": "russia"
     },
@@ -2051,10 +2051,10 @@
     {
         "city_name": "Луга",
         "companies": [
-            "ns_chem_ru",
-            "rosmark_ru",
-            "baltomors_ru",
-            "domdepo_ru"
+            "ns_chem",
+            "rosmark",
+            "baltomors",
+            "domdepo"
         ],
         "country": "russia"
     },
@@ -2217,11 +2217,11 @@
     {
         "city_name": "Псков",
         "companies": [
-            "baltomors_ru",
-            "ns_oil_ru",
-            "blt_ru",
-            "suprema_ru",
-            "bltmetal_ru"
+            "baltomors",
+            "ns_oil",
+            "blt",
+            "suprema",
+            "bltmetal"
         ],
         "country": "russia"
     },
@@ -2291,7 +2291,7 @@
     {
         "city_name": "Сосновый Бор",
         "companies": [
-            "severoatm_ru"
+            "severoatm"
         ],
         "country": "russia"
     },
@@ -3149,7 +3149,7 @@
         "city_name": "Гусев",
         "companies": [
             "zelenye_a",
-            "pk_medved_ru"
+            "pk_medved"
         ],
         "country": "russia"
     },

@@ -470,7 +470,7 @@
                                             <span class="city-and-company">
                                                 <p class="city">{{ disposition.loading_city }}</p>
 
-                                                <img src="{{ disposition.loading_spedition }}" class="company">
+                                                <img src="{% static disposition.loading_spedition %}" class="company">
 
                                             </span>
                                         </div>
@@ -482,7 +482,7 @@
                                             {% endwith %}
                                             <span class="city-and-company">
                                                 <p class="city">{{ disposition.unloading_city }}</p>
-                                                <img src="{{ disposition.unloading_spedition }}" class="company">
+                                                <img src="{% static disposition.unloading_spedition %}" class="company">
                                             </span>
                                         </div>
                                     </div>
@@ -640,7 +640,7 @@
                                         {% endwith %}
                                         <span class="city-and-company">
                                             <p class="city">{{ offer.unloading_city }}</p>
-                                            <img src="{{ offer.unloading_spedition }}" class="company">
+                                            <img src="{{ offer.unloading_spedition %}" class="company">
                                         </span>
                                     </div>
                                 </div>

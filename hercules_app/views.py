@@ -26,7 +26,7 @@ from hercules_app.models import (
     TruckersMPStatus, WaybillImages
 )
 from .tasks import get_waybill_info
-from common.utils.utils import get_country, file_exists
+from common.utils.utils import get_country, PROMODS_COMPANIES
 
 def index(request):
     return render(request, 'hercules_app/index.html')
@@ -84,13 +84,17 @@ def panel(request):
 
     offers = Gielda.objects.all()[:5]
     for offer in offers:
-        offer.loading_spedition = file_exists(str(offer.loading_spedition))
-        offer.unloading_spedition = file_exists(str(offer.unloading_spedition))
+        if offer.loading_spedition not in PROMODS_COMPANIES:
+            offer.loading_spedition = 'promods_company'
+        if offer.unloading_spedition not in PROMODS_COMPANIES:
+            offer.unloading_spedition = 'promods_company'
 
     if dispositions is not None:
         for disposition in dispositions:
-            disposition.loading_spedition = file_exists(str(disposition.loading_spedition))
-            disposition.unloading_spedition = file_exists(str(disposition.unloading_spedition))
+            if disposition.loading_spedition not in PROMODS_COMPANIES:
+                disposition.loading_spedition = 'promods_company'
+            if disposition.unloading_spedition not in PROMODS_COMPANIES:
+                disposition.unloading_spedition = 'promods_company'
 
 
     status = TruckersMPStatus.get_status_from_database()
