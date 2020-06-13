@@ -656,7 +656,7 @@ def VehicleDetailsView(request, vehicle_id):
             if form.is_valid():
                 form = form.save(commit=False)
                 try:
-                    new_driver = Driver.objects.get(id=form.cleaned_data.get("driver"))
+                    new_driver = Driver.objects.get(id=form.cleaned_data['driver'])
                     Vehicle.objects.filter(driver=driver).update(
                         driver=None,
                         last_driver=vehicle.driver
