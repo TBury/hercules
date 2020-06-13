@@ -619,7 +619,7 @@ def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
     driver = Driver.objects.get(nick=driver_info.nick)
-    if driver_info.company != vehicle.company or driver_info.company is None:
+    if driver_info.company != vehicle.company.name or driver_info.company is None:
         return HttpResponse(status=403)
     else:
         if driver_info.company is not None:
@@ -1391,7 +1391,7 @@ def CreateNewRozpiskaView(request):
                 fifth_disposition_form = NewDispositionForm(
                     drivers, prefix="fifth_disposition_form")
                 return render(request, 'hercules_app/create_rozpiska.html', {
-                    'driver': driver,
+                    'driver': driver_info,
                     'first_disposition_form': first_disposition_form,
                     'second_disposition_form': second_disposition_form,
                     'third_disposition_form': third_disposition_form,
