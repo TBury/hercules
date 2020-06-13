@@ -654,15 +654,17 @@ def VehicleDetailsView(request, vehicle_id):
             form = EditVehicleForm(drivers, current_driver,
                                    request.POST, request.FILES, instance=vehicle)
             if form.is_valid():
-                new_driver = Driver.objects.get(id=form.cleaned_data.get("driver"))
                 form = form.save(commit=False)
-                Vehicle.objects.update(
-                    driver=None,
-                    last_driver=vehicle.driver
-                )
-                form.driver = new_driver
-                form.last_driver = Driver.objects.get(id=current_driver)
-
+                try:
+                    new_driver = Driver.objects.get(id=form.cleaned_data.get("driver"))
+                    Vehicle.objects.filter(driver=driver).update(
+                        driver=None,
+                        last_driver=vehicle.driver
+                    )
+                    form.driver = new_driver
+                    form.last_driver = Driver.objects.get(id=current_driver)
+                except Driver.DoesNotExist:
+                    pass
                 form.save()
                 request.session['vehicle_edited'] = True
                 return redirect('/Vehicles')
