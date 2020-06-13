@@ -619,13 +619,11 @@ def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
     driver = Driver.objects.get(nick=driver_info.nick)
-    if driver_info.company != vehicle.company:
-        return HttpResponse(status=403)
-    elif driver_info.company is None and vehicle.last_driver != driver or vehicle.driver != driver:
+    if driver_info.company != vehicle.company or driver_info.company is None:
         return HttpResponse(status=403)
     else:
         if driver_info.company is not None:
-            company_id = Company.objects.only(
+            company_id = Company.objects.only(and
                 'id').filter(name=driver_info.company)
             company_drivers = Driver.objects.only(
                 'nick').filter(company=company_id[0])
@@ -655,10 +653,10 @@ def VehicleDetailsView(request, vehicle_id):
             if form.is_valid():
                 new_driver = Driver.objects.get(id=form.cleaned_data.get("driver"))
                 form = form.save(commit=False)
-                old_vehicle = Vehicle.objects.get(driver=new_driver)
-                old_vehicle.driver = None
-                old_vehicle.last_driver = new_driver
-                old_vehicle.save()
+                Vehicle.objects.update(
+                    driver=None,
+                    old_driver=vehicle.driver
+                )
                 form.driver = new_driver
                 form.last_driver = Driver.objects.get(id=current_driver)
 
