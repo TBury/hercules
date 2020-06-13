@@ -623,7 +623,7 @@ def VehicleDetailsView(request, vehicle_id):
         return HttpResponse(status=403)
     else:
         if driver_info.company is not None:
-            company_id = Company.objects.only(and
+            company_id = Company.objects.only(
                 'id').filter(name=driver_info.company)
             company_drivers = Driver.objects.only(
                 'nick').filter(company=company_id[0])
