@@ -658,7 +658,7 @@ def VehicleDetailsView(request, vehicle_id):
                 form = form.save(commit=False)
                 Vehicle.objects.update(
                     driver=None,
-                    old_driver=vehicle.driver
+                    last_driver=vehicle.driver
                 )
                 form.driver = new_driver
                 form.last_driver = Driver.objects.get(id=current_driver)
