@@ -4,6 +4,7 @@ from decimal import Decimal
 from random import randint
 
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.encoding import smart_str
@@ -591,7 +592,8 @@ def CompanyVehiclesView(request):
             company=company_id[0])  # querysets are lazy
     else:
         driver = Driver.objects.get(nick=driver_info.nick)
-        vehicles = Vehicle.objects.all().filter(driver=driver)
+        vehicles = Vehicle.objects.all().filter(Q(driver=driver) | Q(last_driver=driver))
+
     args = {
         'nick': driver_info.nick,
         'avatar': driver_info.avatar,
@@ -619,25 +621,71 @@ def VehicleDetailsView(request, vehicle_id):
     driver_info = Driver.get_driver_info(request)
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
     driver = Driver.objects.get(nick=driver_info.nick)
-    if driver_info.company != vehicle.company.name or driver_info.company is None:
+
+    if driver_info.company is not None and vehicle.company is not None and vehicle.company.name != driver_info.company:
         return HttpResponse(status=403)
+    if driver_info.company is None:
+        if vehicle.driver != driver and vehicle.last_driver != driver:
+            return HttpResponse(status=403)
+    if driver_info.company is not None:
+        company_id = Company.objects.only(
+            'id').filter(name=driver_info.company)
+        company_drivers = Driver.objects.only(
+            'nick').filter(company=company_id[0])
+        drivers_dict = {}
+        drivers_dict['None'] = 'Brak kierowcy'
+        for company_driver in company_drivers:
+            drivers_dict[company_driver.id] = company_driver.nick
+            drivers = tuple(drivers_dict.items())
     else:
-        if driver_info.company is not None:
-            company_id = Company.objects.only(
-                'id').filter(name=driver_info.company)
-            company_drivers = Driver.objects.only(
-                'nick').filter(company=company_id[0])
-            drivers_dict = {}
-            for company_driver in company_drivers:
-                drivers_dict[company_driver.id] = company_driver.nick
-                drivers = tuple(drivers_dict.items())
-        else:
-            driver_dict = {driver.id: driver.nick}
-            drivers = tuple(driver_dict.items())
-        if vehicle.driver is not None:
-            current_driver = vehicle.driver.id
-        else:
-            current_driver = None
+        driver_dict = {}
+        driver_dict['None'] = 'Brak kierowcy'
+        driver_dict[driver.id] = driver.nick
+        drivers = tuple(driver_dict.items())
+    if vehicle.driver is not None:
+        current_driver = vehicle.driver.id
+    else:
+        current_driver = None
+    form = EditVehicleForm(drivers, current_driver, initial={
+        'brand': vehicle.brand,
+        'model': vehicle.model,
+        'cabin': vehicle.cabin,
+        'engine': vehicle.engine,
+        'engine_power': vehicle.engine_power,
+        'gearbox': vehicle.gearbox,
+        'wheelbase': vehicle.wheelbase,
+        'wheels': vehicle.wheels,
+        'odometer': vehicle.odometer,
+        'driver': current_driver,
+    })
+    if request.method == "POST":
+        form = EditVehicleForm(drivers, current_driver,
+                               request.POST, request.FILES, instance=vehicle)
+        if form.is_valid():
+            edited_vehicle = form.save(commit=False)
+            if form.cleaned_data.get("driver") != "None":
+                new_driver = Driver.objects.get(id=form.cleaned_data['driver'])
+                if current_driver is not None:
+                    edited_vehicle.last_driver = Driver.objects.get(id=current_driver)
+                else:
+                    edited_vehicle.last_driver = None
+                Vehicle.objects.filter(driver=new_driver).update(
+                    driver=None,
+                    last_driver=new_driver
+                )
+                edited_vehicle.driver = new_driver
+
+            else:
+                if current_driver is not None:
+                    edited_vehicle.last_driver = Driver.objects.get(id=current_driver)
+                else:
+                    edited_vehicle.last_driver = None
+                edited_vehicle.driver = None
+            form.save()
+            request.session['vehicle_edited'] = True
+            return redirect('/Vehicles')
+
+    else:
         form = EditVehicleForm(drivers, current_driver, initial={
             'brand': vehicle.brand,
             'model': vehicle.model,
@@ -648,47 +696,16 @@ def VehicleDetailsView(request, vehicle_id):
             'wheelbase': vehicle.wheelbase,
             'wheels': vehicle.wheels,
             'odometer': vehicle.odometer,
-            'driver': current_driver,
         })
-        if request.method == "POST":
-            form = EditVehicleForm(drivers, current_driver,
-                                   request.POST, request.FILES, instance=vehicle)
-            if form.is_valid():
-                try:
-                    form = form.save(commit=False)
-                    new_driver = Driver.objects.get(id=form.cleaned_data['driver'])
-                    Vehicle.objects.filter(driver=driver).update(
-                        driver=None,
-                        last_driver=vehicle.driver
-                    )
-                    form.driver = new_driver
-                    form.last_driver = Driver.objects.get(id=current_driver)
-                except Driver.DoesNotExist:
-                    pass
-                form.save()
-                request.session['vehicle_edited'] = True
-                return redirect('/Vehicles')
-        else:
-            form = EditVehicleForm(drivers, current_driver, initial={
-                'brand': vehicle.brand,
-                'model': vehicle.model,
-                'cabin': vehicle.cabin,
-                'engine': vehicle.engine,
-                'engine_power': vehicle.engine_power,
-                'gearbox': vehicle.gearbox,
-                'wheelbase': vehicle.wheelbase,
-                'wheels': vehicle.wheels,
-                'odometer': vehicle.odometer,
-            })
-    args = {
-        'nick': driver_info.nick,
-        'avatar': driver_info.avatar,
-        'company': driver_info.company,
-        'position': driver_info.position,
-        'form': form,
-        'vehicle': vehicle
-    }
-    return render(request, 'hercules_app/vehicle_details.html', args)
+        args = {
+            'nick': driver_info.nick,
+            'avatar': driver_info.avatar,
+            'company': driver_info.company,
+            'position': driver_info.position,
+            'form': form,
+            'vehicle': vehicle
+        }
+        return render(request, 'hercules_app/vehicle_details.html', args)
 
 
 @login_required(login_url="/login")
@@ -700,24 +717,33 @@ def AddNewVehicleView(request):
         company_drivers = Driver.objects.only(
             'nick').filter(company=company_id[0])
         drivers_dict = {}
+        drivers_dict['None'] = 'Brak kierowcy'
         for company_driver in company_drivers:
             drivers_dict[company_driver.id] = company_driver.nick
             drivers = tuple(drivers_dict.items())
             form = AddVehicleForm(drivers)
     else:
         driver = Driver.objects.get(nick=driver_info.nick)
-        driver_dict = {driver.id: driver.nick}
+        driver_dict = {driver.id : driver.nick}
         drivers = tuple(driver_dict.items())
         form = AddVehicleForm(drivers)
     if request.method == "POST":
         form = AddVehicleForm(drivers, request.POST, request.FILES)
         if form.is_valid():
             vehicle = form.save(commit=False)
+            if form.cleaned_data.get("driver") != "None":
+                current_driver = Driver.objects.get(id=form.cleaned_data['driver'])
+                vehicle.driver = current_driver
+                vehicle.last_driver = None
+                Vehicle.objects.filter(driver=current_driver).update(
+                    driver=None,
+                    last_driver=current_driver
+                )
+            else:
+                vehicle.driver = None
             if driver_info.company is not None:
                 company = Company.objects.get(name=driver_info.company)
                 vehicle.company = company
-            vehicle.driver = Driver.objects.get(id=form.cleaned_data['driver'])
-            vehicle.last_driver= Driver.objects.get(id=form.cleaned_data.get("driver"))
             vehicle.save()
             request.session['vehicle_added'] = True
             return redirect('/Vehicles')

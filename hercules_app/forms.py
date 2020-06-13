@@ -140,6 +140,7 @@ class AddVehicleForm(ModelForm):
 
     def __init__(self, drivers, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         self.fields['driver'] = forms.ChoiceField(
             widget=forms.Select(), choices=drivers, required=True)
         for field in self.fields:
