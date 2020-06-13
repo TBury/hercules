@@ -343,7 +343,6 @@ def add_waybill(request):
             request.session.modified = True
             request.session['waybill_success'] = True
             del request.session['waybill_id']
-            del request.session['waybill_information']
             return redirect('panel')
     else:
         if is_automatic:
