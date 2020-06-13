@@ -190,7 +190,7 @@
                                 {% endwith %}
                                 <span class="city-and-company">
                                     <p class="city">{{ delivery.unloading_city }}</p>
-                                    {% with 'assets/companies/'|add:delivery.loading_spedition|add:'.png' as image_static %}
+                                    {% with 'assets/companies/'|add:delivery.unloading_spedition|add:'.png' as image_static %}
                                     <img src="{% static image_static %}" class="company">
                                     {% endwith %}
                                 </span>
