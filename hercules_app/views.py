@@ -634,7 +634,10 @@ def VehicleDetailsView(request, vehicle_id):
         else:
             driver_dict = {driver.id: driver.nick}
             drivers = tuple(driver_dict.items())
-        current_driver = vehicle.driver.id
+        try:
+            current_driver = vehicle.driver.id
+        except Vehicle.driver.DoesNotExist:
+            return None
         form = EditVehicleForm(drivers, current_driver, initial={
             'brand': vehicle.brand,
             'model': vehicle.model,

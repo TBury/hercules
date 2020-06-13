@@ -93,7 +93,8 @@ class EditVehicleForm(ModelForm):
 
     def __init__(self, drivers, current_driver, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['driver'] = forms.ChoiceField(widget = forms.Select(), choices=drivers, required=True, initial=current_driver)
+        self.fields['driver'] = forms.ChoiceField(widget = forms.Select(), choices=drivers, required=True,
+                                                  initial=current_driver)
         for field in self.fields:
             if field == "brand":
                 self.fields[field].widget.attrs.update(
