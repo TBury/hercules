@@ -339,7 +339,7 @@ class NewDispositionForm(ModelForm):
                                    widget=forms.DateTimeInput(attrs={
                                        'class': 'datetimepicker',
                                        'type': 'datetime'
-                                   }, format="%d/%m/%Y %H:%M",
+                                   }, format="%d/%m/%Y",
                                    )
     )
     class Meta:

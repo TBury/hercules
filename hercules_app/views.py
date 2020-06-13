@@ -220,6 +220,7 @@ def send_first_screenshot(request):
         form = FirstScreenshotForm(request.POST, request.FILES)
         if form.is_valid():
             waybill = form.save()
+            request.session['waybill_automatic'] = True
             request.session['waybill_id'] = waybill.id
         else:
             form = FirstScreenshotForm()
@@ -230,8 +231,6 @@ def send_first_screenshot(request):
 def send_second_screenshot(request):
     is_automatic = request.session.get('waybill_automatic')
     if is_automatic is None:
-        is_automatic = True
-    else:
         is_automatic = False
 
     driver_info = Driver.get_driver_info(request)
@@ -1338,6 +1337,7 @@ def CreateNewDispositionView(request):
             disposed_driver = Driver.objects.get(id=request.POST['driver'])
             disposition = form.save(commit=False)
             disposition.loading_country = get_country(disposition.loading_city)
+            disposition.unloading_country = get_country(disposition.unloading_city)
             disposition.driver = disposed_driver
             disposition.save()
             request.session['created_disposition'] = True
@@ -1421,14 +1421,18 @@ def CreateNewRozpiskaView(request):
                     drivers, prefix="fourth_disposition_form")
                 fifth_disposition_form = NewDispositionForm(
                     drivers, prefix="fifth_disposition_form")
-                return render(request, 'hercules_app/create_rozpiska.html', {
-                    'driver': driver_info,
+                args = {
+                    'nick': driver_info.nick,
+                    'position': driver_info.position,
+                    'avatar': driver_info.avatar,
+                    'company': driver_info.company,
                     'first_disposition_form': first_disposition_form,
                     'second_disposition_form': second_disposition_form,
                     'third_disposition_form': third_disposition_form,
                     'fourth_disposition_form': fourth_disposition_form,
                     'fifth_disposition_form': fifth_disposition_form
-                })
+                }
+                return render(request, 'hercules_app/create_rozpiska.html', args)
         rozpiska.first_disposition = dispositions[0]
         rozpiska.second_disposition = dispositions[1]
         rozpiska.third_disposition = dispositions[2]
@@ -1462,7 +1466,7 @@ def CreateNewRozpiskaView(request):
 
 @login_required(login_url="/login")
 def GetRandomDispositionInfo(request):
-    with open('static/assets/files/companies.json', 'r') as cities_json:
+    with open('static/assets/files/companies.json', 'r', encoding='utf-8') as cities_json:
         cities = json.load(cities_json)
     first_city = cities[randint(0, len(cities) - 1)].get("city_name")
     for city in cities:

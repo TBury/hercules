@@ -170,8 +170,7 @@
                     <div class="content">
                         {% if is_automatic %}
                         <h1 class="header">Krok 2/3: Screenshot z <span class="colored">zakończenia zlecenia</span></h1>
-                        {% endif %}
-                        {% if is_automatic != True %}
+                        {% else %}
                         <h1 class="header">Krok 1/2: Screenshot z <span class="colored">zakończenia zlecenia</span></h1>
                         {% endif %}
                         <p class="subtitle is-6">Poniżej wrzuć screenshot z widocznymi szczególami po zakończeniu
