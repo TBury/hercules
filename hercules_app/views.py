@@ -634,7 +634,7 @@ def VehicleDetailsView(request, vehicle_id):
         else:
             driver_dict = {driver.id: driver.nick}
             drivers = tuple(driver_dict.items())
-        if vehicle.driver.id is not None:
+        if vehicle.driver is not None:
             current_driver = vehicle.driver.id
         else:
             current_driver = None
