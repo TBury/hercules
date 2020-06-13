@@ -1337,6 +1337,10 @@ def CreateNewDispositionView(request):
             disposition = form.save(commit=False)
             disposition.loading_country = get_country(disposition.loading_city)
             disposition.unloading_country = get_country(disposition.unloading_city)
+            if disposition.loading_spedition in PROMODS_COMPANIES:
+                disposition.loading_spedition = 'promods_company'
+            if disposition.unloading_spedition in PROMODS_COMPANIES:
+                disposition.unloading_spedition = 'promods_company'
             disposition.driver = disposed_driver
             disposition.save()
             request.session['created_disposition'] = True
