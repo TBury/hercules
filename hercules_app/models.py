@@ -570,7 +570,6 @@ class TruckersMPStatus(models.Model):
             simulation_2_players=servers["response"][1]["players"],
             promods_players=servers["response"][4]["players"]
         )
-        status.save()
 
     def get_status_from_database(self):
         status = TruckersMPStatus.objects.order_by("-created_at")[0]
