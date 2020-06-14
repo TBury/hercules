@@ -571,8 +571,9 @@ class TruckersMPStatus(models.Model):
             promods_players=servers["response"][4]["players"]
         )
 
-    def get_status_from_database(self):
-        status = TruckersMPStatus.objects.order_by("-created_at")[0]
+    @staticmethod
+    def get_status_from_database():
+        status = TruckersMPStatus.objects.filter(id=1)
         return {
             'simulation_1': status.simulation_1_players,
             'simulation_2': status.simulation_2_players,
