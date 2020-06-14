@@ -561,11 +561,11 @@ class TruckersMPStatus(models.Model):
     promods_players = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    @classmethod
-    def save_status_to_database(self):
+    @staticmethod
+    def save_status_to_database():
         response = requests.get('https://api.truckersmp.com/v2/servers')
         servers = response.json()
-        status = TruckersMPStatus.objects.filter(id=1).update(
+        TruckersMPStatus.objects.filter(id=1).update(
             simulation_1_players=servers["response"][0]["players"],
             simulation_2_players=servers["response"][1]["players"],
             promods_players=servers["response"][4]["players"]
