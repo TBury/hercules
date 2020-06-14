@@ -157,7 +157,7 @@ CELERY_BEAT_SCHEDULE = {
     },
     'create-offers': {
         'task': 'create-new-offers',
-        'schedule': 3600.0,
+        'schedule': 60.0,
     },
 }
 
