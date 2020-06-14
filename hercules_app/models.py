@@ -366,7 +366,7 @@ class Gielda(models.Model):
         TOXIC = 'ADR-6: toksyczne i zakaźne substancje', _('toxic')
         CORROSIVE = 'ADR-8: toksyczne substancje', _('corrosive')
 
-    adr = models.CharField(choices=Adr.choices, max_length=64, default='none')
+    adr = models.CharField(choices=Adr.choices, max_length=64, default='none', null=True)
     oversized = models.BooleanField(default=False)
 
     def __str__(self):
