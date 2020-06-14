@@ -144,6 +144,8 @@ def get_tmp_server_status():
 def create_offers():
     for i in range(50):
         offer = Disposition.create_disposition()
+        if offer.get("adr") is None:
+            offer["adr"] = "none"
         Gielda.objects.create(
             loading_city=offer.get("loading_city"),
             unloading_city=offer.get("unloading_city"),
