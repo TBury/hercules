@@ -1017,7 +1017,7 @@ def CompanyWaybillsView(request):
 @login_required(login_url="/login")
 def VerifyWaybillView(request, waybill_id):
     driver_info = Driver.get_driver_info(request)
-    waybill = Waybill.objects.get(id=waybill_id)
+    waybill = get_object_or_404(Waybill, id=waybill_id)
     images = WaybillImages.objects.get(waybill=waybill)
     args = {
         'nick': driver_info.nick,
@@ -1065,7 +1065,7 @@ def AcceptWaybill(request, waybill_id):
                     waybill_count=company.deliveries_count + 1,
                 )
                 request.session['waybill_accepted'] = True
-                return redirect('/Waybills')
+                return redirect('/Company/Waybills')
         else:
             return HttpResponse(status=403)
 
@@ -1085,7 +1085,7 @@ def ToEditWaybill(request, waybill_id):
                 waybill.to_edit_reason = request.POST['to-edit-reason']
                 waybill.save()
                 request.session['waybill_to_edit'] = True
-                return redirect('/Waybills')
+                return redirect('/Company/Waybills')
         else:
             return HttpResponse(status=403)
 
@@ -1105,7 +1105,7 @@ def RejectWaybill(request, waybill_id):
                 waybill.to_edit_reason = request.POST['reject-reason']
                 waybill.save()
                 request.session['waybill_rejected'] = True
-                return redirect('/Waybills')
+                return redirect('/Company/Waybills')
         else:
             return HttpResponse(status=403)
 @login_required(login_url="/login")
