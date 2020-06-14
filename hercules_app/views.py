@@ -458,6 +458,10 @@ def CreateOfferView(request):
             offer = form.save(commit=False)
             offer.loading_country = get_country(offer.loading_city)
             offer.unloading_country = get_country(offer.unloading_city)
+            if offer.loading_spedition in PROMODS_COMPANIES:
+                offer.loading_spedition = "promods_company"
+            if offer.unloading_spedition in PROMODS_COMPANIES:
+                offer.unloading_spedition = "promods_company"
             offer.save()
             request.session['offer_added'] = True
             return redirect('/Gielda/Offers')
@@ -1477,35 +1481,7 @@ def CreateNewRozpiskaView(request):
 
 @login_required(login_url="/login")
 def GetRandomDispositionInfo(request):
-    with open('static/assets/files/companies.json', 'r', encoding='utf-8') as cities_json:
-        cities = json.load(cities_json)
-    first_city = cities[randint(0, len(cities) - 1)].get("city_name")
-    for city in cities:
-        if city["city_name"] == first_city:
-            companies = city["companies"]
-            loading_country = city.get("country")
-    loading_company = companies[randint(0, len(companies) - 1)]
-    unloading_city = cities[randint(0, len(cities) - 1)].get("city_name")
-    for city in cities:
-        if city["city_name"] == unloading_city:
-            companies = city["companies"]
-            unloading_country = city.get("country")
-    unloading_company = companies[randint(0, len(companies) - 1)]
-    with open('static/assets/files/cargo.json', 'r', encoding="utf-8") as cargo_json:
-        cargos = json.load(cargo_json)
-    cargo = cargos[randint(0, len(cargos) - 1)]
-    cargo_name = cargo["cargo_name"]
-    tonnage = cargo["mass"]
-    disposition = {
-        'loading_city': first_city,
-        'loading_country': loading_country,
-        'loading_spedition': loading_company,
-        'unloading_city': unloading_city,
-        'unloading_spedition': unloading_company,
-        'unloading_country': unloading_country,
-        'cargo': cargo_name,
-        'tonnage': tonnage,
-    }
+    disposition = Disposition.create_disposition()
     return JsonResponse(disposition)
 
 @login_required(login_url="/login")

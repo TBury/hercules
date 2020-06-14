@@ -155,13 +155,9 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'get-status',
         'schedule': 15.0,
     },
-    'weekly-random-vehicle': {
-        'task': 'random-vehicle-weekly',
-        'schedule': 2419200.0,
-    },
-    'monthly-random-vehicle': {
-        'task': 'random-vehicle-monthly',
-        'schedule': 2419200.0,
+    'create-offers': {
+        'task': 'create-new-offers',
+        'schedule': 3600.0,
     },
 }
 

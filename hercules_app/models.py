@@ -1,12 +1,15 @@
 from datetime import datetime
+from random import randint
 from typing import NamedTuple
 
 import requests
+import json
 
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
+from common.utils.utils import PROMODS_COMPANIES
 
 
 class Company(models.Model):
@@ -334,11 +337,11 @@ class WaybillImages(models.Model):
 class Gielda(models.Model):
     id = models.AutoField(primary_key=True)
     loading_city = models.CharField(max_length=64)
-    loading_country = models.CharField(max_length=64)
+    loading_country = models.CharField(max_length=64, default="no_country")
     unloading_city = models.CharField(max_length=64)
-    unloading_country = models.CharField(max_length=64)
-    loading_spedition = models.CharField(max_length=100)
-    unloading_spedition = models.CharField(max_length=100)
+    unloading_country = models.CharField(max_length=64, default="no_country")
+    loading_spedition = models.CharField(max_length=100, default="no_company")
+    unloading_spedition = models.CharField(max_length=100, default="no_company")
     cargo = models.CharField(max_length=64)
     tonnage = models.IntegerField(default=0)
 
@@ -389,11 +392,11 @@ class Disposition(models.Model):
     id = models.AutoField(primary_key=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, default='')
     loading_city = models.CharField(max_length=64)
-    loading_country = models.CharField(max_length=64, default='')
+    loading_country = models.CharField(max_length=64, default='no_country')
     unloading_city = models.CharField(max_length=64)
-    unloading_country = models.CharField(max_length=64, default='')
-    loading_spedition = models.CharField(max_length=100)
-    unloading_spedition = models.CharField(max_length=100)
+    unloading_country = models.CharField(max_length=64, default='no_country')
+    loading_spedition = models.CharField(max_length=100, default="no_company")
+    unloading_spedition = models.CharField(max_length=100, default="no_company")
     cargo = models.CharField(max_length=64)
     tonnage = models.IntegerField(default=0)
     deadline = models.DateTimeField(blank=True, null=True)
@@ -405,6 +408,50 @@ class Disposition(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    @staticmethod
+    def create_disposition():
+        with open('static/assets/files/companies.json', 'r', encoding='utf-8') as cities_json:
+            cities = json.load(cities_json)
+        first_city = cities[randint(0, len(cities) - 1)].get("city_name")
+        for city in cities:
+            if city["city_name"] == first_city:
+                companies = city["companies"]
+                loading_country = city.get("country")
+        loading_company = companies[randint(0, len(companies) - 1)]
+        if loading_company in PROMODS_COMPANIES:
+            loading_company = "promods_company"
+
+        unloading_city = cities[randint(0, len(cities) - 1)].get("city_name")
+        for city in cities:
+            if city["city_name"] == unloading_city:
+                companies = city["companies"]
+                unloading_country = city.get("country")
+        unloading_company = companies[randint(0, len(companies) - 1)]
+        if unloading_company in PROMODS_COMPANIES:
+            unloading_company = "promods_company"
+        with open('static/assets/files/cargo.json', 'r', encoding="utf-8") as cargo_json:
+            cargos = json.load(cargo_json)
+        cargo = cargos[randint(0, len(cargos) - 1)]
+        cargo_name = cargo["cargo_name"]
+        tonnage = cargo["mass"]
+        try:
+            adr = cargo.get("adr_class")
+        except ValueError:
+            adr = None
+
+        disposition = {
+            'loading_city': first_city,
+            'loading_country': loading_country,
+            'loading_spedition': loading_company,
+            'unloading_city': unloading_city,
+            'unloading_spedition': unloading_company,
+            'unloading_country': unloading_country,
+            'cargo': cargo_name,
+            'tonnage': tonnage,
+            'adr': adr
+        }
+        return disposition
 
 
 class CompanySettings(models.Model):
@@ -508,6 +555,7 @@ class Achievement(models.Model):
 
 
 class TruckersMPStatus(models.Model):
+    id = models.AutoField(primary_key=True)
     simulation_1_players = models.PositiveIntegerField(default=0)
     simulation_2_players = models.PositiveIntegerField(default=0)
     promods_players = models.PositiveIntegerField(default=0)
@@ -517,14 +565,14 @@ class TruckersMPStatus(models.Model):
     def save_status_to_database(self):
         response = requests.get('https://api.truckersmp.com/v2/servers')
         servers = response.json()
-        status = TruckersMPStatus(
+        status = TruckersMPStatus.objects.filter(id=1).update(
             simulation_1_players=servers["response"][0]["players"],
             simulation_2_players=servers["response"][1]["players"],
             promods_players=servers["response"][4]["players"]
         )
         status.save()
 
-    def get_status_from_database():
+    def get_status_from_database(self):
         status = TruckersMPStatus.objects.order_by("-created_at")[0]
         return {
             'simulation_1': status.simulation_1_players,

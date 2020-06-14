@@ -3,8 +3,9 @@ from io import BytesIO
 from celery import task
 from celery.utils.log import get_task_logger
 from hercules_app import recognition
-from hercules_app.models import TruckersMPStatus, CompanySettings, WaybillImages, Waybill
+from hercules_app.models import TruckersMPStatus, CompanySettings, WaybillImages, Waybill, Gielda, Disposition
 from django.core.files.base import ContentFile
+from random import randint
 logger = get_task_logger(__name__)
 
 @task
@@ -136,6 +137,25 @@ def create_temp_image(image):
 def get_tmp_server_status():
     TruckersMPStatus.save_status_to_database()
 
+@task (
+    name="create-new-offers",
+    ignore_result=True
+)
+def create_offers():
+    for i in range(50):
+        offer = Disposition.create_disposition()
+        Gielda.objects.create(
+            loading_city=offer.loading_city,
+            unloading_city=offer.unloading_city,
+            loading_country=offer.loading_country,
+            unloading_country=offer.unloading_country,
+            loading_spedition=offer.loading_spedition,
+            unloading_spedition=offer.unloading_spedition,
+            cargo=offer.cargo,
+            tonnage=offer.tonnage,
+            adr=offer.adr,
+            price=randint(5000, 100000)
+        )
 
 
 @task (
