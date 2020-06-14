@@ -894,7 +894,7 @@
         "country": "sweden"
     },
     {
-        "city_name": "Malmö",
+        "city_name": "Malmó",
         "companies": [
             "norrsken",
             "ika_bohag",
@@ -1799,8 +1799,7 @@
             "kivi",
             "aerobalt",
             "marina_it"
-        ],
-        "country": "lithuania"
+        ]
     },
     {
         "city_name": "Catania",
@@ -1868,8 +1867,7 @@
             "ns_oil",
             "eviksi_a",
             "cemelt_fla"
-        ],
-        "country": "latvia"
+        ]
     },
     {
         "city_name": "Tampere",
@@ -1936,8 +1934,7 @@
             "renat",
             "suprema",
             "depo"
-        ],
-        "country": "latvia"
+        ]
     },
     {
         "city_name": "Ajaccio",
@@ -2263,8 +2260,7 @@
             "wilnet_trans",
             "eolo_lines",
             "mvm_carriere"
-        ],
-        "country": "france"
+        ]
     },
     {
         "city_name": "L'Île-Rousse",
@@ -2324,8 +2320,7 @@
             "budowa",
             "leclerc",
             "kopal_zw"
-        ],
-        "country": "poland"
+        ]
     },
     {
         "city_name": "Ivalo",
@@ -2985,6 +2980,13 @@
             "sildarvinn"
         ],
         "country": "iceland"
+    },
+    {
+        "city_name": "europabr",
+        "companies": [
+            "shell",
+            "mcdonalds"
+        ]
     },
     {
         "city_name": "Heilbronn",
@@ -3824,8 +3826,7 @@
             "posped",
             "eurogoodies",
             "transinet"
-        ],
-        "country": "romania"
+        ]
     },
     {
         "city_name": "Mladá Boleslav",
@@ -4236,6 +4237,13 @@
         "country": "slovenia"
     },
     {
+        "city_name": "truckstope45",
+        "companies": [
+            "shell"
+        ],
+        "country": "denmark"
+    },
+    {
         "city_name": "Narbonne",
         "companies": [
             "ms_stein"
@@ -4556,7 +4564,7 @@
         "companies": [
             "euroacres"
         ],
-        "country": "iom"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Ужгород",
@@ -4840,8 +4848,7 @@
             "zbyszko",
             "stacja",
             "wurth"
-        ],
-        "country": "poland"
+        ]
     },
     {
         "city_name": "Elbląg",
@@ -5005,7 +5012,8 @@
         "city_name": "mikolajki",
         "companies": [
             "roboty"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Bełda",
@@ -5103,15 +5111,13 @@
         "companies": [
             "stacja",
             "tartak"
-        ],
-        "country": "poland"
+        ]
     },
     {
         "city_name": "opatow",
         "companies": [
             "mcdonalds"
-        ],
-        "country": "poland"
+        ]
     },
     {
         "city_name": "Cieszyn",
@@ -5140,23 +5146,20 @@
         "city_name": "przasnysz",
         "companies": [
             "gnt"
-        ],
-        "country": "poland"
+        ]
     },
     {
         "city_name": "rusinowo",
         "companies": [
             "cemex"
-        ],
-        "country": "poland"
+        ]
     },
     {
         "city_name": "ilawa",
         "companies": [
             "gospodarstwo",
             "leroymerlin"
-        ],
-        "country": "poland"
+        ]
     },
     {
         "city_name": "Augustów",

@@ -893,7 +893,7 @@
         "country": "sweden"
     },
     {
-        "city_name": "Malmö",
+        "city_name": "Malmó",
         "companies": [
             "norrsken",
             "ika_bohag",
@@ -4238,7 +4238,8 @@
         "city_name": "truckstope45",
         "companies": [
             "shell"
-        ]
+        ],
+        "country": "denmark"
     },
     {
         "city_name": "Narbonne",
@@ -4561,7 +4562,7 @@
         "companies": [
             "euroacres"
         ],
-        "country": "iom"
+        "country": "united-kingdom"
     },
     {
         "city_name": "Ужгород",
@@ -4580,7 +4581,8 @@
             "zbyszko",
             "gospodarstwo",
             "minimarket3"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Przemyśl",
@@ -4623,7 +4625,8 @@
             "norr_food",
             "mostostal",
             "minimarket2"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Gdynia",
@@ -4716,7 +4719,8 @@
             "netto",
             "nord_crown",
             "euroacres"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Płock",
@@ -4750,7 +4754,8 @@
             "polar_fish",
             "stacja",
             "minimarket1"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "bbiala",
@@ -4764,7 +4769,8 @@
             "kaufland",
             "tradeaux",
             "philips"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Stargard",
@@ -4778,13 +4784,15 @@
         "city_name": "szumowo",
         "companies": [
             "agronord"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "lomza",
         "companies": [
             "stacja"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Bydgoszcz",
@@ -4891,7 +4899,8 @@
         "city_name": "jaworznia",
         "companies": [
             "wurth"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Radom",
@@ -4932,7 +4941,8 @@
             "shell",
             "castorama",
             "bhv"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Busko Zdrój",
@@ -5000,7 +5010,8 @@
         "city_name": "mikolajki",
         "companies": [
             "roboty"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Bełda",
@@ -5015,7 +5026,8 @@
             "agronord",
             "vitas_pwr",
             "biedronka_in"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Iłża",
@@ -5050,13 +5062,15 @@
         "companies": [
             "ciepli_zamb",
             "atlanta_zamb"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "szczecinek",
         "companies": [
             "lisette_log"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "mlawa",
@@ -5064,13 +5078,15 @@
             "stacja",
             "vpc",
             "minimarket1"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "janow",
         "companies": [
             "euroacres"
-        ]
+        ],
+        "country": "poland"
     },
     {
         "city_name": "Zgierz",

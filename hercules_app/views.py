@@ -312,6 +312,10 @@ def add_waybill(request):
             waybill.driver = driver
             waybill.loading_spedition = str(waybill.loading_spedition).lower()
             waybill.unloading_spedition = str(waybill.unloading_spedition).lower()
+            if waybill.loading_spedition in PROMODS_COMPANIES:
+                waybill.loading_spedition = 'promods_company'
+            if waybill.unloading_spedition in PROMODS_COMPANIES:
+                waybill.unloading_spedition = 'promods_company'
             waybill.loading_country = get_country(waybill.loading_city)
             waybill.unloading_country = get_country(waybill.unloading_city)
             waybill.save()
@@ -814,6 +818,10 @@ def EditWaybill(request, waybill_id):
         form = AddWaybillForm(request.POST, instance=waybill)
         if form.is_valid():
             new_waybill = form.save(commit=False)
+            if new_waybill.loading_spedition in PROMODS_COMPANIES:
+                new_waybill.loading_spedition = 'promods_company'
+            if new_waybill.unloading_spedition in PROMODS_COMPANIES:
+                new_waybill.unloading_spedition = 'promods_company'
             new_waybill.status = 'not-checked'
             new_waybill.finish_date = datetime.now
             new_waybill.save()
