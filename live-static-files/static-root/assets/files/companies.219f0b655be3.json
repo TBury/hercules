@@ -1,0 +1,5169 @@
+[
+    {
+        "city_name": "Hamburg",
+        "companies": [
+            "sanbuilders",
+            "transinet",
+            "lkwlog",
+            "eurogoodies",
+            "nbfc",
+            "ikea"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Metz",
+        "companies": [
+            "posped",
+            "eurogoodies",
+            "tree_et",
+            "boisserie",
+            "globeur",
+            "lisette_log"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Paris",
+        "companies": [
+            "bcp",
+            "tradeaux",
+            "tree_et",
+            "posped",
+            "sanbuilders",
+            "fle",
+            "batisse_hs",
+            "ika_bohag",
+            "lisette_log",
+            "voitureux",
+            "bhv"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Osnabrück",
+        "companies": [
+            "euroacres",
+            "sellplan",
+            "transinet",
+            "eurogoodies",
+            "bauhaus"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Erfurt",
+        "companies": [
+            "euroacres",
+            "sanbuilders",
+            "eurogoodies",
+            "agronord",
+            "ikea"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Frankfurt am Main",
+        "companies": [
+            "wgcc",
+            "tradeaux",
+            "kaarfor",
+            "tree_et",
+            "transinet",
+            "trameri",
+            "itcc",
+            "alds",
+            "europcar"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Lyon",
+        "companies": [
+            "trameri",
+            "quarry",
+            "sanbuilders",
+            "tradeaux",
+            "kaarfor",
+            "batisse_road",
+            "wilnet_trans",
+            "eco",
+            "gnt",
+            "bhv",
+            "nos_pat"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Birmingham",
+        "companies": [
+            "posped",
+            "tree_et",
+            "sanbuilders",
+            "bcp"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Milano",
+        "companies": [
+            "itcc",
+            "transinet",
+            "tree_et",
+            "sanbuilders",
+            "fcp",
+            "scania_dlr",
+            "ika_bohag",
+            "aci",
+            "cesare_smar",
+            "cargotras",
+            "tesore_gust",
+            "spinelli",
+            "libellula",
+            "tras_med",
+            "te_logistica"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Luxembourg",
+        "companies": [
+            "itcc",
+            "sanbuilders",
+            "lkwlog",
+            "volvo_dlr"
+        ],
+        "country": "luxembourg"
+    },
+    {
+        "city_name": "Nürnberg",
+        "companies": [
+            "trameri",
+            "stokes",
+            "euroacres",
+            "sanbuilders",
+            "bhv",
+            "cont_port",
+            "lidl",
+            "xxxl",
+            "man_fac"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Groningen",
+        "companies": [
+            "sellplan",
+            "euroacres",
+            "eurogoodies",
+            "lidl"
+        ],
+        "country": "netherlands"
+    },
+    {
+        "city_name": "Edinburgh",
+        "companies": [
+            "eurogoodies",
+            "sanbuilders",
+            "kaarfor",
+            "lidl"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Bruxelles/Brussel",
+        "companies": [
+            "euroacres",
+            "transinet",
+            "fcp",
+            "ika_bohag",
+            "vitas_pwr",
+            "kaarfor",
+            "albertheijn",
+            "mcdonalds"
+        ],
+        "country": "belgium"
+    },
+    {
+        "city_name": "Brno",
+        "companies": [
+            "trameri",
+            "euroacres",
+            "sanbuilders",
+            "lkwlog"
+        ],
+        "country": "czech"
+    },
+    {
+        "city_name": "Carlisle",
+        "companies": [
+            "euroacres",
+            "trameri",
+            "posped"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Salzburg",
+        "companies": [
+            "quarry",
+            "transinet",
+            "eurogoodies",
+            "sanbuilders",
+            "euroacres"
+        ],
+        "country": "austria"
+    },
+    {
+        "city_name": "Southampton",
+        "companies": [
+            "transinet",
+            "tree_et",
+            "sellplan",
+            "lidl"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Newcastle-upon-Tyne",
+        "companies": [
+            "sanbuilders",
+            "eurogoodies",
+            "sellplan",
+            "alds"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Poznań",
+        "companies": [
+            "fcp",
+            "stokes",
+            "tree_et",
+            "kaarfor",
+            "tartak"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Bratislava",
+        "companies": [
+            "posped",
+            "tree_et",
+            "bcp",
+            "wgcc"
+        ],
+        "country": "slovakia"
+    },
+    {
+        "city_name": "Dresden",
+        "companies": [
+            "trameri",
+            "transinet",
+            "sellplan",
+            "euroacres"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Berlin",
+        "companies": [
+            "bcp",
+            "sanbuilders",
+            "eurogoodies",
+            "euroacres",
+            "nbfc",
+            "posped",
+            "transinet",
+            "man_dlr",
+            "ikea",
+            "lidl",
+            "rewe"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Rotterdam",
+        "companies": [
+            "transinet",
+            "wgcc",
+            "sanbuilders",
+            "posped",
+            "cont_port",
+            "jumbo"
+        ],
+        "country": "netherlands"
+    },
+    {
+        "city_name": "Grimsby",
+        "companies": [
+            "eurogoodies",
+            "tradeaux",
+            "wgcc"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Dortmund",
+        "companies": [
+            "tree_et",
+            "kaarfor",
+            "quarry",
+            "transinet",
+            "bauhaus"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Wien",
+        "companies": [
+            "sellplan",
+            "eurogoodies",
+            "stokes",
+            "euroacres",
+            "kaarfor",
+            "auhof",
+            "bauhaus",
+            "omv4",
+            "xxxl",
+            "omv2",
+            "metro",
+            "billa",
+            "lidl",
+            "omv1",
+            "obi",
+            "bp_retail",
+            "hofer",
+            "omv3",
+            "ikea"
+        ],
+        "country": "austria"
+    },
+    {
+        "city_name": "Kassel",
+        "companies": [
+            "tradeaux",
+            "bcp"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Mannheim",
+        "companies": [
+            "trameri",
+            "transinet",
+            "eurogoodies",
+            "bauhaus",
+            "xxxl"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Manchester",
+        "companies": [
+            "scania_dlr",
+            "lkwlog",
+            "fcp",
+            "tree_et",
+            "wgcc"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "London",
+        "companies": [
+            "posped",
+            "sanbuilders",
+            "nbfc",
+            "sellplan",
+            "volvo_dlr",
+            "eurogoodies",
+            "wilnet_trans",
+            "transinet",
+            "globeur",
+            "mcdonalds",
+            "europcar",
+            "batisse",
+            "nos_pat",
+            "tesco",
+            "alds"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Stuttgart",
+        "companies": [
+            "tree_et",
+            "bcp",
+            "lkwlog",
+            "quarry"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Amsterdam",
+        "companies": [
+            "stokes",
+            "trameri",
+            "kaarfor",
+            "lkwlog",
+            "daf_dlr"
+        ],
+        "country": "netherlands"
+    },
+    {
+        "city_name": "Duisburg",
+        "companies": [
+            "lkwlog",
+            "nbfc"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Strasbourg",
+        "companies": [
+            "quarry",
+            "posped",
+            "wgcc",
+            "kaarfor",
+            "trameri"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Cardiff",
+        "companies": [
+            "stokes",
+            "quarry",
+            "eurogoodies"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Kiel",
+        "companies": [
+            "posped",
+            "eurogoodies",
+            "stokes"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Verona",
+        "companies": [
+            "euroacres",
+            "kaarfor",
+            "posped",
+            "bcp"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Hannover",
+        "companies": [
+            "trameri",
+            "tree_et",
+            "quarry",
+            "tradeaux",
+            "scania_dlr",
+            "nbfc",
+            "bauhaus",
+            "mcdonalds"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Liège",
+        "companies": [
+            "eurogoodies",
+            "stokes",
+            "itcc",
+            "tree_et"
+        ],
+        "country": "belgium"
+    },
+    {
+        "city_name": "Leipzig",
+        "companies": [
+            "eurogoodies",
+            "tree_et",
+            "fcp",
+            "wilnet_trans",
+            "xxxl",
+            "mcdonalds",
+            "bauhaus"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Calais",
+        "companies": [
+            "lkwlog",
+            "nbfc",
+            "stokes",
+            "wilnet_trans",
+            "tradeaux",
+            "bhv",
+            "globeur",
+            "lisette_log",
+            "gallia_ferry"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Aberdeen",
+        "companies": [
+            "nbfc",
+            "stokes",
+            "tree_et"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Cambridge",
+        "companies": [
+            "euroacres",
+            "transinet",
+            "kaarfor",
+            "alds"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Plymouth",
+        "companies": [
+            "eurogoodies",
+            "stokes",
+            "trameri",
+            "euroacres"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Glasgow",
+        "companies": [
+            "wgcc",
+            "itcc",
+            "quarry",
+            "eurogoodies",
+            "ms_stein",
+            "daf_dlr"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Liverpool",
+        "companies": [
+            "euroacres",
+            "eurogoodies",
+            "trameri",
+            "nbfc"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Linz",
+        "companies": [
+            "itcc",
+            "nbfc",
+            "posped"
+        ],
+        "country": "austria"
+    },
+    {
+        "city_name": "Felixstowe",
+        "companies": [
+            "tradeaux",
+            "tree_et",
+            "lkwlog",
+            "cont_port",
+            "posped"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Innsbruck",
+        "companies": [
+            "tree_et",
+            "eurogoodies",
+            "trameri"
+        ],
+        "country": "austria"
+    },
+    {
+        "city_name": "Sheffield",
+        "companies": [
+            "sellplan",
+            "quarry",
+            "itcc",
+            "transinet",
+            "alds"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Bern",
+        "companies": [
+            "euroacres",
+            "eurogoodies",
+            "kaarfor",
+            "bhv",
+            "wilnet_trans",
+            "subse"
+        ],
+        "country": "switzerland"
+    },
+    {
+        "city_name": "Praha",
+        "companies": [
+            "tradeaux",
+            "eurogoodies",
+            "skoda",
+            "quarry",
+            "sellplan",
+            "lidl"
+        ],
+        "country": "czech"
+    },
+    {
+        "city_name": "Düsseldorf",
+        "companies": [
+            "eurogoodies",
+            "fcp",
+            "stokes"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Wrocław",
+        "companies": [
+            "eurogoodies",
+            "euroacres",
+            "quarry",
+            "trameri",
+            "lkwlog",
+            "lisette_log",
+            "dhl",
+            "ikea_pl",
+            "auchan",
+            "tesco"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Zürich",
+        "companies": [
+            "tree_et",
+            "posped",
+            "stokes"
+        ],
+        "country": "switzerland"
+    },
+    {
+        "city_name": "Rostock",
+        "companies": [
+            "itcc",
+            "sellplan",
+            "tradeaux"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Magdeburg",
+        "companies": [
+            "sellplan",
+            "euroacres",
+            "eurogoodies",
+            "aldn"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Swansea",
+        "companies": [
+            "trameri",
+            "euroacres",
+            "posped",
+            "kaarfor",
+            "lidl"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Köln",
+        "companies": [
+            "posped",
+            "itcc",
+            "metro"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Bremen",
+        "companies": [
+            "posped",
+            "euroacres",
+            "eurogoodies",
+            "fcp",
+            "bauhaus"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Reims",
+        "companies": [
+            "quarry",
+            "kaarfor",
+            "eurogoodies",
+            "euroacres",
+            "wilnet_trans",
+            "lisette_log",
+            "nos_pat_cf",
+            "bhv"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "München",
+        "companies": [
+            "kaarfor",
+            "eurogoodies",
+            "wgcc",
+            "bcp",
+            "sanbuilders",
+            "rewe",
+            "ikea",
+            "metro",
+            "nd",
+            "shell",
+            "man_dlr",
+            "mcdonalds",
+            "bauhaus"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Szczecin",
+        "companies": [
+            "eurogoodies",
+            "transinet",
+            "itcc",
+            "bcp",
+            "trameri",
+            "zlecenie",
+            "biedronka",
+            "auchan",
+            "budowa",
+            "stacja"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Torino",
+        "companies": [
+            "transinet",
+            "sellplan",
+            "fcp",
+            "euroacres"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Dover",
+        "companies": [
+            "euroacres",
+            "lkwlog",
+            "eurogoodies",
+            "transinet",
+            "norr_food",
+            "wilnet_trans"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Dijon",
+        "companies": [
+            "stokes",
+            "eurogoodies",
+            "euroacres"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Genève",
+        "companies": [
+            "tradeaux",
+            "tree_et",
+            "posped",
+            "sellplan"
+        ],
+        "country": "switzerland"
+    },
+    {
+        "city_name": "Lille",
+        "companies": [
+            "trameri",
+            "eurogoodies",
+            "tradeaux"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Graz",
+        "companies": [
+            "posped",
+            "tree_et",
+            "fcp",
+            "lkwlog"
+        ],
+        "country": "austria"
+    },
+    {
+        "city_name": "Klagenfurt am Wörthersee",
+        "companies": [
+            "eurogoodies",
+            "sellplan",
+            "tradeaux",
+            "trameri"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "venezia",
+        "companies": [
+            "lkwlog",
+            "sellplan",
+            "eurogoodies"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Växjö",
+        "companies": [
+            "norr_food",
+            "renar",
+            "drekkar",
+            "bjork",
+            "nord_sten",
+            "bhv"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Odense",
+        "companies": [
+            "nord_crown",
+            "bhv",
+            "norr_food",
+            "drekkar",
+            "ika_bohag"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Göteborg",
+        "companies": [
+            "volvo_dlr",
+            "bhv",
+            "norrsken",
+            "sag_tre",
+            "agronord",
+            "vpc",
+            "polar_fish",
+            "ns_oil",
+            "polarislines",
+            "volvo_fac"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Linköping",
+        "companies": [
+            "sag_tre",
+            "drekkar",
+            "ika_bohag",
+            "konstnr_br",
+            "norr_food",
+            "nord_sten",
+            "bhv",
+            "konstnr_wind",
+            "saab",
+            "lidl"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Malmö",
+        "companies": [
+            "norrsken",
+            "ika_bohag",
+            "drekkar",
+            "konstnr_br",
+            "ns_chem"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "København",
+        "companies": [
+            "renar",
+            "konstnr",
+            "bhv",
+            "norr_food",
+            "ika_bohag",
+            "drekkar",
+            "gnt",
+            "dagli",
+            "elgiganten"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Kristiansand",
+        "companies": [
+            "ms_stein",
+            "bjork",
+            "gnt",
+            "agronord",
+            "ns_chem",
+            "bhv",
+            "polarislines"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Jönköping",
+        "companies": [
+            "norr_food",
+            "gnt",
+            "bhv",
+            "aria_fd_jnpg",
+            "nord_sten"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Uppsala",
+        "companies": [
+            "ika_bohag",
+            "drekkar",
+            "gnt",
+            "norr_food"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Västerås",
+        "companies": [
+            "renar",
+            "norr_food",
+            "konstnr_hs"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Helsingborg",
+        "companies": [
+            "gnt",
+            "bhv",
+            "konstnr_hs",
+            "norr_food"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Karlskrona",
+        "companies": [
+            "norr_food",
+            "drekkar",
+            "polarislines",
+            "norrsken"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Aalborg",
+        "companies": [
+            "aria_fd_albg",
+            "nord_crown",
+            "ns_oil",
+            "ika_bohag",
+            "norrsken",
+            "polar_fish",
+            "vitas_pwr"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Trelleborg",
+        "companies": [
+            "aria_fd_trbg",
+            "polarislines"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Gedser",
+        "companies": [
+            "polarislines",
+            "konstnr_wind"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Örebro",
+        "companies": [
+            "bhv",
+            "norrsken",
+            "nord_crown",
+            "ika_bohag"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Stockholm",
+        "companies": [
+            "bhv",
+            "ika_bohag",
+            "konstnr",
+            "scania_dlr",
+            "ns_chem",
+            "marina",
+            "norr_food",
+            "norrsken",
+            "ikea"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Stavanger",
+        "companies": [
+            "polar_fish",
+            "ika_bohag",
+            "renar",
+            "ms_stein",
+            "nord_crown",
+            "ns_oil",
+            "polarislines"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Kalmar",
+        "companies": [
+            "ika_bohag",
+            "gnt",
+            "agronord",
+            "ns_oil",
+            "norr_food",
+            "nord_sten"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Esbjerg",
+        "companies": [
+            "vitas_pwr",
+            "aria_fd_esbj",
+            "marina",
+            "polarislines",
+            "cont_port",
+            "agronord",
+            "konstnr_wind"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Oslo",
+        "companies": [
+            "ns_oil",
+            "sag_tre",
+            "ika_bohag",
+            "norr_food",
+            "ms_stein",
+            "cont_port",
+            "konstnr",
+            "marina",
+            "renar",
+            "polarislines",
+            "drekkar",
+            "bhv",
+            "batisse"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Nynäshamn",
+        "companies": [
+            "polarislines"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Frederikshavn",
+        "companies": [
+            "polarislines"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Hirtshals",
+        "companies": [
+            "polarislines"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Bergen",
+        "companies": [
+            "polar_fish",
+            "gnt",
+            "polarislines",
+            "drekkar",
+            "nord_crown"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Södertälje",
+        "companies": [
+            "scania_fac"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Lublin",
+        "companies": [
+            "eurogoodies",
+            "posped",
+            "lkwlog",
+            "kaarfor",
+            "tartak",
+            "mcdonalds",
+            "zlecenie"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Banská Bystrica",
+        "companies": [
+            "posped",
+            "stokes",
+            "tree_et",
+            "eurogoodies"
+        ],
+        "country": "slovakia"
+    },
+    {
+        "city_name": "Katowice",
+        "companies": [
+            "tree_et",
+            "quarry",
+            "stokes",
+            "posped",
+            "tartak"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Debrecen",
+        "companies": [
+            "euroacres",
+            "transinet",
+            "eurogoodies",
+            "sanbuilders",
+            "norr_food",
+            "globeur",
+            "agronord",
+            "sal",
+            "ns_chem",
+            "renar",
+            "bhv",
+            "lidl",
+            "szatmari"
+        ],
+        "country": "hungary"
+    },
+    {
+        "city_name": "Łódź",
+        "companies": [
+            "posped",
+            "lkwlog",
+            "eurogoodies",
+            "sellplan",
+            "itcc",
+            "gnt",
+            "castorama",
+            "lidl_centrum",
+            "budimex",
+            "m1",
+            "zbyszko",
+            "netto",
+            "tartak",
+            "ikea_pl",
+            "komfort",
+            "raben"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Olsztyn",
+        "companies": [
+            "tree_et",
+            "fcp",
+            "tradeaux",
+            "sellplan",
+            "eurogoodies",
+            "posped",
+            "leclerc",
+            "komfort",
+            "tartak",
+            "lidl"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Ostrava",
+        "companies": [
+            "nbfc",
+            "transinet",
+            "kaarfor",
+            "itcc"
+        ],
+        "country": "czech"
+    },
+    {
+        "city_name": "Kraków",
+        "companies": [
+            "euroacres",
+            "trameri",
+            "tradeaux",
+            "sanbuilders"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Gdańsk",
+        "companies": [
+            "wgcc",
+            "lkwlog",
+            "sanbuilders",
+            "euroacres",
+            "bcp",
+            "scania_dlr",
+            "ms_stein",
+            "renar",
+            "konstnr_wind",
+            "kaarfor",
+            "skoda",
+            "polarislines",
+            "agronord",
+            "polar_fish",
+            "ns_chem",
+            "cont_port",
+            "norrsken",
+            "nbfc",
+            "ns_oil",
+            "statoil",
+            "kaufland",
+            "naftoport",
+            "wurth",
+            "roboty",
+            "zlecenie",
+            "raben",
+            "mcdonalds",
+            "budowa",
+            "cemex",
+            "citronex",
+            "m1",
+            "lkw_walter",
+            "biedronka",
+            "lidl",
+            "rafineria_gd"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Budapest",
+        "companies": [
+            "kaarfor",
+            "nbfc",
+            "tradeaux",
+            "trameri"
+        ],
+        "country": "hungary"
+    },
+    {
+        "city_name": "Košice",
+        "companies": [
+            "itcc",
+            "lkwlog",
+            "sellplan",
+            "bcp",
+            "euroacres"
+        ],
+        "country": "slovakia"
+    },
+    {
+        "city_name": "Białystok",
+        "companies": [
+            "euroacres",
+            "tree_et",
+            "transinet",
+            "itcc",
+            "tartak"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Warszawa",
+        "companies": [
+            "posped",
+            "stokes",
+            "sanbuilders",
+            "trameri",
+            "tradeaux",
+            "lkwlog",
+            "eurogoodies",
+            "dhl",
+            "stacja"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Pécs",
+        "companies": [
+            "bcp",
+            "euroacres",
+            "tradeaux"
+        ],
+        "country": "hungary"
+    },
+    {
+        "city_name": "Szeged",
+        "companies": [
+            "lkwlog",
+            "euroacres",
+            "trameri",
+            "posped"
+        ],
+        "country": "hungary"
+    },
+    {
+        "city_name": "La Rochelle",
+        "companies": [
+            "marina_fr",
+            "lisette_log",
+            "kaarfor",
+            "chimi",
+            "batisse_wind",
+            "huilant"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Nantes",
+        "companies": [
+            "subse",
+            "fle",
+            "wilnet_trans",
+            "kaarfor",
+            "eco",
+            "dans_jardin",
+            "bhv"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Montpellier",
+        "companies": [
+            "bhv",
+            "chimi",
+            "batisse_wind",
+            "ika_bohag",
+            "mvm_carriere",
+            "eco",
+            "dans_jardin",
+            "fle",
+            "batisse_hs",
+            "kaarfor",
+            "globeur"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Clermont-Ferrand",
+        "companies": [
+            "ika_bohag",
+            "gomme_monde",
+            "subse",
+            "tradeaux",
+            "fle",
+            "batisse_base",
+            "nos_pat_cf"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Rennes",
+        "companies": [
+            "lisette_log",
+            "ika_bohag",
+            "globeur",
+            "batisse_base",
+            "voitureux"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Bordeaux",
+        "companies": [
+            "bhv",
+            "eco",
+            "lisette_log",
+            "globeur",
+            "batisse_road",
+            "mvm_carriere",
+            "huilant",
+            "ika_bohag",
+            "dans_jardin"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Nice",
+        "companies": [
+            "bhv",
+            "tradeaux",
+            "lisette_log",
+            "mvm_carriere",
+            "kaarfor"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Le Havre",
+        "companies": [
+            "voitureux",
+            "bhb_raffin",
+            "eco",
+            "nos_pat_lhv",
+            "globeur",
+            "cont_port_fr"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Bourges",
+        "companies": [
+            "globeur",
+            "nos_pat_brg",
+            "dans_jardin",
+            "gomme_monde"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Toulouse",
+        "companies": [
+            "bhv",
+            "wilnet_trans",
+            "fle",
+            "tradeaux"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Limoges",
+        "companies": [
+            "mvm_carriere",
+            "bhv",
+            "boisserie",
+            "kaarfor",
+            "volvo_dlr",
+            "eco",
+            "wilnet_trans"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Brest",
+        "companies": [
+            "ika_bohag",
+            "fle",
+            "subse",
+            "tradeaux",
+            "marina_fr",
+            "batisse_wind"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Le Mans",
+        "companies": [
+            "eco",
+            "mvm_carriere",
+            "dans_jardin",
+            "lisette_log",
+            "batisse_road",
+            "bhv",
+            "boisserie",
+            "wilnet_trans"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Paluel",
+        "companies": [
+            "nucleon"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Marseille",
+        "companies": [
+            "boisserie",
+            "marina_fr",
+            "bhb_raffin",
+            "eco",
+            "cont_port_fr",
+            "dans_jardin",
+            "wilnet_trans",
+            "eolo_lines"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Saint-Laurent",
+        "companies": [
+            "nucleon"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Roscoff",
+        "companies": [
+            "gallia_ferry",
+            "lisette_log"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Golfech",
+        "companies": [
+            "nucleon"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Saint-Alban-du-Rhône",
+        "companies": [
+            "nucleon"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Civaux",
+        "companies": [
+            "nucleon"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Hull",
+        "companies": [
+            "eurogoodies",
+            "tradeaux",
+            "metro"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Travemünde",
+        "companies": [
+            "polarislines"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Kapellskär",
+        "companies": [
+            "polarislines"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Pescara",
+        "companies": [
+            "ini",
+            "sal",
+            "ika_bohag",
+            "costruzi_win",
+            "aaa",
+            "quadrelli",
+            "cesare_smar",
+            "cargotras"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Turku",
+        "companies": [
+            "renar",
+            "blt_yacht",
+            "nch",
+            "aerobalt",
+            "ladoga",
+            "kivi"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Kouvola",
+        "companies": [
+            "radus",
+            "nch",
+            "egres",
+            "lintukainenn",
+            "sal_fi",
+            "viljo_paper"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Olbia",
+        "companies": [
+            "marmo",
+            "c_navale",
+            "pp_chimica",
+            "cargotras",
+            "fui",
+            "marina_it",
+            "exomar"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Sassari",
+        "companies": [
+            "cargotras",
+            "marmo",
+            "cesare_smar",
+            "costruzi_hal",
+            "sal",
+            "eolo_lines",
+            "te_logistica"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Bonifacio",
+        "companies": [
+            "marina_fr"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Klaipėda",
+        "companies": [
+            "nosko",
+            "ns_oil",
+            "gnt",
+            "cemelt_win",
+            "cont_port",
+            "marina_it",
+            "baltomorsk"
+        ],
+        "country": "lithuania"
+    },
+    {
+        "city_name": "Bastia",
+        "companies": [
+            "gnt",
+            "kaarfor",
+            "bhv",
+            "fle",
+            "mvm_carriere",
+            "dans_jardin"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Tartu",
+        "companies": [
+            "radus",
+            "onnelik_a",
+            "suprema",
+            "lintukainenn",
+            "kivi",
+            "blt",
+            "renat"
+        ],
+        "country": "estonia"
+    },
+    {
+        "city_name": "Kaunas",
+        "companies": [
+            "baltomorsk",
+            "aerobalt",
+            "cemelt_bas",
+            "suprema",
+            "ns_chem",
+            "blt",
+            "bhv"
+        ],
+        "country": "lithuania"
+    },
+    {
+        "city_name": "Genova",
+        "companies": [
+            "costruzi_hal",
+            "aci",
+            "marina_it",
+            "ini",
+            "tras_med",
+            "cont_port_it"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Palermo",
+        "companies": [
+            "costruzi_win",
+            "marmo",
+            "eolo_lines",
+            "cargotras",
+            "cesare_smar"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Tallinn",
+        "companies": [
+            "renar",
+            "ns_oil",
+            "bltmetal",
+            "cont_port",
+            "marina_it",
+            "blt_yacht",
+            "nch",
+            "aerobalt",
+            "ateria",
+            "polarislines",
+            "scania_dlr",
+            "lintukainenn"
+        ],
+        "country": "estonia"
+    },
+    {
+        "city_name": "Санкт-Петербург",
+        "companies": [
+            "aerobalt",
+            "blt",
+            "nch",
+            "baltomors",
+            "blt_yacht",
+            "ladoga",
+            "ika",
+            "zelenye",
+            "fintyre",
+            "radus",
+            "pk_medved",
+            "cont_port"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Firenze",
+        "companies": [
+            "marmo",
+            "tesore_gust",
+            "te_logistica",
+            "fui",
+            "costruzi_bas",
+            "ika_bohag"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "riga",
+        "companies": [
+            "ns_chem",
+            "lvr",
+            "blt_yacht",
+            "nch",
+            "eviksi",
+            "rosmark",
+            "renat",
+            "kivi",
+            "aerobalt",
+            "marina_it"
+        ],
+        "country": "lithuania"
+    },
+    {
+        "city_name": "Catania",
+        "companies": [
+            "marina_it",
+            "tras_med",
+            "ika_bohag",
+            "ini",
+            "acc",
+            "cnp",
+            "fui",
+            "quadrelli"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Выборг",
+        "companies": [
+            "rosmark",
+            "baltomors",
+            "domdepo",
+            "kamen"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Pori",
+        "companies": [
+            "ns_chem",
+            "cont_port",
+            "lintukainenn",
+            "sal_fi",
+            "bltmetal",
+            "aria_nordic"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Калининград",
+        "companies": [
+            "ladoga",
+            "pk_medved",
+            "suprema",
+            "rosmark",
+            "zelenye_a",
+            "ns_oil",
+            "cemelt_fl"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Loviisa",
+        "companies": [
+            "ukko"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "valmiera",
+        "companies": [
+            "gnt",
+            "baltomorsk",
+            "domdepo",
+            "lateds",
+            "ns_oil",
+            "eviksi_a",
+            "cemelt_fla"
+        ],
+        "country": "latvia"
+    },
+    {
+        "city_name": "Tampere",
+        "companies": [
+            "suprema",
+            "fintyre",
+            "radus",
+            "ika_bohag",
+            "viljo_paper",
+            "renar"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Helsinki",
+        "companies": [
+            "kivi",
+            "sal_fi",
+            "aerobalt",
+            "ibp",
+            "ateria",
+            "ika_bohag",
+            "egres",
+            "renat",
+            "cont_port",
+            "marina_it",
+            "polarislines"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Roma",
+        "companies": [
+            "aci",
+            "ika_bohag",
+            "ini",
+            "tesore_gust",
+            "pp_chimica",
+            "exomar",
+            "tras_med",
+            "aaa",
+            "fattoria_f",
+            "fui"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Pärnu",
+        "companies": [
+            "bhv",
+            "suprema",
+            "renar",
+            "marina_it",
+            "onnelik_a",
+            "onnelik"
+        ],
+        "country": "estonia"
+    },
+    {
+        "city_name": "rezekne",
+        "companies": [
+            "rosmark",
+            "baltomorsk",
+            "renat",
+            "suprema",
+            "depo"
+        ],
+        "country": "latvia"
+    },
+    {
+        "city_name": "Ajaccio",
+        "companies": [
+            "kaarfor",
+            "huilant",
+            "marina_fr",
+            "tradeaux",
+            "mvm_carriere",
+            "bhv",
+            "lisette_log"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Catanzaro",
+        "companies": [
+            "costruzi_fla",
+            "fui",
+            "aci",
+            "cargotras",
+            "ini"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Napoli",
+        "companies": [
+            "ika_bohag",
+            "cont_port_it",
+            "fattoria_f",
+            "tesore_gust",
+            "ini",
+            "cnp",
+            "eolo_lines",
+            "piac",
+            "te_logistica",
+            "marina_it",
+            "volvo_dlr"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Taranto",
+        "companies": [
+            "vitas_pwr",
+            "costruzi_win",
+            "aaa",
+            "ini",
+            "exomar",
+            "cnp",
+            "acc",
+            "marina_it"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Utena",
+        "companies": [
+            "nosko",
+            "blt",
+            "agrominta",
+            "kivi",
+            "domdepo"
+        ],
+        "country": "lithuania"
+    },
+    {
+        "city_name": "Livorno",
+        "companies": [
+            "cont_port_it",
+            "cargotras",
+            "marmo",
+            "sal",
+            "libellula",
+            "cnp"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Ventspils",
+        "companies": [
+            "gnt",
+            "polarislines",
+            "baltomorsk",
+            "eviksi_a",
+            "ns_oil"
+        ],
+        "country": "latvia"
+    },
+    {
+        "city_name": "Vilnius",
+        "companies": [
+            "ika_bohag",
+            "gnt",
+            "viln_paper",
+            "nch",
+            "aerobalt",
+            "bhv",
+            "volvo_dlr",
+            "nosko"
+        ],
+        "country": "lithuania"
+    },
+    {
+        "city_name": "Paldiski",
+        "companies": [
+            "cemelt_win",
+            "ns_oil",
+            "polarislines",
+            "blt"
+        ],
+        "country": "estonia"
+    },
+    {
+        "city_name": "Луга",
+        "companies": [
+            "ns_chem",
+            "rosmark",
+            "baltomors",
+            "domdepo"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Parma",
+        "companies": [
+            "te_logistica",
+            "ini",
+            "spinelli",
+            "piac",
+            "tesore_gust"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Cassino",
+        "companies": [
+            "piac",
+            "spinelli"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Terni",
+        "companies": [
+            "pp_chimica",
+            "acc",
+            "sal"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Bologna",
+        "companies": [
+            "pp_chimica",
+            "ika_bohag",
+            "piac",
+            "libellula",
+            "exomar",
+            "aci",
+            "ini"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Šiauliai",
+        "companies": [
+            "bltmetal",
+            "blt",
+            "bhv",
+            "renat"
+        ],
+        "country": "lithuania"
+    },
+    {
+        "city_name": "Ancona",
+        "companies": [
+            "exomar",
+            "ika_bohag",
+            "libellula",
+            "cnp",
+            "marina_it",
+            "c_navale",
+            "cont_port_it"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Cagliari",
+        "companies": [
+            "tras_med",
+            "aaa",
+            "te_logistica",
+            "costruzi_win",
+            "aci",
+            "marina_it",
+            "eolo_lines"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Bari",
+        "companies": [
+            "cont_port_it",
+            "tras_med",
+            "quadrelli",
+            "aci",
+            "marina_it",
+            "eolo_lines"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Calvi",
+        "companies": [
+            "marina_fr",
+            "fle",
+            "batisse_base",
+            "renar"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Olkiluoto",
+        "companies": [
+            "ukko"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Kotka",
+        "companies": [
+            "renar",
+            "kivi",
+            "cont_port",
+            "ns_oil",
+            "lintukainenn"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Panevėžys",
+        "companies": [
+            "suprema",
+            "bhv",
+            "gnt",
+            "cemelt_hal"
+        ],
+        "country": "lithuania"
+    },
+    {
+        "city_name": "Suzzara",
+        "companies": [
+            "ini",
+            "comoto"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Daugavpils",
+        "companies": [
+            "baltomorsk",
+            "gnt",
+            "lateds",
+            "ns_oil",
+            "eviksi",
+            "lvr",
+            "renat"
+        ],
+        "country": "latvia"
+    },
+    {
+        "city_name": "Kunda",
+        "companies": [
+            "blt",
+            "ee_paper"
+        ],
+        "country": "estonia"
+    },
+    {
+        "city_name": "Псков",
+        "companies": [
+            "baltomors",
+            "ns_oil",
+            "blt",
+            "suprema",
+            "bltmetal"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Narva",
+        "companies": [
+            "renar",
+            "onnelik"
+        ],
+        "country": "estonia"
+    },
+    {
+        "city_name": "Messina",
+        "companies": [
+            "c_navale",
+            "te_logistica",
+            "eolo_lines"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Lahti",
+        "companies": [
+            "bhv",
+            "ateria",
+            "renar",
+            "suprema"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "porto_vecchi",
+        "companies": [
+            "dans_jardin",
+            "wilnet_trans",
+            "eolo_lines",
+            "mvm_carriere"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "L'Île-Rousse",
+        "companies": [
+            "eolo_lines"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Naantali",
+        "companies": [
+            "ibp",
+            "polarislines"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Liepāja",
+        "companies": [
+            "bltmetal",
+            "rosmark",
+            "eviksi",
+            "polarislines",
+            "cemelt_win",
+            "eviksi_a"
+        ],
+        "country": "latvia"
+    },
+    {
+        "city_name": "Сосновый Бор",
+        "companies": [
+            "severoatm"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Villa San Giovanni",
+        "companies": [
+            "eolo_lines"
+        ],
+        "country": "italia"
+    },
+    {
+        "city_name": "Mažeikiai",
+        "companies": [
+            "ibp"
+        ],
+        "country": "lithuania"
+    },
+    {
+        "city_name": "klodzko",
+        "companies": [
+            "biedronka_in",
+            "betard",
+            "market",
+            "steinhoff",
+            "budowa",
+            "leclerc",
+            "kopal_zw"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Ivalo",
+        "companies": [
+            "metro",
+            "norr_food",
+            "bjork"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Θεσσαλονίκη",
+        "companies": [
+            "subse",
+            "globeur",
+            "euroacres",
+            "kaarfor",
+            "bcp",
+            "posped",
+            "polarislines"
+        ],
+        "country": "greece"
+    },
+    {
+        "city_name": "Kalix",
+        "companies": [
+            "bjork"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Bilbao",
+        "companies": [
+            "gnt",
+            "kaarfor",
+            "lidl",
+            "voitureux",
+            "cont_port",
+            "batisse_hs",
+            "trameri",
+            "batisse",
+            "chimi",
+            "gallia_ferry",
+            "huilant"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Londonderry/Derry",
+        "companies": [
+            "norrsken",
+            "eurogoodies"
+        ],
+        "country": "nireland"
+    },
+    {
+        "city_name": "Zadar",
+        "companies": [
+            "jadranska",
+            "fle",
+            "konzum",
+            "huilant"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Kirkenes",
+        "companies": [
+            "agronord",
+            "ns_oil",
+            "ms_stein"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Bonn",
+        "companies": [
+            "lidl",
+            "ns_oil"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Oulu",
+        "companies": [
+            "ns_oil",
+            "ns_chem",
+            "sag_tre",
+            "gnt",
+            "mcdonalds",
+            "domdepo",
+            "drekkar",
+            "polar_fish"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Sundsvall",
+        "companies": [
+            "itcc",
+            "ns_oil",
+            "drekkar",
+            "norr_food",
+            "norrsken"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Kärsämäki",
+        "companies": [
+            "drekkar",
+            "renar"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Bremerhaven",
+        "companies": [
+            "kaufland",
+            "expert",
+            "drekkar",
+            "cont_port"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Монтана",
+        "companies": [
+            "costruzi_hal",
+            "sal"
+        ],
+        "country": "bulgaria"
+    },
+    {
+        "city_name": "Ниш",
+        "companies": [
+            "batisse",
+            "nbfc",
+            "kaarfor",
+            "bhv",
+            "jadranska"
+        ],
+        "country": "serbia"
+    },
+    {
+        "city_name": "Београд",
+        "companies": [
+            "sag_tre",
+            "lisette_log",
+            "ikea",
+            "gomme_monde",
+            "bhv",
+            "ms_stein",
+            "konstnr",
+            "jadranska"
+        ],
+        "country": "serbia"
+    },
+    {
+        "city_name": "Arnhem",
+        "companies": [
+            "albertheijn",
+            "mcdonalds",
+            "ikea",
+            "fcp",
+            "transinet"
+        ],
+        "country": "netherlands"
+    },
+    {
+        "city_name": "Fishguard",
+        "companies": [
+            "gnt"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Aurach",
+        "companies": [
+            "shell",
+            "vitas_pwr",
+            "mcdonalds"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Ιωάννινα",
+        "companies": [
+            "renar",
+            "posped",
+            "subse",
+            "metro",
+            "expert",
+            "boisserie"
+        ],
+        "country": "greece"
+    },
+    {
+        "city_name": "Sligo",
+        "companies": [
+            "aria_fd_trbg",
+            "trameri"
+        ],
+        "country": "ireland"
+    },
+    {
+        "city_name": "Keflavík",
+        "companies": [
+            "cargoexpress",
+            "sanbuilders",
+            "ms_stein",
+            "icelandair"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Timișoara",
+        "companies": [
+            "metro",
+            "tree_et",
+            "transinet",
+            "bcp",
+            "euroacres",
+            "eurogoodies"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "Zagreb",
+        "companies": [
+            "bauhaus",
+            "daf_dlr",
+            "batisse",
+            "kaarfor",
+            "posped",
+            "metro"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Zaragoza",
+        "companies": [
+            "mercadona",
+            "lisette_log",
+            "volvo_dlr",
+            "dans_jardin",
+            "batisse",
+            "eurogoodies",
+            "wilnet_trans",
+            "batisse_road"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Slavonski Brod",
+        "companies": [
+            "globeur",
+            "billa",
+            "posped"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Barcelona",
+        "companies": [
+            "wgcc",
+            "aria_nordic",
+            "batisse_hs",
+            "tradeaux",
+            "vitas_pwr",
+            "chimi",
+            "lisette_log",
+            "nos_pat",
+            "batisse",
+            "trameri",
+            "posped",
+            "kaarfor",
+            "lidl",
+            "nbfc",
+            "volvo_dlr",
+            "bhb_raffin",
+            "cont_port"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Irun",
+        "companies": [
+            "mazet",
+            "aria_nordic",
+            "wilnet_trans",
+            "transwood",
+            "globeur",
+            "trameri",
+            "lisette_log"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Скопје",
+        "companies": [
+            "bhv",
+            "bcp",
+            "kaarfor",
+            "jadranska"
+        ],
+        "country": "macedonia"
+    },
+    {
+        "city_name": "San Sebastián/Donostia",
+        "companies": [
+            "ikea",
+            "leroymerlin",
+            "gnt",
+            "kaarfor",
+            "tradeaux"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Šibenik",
+        "companies": [
+            "konzum",
+            "ina",
+            "aaa",
+            "marina_fr"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Flensburg",
+        "companies": [
+            "sanbuilders",
+            "expert",
+            "daf_dlr",
+            "euroacres",
+            "marina"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Trinity",
+        "companies": [
+            "agronord"
+        ],
+        "country": "jersey"
+    },
+    {
+        "city_name": "Lisburn",
+        "companies": [
+            "mcdonalds"
+        ],
+        "country": "nireland"
+    },
+    {
+        "city_name": "Kemi",
+        "companies": [
+            "gnt"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Bolungarvík",
+        "companies": [
+            "samkaup",
+            "olis",
+            "port_bolun"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Belfast",
+        "companies": [
+            "tesco",
+            "cont_port",
+            "drekkar"
+        ],
+        "country": "nireland"
+    },
+    {
+        "city_name": "Pau",
+        "companies": [
+            "bhb_raffin",
+            "posped",
+            "batisse",
+            "chimi",
+            "lacquide",
+            "wgcc"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Akranes",
+        "companies": [
+            "bondi",
+            "samskip",
+            "hb_grandi",
+            "eimskip"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Pamplona-Iruña",
+        "companies": [
+            "fle",
+            "leroymerlin",
+            "lidl",
+            "voitureux",
+            "leclerc"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Hólmavík",
+        "companies": [
+            "bondi",
+            "vegagerdin",
+            "polar_fish"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Valencia",
+        "companies": [
+            "norrsken",
+            "scania_dlr",
+            "kaarfor",
+            "dans_jardin",
+            "renar",
+            "cont_port",
+            "drekkar",
+            "norr_food",
+            "batisse",
+            "wilnet_trans",
+            "ikea",
+            "gomme_monde"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Oban",
+        "companies": [
+            "bcp",
+            "euroacres",
+            "posped",
+            "stokes"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Reykjavík",
+        "companies": [
+            "hb_grandi",
+            "konstnr",
+            "samskip",
+            "smyril",
+            "eimskip",
+            "ikea",
+            "sellplan"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Vinaròs",
+        "companies": [
+            "lidl",
+            "bhv",
+            "lisette_log"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Mainz",
+        "companies": [
+            "konstnr",
+            "bhv"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Мурманск",
+        "companies": [
+            "lidl",
+            "itcc",
+            "ns_oil",
+            "nbfc",
+            "sanbuilders"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Manresa",
+        "companies": [
+            "dia",
+            "aria_nordic",
+            "mazet"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Orléans",
+        "companies": [
+            "kaarfor",
+            "wilnet_trans",
+            "nos_pat",
+            "bhv",
+            "scania_dlr",
+            "batisse_road"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Soria",
+        "companies": [
+            "bhv",
+            "wilnet_trans",
+            "acc"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Нови Сад",
+        "companies": [
+            "lukoil",
+            "eurogoodies",
+            "heineken",
+            "lidl",
+            "kaarfor",
+            "cnp",
+            "bhv",
+            "trameri",
+            "gnt"
+        ],
+        "country": "serbia"
+    },
+    {
+        "city_name": "Evie",
+        "companies": [
+            "euroacres"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Πάφος",
+        "companies": [
+            "effo",
+            "globeur",
+            "gnt"
+        ],
+        "country": "cyprus"
+    },
+    {
+        "city_name": "Vaasa",
+        "companies": [
+            "egres",
+            "norrsken",
+            "prisma",
+            "renar",
+            "drekkar"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Rønne",
+        "companies": [
+            "polarislines",
+            "nord_crown",
+            "ns_oil",
+            "dagli"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Tornio",
+        "companies": [
+            "trameri",
+            "eurogoodies"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Kittilä",
+        "companies": [
+            "sag_tre",
+            "norr_food",
+            "bjork"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Uelzen",
+        "companies": [
+            "cargotras",
+            "kaarfor"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Ploče",
+        "companies": [
+            "cont_port",
+            "wgcc",
+            "euroacres"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Rovaniemi",
+        "companies": [
+            "trameri",
+            "aria_nordic",
+            "bauhaus",
+            "prisma",
+            "mcdonalds",
+            "shell",
+            "posped"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Östersund",
+        "companies": [
+            "europcar",
+            "gnt",
+            "bhv",
+            "elgiganten",
+            "sag_tre",
+            "marina_fr"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Видин",
+        "companies": [
+            "jadranska2",
+            "bcp",
+            "globeur",
+            "jadranska1"
+        ],
+        "country": "bulgaria"
+    },
+    {
+        "city_name": "Καβάλα",
+        "companies": [
+            "subse",
+            "costruzi_bas",
+            "eolo_lines",
+            "cont_port_it",
+            "marina_fr"
+        ],
+        "country": "greece"
+    },
+    {
+        "city_name": "Seyðisfjörður",
+        "companies": [
+            "ns_oil",
+            "sildarvinn"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Heilbronn",
+        "companies": [
+            "posped",
+            "expert",
+            "itcc",
+            "ns_oil",
+            "mazet",
+            "lidl"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Antwerpen",
+        "companies": [
+            "psa_ant",
+            "trameri",
+            "itcc",
+            "lkwlog",
+            "fcp",
+            "bcp",
+            "kaarfor"
+        ],
+        "country": "belgium"
+    },
+    {
+        "city_name": "Кандалакша",
+        "companies": [
+            "tree_et",
+            "konstnr",
+            "fcp",
+            "norrsken"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Πτολεμαΐδα",
+        "companies": [
+            "nucleon"
+        ],
+        "country": "greece"
+    },
+    {
+        "city_name": "Охрид",
+        "companies": [
+            "bhv",
+            "wilnet_trans",
+            "kaarfor"
+        ],
+        "country": "macedonia"
+    },
+    {
+        "city_name": "Dombås",
+        "companies": [
+            "norrsken",
+            "lidl"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Douglas",
+        "companies": [
+            "ikea",
+            "mazet"
+        ],
+        "country": "iom"
+    },
+    {
+        "city_name": "Perth",
+        "companies": [
+            "posped",
+            "bhv",
+            "tradeaux",
+            "lidl"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Olomouc",
+        "companies": [
+            "volvo_dlr",
+            "aria_nordic",
+            "lisette_log"
+        ],
+        "country": "czech"
+    },
+    {
+        "city_name": "Sibiu",
+        "companies": [
+            "bauhaus",
+            "mcdonalds",
+            "lidl"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "Kuopio",
+        "companies": [
+            "eurogoodies",
+            "bauhaus",
+            "transinet",
+            "man_dlr",
+            "nbfc",
+            "euroacres"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Trondheim",
+        "companies": [
+            "gnt",
+            "drekkar",
+            "daf_dlr",
+            "polarislines",
+            "renar",
+            "ikea",
+            "norrsken"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Drammen",
+        "companies": [
+            "ns_chem",
+            "marina_fr",
+            "sag_tre",
+            "ms_stein",
+            "gnt"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Ulm",
+        "companies": [
+            "ikea",
+            "transinet",
+            "alds"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Rijeka",
+        "companies": [
+            "eurogoodies",
+            "mvm_carriere",
+            "billa",
+            "renar",
+            "posped"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Cairnryan",
+        "companies": [
+            "polarislines"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Гусев",
+        "companies": [
+            "zelenye_a",
+            "pk_medved"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Плевен",
+        "companies": [
+            "metro",
+            "sal",
+            "jadranska",
+            "ns_chem",
+            "gnt"
+        ],
+        "country": "bulgaria"
+    },
+    {
+        "city_name": "Otta",
+        "companies": [
+            "gnt",
+            "kiwi"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Alajärvi",
+        "companies": [
+            "lidl",
+            "bjork"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Ystad",
+        "companies": [
+            "polarislines",
+            "willys"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Porthmadog",
+        "companies": [
+            "fandwhr",
+            "aldn",
+            "tesco",
+            "lafarge_t"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Suwałki",
+        "companies": [
+            "lidl",
+            "salag",
+            "aquael",
+            "mediaexpert"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Верхнетуломский",
+        "companies": [
+            "tree_et"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "Skellefteå",
+        "companies": [
+            "norr_food",
+            "bhv",
+            "norrsken",
+            "boliden"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Joensuu",
+        "companies": [
+            "polar_fish",
+            "ns_chem",
+            "nord_crown",
+            "gnt",
+            "sag_tre"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Karlstad",
+        "companies": [
+            "bhv",
+            "gnt",
+            "willys",
+            "marina"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Русе",
+        "companies": [
+            "posped",
+            "netto",
+            "transinet"
+        ],
+        "country": "bulgaria"
+    },
+    {
+        "city_name": "Klaksvík",
+        "companies": [
+            "posped",
+            "marina",
+            "polar_fish",
+            "effo"
+        ],
+        "country": "faroe"
+    },
+    {
+        "city_name": "Žuta Lokva",
+        "companies": [
+            "ina"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Trnava",
+        "companies": [
+            "tradeaux",
+            "stokes"
+        ],
+        "country": "slovakia"
+    },
+    {
+        "city_name": "Kristiinankaupunki",
+        "companies": [
+            "lintukainenn",
+            "aria_nordic",
+            "gnt"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Akureyri",
+        "companies": [
+            "eimskip",
+            "quarry",
+            "trameri",
+            "itcc",
+            "tree_et",
+            "samskip",
+            "bondi"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Selfoss",
+        "companies": [
+            "iav",
+            "kronan",
+            "ms_stein",
+            "ice_gla"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Прилеп",
+        "companies": [
+            "subse",
+            "costruzi_bas"
+        ],
+        "country": "macedonia"
+    },
+    {
+        "city_name": "Balvi",
+        "companies": [
+            "baltomorsk",
+            "cemelt_hal",
+            "supernetto",
+            "maxima",
+            "eviksi_a"
+        ],
+        "country": "latvia"
+    },
+    {
+        "city_name": "Vaduz",
+        "companies": [
+            "metro",
+            "eurogoodies"
+        ],
+        "country": "liecht"
+    },
+    {
+        "city_name": "Ísafjörður",
+        "companies": [
+            "hekla",
+            "isavia",
+            "timbursala",
+            "port_sudur",
+            "port_isa",
+            "orkan",
+            "port_sudavik",
+            "bonus",
+            "fuel_depot"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Крагујевац",
+        "companies": [
+            "lisette_log",
+            "metro",
+            "huilant"
+        ],
+        "country": "serbia"
+    },
+    {
+        "city_name": "Constanța",
+        "companies": [
+            "transinet",
+            "euroacres",
+            "eurogoodies"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "Eindhoven",
+        "companies": [
+            "daf_fac",
+            "eurogoodies",
+            "jumbo"
+        ],
+        "country": "netherlands"
+    },
+    {
+        "city_name": "Reutte",
+        "companies": [
+            "posped",
+            "chimi",
+            "ns_oil",
+            "lidl"
+        ],
+        "country": "austria"
+    },
+    {
+        "city_name": "Viborg",
+        "companies": [
+            "mcdonalds",
+            "gnt",
+            "metro"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Broadford",
+        "companies": [
+            "norr_food"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Jaca",
+        "companies": [
+            "mercadona"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Wexford",
+        "companies": [
+            "lisette_log",
+            "globeur"
+        ],
+        "country": "ireland"
+    },
+    {
+        "city_name": "Senj",
+        "companies": [
+            "konzum"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Moerdijk",
+        "companies": [
+            "snb",
+            "shell_fac",
+            "kuenenagelll"
+        ],
+        "country": "netherlands"
+    },
+    {
+        "city_name": "Bayonne",
+        "companies": [
+            "tree_et",
+            "nbfc",
+            "mazet"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Piatra Neamţ",
+        "companies": [
+            "bhv",
+            "chimi",
+            "lidl",
+            "trameri",
+            "metro"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "Basel",
+        "companies": [
+            "trameri",
+            "metro",
+            "posped"
+        ],
+        "country": "switzerland"
+    },
+    {
+        "city_name": "Vík í Mýrdal",
+        "companies": [
+            "n1",
+            "seljaland"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Hawes",
+        "companies": [
+            "euroacres",
+            "hawesmarket",
+            "creamery"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Viitasaari",
+        "companies": [
+            "sag_tre",
+            "aria_nordic"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Αλεξανδρούπολη",
+        "companies": [
+            "euroacres",
+            "gnt",
+            "norr_food"
+        ],
+        "country": "greece"
+    },
+    {
+        "city_name": "Kokkola",
+        "companies": [
+            "drekkar",
+            "prisma",
+            "norrsken",
+            "renar",
+            "ms_stein",
+            "ns_chem"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Örnsköldsvik",
+        "companies": [
+            "itcc",
+            "norr_food",
+            "willys"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Longyearbyen",
+        "companies": [
+            "ms_stein"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Oberhausen",
+        "companies": [
+            "bauhaus",
+            "aldn",
+            "eurogoodies",
+            "sanbuilders",
+            "metro"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Ullapool",
+        "companies": [
+            "dhl",
+            "tesco"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Битола",
+        "companies": [
+            "jadranska",
+            "bjork",
+            "euroacres"
+        ],
+        "country": "macedonia"
+    },
+    {
+        "city_name": "Lleida",
+        "companies": [
+            "globeur",
+            "subse",
+            "gnt",
+            "posped",
+            "vitas_pwr",
+            "kaarfor",
+            "batisse"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Osijek",
+        "companies": [
+            "nbfc",
+            "bhv",
+            "drekkar",
+            "kaarfor"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Aberystwyth",
+        "companies": [
+            "tesco",
+            "jewson",
+            "euroacres"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Lillehammer",
+        "companies": [
+            "norrsken",
+            "norr_food",
+            "voitureux",
+            "renar"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Λεμεσός",
+        "companies": [
+            "gnt",
+            "effo",
+            "transinet"
+        ],
+        "country": "cyprus"
+    },
+    {
+        "city_name": "Söderhamn",
+        "companies": [
+            "mcdonalds"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Gävle",
+        "companies": [
+            "sag_tre",
+            "norrsken",
+            "gnt",
+            "norr_food"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Croydon",
+        "companies": [
+            "ikea",
+            "trameri"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Inverness",
+        "companies": [
+            "sellplan",
+            "eurogoodies",
+            "wgcc",
+            "euroacres",
+            "daf_dlr",
+            "tree_et"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Huesca",
+        "companies": [
+            "globeur",
+            "lidl",
+            "nos_pat",
+            "eroski"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Mariehamn",
+        "companies": [
+            "marina_fr",
+            "norr_food",
+            "polar_fish"
+        ],
+        "country": "aland"
+    },
+    {
+        "city_name": "Portree",
+        "companies": [
+            "metro",
+            "posped"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Fraserburgh",
+        "companies": [
+            "captiglo",
+            "polar_fish"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Longyearbyen",
+        "companies": [
+            "polarisline1",
+            "seedvault",
+            "polarislines",
+            "norr_food"
+        ],
+        "country": "svalbard"
+    },
+    {
+        "city_name": "Portsmouth",
+        "companies": [
+            "trameri",
+            "bcp",
+            "stokes",
+            "posped"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Andorra la Vella",
+        "companies": [
+            "transinet",
+            "batisse",
+            "posped"
+        ],
+        "country": "andorra"
+    },
+    {
+        "city_name": "Aarhus",
+        "companies": [
+            "ika_bohag",
+            "marina",
+            "norr_food",
+            "polarislines",
+            "konstnr",
+            "norrsken"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Craiova",
+        "companies": [
+            "euroacres",
+            "transinet",
+            "eurogoodies"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "Maribor",
+        "companies": [
+            "mcdonalds",
+            "fcp",
+            "lkwlog",
+            "stokes",
+            "trameri",
+            "posped",
+            "eurogoodies"
+        ],
+        "country": "slovenia"
+    },
+    {
+        "city_name": "Hammerfest",
+        "companies": [
+            "marina",
+            "bjork",
+            "ns_oil",
+            "ns_chem",
+            "polar_fish"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Fort William",
+        "companies": [
+            "tree_et",
+            "trameri"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Kolding",
+        "companies": [
+            "wurth",
+            "mcdonalds",
+            "lidl",
+            "bilka"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Žuta Lokva",
+        "companies": [
+            "ina",
+            "ms_stein"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Chişinău",
+        "companies": [
+            "euroacres",
+            "eurogoodies",
+            "transinet"
+        ],
+        "country": "moldova"
+    },
+    {
+        "city_name": "Λευκωσία",
+        "companies": [
+            "subse",
+            "trameri",
+            "ikea",
+            "ms_stein",
+            "shell",
+            "euroacres"
+        ],
+        "country": "cyprus"
+    },
+    {
+        "city_name": "Oppdal",
+        "companies": [
+            "aria_nordic",
+            "norr_food"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Blönduós",
+        "companies": [
+            "port_blond",
+            "sah_afurdir",
+            "samkaup"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "cluj",
+        "companies": [
+            "euroacres",
+            "posped",
+            "eurogoodies",
+            "transinet"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "Mladá Boleslav",
+        "companies": [
+            "skoda"
+        ],
+        "country": "czech"
+    },
+    {
+        "city_name": "Λάρνακα",
+        "companies": [
+            "eurogoodies",
+            "posped",
+            "globeur",
+            "euroacres"
+        ],
+        "country": "cyprus"
+    },
+    {
+        "city_name": "Canterbury",
+        "companies": [
+            "nbfc",
+            "lidl"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Folkestone",
+        "companies": [
+            "bhv",
+            "tesco",
+            "globeur",
+            "lisette_log"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Krafla",
+        "companies": [
+            "landsvirkjun"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Koblenz",
+        "companies": [
+            "ns_chem",
+            "bhv",
+            "expert",
+            "fle",
+            "lidl"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Limerick",
+        "companies": [
+            "kaarfor",
+            "europcar",
+            "tree_et",
+            "globeur"
+        ],
+        "country": "ireland"
+    },
+    {
+        "city_name": "vestmann",
+        "companies": [
+            "kronan",
+            "vsv",
+            "vest_port",
+            "eimskip"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Reyðarfjörður",
+        "companies": [
+            "itcc",
+            "samskip",
+            "eimskip"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Teruel",
+        "companies": [
+            "cargotras",
+            "euroacres",
+            "bhv",
+            "boisserie"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Perpignan",
+        "companies": [
+            "pfi",
+            "metro"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Hiorthhamn",
+        "companies": [
+            "ms_stein"
+        ],
+        "country": "svalbard"
+    },
+    {
+        "city_name": "Borgarnes",
+        "companies": [
+            "bondi"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Tórshavn",
+        "companies": [
+            "polar_fish",
+            "marina",
+            "metro",
+            "smyril"
+        ],
+        "country": "faroe"
+    },
+    {
+        "city_name": "Trieste",
+        "companies": [
+            "cont_port",
+            "vitas_pwr",
+            "coop",
+            "subse",
+            "polar_fish",
+            "huilant",
+            "ikea"
+        ],
+        "country": "italy"
+    },
+    {
+        "city_name": "Bad Oeynhausen",
+        "companies": [
+            "shell",
+            "metro"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Jyväskylä",
+        "companies": [
+            "bcp",
+            "biltema",
+            "prisma"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Umeå",
+        "companies": [
+            "renar",
+            "biltema",
+            "bhv",
+            "drekkar",
+            "willys"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Zwolle",
+        "companies": [
+            "transinet",
+            "nd",
+            "posped",
+            "ikea"
+        ],
+        "country": "netherlands"
+    },
+    {
+        "city_name": "La Jonquera",
+        "companies": [
+            "batisse",
+            "kaarfor"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Dublin",
+        "companies": [
+            "lkwlog",
+            "sellplan",
+            "renar",
+            "eurogoodies",
+            "polarislines"
+        ],
+        "country": "ireland"
+    },
+    {
+        "city_name": "Varkaus",
+        "companies": [
+            "fcp",
+            "posped"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Höfn í Hornafirði",
+        "companies": [
+            "ms_stein",
+            "gardshorn",
+            "vegagerdin_r"
+        ],
+        "country": "iceland"
+    },
+    {
+        "city_name": "Herning",
+        "companies": [
+            "bauhaus",
+            "norrsken",
+            "renar",
+            "gnt"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Split",
+        "companies": [
+            "ina_dist",
+            "cemex",
+            "konzum"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Obsteig",
+        "companies": [
+            "lidl"
+        ],
+        "country": "austria"
+    },
+    {
+        "city_name": "Kristianstad",
+        "companies": [
+            "norr_food",
+            "bauhaus"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Bălţi",
+        "companies": [
+            "euroacres",
+            "eurogoodies",
+            "transinet"
+        ],
+        "country": "moldova"
+    },
+    {
+        "city_name": "Hamar",
+        "companies": [
+            "gnt_auto"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Зрењанин",
+        "companies": [
+            "chimi",
+            "eurogoodies",
+            "wgcc"
+        ],
+        "country": "serbia"
+    },
+    {
+        "city_name": "Geiselwind",
+        "companies": [
+            "shell"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Svalbard Eastern Satellite station",
+        "companies": [
+            "svalsat"
+        ],
+        "country": "svalbard"
+    },
+    {
+        "city_name": "Sangerhausen",
+        "companies": [
+            "mcdonalds",
+            "shell"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Burg auf Fehmarn",
+        "companies": [
+            "marina",
+            "lidl",
+            "vitas_pwr",
+            "norr_food"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Dumfries",
+        "companies": [
+            "tesco",
+            "bcp"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Åre",
+        "companies": [
+            "lidl"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Holyhead",
+        "companies": [
+            "polarislines",
+            "norr_food",
+            "tesco"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Мукачево",
+        "companies": [
+            "epicentrk",
+            "flex",
+            "renault"
+        ],
+        "country": "ukraine"
+    },
+    {
+        "city_name": "Fürth",
+        "companies": [
+            "expert",
+            "ikea"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Chelmsford",
+        "companies": [
+            "tradeaux",
+            "tesco"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Kemijärvi",
+        "companies": [
+            "norrsken"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Никель",
+        "companies": [
+            "itcc",
+            "quarry"
+        ],
+        "country": "russia"
+    },
+    {
+        "city_name": "ukmergė",
+        "companies": [
+            "likmerge",
+            "lidl"
+        ],
+        "country": "lithuania"
+    },
+    {
+        "city_name": "Holstebro",
+        "companies": [
+            "metro",
+            "bhv",
+            "konstnr_wind"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Stranraer",
+        "companies": [
+            "posped"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "A7 Roadworks",
+        "companies": [
+            "roadworks_a7"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Ljubljana",
+        "companies": [
+            "bcp",
+            "euroacres",
+            "transinet",
+            "trameri",
+            "bauhaus"
+        ],
+        "country": "slovenia"
+    },
+    {
+        "city_name": "Narbonne",
+        "companies": [
+            "ms_stein"
+        ],
+        "country": "france"
+    },
+    {
+        "city_name": "Sodankylä",
+        "companies": [
+            "posped",
+            "sag_tre",
+            "norr_food"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Thurso",
+        "companies": [
+            "euroacres"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Mikkeli",
+        "companies": [
+            "eurogoodies",
+            "tree_et",
+            "trameri"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Kolka",
+        "companies": [
+            "euroacres",
+            "polar_fish"
+        ],
+        "country": "latvia"
+    },
+    {
+        "city_name": "Врање",
+        "companies": [
+            "eurogoodies",
+            "posped"
+        ],
+        "country": "serbia"
+    },
+    {
+        "city_name": "Svalbard Western Satellite station",
+        "companies": [
+            "svalsat"
+        ],
+        "country": "svalbard"
+    },
+    {
+        "city_name": "Arad",
+        "companies": [
+            "trameri",
+            "lidl",
+            "euroacres",
+            "transinet"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "Bacău",
+        "companies": [
+            "chimi",
+            "bhb_raffin",
+            "transinet",
+            "lidl"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "Honningsvåg",
+        "companies": [
+            "marina",
+            "ns_oil",
+            "gnt"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Birsay",
+        "companies": [
+            "agronord"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Лесковац",
+        "companies": [
+            "tradeaux",
+            "sag_tre"
+        ],
+        "country": "serbia"
+    },
+    {
+        "city_name": "Padborg",
+        "companies": [
+            "drekkar",
+            "gnt"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Saint Helier",
+        "companies": [
+            "gallia_ferry"
+        ],
+        "country": "jersey"
+    },
+    {
+        "city_name": "Grödig",
+        "companies": [
+            "euroacres",
+            "hofer"
+        ],
+        "country": "austria"
+    },
+    {
+        "city_name": "Tana bru",
+        "companies": [
+            "bhv"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Hainburg an der Donau",
+        "companies": [
+            "billa"
+        ],
+        "country": "austria"
+    },
+    {
+        "city_name": "Orkanger",
+        "companies": [
+            "norr_food"
+        ],
+        "country": "norway"
+    },
+    {
+        "city_name": "Larne",
+        "companies": [
+            "polarislines"
+        ],
+        "country": "nireland"
+    },
+    {
+        "city_name": "Šibenik",
+        "companies": [
+            "ina"
+        ],
+        "country": "croatia"
+    },
+    {
+        "city_name": "Wick",
+        "companies": [
+            "quarry",
+            "posped"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Wiesbaden",
+        "companies": [
+            "marina",
+            "transinet"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Halle (Saale)",
+        "companies": [
+            "wilnet_trans"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "Utsjoki",
+        "companies": [
+            "agronord",
+            "ns_oil"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Lellinge",
+        "companies": [
+            "dagli"
+        ],
+        "country": "denmark"
+    },
+    {
+        "city_name": "Canfranc-Estación",
+        "companies": [
+            "batisse_hs"
+        ],
+        "country": "spain"
+    },
+    {
+        "city_name": "Haparanda",
+        "companies": [
+            "ikea"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Kirkwall",
+        "companies": [
+            "posped"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Grumantbyen",
+        "companies": [
+            "ms_stein"
+        ],
+        "country": "svalbard"
+    },
+    {
+        "city_name": "Vantaa",
+        "companies": [
+            "aerobalt"
+        ],
+        "country": "finland"
+    },
+    {
+        "city_name": "Visby",
+        "companies": [
+            "konstnr",
+            "ms_stein",
+            "ljug_handel",
+            "norr_food",
+            "polarislines",
+            "gnt",
+            "euroacres"
+        ],
+        "country": "sweden"
+    },
+    {
+        "city_name": "Oradea",
+        "companies": [
+            "eurogoodies",
+            "euroacres",
+            "transinet"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "vasaros",
+        "companies": [
+            "norrsken",
+            "norr_food",
+            "te_logistica"
+        ]
+    },
+    {
+        "city_name": "Stornoway",
+        "companies": [
+            "tesco",
+            "ns_oil"
+        ],
+        "country": "united-kingdom"
+    },
+    {
+        "city_name": "Győr",
+        "companies": [
+            "audi",
+            "posped",
+            "tesco",
+            "mcdonalds"
+        ],
+        "country": "hungary"
+    },
+    {
+        "city_name": "Galway",
+        "companies": [
+            "sellplan",
+            "marina",
+            "ns_oil",
+            "norrsken"
+        ],
+        "country": "ireland"
+    },
+    {
+        "city_name": "București",
+        "companies": [
+            "lidl",
+            "bauhaus",
+            "transinet",
+            "trameri"
+        ],
+        "country": "romania"
+    },
+    {
+        "city_name": "Jēkabpils",
+        "companies": [
+            "renat",
+            "depo",
+            "stokes",
+            "domdepo"
+        ],
+        "country": "latvia"
+    },
+    {
+        "city_name": "Суботица",
+        "companies": [
+            "wilnet_trans",
+            "kaarfor"
+        ],
+        "country": "serbia"
+    },
+    {
+        "city_name": "Ramsey",
+        "companies": [
+            "euroacres"
+        ],
+        "country": "iom"
+    },
+    {
+        "city_name": "Ужгород",
+        "companies": [
+            "blt"
+        ],
+        "country": "ukraine"
+    },
+    {
+        "city_name": "lebork",
+        "companies": [
+            "waberers",
+            "komfort",
+            "lidl",
+            "biedronka_in",
+            "zbyszko",
+            "gospodarstwo",
+            "minimarket3"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Przemyśl",
+        "companies": [
+            "tradeaux",
+            "roboty",
+            "mediamarkt",
+            "auchan",
+            "castorama",
+            "tartak"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Zgorzelec",
+        "companies": [
+            "citronex",
+            "castorama",
+            "leroymerlin",
+            "zlecenie",
+            "ns_oil",
+            "mediamarkt",
+            "posped",
+            "tradeaux",
+            "biedronka_in",
+            "minimarket3"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "ostroda",
+        "companies": [
+            "wurth",
+            "biedronka_in",
+            "zlecenie",
+            "shell",
+            "ns_chem",
+            "transwood",
+            "roboty",
+            "norr_food",
+            "mostostal",
+            "minimarket2"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Gdynia",
+        "companies": [
+            "biedronka_in",
+            "budimex",
+            "zlecenie",
+            "tesco",
+            "lidl",
+            "komfort",
+            "opener",
+            "ns_oil",
+            "delphia",
+            "mostostal",
+            "quarry",
+            "konstnr",
+            "vpc",
+            "mcdonalds",
+            "ikea_pl",
+            "dhl",
+            "leclerc",
+            "bct_gdynia",
+            "minimarket2"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Nowogard",
+        "companies": [
+            "tradeaux",
+            "transwood",
+            "roboty",
+            "zlecenie",
+            "lidl"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Ełk",
+        "companies": [
+            "podlogi_elk",
+            "plastimet",
+            "rybackie_elk"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Koszalin",
+        "companies": [
+            "bcp",
+            "ikea_pl",
+            "biedronka_in",
+            "mostostal",
+            "zlecenie",
+            "mcdonalds",
+            "budowa",
+            "transinet",
+            "eurogoodies",
+            "lidl",
+            "stacja",
+            "trameri",
+            "daf_dlr"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Sanok",
+        "companies": [
+            "posped",
+            "eurogoodies"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Ostrołęka",
+        "companies": [
+            "itcc",
+            "tartak",
+            "fcp"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "sopot",
+        "companies": [
+            "mcdonalds",
+            "biedronka_in",
+            "budowa",
+            "stacja",
+            "netto",
+            "nord_crown",
+            "euroacres"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Płock",
+        "companies": [
+            "netto",
+            "itcc",
+            "mcdonalds",
+            "lkwlog",
+            "stacja",
+            "bcp",
+            "pkn_orlen"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Bobolice",
+        "companies": [
+            "gospodarstwo",
+            "minimarket1"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "leba",
+        "companies": [
+            "wgcc",
+            "konstnr_wind",
+            "biedronka_in",
+            "mostostal",
+            "marina",
+            "polar_fish",
+            "stacja",
+            "minimarket1"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "bbiala",
+        "companies": [
+            "ziko",
+            "biedronka_in",
+            "budowa",
+            "serwis",
+            "castorama",
+            "trameri",
+            "kaufland",
+            "tradeaux",
+            "philips"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Stargard",
+        "companies": [
+            "posped",
+            "netto"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "szumowo",
+        "companies": [
+            "agronord"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "lomza",
+        "companies": [
+            "stacja"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Bydgoszcz",
+        "companies": [
+            "biedronka",
+            "eurogoodies",
+            "lkwlog",
+            "stacja",
+            "posped"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Gorzów Wielkopolski",
+        "companies": [
+            "posped",
+            "budowa",
+            "wgcc",
+            "eurogoodies",
+            "lkwlog",
+            "gospodarstwo",
+            "transwood",
+            "minimarket1"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Świnoujście",
+        "companies": [
+            "ot_port",
+            "lidl",
+            "bcp",
+            "itcc",
+            "stacja",
+            "trameri",
+            "biedronka"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Forst (Lausitz)",
+        "companies": [
+            "sawmillforst"
+        ],
+        "country": "germany"
+    },
+    {
+        "city_name": "legnica",
+        "companies": [
+            "biedronka_in",
+            "zbyszko",
+            "stacja",
+            "wurth"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Elbląg",
+        "companies": [
+            "globeur",
+            "cemex",
+            "lidl",
+            "dino",
+            "lisette_log",
+            "aero_elblag"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Kielce",
+        "companies": [
+            "lkwlog",
+            "lkw_walter",
+            "citronex",
+            "obi"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Wałcz",
+        "companies": [
+            "lidl",
+            "citronex",
+            "raben",
+            "budimex",
+            "minimarket1"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Piła",
+        "companies": [
+            "stokes",
+            "kaufland",
+            "biedronka_in",
+            "kaarfor",
+            "nbfc",
+            "mcdonalds",
+            "lkw_walter",
+            "waberers"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "jaworznia",
+        "companies": [
+            "wurth"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Radom",
+        "companies": [
+            "eurogoodies",
+            "sanbuilders",
+            "lkw_walter",
+            "trameri"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Strzelce Krajeńskie",
+        "companies": [
+            "gospodarstwo",
+            "budowa",
+            "posped"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Grudziądz",
+        "companies": [
+            "biedronka_in",
+            "budimex",
+            "statoil",
+            "mediamarkt",
+            "budowa",
+            "agronord",
+            "citronex",
+            "minimarket5"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "rumia",
+        "companies": [
+            "shell",
+            "castorama",
+            "bhv"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Busko Zdrój",
+        "companies": [
+            "biedronka_in",
+            "stacja",
+            "zlecenie",
+            "gospodarstwo",
+            "tartak"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Rzeszów",
+        "companies": [
+            "posped",
+            "sellplan",
+            "lidl",
+            "trameri",
+            "eurogoodies",
+            "gospodarstwo",
+            "tradeaux"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Opole",
+        "companies": [
+            "sanbuilders",
+            "wgcc",
+            "trameri"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Zamość",
+        "companies": [
+            "eurogoodies",
+            "leclerc",
+            "biedronka",
+            "posped"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Krosno",
+        "companies": [
+            "trameri",
+            "nbfc",
+            "obi",
+            "eurogoodies"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Dziwnówek",
+        "companies": [
+            "biedronka_in",
+            "gospodarstwo",
+            "polar_fish"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "mikolajki",
+        "companies": [
+            "roboty"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Bełda",
+        "companies": [
+            "euroacres"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "reda",
+        "companies": [
+            "agronord",
+            "vitas_pwr",
+            "biedronka_in"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Iłża",
+        "companies": [
+            "budowa",
+            "roboty",
+            "zlecenie",
+            "gospodarstwo"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Olszyna",
+        "companies": [
+            "bp_retail"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Siedlce",
+        "companies": [
+            "lkw_walter",
+            "posped",
+            "tartak",
+            "transwood",
+            "lidl"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "zambrow",
+        "companies": [
+            "ciepli_zamb",
+            "atlanta_zamb"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "szczecinek",
+        "companies": [
+            "lisette_log"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "mlawa",
+        "companies": [
+            "stacja",
+            "vpc",
+            "minimarket1"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "janow",
+        "companies": [
+            "euroacres"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Zgierz",
+        "companies": [
+            "mcdonalds",
+            "biedronka_in"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Międzyzdroje",
+        "companies": [
+            "waberers",
+            "stacja"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "wejherowo",
+        "companies": [
+            "stacja",
+            "tartak"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "opatow",
+        "companies": [
+            "mcdonalds"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Cieszyn",
+        "companies": [
+            "ikea"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Ostrów Mazowiecka",
+        "companies": [
+            "agromat",
+            "agrolen",
+            "agromasz"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Człuchów",
+        "companies": [
+            "zlecenie"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "przasnysz",
+        "companies": [
+            "gnt"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "rusinowo",
+        "companies": [
+            "cemex"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "ilawa",
+        "companies": [
+            "gospodarstwo",
+            "leroymerlin"
+        ],
+        "country": "poland"
+    },
+    {
+        "city_name": "Augustów",
+        "companies": [
+            "biedronka",
+            "tartak"
+        ],
+        "country": "poland"
+    }
+]
