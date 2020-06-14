@@ -1055,7 +1055,7 @@ def AcceptWaybill(request, waybill_id):
                         driver_statistics.distance + waybill.distance) * 100, 2),
                     deliveries_count=driver_statistics.deliveries_count + 1,
                 )
-                company = Company.objects.filter(name=driver_info.company)
+                company = Company.objects.get(name=driver_info.company)
                 Company.objects.filter(name=driver_info.company).update(
                     distance=company.distance + waybill.distance,
                     tonnage=company.tonnage + waybill.tonnage,
