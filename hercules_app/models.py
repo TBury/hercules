@@ -573,7 +573,7 @@ class TruckersMPStatus(models.Model):
 
     @staticmethod
     def get_status_from_database():
-        status = TruckersMPStatus.objects.filter(id=1)
+        status = TruckersMPStatus.objects.get(id=1)
         return {
             'simulation_1': status.simulation_1_players,
             'simulation_2': status.simulation_2_players,
