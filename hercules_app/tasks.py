@@ -145,15 +145,15 @@ def create_offers():
     for i in range(50):
         offer = Disposition.create_disposition()
         Gielda.objects.create(
-            loading_city=offer.loading_city,
-            unloading_city=offer.unloading_city,
-            loading_country=offer.loading_country,
-            unloading_country=offer.unloading_country,
-            loading_spedition=offer.loading_spedition,
-            unloading_spedition=offer.unloading_spedition,
-            cargo=offer.cargo,
-            tonnage=offer.tonnage,
-            adr=offer.adr,
+            loading_city=offer.get("loading_city"),
+            unloading_city=offer.get("unloading_city"),
+            loading_country=offer.get("loading_country"),
+            unloading_country=offer.get("unloading_country"),
+            loading_spedition=offer.get("loading_spedition"),
+            unloading_spedition=offer.get("unloading_spedition"),
+            cargo=offer.get("cargo"),
+            tonnage=offer.get("tonnage"),
+            adr=offer.get("adr"),
             price=randint(5000, 100000)
         )
 
