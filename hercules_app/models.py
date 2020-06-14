@@ -438,7 +438,7 @@ class Disposition(models.Model):
         try:
             adr = cargo.get("adr_class")
         except ValueError:
-            adr = None
+            adr = 'none'
 
         disposition = {
             'loading_city': first_city,
