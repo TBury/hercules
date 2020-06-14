@@ -397,8 +397,8 @@ def OffersView(request):
         income_max = int(request.GET.get('income_max'))
     if request.GET.get('sort_by'):
         sort_by = request.GET.get('sort_by')
-    offers = Gielda.objects.all().filter(**filters, price__gte=income_min,
-                                         price__lte=income_max).order_by(sort_by)
+    offers = Gielda.objects.filter(**filters, price__gte=income_min,
+                                         price__lte=income_max).order_by(sort_by).exclude(creator=driver_info.company)
     for offer in offers:
         if offer.loading_spedition in PROMODS_COMPANIES:
             offer.loading_spedition = 'promods_company'
@@ -462,6 +462,7 @@ def CreateOfferView(request):
                 offer.loading_spedition = "promods_company"
             if offer.unloading_spedition in PROMODS_COMPANIES:
                 offer.unloading_spedition = "promods_company"
+            offer.creator = driver_info.company
             offer.save()
             request.session['offer_added'] = True
             return redirect('/Gielda/Offers')
