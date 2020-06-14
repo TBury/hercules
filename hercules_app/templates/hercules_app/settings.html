@@ -227,7 +227,7 @@
                                     <label class="label">Opis</label>
                                     {{ edit_company_form.description }}
                                 </div>
-                                <a class="button add-new-company" type="submit">Zapisz zmiany</a>
+                                <button class="button add-new-company" type="submit">Zapisz zmiany</button>
                             </form>
                         </div>
                     </article>
@@ -237,7 +237,7 @@
                             <a class="toggle" aria-label="toggle"></a>
                         </div>
                         <div class="accordion-body">
-                            <form action="/Company/Settings/EditCompanyCompany/Settings" method="POST">
+                            <form action="/Company/Settings/EditCompanySettings" method="POST">
                                 {% csrf_token %}
                             <div class="box description">
                                 <div class="columns">
@@ -325,7 +325,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="button add-new-company" type="submit">Zapisz zmiany</a>
+                            <button class="button add-new-company" type="submit">Zapisz zmiany</button>
                             </form>
                         </div>
                     </article>
