@@ -1063,7 +1063,7 @@ def AcceptWaybill(request, waybill_id):
                     fuel=company.fuel + waybill.fuel,
                     average_fuel=round(Decimal(company.fuel + waybill.fuel) / Decimal(
                         company.distance + waybill.distance) * 100, 2),
-                    waybill_count=company.deliveries_count + 1,
+                    waybill_count=company.waybill_count + 1,
                 )
                 request.session['waybill_accepted'] = True
                 return redirect('/Company/Waybills')
