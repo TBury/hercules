@@ -107,7 +107,6 @@ def panel(request):
         'company': driver_info.company,
         'statistics': statistics,
         'vehicle': driver_info.vehicle,
-        'rozpiski': rozpiski,
         'dispositions': dispositions,
         'position': driver.position,
         'offers': offers,
