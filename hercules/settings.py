@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "m^%^y3_8e&$l)q&mfuihrm_gihvl#g7@k&gpfg4bwx8v9kpu#8"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -142,8 +142,8 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "live-static-files", 'media-root')
 
-CELERY_BROKER_URL = "redis://h:p00cec0487864ec3e0afa314440c8ca5e9b5d62c55719be3e155c993f7545b47f@ec2-3-214-226-152.compute-1.amazonaws.com:21069"
-CELERY_RESULT_BACKEND = "redis://h:p00cec0487864ec3e0afa314440c8ca5e9b5d62c55719be3e155c993f7545b47f@ec2-3-214-226-152.compute-1.amazonaws.com:21069"
+CELERY_BROKER_URL = os.environ.get("REDIS_URL")
+CELERY_RESULT_BACKEND = os.environ.get("REDIS_URL")
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
