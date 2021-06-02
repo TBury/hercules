@@ -336,11 +336,12 @@ class NewOfferForm(ModelForm):
 
 class NewDispositionForm(ModelForm):
     deadline = forms.DateTimeField(
-                                   widget=forms.DateTimeInput(attrs={
-                                       'class': 'datetimepicker',
-                                       'type': 'datetime'
-                                   }, format="%d/%m/%Y",
-                                   )
+        widget=forms.DateTimeInput(
+            attrs = {
+                    'class': 'datetimepicker',
+                    'type': 'datetime'
+            }, format="%d/%m/%Y",
+        )
     )
     class Meta:
         model = Disposition
