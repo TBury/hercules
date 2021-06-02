@@ -1,6 +1,6 @@
 import uuid
 from io import BytesIO
-from celery import task
+from celery import shared_task
 from celery.utils.log import get_task_logger
 from hercules_app import recognition
 from hercules_app.models import TruckersMPStatus, CompanySettings, WaybillImages, Waybill, Gielda, Disposition
@@ -8,61 +8,61 @@ from django.core.files.base import ContentFile
 from random import randint
 logger = get_task_logger(__name__)
 
-@task
+@shared_task
 def get_loading_city(ocr, bind=True):
     loading_city = ocr.get_loading_city()
     return loading_city
 
 
-@task
+@shared_task
 def get_loading_spedition(ocr, bind=True):
     loading_spedition = ocr.get_loading_spedition()
     return loading_spedition
 
 
-@task
+@shared_task
 def get_unloading_city(ocr, bind=True):
     unloading_city = ocr.get_unloading_city()
     return unloading_city
 
 
-@task
+@shared_task
 def get_unloading_spedition(ocr, bind=True):
     unloading_spedition = ocr.get_unloading_spedition()
     return unloading_spedition
 
 
-@task
+@shared_task
 def get_cargo(ocr, bind=True):
     cargo = ocr.get_cargo()
     return cargo
 
 
-@task
+@shared_task
 def get_tonnage(ocr, bind=True):
     tonnage = ocr.get_tonnage()
     return tonnage
 
 
-@task
+@shared_task
 def get_distance(ocr, bind=True):
     distance = ocr.get_distance()
     return distance
 
 
-@task
+@shared_task
 def get_fuel(ocr, bind=True):
     fuel = ocr.get_fuel()
     return fuel
 
 
-@task
+@shared_task
 def get_income(ocr, bind=True):
     income = ocr.get_income()
     return income
 
 
-@task
+@shared_task
 def get_waybill_info(first_screen_path, end_screen_path, waybill_id, bind=True):
     w = Waybill.objects.get(id=waybill_id)
     ocr = recognition.WaybillInfo(
@@ -130,14 +130,14 @@ def create_temp_image(image):
     return temp_image.getvalue()
 
 
-@task (
+@shared_task (
     name="get-status",
     ignore_result=True
 )
 def get_tmp_server_status():
     TruckersMPStatus.save_status_to_database()
 
-@task (
+@shared_task (
     name="create-new-offers",
     ignore_result=True
 )
@@ -160,14 +160,14 @@ def create_offers():
         )
 
 
-@task (
+@shared_task (
     name="random-vehicle-weekly",
     ignore_result=True
 )
 def random_vehicle_weekly():
     CompanySettings.weekly_random_vehicles()
 
-@task (
+@shared_task (
     name="random-vehicle-monthly",
     ignore_result=True
 )
