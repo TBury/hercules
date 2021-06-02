@@ -301,6 +301,7 @@ def add_waybill(request):
     waybill = Waybill.objects.get(id=waybill_id)
     if waybill.first_screen.name == "":
         is_automatic = False
+        images = waybill.end_screen
     else:
         args = request.session.get('screen_information')
         images = WaybillImages.objects.get(waybill=waybill)
@@ -1019,7 +1020,10 @@ def CompanyWaybillsView(request):
 def VerifyWaybillView(request, waybill_id):
     driver_info = Driver.get_driver_info(request)
     waybill = get_object_or_404(Waybill, id=waybill_id)
-    images = WaybillImages.objects.get(waybill=waybill)
+    try:
+        images = WaybillImages.objects.get(waybill=waybill)
+    except:
+        images = Waybill.end_screen
     args = {
         'nick': driver_info.nick,
         'position': driver_info.position,
