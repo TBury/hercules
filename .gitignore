@@ -256,3 +256,6 @@ celerybeat-schedule.*
 /static/assets/vehicles
 /static/assets/avatars
 /static/assets/logos
+
+.idea
+.vscode
