@@ -213,6 +213,7 @@ venv/
 ENV/ 
 env.bak/ 
 venv.bak/ 
+myenv/
 
 # mkdocs documentation 
 /site 
@@ -257,5 +258,5 @@ celerybeat-schedule.*
 /static/assets/avatars
 /static/assets/logos
 
-.idea
-.vscode
+.idea/
+.vscode/
