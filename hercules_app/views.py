@@ -462,7 +462,10 @@ def CreateOfferView(request):
                 offer.loading_spedition = "promods_company"
             if offer.unloading_spedition in PROMODS_COMPANIES:
                 offer.unloading_spedition = "promods_company"
-            offer.creator = driver_info.company
+            if driver_info.is_employeed:
+                offer.creator = driver_info.company
+            else:
+                offer.creator = driver_info.nick
             offer.save()
             request.session['offer_added'] = True
             return redirect('/Gielda/Offers')
