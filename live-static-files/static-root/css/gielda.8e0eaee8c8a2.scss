@@ -1,0 +1,82 @@
+* {
+    font-family: 'Montserrat',
+    sans-serif !important;
+}
+
+.input,
+.dropdown {
+    border-top: 3px solid #0282FC !important;
+}
+
+.dropdown-content {
+    font-weight: 700;
+}
+
+option {
+    font-weight: 500;
+}
+.place {
+    display: flex;
+}
+
+.search-offers {
+    font-weight: 700;
+    background-color: #C70000 !important;
+    color: white !important;
+    border-radius: 20px !important;
+    padding: 15px 35px 15px 35px !important;
+    margin-left: 85%;
+}
+
+.sort {
+    font-weight: 500;
+    margin-left: 80%;
+    margin-bottom: 25px;
+}
+
+.sort_by {
+    border-top: 3px solid #0282FC !important;
+    font-weight: 700;
+}
+
+.country-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.city {
+    font-size: 22px !important;
+}
+
+.cargo {
+    font-size: 18px !important;
+}
+
+.trailer {
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.income {
+    font-size: 22px;
+    color: black !important;
+}
+
+.company {
+    width: 96px;
+    height: 48px;
+}
+
+.add-new-offer {
+    color: white !important;
+    margin-left: 84% !important;
+    font-size: 1.35rem !important;
+    background-color: #C70000 !important;
+
+    &:hover {
+        color: #dddddd;
+    }
+
+    font-weight: 700;
+    margin-bottom: 15px;
+}

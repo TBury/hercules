@@ -149,7 +149,7 @@ class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     nick = models.CharField(max_length=64, null=True)
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, blank=True, null=True)
-    avatar = models.ImageField(upload_to='avatars', null=True, default='avatars/avatar-placeholder.jpg')
+    avatar = models.ImageField(upload_to='avatars', null=True, default='avatars/avatar_placeholder.png')
     last_delivery = models.DateTimeField(auto_now_add=True)
     length_of_service = models.DateTimeField(auto_now_add=True)
     position = models.CharField(max_length=20, null=True, blank=True)

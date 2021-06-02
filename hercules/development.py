@@ -28,7 +28,7 @@ SECRET_KEY = "m^%^y3_8e&$l)q&mfuihrm_gihvl#g7@k&gpfg4bwx8v9kpu#8"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hercules-project.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['hercules-project.herokuapp.com', '127.0.0.1', '0.0.0.0']
 
 
 

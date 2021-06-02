@@ -246,10 +246,6 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 
-/media
-
-/static/media
-
 # Celery local files
 celerybeat-schedule.*
 
@@ -260,3 +256,5 @@ celerybeat-schedule.*
 
 .idea/
 .vscode/
+
+db.sqlite3

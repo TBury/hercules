@@ -1,0 +1,30 @@
+.job-application {
+  margin-top: 30px !important;
+  width: 75vw;
+}
+
+.application-company {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.company-name {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-left: 15px;
+}
+
+.company-logo {
+  width: 64px;
+}
+
+.application-not-checked,
+.application-rejected {
+  margin-top: 15px;
+  font-weight: 700;
+}
+/*# sourceMappingURL=job_applications_driver.css.map */

@@ -1,0 +1,95 @@
+
+.basic-info,
+.description {
+    border-top: 5px solid #0282FC;
+    margin-top: 40px;
+}
+
+.company-name {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.tag {
+    font-weight: 700;
+}
+
+.basic-info,
+.statistics,
+.description {
+    margin-left: 15% !important;
+    margin-right: 15% !important;
+}
+
+.stats-column {
+    padding-left: 0 !important;
+}
+
+
+.setting {
+    margin-right: 25px;
+}
+
+.selectize-control.multi {
+    width: 100% !important;
+}
+
+.tag {
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.input {
+    margin-bottom: 25px;
+}
+
+.field {
+    margin-top: 25px;
+}
+
+.add-new-company {
+    float: right;
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 12.4vw;
+    background-color: #C70000 !important;
+    color: white !important;
+
+    &:hover {
+        color: #dddddd;
+    }
+
+    padding: 0 2em;
+    font-size: 1.5rem !important;
+    font-weight: 700;
+}
+
+.hint {
+    margin-left: 54px;
+    margin-top: 15px;
+    word-wrap: break-word;
+}
+.random-vehicle-container,
+.save-sync-container {
+    margin-top: 60px;
+    padding-bottom: 60px !important;
+}
+
+.description {
+    margin-bottom: 30px;
+}
+.accordion {
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+}
+
+.accordion:first-of-type {
+    margin-top: 45px;
+}
+
+.accordion:last-of-type {
+    margin-bottom: 45px;
+}
+
+.hidden {
+    display: none;
+}
