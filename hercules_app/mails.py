@@ -1,11 +1,16 @@
-from django.core.mail import send_mail
+from requests import post
+import requests
+import os
+
 
 def send_contact_mail(sender, message):
-    subject = "Nowa wiadomość w systemie Hercules!"
-    recipient_list = ['kr4wczyk13@gmail.com']
-    send_mail(
-        subject,
-        message,
-        sender,
-        recipient_list
+    return requests.post(
+        os.environ.get("MAILGUN_API_URL"),
+        auth = ("api", os.environ.get("MAILGUN_API_KEY")),
+        data = {
+            "from": f"Użytkownik Herculesa {sender}",
+            "to": "kr4wczyk13@gmail.com",
+            "subject": "Nowa wiadomość w systemie Hercules!",
+            "text": message,
+        }
     )
