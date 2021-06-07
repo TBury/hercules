@@ -150,7 +150,8 @@ def SetCookie(request, response, parameter_name):
     Set cookie for given parameter
     '''
     request.session.modified = True
-    del request.session[parameter_name]
+    if request.session[parameter_name]:
+        del request.session[parameter_name]
     response.set_cookie(parameter_name, 'True', max_age=5, samesite='Strict')
     return response
 
