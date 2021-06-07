@@ -15,7 +15,7 @@ from common.utils.utils import PROMODS_COMPANIES
 class Company(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=128)
-    drivers_count = models.SmallIntegerField(default=0)
+    drivers_count = models.PositiveSmallIntegerField(default=1)
     logo = models.ImageField(upload_to='logos', default='')
     distance = models.PositiveIntegerField(default=0)
     fuel = models.PositiveIntegerField(default=0)

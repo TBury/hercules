@@ -1140,6 +1140,7 @@ def AddNewCompanyView(request):
         return response
     else:
         return HttpResponse(status=403)
+
 @login_required(login_url="/login")
 def AddCompany(request):
     if request.GET:
