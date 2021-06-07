@@ -93,6 +93,11 @@ if (showCookie("job_application_accepted") == 'True') {
 }
 
 if (showCookie("job_application_rejected") == 'True') {
-    showToast('Odrzucono aplikację.', 'Przyjęto aplikację');
+    showToast('Odrzucono aplikację.', 'Odrzucono aplikację');
     deleteCookie("job_applicaton_rejected");
+}
+
+if (showCookie("email_sent") == 'True') {
+    showToast('Mail został wysłany do naszego zespołu. Bardzo dziękujemy za wiadomość!', 'Wiadomość wysłana');
+    deleteCookie("email_sent");
 }

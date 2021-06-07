@@ -4,6 +4,10 @@ from hercules_app.models import Driver, Waybill, Company, Vehicle, CompanySettin
     Gielda, WorkApplications
 
 
+class ContactMailForm(forms.Form):
+    sender = forms.EmailField(required = True)
+    message = forms.CharField(required = True)
+
 class SetNickForm(ModelForm):
     class Meta:
         model = Driver

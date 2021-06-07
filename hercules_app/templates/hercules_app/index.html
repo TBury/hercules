@@ -28,6 +28,11 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script src="{% static 'js/toast.js' %}"></script>
     <title>Hercules | Zostań herosem transportu!</title>
 </head>
 <body>
@@ -145,21 +150,21 @@
                 <p class="subtitle is-5 column-description">Bardzo chętnie odpowiadamy na wszelkie pytania dotyczące systemu. Znalazłeś błąd? Chcesz podać pomysł? Napisz śmiało! Postaramy się odpowiedzieć tak szybko, jak tylko możemy (czyli gdy nie jesteśmy w wirtualnej trasie).
                 </p>
             </div>
-            <div class="form">
+            <form class="form" method="POST">
                 <div class="field">
                     <label class="label">Twój e-mail</label>
                     <div class="control">
-                        <input class="input" type="email" placeholder="np. dzesika11@janusz-trans.pl">
+                        <input class="input" type="email" name="sender" placeholder="np. dzesika11@janusz-trans.pl">
                     </div>
                     <label class="label">Twoja wiadomość</label>
                     <div class="control">
-                        <textarea class="input" type="textarea" placeholder="Tutaj wpisz swoją wiadomosć" rows="15"></textarea>
+                        <textarea class="input" type="textarea" placeholder="Tutaj wpisz swoją wiadomosć" name="message" rows="15"></textarea>
                     </div>
                 </div>
-            </div>
-            <div class="buttons-message">
-                <a class="button send-message is-rounded">Wyślij wiadomość!</a>
-            </div>
+                <button type="submit" class="buttons-message button send-message is-rounded">
+                    Wyślij wiadomość!
+                </button>
+            </form>
         </div>
     </div>
 </body>

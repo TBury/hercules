@@ -11,7 +11,7 @@ from django.utils.encoding import smart_str
 
 from hercules_app.forms import SetNickForm, FirstScreenshotForm, SecondScreenshotForm, AddWaybillForm, EditVehicleForm, \
     AddVehicleForm, EditSettingsForm, EditCompanyInformationForm, NewDispositionForm, NewOfferForm, SendApplicationForm, \
-    AddNewCompanyForm
+    AddNewCompanyForm, ContactMailForm
 from hercules_app.models import (
     Driver,
     Company,
@@ -30,8 +30,15 @@ from .tasks import get_waybill_info
 from common.utils.utils import get_country, PROMODS_COMPANIES
 
 def index(request):
-    return render(request, 'hercules_app/index.html')
-
+    response = render(request, 'hercules_app/index.html')
+    if request.method == "POST":
+        form = ContactMailForm(request.POST)
+        if form.is_valid():
+            form.save()
+            SetCookie(request, response, 'email_sent')
+    else:
+        form = ContactMailForm()
+    return response
 
 def login(request):
     return render(request, 'hercules_app/sign-in.html')
@@ -44,7 +51,6 @@ def handler500(request):
 
 def handler403(request, exception):
     return render(request, 'hercules_app/403.html', status=403)
-
 
 @login_required(login_url="/login")
 def hello(request):
