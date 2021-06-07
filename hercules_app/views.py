@@ -27,6 +27,7 @@ from hercules_app.models import (
     TruckersMPStatus, WaybillImages
 )
 from .tasks import get_waybill_info
+from .mails import send_contact_mail
 from common.utils.utils import get_country, PROMODS_COMPANIES
 
 def index(request):
@@ -34,7 +35,9 @@ def index(request):
     if request.method == "POST":
         form = ContactMailForm(request.POST)
         if form.is_valid():
-            form.save()
+            sender = form.cleaned_data.get("sender")
+            message = form.cleaned_data.get("message")
+            send_contact_mail(sender, message)
             SetCookie(request, response, 'email_sent')
     else:
         form = ContactMailForm()
