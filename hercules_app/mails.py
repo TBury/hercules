@@ -2,14 +2,10 @@ from django.conf import settings
 
 from requests import post
 import requests
-import os
-
 
 def send_contact_mail(sender, message):
-    url = settings.MAILGUN_API_URL
+    url = f"https://api.mailgun.net/v3/{settings.MAILGUN_API_URL}" 
     key = settings.MAILGUN_API_KEY
-    print(url)
-    print(key)
     return requests.post(
         url,
         auth = ("api", key),
