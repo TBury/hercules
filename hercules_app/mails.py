@@ -3,9 +3,11 @@ import requests
 from django.conf import settings
 
 def send_contact_mail(sender, message):
+    url = settings.MAILGUN_API_URL
+    key = settings.MAILGUN_API_KEY
     return requests.post(
-        settings.MAILGUN_API_URL,
-        auth = ("api", settings.MAILGUN_API_KEY),
+        url,
+        auth = ("api", key),
         data = {
             "from": f"Użytkownik Herculesa {sender}",
             "to": "kr4wczyk13@gmail.com",
