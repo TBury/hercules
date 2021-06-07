@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'register.apps.RegisterConfig',
     'hercules_app.apps.HerculesAppConfig',
     'storages',
-    'anymail',
 ]
 
 MIDDLEWARE = [
