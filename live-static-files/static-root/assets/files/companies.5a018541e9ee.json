@@ -32,7 +32,7 @@
             "posped",
             "sanbuilders",
             "fle",
-            "batisse_hs",
+            "batisse",
             "ika_bohag",
             "lisette_log",
             "voitureux",
@@ -85,7 +85,7 @@
             "sanbuilders",
             "tradeaux",
             "kaarfor",
-            "batisse_road",
+            "batisse",
             "wilnet_trans",
             "eco",
             "gnt",
@@ -882,11 +882,11 @@
             "sag_tre",
             "drekkar",
             "ika_bohag",
-            "konstnr_br",
+            "konstnr",
             "norr_food",
             "nord_sten",
             "bhv",
-            "konstnr_wind",
+            "konstnr",
             "saab",
             "lidl"
         ],
@@ -898,7 +898,7 @@
             "norrsken",
             "ika_bohag",
             "drekkar",
-            "konstnr_br",
+            "konstnr",
             "ns_chem"
         ],
         "country": "sweden"
@@ -937,7 +937,7 @@
             "norr_food",
             "gnt",
             "bhv",
-            "aria_fd_jnpg",
+            "aria",
             "nord_sten"
         ],
         "country": "sweden"
@@ -957,7 +957,7 @@
         "companies": [
             "renar",
             "norr_food",
-            "konstnr_hs"
+            "konstnr"
         ],
         "country": "sweden"
     },
@@ -966,7 +966,7 @@
         "companies": [
             "gnt",
             "bhv",
-            "konstnr_hs",
+            "konstnr",
             "norr_food"
         ],
         "country": "sweden"
@@ -984,7 +984,7 @@
     {
         "city_name": "Aalborg",
         "companies": [
-            "aria_fd_albg",
+            "aria",
             "nord_crown",
             "ns_oil",
             "ika_bohag",
@@ -997,7 +997,7 @@
     {
         "city_name": "Trelleborg",
         "companies": [
-            "aria_fd_trbg",
+            "aria",
             "polarislines"
         ],
         "country": "sweden"
@@ -1006,7 +1006,7 @@
         "city_name": "Gedser",
         "companies": [
             "polarislines",
-            "konstnr_wind"
+            "konstnr"
         ],
         "country": "denmark"
     },
@@ -1064,12 +1064,12 @@
         "city_name": "Esbjerg",
         "companies": [
             "vitas_pwr",
-            "aria_fd_esbj",
+            "aria",
             "marina",
             "polarislines",
             "cont_port",
             "agronord",
-            "konstnr_wind"
+            "konstnr"
         ],
         "country": "denmark"
     },
@@ -1253,7 +1253,7 @@
             "scania_dlr",
             "ms_stein",
             "renar",
-            "konstnr_wind",
+            "konstnr",
             "kaarfor",
             "skoda",
             "polarislines",
@@ -1356,7 +1356,7 @@
             "lisette_log",
             "kaarfor",
             "chimi",
-            "batisse_wind",
+            "batisse",
             "huilant"
         ],
         "country": "france"
@@ -1379,13 +1379,13 @@
         "companies": [
             "bhv",
             "chimi",
-            "batisse_wind",
+            "batisse",
             "ika_bohag",
             "mvm_carriere",
             "eco",
             "dans_jardin",
             "fle",
-            "batisse_hs",
+            "batisse",
             "kaarfor",
             "globeur"
         ],
@@ -1399,7 +1399,7 @@
             "subse",
             "tradeaux",
             "fle",
-            "batisse_base",
+            "batisse",
             "nos_pat_cf"
         ],
         "country": "france"
@@ -1410,7 +1410,7 @@
             "lisette_log",
             "ika_bohag",
             "globeur",
-            "batisse_base",
+            "batisse",
             "voitureux"
         ],
         "country": "france"
@@ -1422,7 +1422,7 @@
             "eco",
             "lisette_log",
             "globeur",
-            "batisse_road",
+            "batisse",
             "mvm_carriere",
             "huilant",
             "ika_bohag",
@@ -1494,7 +1494,7 @@
             "subse",
             "tradeaux",
             "marina_fr",
-            "batisse_wind"
+            "batisse"
         ],
         "country": "france"
     },
@@ -1505,7 +1505,7 @@
             "mvm_carriere",
             "dans_jardin",
             "lisette_log",
-            "batisse_road",
+            "batisse",
             "bhv",
             "boisserie",
             "wilnet_trans"
@@ -1780,7 +1780,7 @@
             "tesore_gust",
             "te_logistica",
             "fui",
-            "costruzi_bas",
+            "costruzi_hal",
             "ika_bohag"
         ],
         "country": "italy"
@@ -1832,7 +1832,7 @@
             "lintukainen",
             "sal_fi",
             "bltmetal",
-            "aria_nordic"
+            "aria"
         ],
         "country": "finland"
     },
@@ -2152,7 +2152,7 @@
         "companies": [
             "marina_fr",
             "fle",
-            "batisse_base",
+            "batisse",
             "renar"
         ],
         "country": "france"
@@ -2358,7 +2358,7 @@
             "lidl",
             "voitureux",
             "cont_port",
-            "batisse_hs",
+            "batisse",
             "trameri",
             "batisse",
             "chimi",
@@ -2520,7 +2520,7 @@
     {
         "city_name": "Sligo",
         "companies": [
-            "aria_fd_trbg",
+            "aria",
             "trameri"
         ],
         "country": "ireland"
@@ -2569,7 +2569,7 @@
             "batisse",
             "eurogoodies",
             "wilnet_trans",
-            "batisse_road"
+            "batisse"
         ],
         "country": "spain"
     },
@@ -2586,8 +2586,8 @@
         "city_name": "Barcelona",
         "companies": [
             "wgcc",
-            "aria_nordic",
-            "batisse_hs",
+            "aria",
+            "batisse",
             "tradeaux",
             "vitas_pwr",
             "chimi",
@@ -2609,7 +2609,7 @@
         "city_name": "Irun",
         "companies": [
             "mazet",
-            "aria_nordic",
+            "aria",
             "wilnet_trans",
             "transwood",
             "globeur",
@@ -2814,7 +2814,7 @@
         "city_name": "Manresa",
         "companies": [
             "dia",
-            "aria_nordic",
+            "aria",
             "mazet"
         ],
         "country": "spain"
@@ -2827,7 +2827,7 @@
             "nos_pat",
             "bhv",
             "scania_dlr",
-            "batisse_road"
+            "batisse"
         ],
         "country": "france"
     },
@@ -2930,7 +2930,7 @@
         "city_name": "Rovaniemi",
         "companies": [
             "trameri",
-            "aria_nordic",
+            "aria",
             "bauhaus",
             "prisma",
             "mcdonalds",
@@ -2965,7 +2965,7 @@
         "city_name": "Καβάλα",
         "companies": [
             "subse",
-            "costruzi_bas",
+            "costruzi_hal",
             "eolo_lines",
             "cont_port_it",
             "marina_fr"
@@ -3068,7 +3068,7 @@
         "city_name": "Olomouc",
         "companies": [
             "volvo_dlr",
-            "aria_nordic",
+            "aria",
             "lisette_log"
         ],
         "country": "czech"
@@ -3284,7 +3284,7 @@
         "city_name": "Kristiinankaupunki",
         "companies": [
             "lintukainen",
-            "aria_nordic",
+            "aria",
             "gnt"
         ],
         "country": "finland"
@@ -3316,7 +3316,7 @@
         "city_name": "Прилеп",
         "companies": [
             "subse",
-            "costruzi_bas"
+            "costruzi_hal"
         ],
         "country": "macedonia"
     },
@@ -3337,7 +3337,7 @@
             "metro",
             "eurogoodies"
         ],
-        "country": "liecht"
+        "country": "liechtenstein"
     },
     {
         "city_name": "Ísafjörður",
@@ -3488,7 +3488,7 @@
         "city_name": "Viitasaari",
         "companies": [
             "sag_tre",
-            "aria_nordic"
+            "aria"
         ],
         "country": "finland"
     },
@@ -3804,7 +3804,7 @@
     {
         "city_name": "Oppdal",
         "companies": [
-            "aria_nordic",
+            "aria",
             "norr_food"
         ],
         "country": "norway"
@@ -4205,7 +4205,7 @@
         "companies": [
             "metro",
             "bhv",
-            "konstnr_wind"
+            "konstnr"
         ],
         "country": "denmark"
     },
@@ -4438,7 +4438,7 @@
     {
         "city_name": "Canfranc-Estación",
         "companies": [
-            "batisse_hs"
+            "batisse"
         ],
         "country": "spain"
     },
@@ -4743,7 +4743,7 @@
         "city_name": "leba",
         "companies": [
             "wgcc",
-            "konstnr_wind",
+            "konstnr",
             "biedronka_in",
             "mostostal",
             "marina",
