@@ -151,6 +151,7 @@
                 </p>
             </div>
             <form class="form" method="POST">
+                {% csrf_token %}
                 <div class="field">
                     <label class="label">Twój e-mail</label>
                     <div class="control">
