@@ -2,9 +2,12 @@ from requests import post
 import requests
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
 def send_contact_mail(sender, message):
-    url = os.environ.get("MAILGUN_API_URL")
-    key = os.environ.get("MAILGUN_API_KEY")
+    url = os.getenv("MAILGUN_API_URL")
+    key = os.getenv("MAILGUN_API_KEY")
     return requests.post(
         url,
         auth = ("api", key),

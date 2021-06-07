@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'register.apps.RegisterConfig',
     'hercules_app.apps.HerculesAppConfig',
-    'storages'
+    'storages',
+    'anymail',
 ]
 
 MIDDLEWARE = [
@@ -178,3 +179,10 @@ LOGGING = {
 
 MAILGUN_API_URL = os.environ.get("MAILGUN_API_URL")
 MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY")
+
+ANYMAIL = {
+    # (exact settings here depend on your ESP...)
+    "MAILGUN_API_KEY": MAILGUN_API_KEY,
+    "MAILGUN_SENDER_DOMAIN": 'mg.example.com',  # your Mailgun domain, if needed
+}
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
