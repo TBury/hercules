@@ -505,7 +505,7 @@ def ChooseDriverView(request):
     driver_info = Driver.get_driver_info(request)
     company_drivers_count = Company.objects.values_list(
         'drivers_count', flat=True).get(name=driver_info.company)
-    if company_drivers_count > 1:
+    if company_drivers_count >= 1:
         company = Company.objects.get(name=driver_info.company)
         company_drivers = Driver.objects.all().filter(id=company.id)
         company_drivers_vehicles = []

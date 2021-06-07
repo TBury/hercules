@@ -4,7 +4,7 @@ from requests import post
 import requests
 
 def send_contact_mail(sender, message):
-    url = f"https://api.mailgun.net/v3/{settings.MAILGUN_API_URL}" 
+    url = f"https://api.eu.mailgun.net/v3/{settings.MAILGUN_API_URL}" 
     key = settings.MAILGUN_API_KEY
     return requests.post(
         url,
