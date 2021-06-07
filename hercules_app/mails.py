@@ -1,10 +1,10 @@
 from requests import post
 import requests
-from django.conf import settings
+import os
 
 def send_contact_mail(sender, message):
-    url = settings.MAILGUN_API_URL
-    key = settings.MAILGUN_API_KEY
+    url = os.environ.get("MAILGUN_API_URL")
+    key = os.environ.get("MAILGUN_API_KEY")
     return requests.post(
         url,
         auth = ("api", key),
