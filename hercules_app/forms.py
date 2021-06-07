@@ -34,7 +34,11 @@ class SecondScreenshotForm(ModelForm):
 
 
 class AddWaybillForm(ModelForm):
-    note = forms.IntegerField(max_value=100, min_value=0, required=False)
+    tonnage = forms.IntegerField(min_value=0)
+    distance = forms.IntegerField(min_value=0)
+    fuel = forms.IntegerField(min_value=0)
+    income = forms.IntegerField(min_value=0)
+    damage = forms.IntegerField(max_value=100, min_value=0)
     note = forms.CharField(required=False)
 
     class Meta:
@@ -58,7 +62,8 @@ class AddWaybillForm(ModelForm):
         for field in self.fields:
             if field == "loading_city":
                 self.fields[field].widget.attrs.update(
-                    {'id': 'autoCompleteCities'})
+                    {'id': 'autoCompleteCities'}
+                )
             if field == "unloading_city":
                 self.fields[field].widget.attrs.update(
                     {'id': 'autoCompleteUnloadingCities'})
