@@ -31,7 +31,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['hercules-project.herokuapp.com', '127.0.0.1', '0.0.0.0']
 
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
