@@ -38,6 +38,7 @@ def index(request):
             sender = form.cleaned_data.get("sender")
             message = form.cleaned_data.get("message")
             send_contact_mail(sender, message)
+            request.session['email_sent'] = True
             SetCookie(request, response, 'email_sent')
     else:
         form = ContactMailForm()
@@ -150,7 +151,7 @@ def SetCookie(request, response, parameter_name):
     Set cookie for given parameter
     '''
     request.session.modified = True
-    if request.session[parameter_name]:
+    if request.session.get(parameter_name):
         del request.session[parameter_name]
     response.set_cookie(parameter_name, 'True', max_age=5, samesite='Strict')
     return response
