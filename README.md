@@ -2,8 +2,6 @@
 
 **Hercules** to system rozliczeń dla wirtualnych firm (grup graczy), którzy grają w grę Euro Truck Simulator 2. Służy on do zliczania ilości przejechanych kilometrów, dodawania nowych tras, sprawdzania aktywności *kierowców* i wiele innych rzeczy mających urealnić rozgrywkę.
 
-**Link do projektu**: [https://hercules-project.herokuapp.com/panel](https://hercules-project.herokuapp.com/panel)
-
 ![https://i.imgur.com/9Ecs5z0.png](https://i.imgur.com/9Ecs5z0.png)
 
 ### Założenia projektu
