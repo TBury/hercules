@@ -19,9 +19,3 @@ Cały projekt oparty jest na frameworku **Django**. Za rozpoznawanie znaków odp
 Główną funkcją projektu było **dodawanie i rozliczanie tras w sposób zautomatyzowany** z użyciem Tesseracta. *Szef* firmy sprawdzał poprawność zrzutu ekranu z treścią wpisaną do systemu i zatwierdzał bądź odrzucał trasy, które zostały nadesłane przez *kierowców*. Prócz tego system posiada automatyczną *Giełdę zleceń*, której zlecenia generowane są cyklicznie co 30 minut. System sprawdza też z użyciem oficjalnego API TruckersMP ilość graczy na poszczególnych serwerach trybu wieloosobowego gry.
 
 Cały projekt miał docelowo doczekać się aplikacji napisanej w języku C#, która poprzez API dodawałaby nowe trasy bezpośrednio z gry, bez konieczności logowania się do systemu, jednak ze względu na zawieszenie projektu, nie udało się tego zrealizować.
-
-W systemie jest założone konto demonstracyjne, z którego można skorzystać do samodzielnego przetestowania i sprawdzenia możliwości Herculesa. 
-
-**Login**: demo_driver
-
-**Hasło:** tUTzSycixRSP8Fi
